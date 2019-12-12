@@ -130,7 +130,6 @@ public class IssueRenewalImpl implements IssueRenewalDao {
 		String sql = "select * from wt_isrn_proposal_frm where wt_isrn_proposal_frm_id=? ";
 		IssueRenewal issueRenewal = jdbcTemplate.queryForObject(sql, new Object[] { proposalfrmid },
 				new BeanPropertyRowMapper<IssueRenewal>(IssueRenewal.class));
-
 		return issueRenewal;
 	}
 
@@ -144,7 +143,6 @@ public class IssueRenewalImpl implements IssueRenewalDao {
 		} catch (Exception e) {
 			issueRenewal = null;
 		}
-
 		return issueRenewal;
 	}
 
@@ -159,7 +157,6 @@ public class IssueRenewalImpl implements IssueRenewalDao {
 		IssueRenewal issueRenewal1 = jdbcTemplate.queryForObject(sql,
 				new Object[] { issueRenewal.getWt_isrn_proposal_frm_id() },
 				new BeanPropertyRowMapper<IssueRenewal>(IssueRenewal.class));
-		System.out.println(issueRenewal1);
 		return issueRenewal1;
 	}
 	
@@ -176,7 +173,6 @@ public class IssueRenewalImpl implements IssueRenewalDao {
 			e.printStackTrace();
 			return false;
 		}
-
 	}
 
 	@Override
@@ -190,7 +186,6 @@ public class IssueRenewalImpl implements IssueRenewalDao {
 
 	@Override
 	public void insertSystemEntryPS(IssueRenewal issueRenewal) {
-		
 		String sql = "insert into wt_isrn(wt_isrn_id, wt_isrn_proposal_frm_id,employee_code,maximum_liability) values "
 				+ "('1','"+issueRenewal.getWt_isrn_proposal_frm_id()+"','"+issueRenewal.getEmployee_code()+"','"+issueRenewal.getMaximum_liability()+"')";
 		jdbcTemplate.update(sql);

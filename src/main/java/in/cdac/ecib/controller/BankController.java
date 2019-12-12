@@ -209,9 +209,11 @@ public class BankController {
 	public String cancelPreliminaryScrutinypage(ModelMap model) {
 		List<IssueRenewal> listOfPreliminaryScrutiny = issueRenewalServ.getAllBankList();
 		List<IssueRenewal> listOfPreliminaryScrutinyDone = issueRenewalServ.getlistOfPreliminaryScrutinyDone();
+		
 		model.put("listIssueRenewal", listOfPreliminaryScrutiny);
 		model.put("listOfPreliminaryScrutinyDone", listOfPreliminaryScrutinyDone);
 		model.addAttribute("issueRenewal", new IssueRenewal());
+		
 		return "StartPS";
 	}
 
@@ -228,6 +230,7 @@ public class BankController {
 		HttpSession session = request.getSession();
 		String wt_isrn_proposal_frm_id = request.getParameter("proposalfrmid");
 		session.setAttribute("wt_isrn_proposal_frm_id", wt_isrn_proposal_frm_id);
+		
 		IssueRenewal issueRenewal = issueRenewalServ.selectUser(proposalfrmid);
 		model.addAttribute("issueRenewal", issueRenewal);
 		return "DisplayPreliminarySrutinyForm";
@@ -242,10 +245,13 @@ public class BankController {
 	@RequestMapping(value = "/DisplayPreliminaryScrutinySecondPage.htm")
 	public String displayPreliminaryScrutinySecondPage(HttpServletRequest request,
 			@ModelAttribute("issueRenewal") IssueRenewal issueRenewal, ModelMap model) throws Exception {
+		
 		HttpSession session = request.getSession();
 		String wt_isrn_proposal_frm_id = (String) session.getAttribute("wt_isrn_proposal_frm_id");
 		session.setAttribute("wt_isrn_proposal_frm_id", wt_isrn_proposal_frm_id);
+		
 		issueRenewal = issueRenewalServ.getByDocument(issueRenewal.getWt_isrn_proposal_frm_id());
+		
 		if (issueRenewal != null)
 			model.put("issueRenewal", issueRenewal);
 		return "DisplayPreliminaryScrutinySecondPage";
@@ -290,13 +296,11 @@ public class BankController {
 	@RequestMapping(value = "/GenerateOfficeNote.htm")
 	public String officeNote(HttpServletRequest request, @ModelAttribute("issueRenewal") IssueRenewal issueRenewal,
 			ModelMap model) {
-		System.out.println(issueRenewal);
+		
 		try {
 			boolean isvalid1 = issueRenewalServ.checkId(issueRenewal.getWt_isrn_proposal_frm_id());
 //			boolean isvalid2 = issueRenewalServ.checkCoverType(issueRenewal.getCover_type());
 //			boolean isvalid3 = issueRenewalServ.checkBankCode(issueRenewal.getBank_code());
-
-			System.out.println("In Controller------after dao-----" + isvalid1);
 
 			if (isvalid1) {
 				if (issueRenewal.getCover_type().equals("1")) {
