@@ -95,7 +95,7 @@ public class BankController {
 			HttpServletRequest request, HttpServletResponse response, BindingResult result, ModelAndView model)
 			throws Exception {
 		if (issueRenewal != null) {
-			// issueRenewalServ.Create(issueRenewal);
+			 issueRenewalServ.Create(issueRenewal);
 		} else {
 			String str = "Incorrect details";
 			System.out.println(str);
@@ -197,8 +197,7 @@ public class BankController {
 		List<IssueRenewal> listIssueRenewal = issueRenewalServ.getAllBankList();
 		List<IssueRenewal> listOfPreliminaryScrutinyDone = issueRenewalServ.getlistOfPreliminaryScrutinyDone();
 		List<IssueRenewal> listOfRecommedation = issueRenewalServ.getListOfOfficeNoteDone();
-		listOfPreliminaryScrutinyDone.removeAll(listOfRecommedation);
-		System.out.println(listOfPreliminaryScrutinyDone);
+	
 		HttpSession session = request.getSession();
 		String wt_isrn_proposal_frm_id = request.getParameter("wt_isrn_proposal_frm_id");
 		session.setAttribute("wt_isrn_proposal_frm_id", wt_isrn_proposal_frm_id);
@@ -370,12 +369,11 @@ public class BankController {
 		HttpSession session = request.getSession();
 		String wt_isrn_proposal_frm_id = proposalfrmid;
 		session.setAttribute("wt_isrn_proposal_frm_id", wt_isrn_proposal_frm_id);
-		//String str = (String)session.getAttribute(wt_isrn_proposal_frm_id);
 		System.out.println(wt_isrn_proposal_frm_id);
 	
-		String message = issueRenewalServ.showRecommedation(wt_isrn_proposal_frm_id);
-		request.setAttribute("message", message);
-		
+//		String message = issueRenewalServ.showRecommedation(wt_isrn_proposal_frm_id);
+//		request.setAttribute("message", message);
+//		
 		return "addRecommedation";
 	}
 	
