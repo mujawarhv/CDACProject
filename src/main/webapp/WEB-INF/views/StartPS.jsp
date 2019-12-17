@@ -2,6 +2,7 @@
 <%@ page errorPage="ErrorPage.jsp"%>
 <%@page import="in.cdac.ecib.dto.*"%><%@page import="java.util.List"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ page session="true" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="fmt"%>
 <%
 	IssueRenewal issueRenewal = (IssueRenewal) session.getAttribute("issueRenewal");
@@ -11,6 +12,9 @@
 %>
 <%
 	List<IssueRenewal> listOfPreliminaryScrutinyDone = (List<IssueRenewal>) request.getAttribute("listOfPreliminaryScrutinyDone");
+%>
+<%
+	List<IssueRenewal> listOfRecommedation = (List<IssueRenewal>) request.getAttribute("listOfRecommedation");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -132,7 +136,7 @@
 					aria-labelledby="headingPages" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Login Screens:</h6>
-						<a class="collapse-item" href="login.html">Login</a> <a
+						    <a class="collapse-item" href="login.htm">Login</a>  <a
 							class="collapse-item" href="register.html">Register</a> <a
 							class="collapse-item" href="forgot-password.html">Forgot
 							Password</a>
@@ -142,9 +146,9 @@
 						<a class="collapse-item" href="banklogin.htm">Bank Login</a> <a
 							class="collapse-item" href="ecgclogin.htm">ECGC Login</a>
 
-						<h6 class="collapse-header">Other Pages:</h6>
-						<a class="collapse-item" href="404.html">404 Page</a> <a
-							class="collapse-item" href="blank.html">Blank Page</a>
+<!-- 						<h6 class="collapse-header">Other Pages:</h6> -->
+<!-- 						<a class="collapse-item" href="404.html">404 Page</a> <a -->
+<!-- 							class="collapse-item" href="blank.html">Blank Page</a> -->
 					</div>
 				</div></li>
 
@@ -479,6 +483,50 @@
 															Note</a></td>
 													<td><a href="addRecommedation.htm"
 														class="btn btn-danger disabled">recommendation</a></td>
+													<td><a href="index.htm"
+														class="btn btn-danger disabled">Decision</a></td>
+												</tr>
+												<%
+													}
+												%>
+
+											</tbody>
+										</table>
+
+
+
+									</div>
+								</div>
+								
+								<div class="collapse show" id="collapseCardExample">
+									<div class="card-body">
+		
+										<H3>pending for Recommendation</H3>
+										<table class="table table-bordered">
+											<thead>
+												<tr>
+													<th>Proposal Id</th>
+													<th>Priliminary Scrutiny</th>
+													<th>Office Note</th>
+													<th>Recommendation</th>
+													<th>Decision</th>
+												</tr>
+											</thead>
+
+											<tbody>
+												<%
+													for (IssueRenewal u : listOfRecommedation) {
+												%>
+												<tr>
+													<td><%=u.getWt_isrn_proposal_frm_id()%></td>
+
+													<td><a
+														href="selectIssueRenewalId.htm?proposalfrmid=<%=u.getWt_isrn_proposal_frm_id()%> "
+														class="btn btn-danger disabled">Preliminary Scrutiny</a></td>
+													<td><a href="officenote.htm?proposalfrmid=<%=u.getWt_isrn_proposal_frm_id()%>" class="btn btn-danger disabled">Office
+															Note</a></td>
+													<td><a href="addRecommedation.htm?proposalfrmid=<%=u.getWt_isrn_proposal_frm_id()%>"
+														class="btn btn-danger ">recommendation</a></td>
 													<td><a href="index.htm"
 														class="btn btn-danger disabled">Decision</a></td>
 												</tr>

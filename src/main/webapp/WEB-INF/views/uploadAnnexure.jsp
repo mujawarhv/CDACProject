@@ -87,17 +87,17 @@
 			<!-- Nav Item - Dashboard -->
 			<li class="nav-item"><a class="nav-link" href="index.html">
 					<i class="fas fa-fw fa-tachometer-alt"></i> <span>Dashboard</span>
-			</a></li>
+			</a></li><a class="collapse-item" href="login.html">Login</a>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider">
 
 			<!-- Heading -->
 			<div class="sidebar-heading">Interface</div>
-	<%
-String str=(String) session.getAttribute("str1"); 
-out.print(str);
-%>
+			<%
+				String str = (String) session.getAttribute("str1");
+				out.print(str);
+			%>
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item active"><a class="nav-link" href="#"
 				data-toggle="collapse" data-target="#collapseTwo"
@@ -146,19 +146,19 @@ out.print(str);
 					aria-labelledby="headingPages" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Login Screens:</h6>
-						<a class="collapse-item" href="login.html">Login</a> <a
+						    <a class="collapse-item" href="login.htm">Login</a>  <a
 							class="collapse-item" href="register.html">Register</a> <a
 							class="collapse-item" href="forgot-password.html">Forgot
 							Password</a>
 						<div class="collapse-divider"></div>
 
-						 <a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a> <a
-							class="collapse-item" href="banklogin.htm">Bank Login</a> <a
+						<a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a>
+						<a class="collapse-item" href="banklogin.htm">Bank Login</a> <a
 							class="collapse-item" href="ecgclogin.htm">ECGC Login</a>
 
-						<h6 class="collapse-header">Other Pages:</h6>
-						<a class="collapse-item" href="404.html">404 Page</a> <a
-							class="collapse-item" href="blank.html">Blank Page</a>
+<!-- 						<h6 class="collapse-header">Other Pages:</h6> -->
+<!-- 						<a class="collapse-item" href="404.html">404 Page</a> <a -->
+<!-- 							class="collapse-item" href="blank.html">Blank Page</a> -->
 					</div>
 				</div></li>
 
@@ -423,13 +423,18 @@ out.print(str);
 											modelAttribute="issueRenewal">
 
 											<div class="form-group">
-												<label for="heading" class="col-sm-3 control-label">	<%
-String str2=(String) session.getAttribute("str1"); 
-out.print(str2);
-%></label>
+												<label for="heading" class="col-sm-3 control-label">
+													<%
+														String str2 = (String) session.getAttribute("str1");
+															out.print(str2);
+													%>
+												</label>
 												<div class="col-sm-9">
-													Annexure1 <input type='file' id='file' multiple="multiple">
-													<button onclick="upload();">Upload</button>
+												mappingId <input type='text' id='mappingId' >
+												Annexure1 <input type='file' id='file' multiple="multiple">
+												moduleId  <input type='text' id='moduleId' >
+												uploadedBy<input type='text' id='uploadedBy' >
+													<button onclick="upload()">Upload</button>
 												</div>
 											</div>
 
@@ -439,6 +444,7 @@ out.print(str2);
 											</div>
 
 											<div class="form-group">
+
 												<label for="heading" class="col-sm-3 control-label"></label>
 												<div class="col-sm-9">
 													Annexure2 <input type='file' id='file' multiple="multiple">
@@ -455,7 +461,7 @@ out.print(str2);
 													Annexure3<input type='file' id='file' multiple="multiple">
 													<button onclick="upload();">Upload</button>
 												</div>
-											</div>
+											</div>Htt
 
 											<div class="form-group">
 												<label for="heading" class="col-sm-3 control-label"></label>
@@ -479,7 +485,8 @@ out.print(str2);
 														<form:input type="submit" value="Save"
 															class="btn btn-info active" path="" />
 														<form:input type="submit" value="Submit"
-															class="btn btn-success active" path="" />
+															class="btn btn-success active" onclick="uploadFile()"
+															path="" />
 														<a href="backToIndex.htm" class="btn btn-danger active">Cancel</a>
 													</div>
 													<div class="col-sm-4"></div>
@@ -563,10 +570,18 @@ out.print(str2);
 						src="${pageContext.request.contextPath}/resources/js/sb-admin-2.min.js"></script>
 
 					<script type="text/javascript">
-		function upload() {
-			alert("File Successfully uploaded!");
-		}
-	</script>
+						function upload() {
+						
+							alert("File Successfully uploaded!");
+						}
+					</script>
+					 <script type="text/javascript">
+
+        $(document).ready(function() {
+            document.myRedirectForm.submit();
+        });
+
+    </script>
 </body>
 
 </html>

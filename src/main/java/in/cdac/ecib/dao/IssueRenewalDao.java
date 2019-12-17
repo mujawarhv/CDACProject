@@ -2,6 +2,7 @@ package in.cdac.ecib.dao;
 
 import java.util.List;
 import in.cdac.ecib.dto.IssueRenewal;
+import in.cdac.ecib.dto.User;
 
 public interface IssueRenewalDao {
 	
@@ -29,5 +30,13 @@ public interface IssueRenewalDao {
 	
 	public List<IssueRenewal> getlistOfPreliminaryScrutinyDone();
 	
-	public Object createOfficeNote();
+	public void createOfficeNote(IssueRenewal issueRenewal);
+
+	public List<IssueRenewal> getListOfOfficeNoteDone();
+	
+	public User loginUser(User user);
+
+	public void insertRecommendation(String wt_isrn_proposal_frm_id,String wt_isrn_office_note_recommendation_id);
+
+	public String showRecommedationMessage(String wt_isrn_proposal_frm_id);
 }

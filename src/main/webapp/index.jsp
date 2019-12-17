@@ -136,7 +136,7 @@
             <a class="collapse-item" href="utilities-color.html">Colors</a>
             <a class="collapse-item" href="utilities-border.html">Borders</a>
             <a class="collapse-item" href="utilities-animation.html">Animations</a>
-            <a class="collapse-item" href="utilities-other.html">Other</a>
+            <a class="collapse-item" href="utilities-other.html">Other</a>/uploadFiles.htm
           </div>
         </div>
       </li>
@@ -158,7 +158,7 @@
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Login Screens:</h6>
-<!--             <a class="collapse-item" href="login.html">Login</a> -->
+             <a class="collapse-item" href="login.htm">Login</a> 
 <!--             <a class="collapse-item" href="register.html">Register</a> -->
 <!--             <a class="collapse-item" href="forgot-password.html">Forgot Password</a> -->
             <div class="collapse-divider"></div>

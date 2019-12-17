@@ -2,9 +2,10 @@
 <%@ page errorPage="ErrorPage.jsp"%>
 <%@page import="in.cdac.ecib.dto.*"%><%@page import="java.util.List"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ page session="true" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="fmt"%>
 <%
-	IssueRenewal bank = (IssueRenewal) session.getAttribute("bank");
+	IssueRenewal issueRenewal = (IssueRenewal) session.getAttribute("issueRenewal");
 %>
 <%
 	List<IssueRenewal> userList = (List<IssueRenewal>) request.getAttribute("listIssueRenewal");
@@ -128,20 +129,18 @@
 					aria-labelledby="headingPages" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 
-						<h6 class="collapse-header">Login Screens:</h6>
-						<a class="collapse-item" href="login.html">Login</a> <a
-							class="collapse-item" href="register.html">Register</a> <a
-							class="collapse-item" href="forgot-password.html">Forgot
-							Password</a>
-						<div class="collapse-divider"></div>
-
-						 <a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a>
-						<a	class="collapse-item" href="banklogin.htm">Bank Login</a> <a
-							class="collapse-item" href="ecgclogin.htm">ECGC Login</a>
-
-						<h6 class="collapse-header">Other Pages:</h6>
-						<a class="collapse-item" href="404.html">404 Page</a> <a
-							class="collapse-item" href="blank.html">Blank Page</a>
+					  <h6 class="collapse-header">Login Screens:</h6>
+             <a class="collapse-item" href="login.htm">Login</a> 
+<!--             <a class="collapse-item" href="register.html">Register</a> -->
+<!--             <a class="collapse-item" href="forgot-password.html">Forgot Password</a> -->
+            <div class="collapse-divider"></div>
+            
+            <a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a>
+            <a class="collapse-item" href="banklogin.htm">Bank Login</a>
+			<a class="collapse-item" href="ecgclogin.htm">ECGC Login</a>
+<!-- 			<a class="collapse-item" href="viewAllEventType">View Event Type</a> -->
+<!-- 			<a class="collapse-item" href="addContinentForm">Add Continent</a> -->
+<!--             <a class="collapse-item" href="viewAllContinent">View Continents</a> -->
 					</div>
 				</div></li>
 
@@ -398,95 +397,36 @@
 								<div class="collapse show" id="collapseCardExample">
 									<div class="card-body">
 
-										<form method="post" id="myForm"
+										<form method="post" id="myForm" action="insertRecommendation.htm"
 											class="form-horizontal border border-dark p-3 mb-2 bg-white text-dark mt-5"
-											role="form" modelAttribute="bank">
-
+											role="form" modelAttribute="issueRenewal">
 
 
 											<div class="form-group">
 												<div class="row">
-													<c:set var="pageName" scope="request" value="str" />
-													<div class="col-sm-9">You have successfully Logged In</div>
-													<div class="col-sm-3">
-														<label for="heading" class="col-sm-9 control-label"><b>
-																
-
-														</b>${str}</label>
+													<div class=" col-sm-8 ">
+														Your message:
+														<%
+														String str=request.getParameter("message");
+														out.print(str);
+														%>
+													</div>
+												</div>
+												<div class="row">
+													<div class=" col-sm-8 ">
+														
+														
+														 <i class="fas fa-pencil-alt prefix"></i>
+														   <div class="input-group">
+														<textarea name="recommendation_line" id="recommend"
+															class="md-textarea form-control"  rows=""></textarea>
+														
+														&nbsp;	&nbsp;	<input type="submit" value="Add Recommend"
+															class="btn btn-success active"  /> </div>
 													</div>
 												</div>
 											</div>
 
-											<div class="form-group">
-												<label for="heading" class="col-sm-3 control-label"></label>
-												<div class="col-sm-9">
-													Apply for Cover Type <input id="exampleField"
-														list="cover_type_wtpc_wtps" type="text"
-														class="form-field__input" placeholder="Choose Cover type" />
-
-													<datalist id="cover_type_wtpc_wtps">
-														<option value="WT-PC" />
-														<option value="WT-PS" />
-														<option value="IN" />
-														<option value="B2PC" />
-													</datalist>
-
-													<a href="IssueRenewalForm.htm?cover_type_wtpc_wtps"
-														class="btn btn-primary active">New</a>
-												</div>
-											</div>
-
-											<div class="form-group">
-												<label for="heading" class="col-sm-3 control-label"><b>List
-														of Partially filled form</b></label>
-												<div class="col-sm-9"></div>
-											</div>
-
-											<div class="form-group">
-												<div class="row justify-content-center align-items-center">
-													<div class="col-sm-3"></div>
-													<div class="col-sm-9">
-														<label for="heading" class="col-sm-9 control-label"><b>
-														</b></label>
-													</div>
-													<div>
-														<b>List Of Partial Filled Form</b>
-													</div>
-												</div>
-											</div>
-
-											<table class="table table-bordered">
-												<thead>
-													<tr>
-														<th>SL No</th>
-														<th>Document Attached</th>
-														<th>Cover Type</th>
-														<th>Update</th>
-														<th>Submit</th>
-													</tr>
-												</thead>
-
-												<tbody>
-
-													<%
-														for (IssueRenewal u : userList) {
-													%>
-													<tr>
-														<td><%=u.getWt_isrn_proposal_frm_id()%></td>
-														<td><%=u.getBank_name()%></td>
-														<td><%=u.getCover_type()%></td>
-														<td><a
-															href="editIssueRenewalForm.htm?proposalfrmid=<%=u.getWt_isrn_proposal_frm_id()%>"
-															id="editbutton">Edit</a></td>
-														<td><input id="mySubmitButton" type="button"
-															value="Submit" /></td>
-													</tr>
-													<%
-														}
-													%>
-
-												</tbody>
-											</table>
 
 										</form>
 

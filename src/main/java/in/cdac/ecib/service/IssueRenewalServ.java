@@ -2,6 +2,7 @@ package in.cdac.ecib.service;
 
 import java.util.List;
 import in.cdac.ecib.dto.IssueRenewal;
+import in.cdac.ecib.dto.User;
 
 public interface IssueRenewalServ {
 	
@@ -45,5 +46,17 @@ public interface IssueRenewalServ {
 	public List<IssueRenewal> getlistOfPreliminaryScrutinyDone();
 	
 
-	public void createOfficeNote();
+	public void createOfficeNote(IssueRenewal issueRenewal);
+
+
+	public List<IssueRenewal> getListOfOfficeNoteDone();
+
+
+	public User loginUser(User user);
+
+
+	public void insertRecommendationData( String wt_isrn_proposal_frm_id,String recommendation_line);
+
+
+	public String showRecommedation(String wt_isrn_proposal_frm_id);
 }

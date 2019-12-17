@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import in.cdac.ecib.dao.IssueRenewalDao;
-import in.cdac.ecib.dao.IssueRenewalImpl;
 import in.cdac.ecib.dto.IssueRenewal;
+import in.cdac.ecib.dto.User;
 
 @Service
 public class IssueRenewalServImpl implements IssueRenewalServ {
@@ -82,8 +82,30 @@ public class IssueRenewalServImpl implements IssueRenewalServ {
 	}
 
 	@Override
-	public void createOfficeNote() {
-		 issueRenewalDao.createOfficeNote();		
+	public void createOfficeNote(IssueRenewal issueRenewal) {
+		 issueRenewalDao.createOfficeNote(issueRenewal);		
 	}
+
+	@Override
+	public List<IssueRenewal> getListOfOfficeNoteDone() {
+		return issueRenewalDao.getListOfOfficeNoteDone();
+	}
+
+	@Override
+	public User loginUser(User user) {
+		return issueRenewalDao.loginUser(user);
+	}
+
+	@Override
+	public void insertRecommendationData( String wt_isrn_proposal_frm_id,String recommendation_line) {
+	  issueRenewalDao.insertRecommendation(wt_isrn_proposal_frm_id,recommendation_line);		
+	}
+
+	@Override
+	public String showRecommedation(String wt_isrn_proposal_frm_id) {
+		return issueRenewalDao.showRecommedationMessage(wt_isrn_proposal_frm_id);
+	}
+
+	
 	
 }
