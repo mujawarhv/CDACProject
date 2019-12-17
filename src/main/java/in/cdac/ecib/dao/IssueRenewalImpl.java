@@ -298,7 +298,8 @@ public class IssueRenewalImpl implements IssueRenewalDao {
 	@Override
 	public void insertRecommendation(String wt_isrn_proposal_frm_id,String recommendation_line) {
 		
-		String recommedid = wt_isrn_proposal_frm_id+"RC"+wt_isrn_proposal_frm_id;
+		
+		String recommedid = wt_isrn_proposal_frm_id+"RC"+wt_isrn_proposal_frm_id+1;
 		System.out.println(recommedid);
 		
 		SimpleDateFormat sd = new SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z");
