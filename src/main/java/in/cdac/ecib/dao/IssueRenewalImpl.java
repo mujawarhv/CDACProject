@@ -225,7 +225,7 @@ public class IssueRenewalImpl implements IssueRenewalDao {
 	@Override
 	public List<IssueRenewal> getlistOfPreliminaryScrutinyDone() {
 		List<IssueRenewal> list = jdbcTemplate.query(
-				"SELECT wt_isrn_proposal_frm_id FROM wt_isrn_proposal_frm where issue_renewal_flag=true and wt_isrn_proposal_frm_id not in(SELECT wt_isrn_proposal_frm_id from wt_isrn where wt_isrn_id  in(select wt_isrn_id from wt_isrn_office_note))",
+				"SELECT wt_isrn_proposal_frm_id FROM wt_isrn_proposal_frm where issue_renewal_flag=true and wt_isrn_proposal_frm_id not in(SELECT wt_isrn_proposal_frm_id from wt_isrn where wt_isrn_id  in(select wt_isrn_id from wt_isrn_office_note)) order by wt_isrn_proposal_frm_id ",
 				new RowMapper<IssueRenewal>() {
 					@Override
 					public IssueRenewal mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -306,13 +306,20 @@ public class IssueRenewalImpl implements IssueRenewalDao {
 
 	@Override
 	public String showRecommedationMessage(String wt_isrn_proposal_frm_id) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 //	@Override
 //	public String showRecommedationMessage(String wt_isrn_proposal_frm_id) {
 		
+	/*
+	 * String sql = "select recommendation_line from recommendations where recommendation_id like '%?%'";
+	 * jdbcTemplate.query(sql, new Object[]{ wt_isrn_proposal_frm_id }, new
+	 * NamesRowMapper());
+	 */
+	
+	
 //		 String sql = "select recommendation_line from recommendations where recommendation_id like :recommendation_id";
 //		 Map<String,Object> params = new HashMap<String,Object>();
 //		 params.put("wt_isrn_proposal_frm_id", wt_isrn_proposal_frm_id+"%RC%");

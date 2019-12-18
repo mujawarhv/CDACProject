@@ -463,7 +463,7 @@
 													Annexure3<input type='file' id='file' multiple="multiple">
 													<button onclick="upload();">Upload</button>
 												</div>
-											</div>Htt
+											</div>
 
 											<div class="form-group">
 												<label for="heading" class="col-sm-3 control-label"></label>

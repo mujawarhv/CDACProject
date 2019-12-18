@@ -9,13 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 import in.cdac.ecib.service.IssueRenewalServ;
 import in.cdac.ecib.dto.IssueRenewal;
@@ -218,9 +216,8 @@ public class BankController {
 	public String cancelPreliminaryScrutinypage(ModelMap model) {
 		List<IssueRenewal> listOfPreliminaryScrutiny = issueRenewalServ.getAllBankList();
 		List<IssueRenewal> listOfPreliminaryScrutinyDone = issueRenewalServ.getlistOfPreliminaryScrutinyDone();
-		
 		List<IssueRenewal> listOfRecommedation = issueRenewalServ.getListOfOfficeNoteDone();
-		listOfPreliminaryScrutinyDone.removeAll(listOfRecommedation);
+		
 		model.put("listIssueRenewal", listOfPreliminaryScrutiny);
 		model.put("listOfPreliminaryScrutinyDone", listOfPreliminaryScrutinyDone);
 		model.put("listOfRecommedation", listOfRecommedation);
@@ -354,8 +351,7 @@ public class BankController {
 		List<IssueRenewal> listOfPreliminaryScrutiny = issueRenewalServ.getAllBankList();
 		List<IssueRenewal> listOfPreliminaryScrutinyDone = issueRenewalServ.getlistOfPreliminaryScrutinyDone();
 		List<IssueRenewal> listOfRecommedation = issueRenewalServ.getListOfOfficeNoteDone();
-		listOfPreliminaryScrutinyDone.removeAll(listOfRecommedation);
-		System.out.println(listOfPreliminaryScrutinyDone);
+	
 		model.put("listIssueRenewal", listOfPreliminaryScrutiny);
 		model.put("listOfPreliminaryScrutinyDone", listOfPreliminaryScrutinyDone);
 		model.put("listOfRecommedation", listOfRecommedation);
@@ -369,7 +365,7 @@ public class BankController {
 		HttpSession session = request.getSession();
 		String wt_isrn_proposal_frm_id = proposalfrmid;
 		session.setAttribute("wt_isrn_proposal_frm_id", wt_isrn_proposal_frm_id);
-		System.out.println(wt_isrn_proposal_frm_id);
+		
 	
 //		String message = issueRenewalServ.showRecommedation(wt_isrn_proposal_frm_id);
 //		request.setAttribute("message", message);
@@ -383,7 +379,7 @@ public class BankController {
 		HttpSession session = request.getSession();
 		String wt_isrn_proposal_frm_id = (String) session.getAttribute("wt_isrn_proposal_frm_id");
 		session.setAttribute("wt_isrn_proposal_frm_id", wt_isrn_proposal_frm_id);
-		System.out.println(wt_isrn_proposal_frm_id+ " " +recommendation_line);
+		
 		String message = issueRenewalServ.showRecommedation(wt_isrn_proposal_frm_id);
 		request.setAttribute("message", message);
 		model.addAttribute("issueRenewal", new IssueRenewal());
@@ -405,12 +401,13 @@ public class BankController {
 	@RequestMapping(value = "/login.htm", method = RequestMethod.GET)
 	public String login(@ModelAttribute("user") User user,BindingResult result,Model model)
 	{
+		
 		model.addAttribute("user", new User());
 		return "login";
 	}
 	
 	@RequestMapping(value = "/userlogin.htm", method = RequestMethod.POST)
-	public String userLogin(@ModelAttribute("user") User user,@ModelAttribute("issueRenewal") IssueRenewal issueRenewal,Model model) {
+	public String userLogin(@ModelAttribute("user") User user,@ModelAttribute("issueRenewal") IssueRenewal issueRenewal,ModelMap model) {
 		
 		user = issueRenewalServ.loginUser(user);
 
@@ -418,6 +415,14 @@ public class BankController {
 		if ( name != null) {
 			if(name.equals("ecgc"))
 			{
+//				List<IssueRenewal> listOfPreliminaryScrutiny = issueRenewalServ.getAllBankList();
+//				List<IssueRenewal> listOfPreliminaryScrutinyDone = issueRenewalServ.getlistOfPreliminaryScrutinyDone();
+//				List<IssueRenewal> listOfRecommedation = issueRenewalServ.getListOfOfficeNoteDone();
+//				
+//				model.put("listIssueRenewal", listOfPreliminaryScrutiny);
+//				model.put("listOfPreliminaryScrutinyDone", listOfPreliminaryScrutinyDone);
+//				model.put("listOfRecommedation", listOfRecommedation);
+			
 				model.addAttribute("issueRenewal", new IssueRenewal());
 				return "StartPS";
 			}
