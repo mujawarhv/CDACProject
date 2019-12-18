@@ -146,10 +146,11 @@
 					aria-labelledby="headingPages" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Login Screens:</h6>
-						    <a class="collapse-item" href="login.htm">Login</a>  <a
-							class="collapse-item" href="register.html">Register</a> <a
-							class="collapse-item" href="forgot-password.html">Forgot
-							Password</a>
+						    <a class="collapse-item" href="login.htm">Login</a> 
+<!-- 						     <a -->
+<!-- 							class="collapse-item" href="register.html">Register</a> <a -->
+<!-- 							class="collapse-item" href="forgot-password.html">Forgot -->
+<!-- 							Password</a> -->
 						<div class="collapse-divider"></div>
 
 						<a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a>
@@ -429,13 +430,14 @@
 															out.print(str2);
 													%>
 												</label>
+													<div class="form-group">
+
+												<label for="heading" class="col-sm-3 control-label"></label>
 												<div class="col-sm-9">
-												mappingId <input type='text' id='mappingId' >
-												Annexure1 <input type='file' id='file' multiple="multiple">
-												moduleId  <input type='text' id='moduleId' >
-												uploadedBy<input type='text' id='uploadedBy' >
-													<button onclick="upload()">Upload</button>
+													Annexure1 <input type='file' id='file' multiple="multiple">
+													<button onclick="upload();">Upload</button>
 												</div>
+											</div>
 											</div>
 
 											<div class="form-group">

@@ -263,7 +263,7 @@ public class BankController {
 		session.setAttribute("wt_isrn_proposal_frm_id", wt_isrn_proposal_frm_id);
 
 		issueRenewal = issueRenewalServ.getByDocument(issueRenewal.getWt_isrn_proposal_frm_id());
-
+		
 		if (issueRenewal != null)
 			model.put("issueRenewal", issueRenewal);
 		return "DisplayPreliminaryScrutinySecondPage";

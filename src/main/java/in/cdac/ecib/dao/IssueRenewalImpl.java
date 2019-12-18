@@ -145,6 +145,7 @@ public class IssueRenewalImpl implements IssueRenewalDao {
 
 	@Override
 	public IssueRenewal getbyDocuments(String proposal_frm_id) {
+	
 		IssueRenewal issueRenewal = new IssueRenewal();
 		String sql = "select annex_statement_of_packing_attached,annex_for_limit_sanction_attached,annex_of_stmnt_of_acc_covrd_undr_wt_with_claim_recovery_attchd from wt_isrn_proposal_frm where wt_isrn_proposal_frm_id=? ";
 		try {
@@ -283,30 +284,23 @@ public class IssueRenewalImpl implements IssueRenewalDao {
 
 	@Override
 	public User loginUser(User user) {
-		System.out.println("inside login method");
-		System.out.println(user.getUserId());
+		
 		String sql = "SELECT user_id, user_password FROM login WHERE user_id=?";
-		System.out.println(sql);
 		// user = jdbcTemplate.queryForObject(user.getUserId(), User.class);
 		user = jdbcTemplate.queryForObject(sql, new Object[] { user.getUserId() },
 				new BeanPropertyRowMapper<User>(User.class));
-		System.out.println(user);
-		return user;
 
+		return user;
 	}
 
 	@Override
 	public void insertRecommendation(String wt_isrn_proposal_frm_id,String recommendation_line) {
 		
-		
 		String recommedid = wt_isrn_proposal_frm_id+"RC"+wt_isrn_proposal_frm_id+1;
-		System.out.println(recommedid);
-		
 		SimpleDateFormat sd = new SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z");
 	    Date date = new Date();
 	    sd.setTimeZone(TimeZone.getTimeZone("IST"));
-		
-String sql = "insert into recommendations(recommendation_id, employee_code, recommendation_line, recommendation_date) values('"+recommedid+"', '343521','"+recommendation_line+"','"+sd.format(date)+"')";
+	    String sql = "insert into recommendations(recommendation_id, employee_code, recommendation_line, recommendation_date) values('"+recommedid+"', '343521','"+recommendation_line+"','"+sd.format(date)+"')";
 		jdbcTemplate.update(sql);
 	}
 
