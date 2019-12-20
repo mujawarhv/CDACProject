@@ -14,7 +14,7 @@
 	List<IssueRenewal> listOfPreliminaryScrutinyDone = (List<IssueRenewal>) request.getAttribute("listOfPreliminaryScrutinyDone");
 %>
 <%
-	List<IssueRenewal> listOfRecommedation = (List<IssueRenewal>) request.getAttribute("listOfRecommedation");
+	List<String> listOfRecommedation = (List<String>) request.getAttribute("listOfRecommedation");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,7 +28,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>SB Admin 2 - Cards</title>
+<title>ECGC </title>
 
 <!-- Custom fonts for this template-->
 <link
@@ -409,7 +409,10 @@
 								<!-- Card Content - Collapse -->
 								<div class="collapse show" id="collapseCardExample">
 									<div class="card-body">
-
+<%														
+String str=(String) session.getAttribute("name"); 													
+out.print(str);
+%> 
 
 										<table class="table table-bordered">
 											<thead>
@@ -502,11 +505,11 @@
 								<div class="collapse show" id="collapseCardExample">
 									<div class="card-body">
 		
-										<H3>pending for Recommendation</H3>
+										<H3> Recommendation</H3>
 										<table class="table table-bordered">
 											<thead>
 												<tr>
-													<th>Proposal Id</th>
+													<th>ISRN Id</th>
 													<th>Priliminary Scrutiny</th>
 													<th>Office Note</th>
 													<th>Recommendation</th>
@@ -516,17 +519,17 @@
 
 											<tbody>
 												<%
-													for (IssueRenewal u : listOfRecommedation) {
+													for (int i=1;i<=listOfRecommedation.size();i++) {								
 												%>
 												<tr>
-													<td><%=u.getWt_isrn_proposal_frm_id()%></td>
+													<td><%=i%></td>
 
 													<td><a
-														href="selectIssueRenewalId.htm?proposalfrmid=<%=u.getWt_isrn_proposal_frm_id()%> "
+														href="selectIssueRenewalId.htm?isrnfrmid=<%=i%> "
 														class="btn btn-danger disabled">Preliminary Scrutiny</a></td>
-													<td><a href="officenote.htm?proposalfrmid=<%=u.getWt_isrn_proposal_frm_id()%>" class="btn btn-danger disabled">Office
+													<td><a href="officenote.htm?isrnfrmid=<%=i%>" class="btn btn-danger disabled">Office
 															Note</a></td>
-													<td><a href="addRecommedation.htm?proposalfrmid=<%=u.getWt_isrn_proposal_frm_id()%>"
+													<td><a href="addRecommedation.htm?isrnfrmid=<%=i%>"
 														class="btn btn-danger ">recommendation</a></td>
 													<td><a href="index.htm"
 														class="btn btn-danger disabled">Decision</a></td>

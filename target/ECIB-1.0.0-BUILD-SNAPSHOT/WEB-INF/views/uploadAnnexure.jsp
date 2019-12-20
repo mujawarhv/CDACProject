@@ -21,7 +21,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>SB Admin 2 - Cards</title>
+<title>ECGC </title>
 
 <!-- Custom fonts for this template-->
 <link
@@ -87,7 +87,7 @@
 			<!-- Nav Item - Dashboard -->
 			<li class="nav-item"><a class="nav-link" href="index.html">
 					<i class="fas fa-fw fa-tachometer-alt"></i> <span>Dashboard</span>
-			</a></li>
+			</a></li><a class="collapse-item" href="login.html">Login</a>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider">
@@ -146,19 +146,20 @@
 					aria-labelledby="headingPages" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Login Screens:</h6>
-						<a class="collapse-item" href="login.html">Login</a> <a
-							class="collapse-item" href="register.html">Register</a> <a
-							class="collapse-item" href="forgot-password.html">Forgot
-							Password</a>
+						    <a class="collapse-item" href="login.htm">Login</a> 
+<!-- 						     <a -->
+<!-- 							class="collapse-item" href="register.html">Register</a> <a -->
+<!-- 							class="collapse-item" href="forgot-password.html">Forgot -->
+<!-- 							Password</a> -->
 						<div class="collapse-divider"></div>
 
 						<a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a>
 						<a class="collapse-item" href="banklogin.htm">Bank Login</a> <a
 							class="collapse-item" href="ecgclogin.htm">ECGC Login</a>
 
-						<h6 class="collapse-header">Other Pages:</h6>
-						<a class="collapse-item" href="404.html">404 Page</a> <a
-							class="collapse-item" href="blank.html">Blank Page</a>
+<!-- 						<h6 class="collapse-header">Other Pages:</h6> -->
+<!-- 						<a class="collapse-item" href="404.html">404 Page</a> <a -->
+<!-- 							class="collapse-item" href="blank.html">Blank Page</a> -->
 					</div>
 				</div></li>
 
@@ -429,13 +430,14 @@
 															out.print(str2);
 													%>
 												</label>
+													<div class="form-group">
+
+												<label for="heading" class="col-sm-3 control-label"></label>
 												<div class="col-sm-9">
-												mappingId <input type='text' id='mappingId' >
-												Annexure1 <input type='file' id='file' multiple="multiple">
-												moduleId  <input type='text' id='moduleId' >
-												uploadedBy<input type='text' id='uploadedBy' >
-													<button onclick="upload()">Upload</button>
+													Annexure1 <input type='file' id='file' multiple="multiple">
+													<button onclick="upload();">Upload</button>
 												</div>
+											</div>
 											</div>
 
 											<div class="form-group">
@@ -461,7 +463,7 @@
 													Annexure3<input type='file' id='file' multiple="multiple">
 													<button onclick="upload();">Upload</button>
 												</div>
-											</div>Htt
+											</div>
 
 											<div class="form-group">
 												<label for="heading" class="col-sm-3 control-label"></label>

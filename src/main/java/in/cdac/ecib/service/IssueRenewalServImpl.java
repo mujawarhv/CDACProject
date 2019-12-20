@@ -87,7 +87,7 @@ public class IssueRenewalServImpl implements IssueRenewalServ {
 	}
 
 	@Override
-	public List<IssueRenewal> getListOfOfficeNoteDone() {
+	public List<String> getListOfOfficeNoteDone() {
 		return issueRenewalDao.getListOfOfficeNoteDone();
 	}
 
@@ -102,7 +102,7 @@ public class IssueRenewalServImpl implements IssueRenewalServ {
 	}
 
 	@Override
-	public String showRecommedation(String wt_isrn_proposal_frm_id) {
+	public  List<String> showRecommedation(String wt_isrn_proposal_frm_id) {
 		return issueRenewalDao.showRecommedationMessage(wt_isrn_proposal_frm_id);
 	}
 

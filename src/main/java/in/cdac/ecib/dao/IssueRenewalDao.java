@@ -32,11 +32,11 @@ public interface IssueRenewalDao {
 	
 	public void createOfficeNote(IssueRenewal issueRenewal);
 
-	public List<IssueRenewal> getListOfOfficeNoteDone();
+	public List<String> getListOfOfficeNoteDone();
 	
 	public User loginUser(User user);
 
 	public void insertRecommendation(String wt_isrn_proposal_frm_id,String wt_isrn_office_note_recommendation_id);
 
-	public String showRecommedationMessage(String wt_isrn_proposal_frm_id);
+	public List<String> showRecommedationMessage(String wt_isrn_proposal_frm_id);
 }

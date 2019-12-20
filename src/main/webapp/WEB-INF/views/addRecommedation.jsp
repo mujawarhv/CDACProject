@@ -2,13 +2,16 @@
 <%@ page errorPage="ErrorPage.jsp"%>
 <%@page import="in.cdac.ecib.dto.*"%><%@page import="java.util.List"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ page session="true" %>
+<%@ page session="true"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="fmt"%>
 <%
 	IssueRenewal issueRenewal = (IssueRenewal) session.getAttribute("issueRenewal");
 %>
 <%
 	List<IssueRenewal> userList = (List<IssueRenewal>) request.getAttribute("listIssueRenewal");
+%>
+<%
+	List<String> message = (List<String>) request.getAttribute("message");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,8 +25,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>SB Admin 2 - Cards</title>
-
+<title>ECGC</title>
 <!-- Custom fonts for this template-->
 <link
 	href="${pageContext.request.contextPath}/resources/vendor/fontawesome-free/css/all.min.css"
@@ -129,18 +131,18 @@
 					aria-labelledby="headingPages" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 
-					  <h6 class="collapse-header">Login Screens:</h6>
-             <a class="collapse-item" href="login.htm">Login</a> 
-<!--             <a class="collapse-item" href="register.html">Register</a> -->
-<!--             <a class="collapse-item" href="forgot-password.html">Forgot Password</a> -->
-            <div class="collapse-divider"></div>
-            
-            <a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a>
-            <a class="collapse-item" href="banklogin.htm">Bank Login</a>
-			<a class="collapse-item" href="ecgclogin.htm">ECGC Login</a>
-<!-- 			<a class="collapse-item" href="viewAllEventType">View Event Type</a> -->
-<!-- 			<a class="collapse-item" href="addContinentForm">Add Continent</a> -->
-<!--             <a class="collapse-item" href="viewAllContinent">View Continents</a> -->
+						<h6 class="collapse-header">Login Screens:</h6>
+						<a class="collapse-item" href="login.htm">Login</a>
+						<!--             <a class="collapse-item" href="register.html">Register</a> -->
+						<!--             <a class="collapse-item" href="forgot-password.html">Forgot Password</a> -->
+						<div class="collapse-divider"></div>
+
+						<a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a>
+						<a class="collapse-item" href="banklogin.htm">Bank Login</a> <a
+							class="collapse-item" href="ecgclogin.htm">ECGC Login</a>
+						<!-- 			<a class="collapse-item" href="viewAllEventType">View Event Type</a> -->
+						<!-- 			<a class="collapse-item" href="addContinentForm">Add Continent</a> -->
+						<!--             <a class="collapse-item" href="viewAllContinent">View Continents</a> -->
 					</div>
 				</div></li>
 
@@ -397,7 +399,8 @@
 								<div class="collapse show" id="collapseCardExample">
 									<div class="card-body">
 
-										<form method="post" id="myForm" action="insertRecommendation.htm"
+										<form method="post" id="myForm"
+											action="insertRecommendation.htm"
 											class="form-horizontal border border-dark p-3 mb-2 bg-white text-dark mt-5"
 											role="form" modelAttribute="issueRenewal">
 
@@ -405,24 +408,43 @@
 											<div class="form-group">
 												<div class="row">
 													<div class=" col-sm-8 ">
-														Your message:
-														<%
-														String str=request.getParameter("message");
-														out.print(str);
-														%>
+
+														<table class="table table-bordered">
+															<thead>
+																<tr>
+																	<th>Your message:</th>
+
+																</tr>
+															</thead>
+
+															<tbody>
+																<% 
+String proposalfrmid=(String) session.getAttribute("wt_isrn_proposal_frm_id"); 
+out.print("WT_ISRN_ID:- "+ proposalfrmid);
+%>
+
+																<c:forEach items="${message}" var="item">
+																	<tr>
+																		<td>${item}</td>
+																	</tr>
+																</c:forEach>
+
+															</tbody>
+														</table>
 													</div>
 												</div>
 												<div class="row">
 													<div class=" col-sm-8 ">
-														
-														
-														 <i class="fas fa-pencil-alt prefix"></i>
-														   <div class="input-group">
-														<textarea name="recommendation_line" id="recommend"
-															class="md-textarea form-control"  rows=""></textarea>
-														
-														&nbsp;	&nbsp;	<input type="submit" value="Add Recommend"
-															class="btn btn-success active"  /> </div>
+
+
+														<i class="fas fa-pencil-alt prefix"></i>
+														<div class="input-group">
+															<textarea name="recommendation_line" id="recommend"
+																class="md-textarea form-control" rows=""></textarea>
+
+															&nbsp; &nbsp; <input type="submit" value="Add Recommend"
+																class="btn btn-success active" />
+														</div>
 													</div>
 												</div>
 											</div>

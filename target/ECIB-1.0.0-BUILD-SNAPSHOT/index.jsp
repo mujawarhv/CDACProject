@@ -13,7 +13,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>SB Admin 2 - Cards</title>
+<title>ECGC </title>
 
 <!-- Custom fonts for this template-->
 <link
@@ -158,7 +158,7 @@
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Login Screens:</h6>
-<!--             <a class="collapse-item" href="login.html">Login</a> -->
+             <a class="collapse-item" href="login.htm">Login</a> 
 <!--             <a class="collapse-item" href="register.html">Register</a> -->
 <!--             <a class="collapse-item" href="forgot-password.html">Forgot Password</a> -->
             <div class="collapse-divider"></div>

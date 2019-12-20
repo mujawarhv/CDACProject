@@ -21,7 +21,7 @@ IssueRenewal issueRenewal = (IssueRenewal) session.getAttribute("issueRenewal");
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>SB Admin 2 - Cards</title>
+<title>ECGC </title>
 
 <!-- Custom fonts for this template-->
 <link
@@ -142,20 +142,18 @@ IssueRenewal issueRenewal = (IssueRenewal) session.getAttribute("issueRenewal");
 				<div id="collapsePages" class="collapse show"
 					aria-labelledby="headingPages" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<h6 class="collapse-header">Login Screens:</h6>
-						<a class="collapse-item" href="login.html">Login</a> <a
-							class="collapse-item" href="register.html">Register</a> <a
-							class="collapse-item" href="forgot-password.html">Forgot
-							Password</a>
-						<div class="collapse-divider"></div>
-
-						 <a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a>
-						<a	class="collapse-item" href="banklogin.htm">Bank Login</a> <a
-							class="collapse-item" href="ecgclogin.htm">ECGC Login</a>
-
-						<h6 class="collapse-header">Other Pages:</h6>
-						<a class="collapse-item" href="404.html">404 Page</a> <a
-							class="collapse-item" href="blank.html">Blank Page</a>
+						  <h6 class="collapse-header">Login Screens:</h6>
+             <a class="collapse-item" href="login.htm">Login</a> 
+<!--             <a class="collapse-item" href="register.html">Register</a> -->
+<!--             <a class="collapse-item" href="forgot-password.html">Forgot Password</a> -->
+            <div class="collapse-divider"></div>
+            
+            <a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a>
+            <a class="collapse-item" href="banklogin.htm">Bank Login</a>
+			<a class="collapse-item" href="ecgclogin.htm">ECGC Login</a>
+<!-- 			<a class="collapse-item" href="viewAllEventType">View Event Type</a> -->
+<!-- 			<a class="collapse-item" href="addContinentForm">Add Continent</a> -->
+<!--             <a class="collapse-item" href="viewAllContinent">View Continents</a> -->
 						
 					</div>
 				</div></li>
@@ -417,7 +415,7 @@ IssueRenewal issueRenewal = (IssueRenewal) session.getAttribute("issueRenewal");
 										<form:form method="get"
 			class="form-horizontal border border-dark p-3 mb-2 bg-white text-dark mt-5"
 			role="form" modelAttribute="issueRenewal"
-			action="prep-priliminary-scrutiny.htm">
+			action="DisplayPreliminaryScrutinySecondPage.htm">
 
  <% 
 String proposalfrmid=(String) session.getAttribute("wt_isrn_proposal_frm_id"); 
@@ -436,7 +434,7 @@ out.print("proposalfrmid "+ proposalfrmid);
 				<tbody>
 
 					<tr>
-						<td>${bank.isAnnex_statement_of_packing_attached()}</td>
+						<td>${issueRenewal.isAnnex_statement_of_packing_attached()}</td>
 						<td>Yes<form:radiobutton
 								path="annex_statement_of_packing_attached"
 								value="Yes" /> No<form:radiobutton
@@ -450,7 +448,7 @@ out.print("proposalfrmid "+ proposalfrmid);
 							class="form-field__input" /></td>
 					</tr>
 					<tr>
-						<td>${bank.isAnnex_for_limit_sanction_attached()}</td>
+						<td>${issueRenewal.isAnnex_for_limit_sanction_attached()}</td>
 						<td>Yes<form:radiobutton path="annex_for_limit_sanction_attached"
 								value="Yes" /> No<form:radiobutton
 								path="annex_for_limit_sanction_attached" value="No" /></td>
@@ -460,7 +458,7 @@ out.print("proposalfrmid "+ proposalfrmid);
 							name="exampleField1" type="text" class="form-field__input" /></td>
 					</tr>
 					<tr>
-						<td>${bank.isAnnex_of_stmnt_of_acc_covrd_undr_wt_with_claim_recovery_attchd()}</td>
+						<td>${issueRenewal.isAnnex_of_stmnt_of_acc_covrd_undr_wt_with_claim_recovery_attchd()}</td>
 						<td>Yes<form:radiobutton
 								path="annex_of_stmnt_of_acc_covrd_undr_wt_with_claim_recovery_attchd" value="Yes" /> No<form:radiobutton
 								path="annex_of_stmnt_of_acc_covrd_undr_wt_with_claim_recovery_attchd" value="No" /></td>
@@ -478,8 +476,10 @@ out.print("proposalfrmid "+ proposalfrmid);
 
 						<button onclick="Clarification();" class="btn btn-primary active">Send
 							For Clarification</button>
-						<a href="officeNote.htm" class="btn btn-primary active">Verify
-							Annexure</a>
+							
+					<button onclick="VerificationOfAnnexure();" class="btn btn-primary active">Send
+							For Clarification</button>
+						
 						<a href="preliminaryScrutinyDone.htm" class="btn btn-primary active">PS Done</a>
 							 <a href="prep-priliminary-scrutiny.htm"
 							class="btn btn-primary active">Cancel</a>
@@ -629,6 +629,17 @@ out.print("proposalfrmid "+ proposalfrmid);
      }
 		
 	</script>
+	
+	<script type="text/javascript">
+	 function VerificationOfAnnexure(){
+		 alert("Annexure Verificed!!");
+         $.ajax({  
+             type : 'GET',  
+            
+         });
+     }
+	</script>
+	
 </body>
 
 </html>

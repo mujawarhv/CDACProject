@@ -25,7 +25,7 @@ IssueRenewal issueRenewal = (IssueRenewal) session.getAttribute("issueRenewal");
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>SB Admin 2 - Cards</title>
+<title>ECGC </title>
 
 <!-- Custom fonts for this template-->
 <link

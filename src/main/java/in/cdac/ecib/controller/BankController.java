@@ -194,7 +194,7 @@ public class BankController {
 
 		List<IssueRenewal> listIssueRenewal = issueRenewalServ.getAllBankList();
 		List<IssueRenewal> listOfPreliminaryScrutinyDone = issueRenewalServ.getlistOfPreliminaryScrutinyDone();
-		List<IssueRenewal> listOfRecommedation = issueRenewalServ.getListOfOfficeNoteDone();
+		List<String> listOfRecommedation = issueRenewalServ.getListOfOfficeNoteDone();
 	
 		HttpSession session = request.getSession();
 		String wt_isrn_proposal_frm_id = request.getParameter("wt_isrn_proposal_frm_id");
@@ -216,7 +216,7 @@ public class BankController {
 	public String cancelPreliminaryScrutinypage(ModelMap model) {
 		List<IssueRenewal> listOfPreliminaryScrutiny = issueRenewalServ.getAllBankList();
 		List<IssueRenewal> listOfPreliminaryScrutinyDone = issueRenewalServ.getlistOfPreliminaryScrutinyDone();
-		List<IssueRenewal> listOfRecommedation = issueRenewalServ.getListOfOfficeNoteDone();
+		List<String> listOfRecommedation = issueRenewalServ.getListOfOfficeNoteDone();
 		
 		model.put("listIssueRenewal", listOfPreliminaryScrutiny);
 		model.put("listOfPreliminaryScrutinyDone", listOfPreliminaryScrutinyDone);
@@ -350,7 +350,7 @@ public class BankController {
 		issueRenewalServ.createOfficeNote(issueRenewal);
 		List<IssueRenewal> listOfPreliminaryScrutiny = issueRenewalServ.getAllBankList();
 		List<IssueRenewal> listOfPreliminaryScrutinyDone = issueRenewalServ.getlistOfPreliminaryScrutinyDone();
-		List<IssueRenewal> listOfRecommedation = issueRenewalServ.getListOfOfficeNoteDone();
+		List<String> listOfRecommedation = issueRenewalServ.getListOfOfficeNoteDone();
 	
 		model.put("listIssueRenewal", listOfPreliminaryScrutiny);
 		model.put("listOfPreliminaryScrutinyDone", listOfPreliminaryScrutinyDone);
@@ -359,30 +359,32 @@ public class BankController {
 	}
 
 	@RequestMapping(value = "/addRecommedation.htm")
-	public String AddRecommedation(@RequestParam("proposalfrmid") String proposalfrmid,
+	public String AddRecommedation(@RequestParam("isrnfrmid") String isrnfrmid,
 			@ModelAttribute("issueRenewal") IssueRenewal issueRenewal, ModelMap model, HttpServletRequest request) {
 		
 		HttpSession session = request.getSession();
-		String wt_isrn_proposal_frm_id = proposalfrmid;
+		String wt_isrn_proposal_frm_id = isrnfrmid;
 		session.setAttribute("wt_isrn_proposal_frm_id", wt_isrn_proposal_frm_id);
 		
-	
-//		String message = issueRenewalServ.showRecommedation(wt_isrn_proposal_frm_id);
-//		request.setAttribute("message", message);
-//		
+		List<String> message = issueRenewalServ.showRecommedation(wt_isrn_proposal_frm_id);
+		model.put("message", message);
+		model.addAttribute("issueRenewal", new IssueRenewal());
+		System.out.println(message);
 		return "addRecommedation";
 	}
 	
 	@RequestMapping(value = "/insertRecommendation.htm")
 	public String insertRecommendation(@RequestParam("recommendation_line") String recommendation_line,
 			@ModelAttribute("issueRenewal") IssueRenewal issueRenewal, ModelMap model, HttpServletRequest request) {
+		
 		HttpSession session = request.getSession();
 		String wt_isrn_proposal_frm_id = (String) session.getAttribute("wt_isrn_proposal_frm_id");
 		session.setAttribute("wt_isrn_proposal_frm_id", wt_isrn_proposal_frm_id);
 		
-		String message = issueRenewalServ.showRecommedation(wt_isrn_proposal_frm_id);
-		request.setAttribute("message", message);
+		List<String> message = issueRenewalServ.showRecommedation(wt_isrn_proposal_frm_id);
+		model.put("message", message);
 		model.addAttribute("issueRenewal", new IssueRenewal());
+		
 		issueRenewalServ.insertRecommendationData(wt_isrn_proposal_frm_id,recommendation_line);
 		model.addAttribute("issueRenewal", new IssueRenewal());
 		return "addRecommedation";
@@ -415,14 +417,14 @@ public class BankController {
 		if ( name != null) {
 			if(name.equals("ecgc"))
 			{
-//				List<IssueRenewal> listOfPreliminaryScrutiny = issueRenewalServ.getAllBankList();
-//				List<IssueRenewal> listOfPreliminaryScrutinyDone = issueRenewalServ.getlistOfPreliminaryScrutinyDone();
-//				List<IssueRenewal> listOfRecommedation = issueRenewalServ.getListOfOfficeNoteDone();
-//				
-//				model.put("listIssueRenewal", listOfPreliminaryScrutiny);
-//				model.put("listOfPreliminaryScrutinyDone", listOfPreliminaryScrutinyDone);
-//				model.put("listOfRecommedation", listOfRecommedation);
+				List<IssueRenewal> listOfPreliminaryScrutiny = issueRenewalServ.getAllBankList();
+				List<IssueRenewal> listOfPreliminaryScrutinyDone = issueRenewalServ.getlistOfPreliminaryScrutinyDone();
+				List<String> listOfRecommedation = issueRenewalServ.getListOfOfficeNoteDone();
 			
+				model.put("listIssueRenewal", listOfPreliminaryScrutiny);
+				model.put("listOfPreliminaryScrutinyDone", listOfPreliminaryScrutinyDone);
+				model.put("listOfRecommedation", listOfRecommedation);
+				model.addAttribute("name",name);
 				model.addAttribute("issueRenewal", new IssueRenewal());
 				return "StartPS";
 			}

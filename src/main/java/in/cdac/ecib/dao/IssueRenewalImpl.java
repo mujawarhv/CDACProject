@@ -268,25 +268,28 @@ public class IssueRenewalImpl implements IssueRenewalDao {
 	}
 
 	@Override
-	public List<IssueRenewal> getListOfOfficeNoteDone() {
-		List<IssueRenewal> list = jdbcTemplate.query(
-				"SELECT wt_isrn_proposal_frm_id FROM wt_isrn WHERE wt_isrn_id IN (select wt_isrn_id from wt_isrn_office_note)",
-				new RowMapper<IssueRenewal>() {
-					@Override
-					public IssueRenewal mapRow(ResultSet rs, int rowNum) throws SQLException {
-						IssueRenewal issueRenewal = new IssueRenewal();
-						issueRenewal.setWt_isrn_proposal_frm_id(rs.getString("wt_isrn_proposal_frm_id"));
-						return issueRenewal;
-					}
-				});
+	public List<String> getListOfOfficeNoteDone() {
+		
+		List<String> list =  jdbcTemplate.query("SELECT wt_isrn_id FROM wt_isrn WHERE wt_isrn_id IN (select wt_isrn_id from wt_isrn_office_note)", new BeanPropertyRowMapper<String>(String.class));
 		return list;
+		
+//		List<IssueRenewal> list = jdbcTemplate.query(
+//				"SELECT wt_isrn_proposal_frm_id FROM wt_isrn WHERE wt_isrn_id IN (select wt_isrn_id from wt_isrn_office_note)",
+//				new RowMapper<IssueRenewal>() {
+//					@Override
+//					public IssueRenewal mapRow(ResultSet rs, int rowNum) throws SQLException {
+//						IssueRenewal issueRenewal = new IssueRenewal();
+//						issueRenewal.setWt_isrn_proposal_frm_id(rs.getString("wt_isrn_proposal_frm_id"));
+//						return issueRenewal;
+//					}
+//				});
+//		return list;
 	}
 
 	@Override
 	public User loginUser(User user) {
 		
 		String sql = "SELECT user_id, user_password FROM login WHERE user_id=?";
-		// user = jdbcTemplate.queryForObject(user.getUserId(), User.class);
 		user = jdbcTemplate.queryForObject(sql, new Object[] { user.getUserId() },
 				new BeanPropertyRowMapper<User>(User.class));
 
@@ -294,52 +297,52 @@ public class IssueRenewalImpl implements IssueRenewalDao {
 	}
 
 	@Override
-	public void insertRecommendation(String wt_isrn_proposal_frm_id,String recommendation_line) {
+	public void insertRecommendation(String wt_isrn_id,String recommendation_line) {
+		System.out.println("wt_isrn_id:"+wt_isrn_id);
+		String recommedid = "SELECT recommendation_id FROM recommendations WHERE recommendation_id =(SELECT MAX(recommendation_id ) FROM recommendations);";
+		String id = jdbcTemplate.queryForObject(recommedid, String.class);
+		System.out.println("id: "+id);
 		
-		String recommedid = wt_isrn_proposal_frm_id+"RC"+wt_isrn_proposal_frm_id+1;
+		char myString = id.charAt(id.length() -1);
+		System.out.println(myString);
+		
+		myString= (char) (myString+1);
+		System.out.println(myString);
+		
+		String recommend_Id = wt_isrn_id+"R" +myString;
+		System.out.println(recommend_Id);
+		
 		SimpleDateFormat sd = new SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z");
 	    Date date = new Date();
 	    sd.setTimeZone(TimeZone.getTimeZone("IST"));
-	    String sql = "insert into recommendations(recommendation_id, employee_code, recommendation_line, recommendation_date) values('"+recommedid+"', '343521','"+recommendation_line+"','"+sd.format(date)+"')";
+	   
+	    String sql = "insert into recommendations(employee_code, recommendation_line, recommendation_date, recommendation_id, proposal_number) values('343521','"+recommendation_line+"','"+sd.format(date)+"','"+recommend_Id+"','"+wt_isrn_id+"')";
 		jdbcTemplate.update(sql);
 	}
 
 	@Override
-	public String showRecommedationMessage(String wt_isrn_proposal_frm_id) {
+	public List<String> showRecommedationMessage(String wt_isrn_proposal_frm_id) {
+		System.out.println(wt_isrn_proposal_frm_id);
+		String sql = "select recommendation_line from recommendations where proposal_number=?";
+		System.out.println(sql);
+		List<String> data =jdbcTemplate.query(sql, new Object[] {wt_isrn_proposal_frm_id }, new RowMapper<String>(){
+            public String mapRow(ResultSet rs, int rowNum) 
+                                         throws SQLException {
+                    return rs.getString(1);
+            }
+       });
+//		List<String> list= jdbcTemplate.queryForObject(sql,
+//				new Object[] { wt_isrn_proposal_frm_id },
+//				new BeanPropertyRowMapper<List<String>>());
+				
+//				jdbcTemplate.query(sql, new Object[] {wt_isrn_proposal_frm_id },
+//				new BeanPropertyRowMapper<String>(String.class));
+		for (String temp : data) {
+			System.out.println(temp);
+		}
+		return data;
 		
-		return null;
 	}
 
-//	@Override
-//	public String showRecommedationMessage(String wt_isrn_proposal_frm_id) {
-		
-	/*
-	 * String sql = "select recommendation_line from recommendations where recommendation_id like '%?%'";
-	 * jdbcTemplate.query(sql, new Object[]{ wt_isrn_proposal_frm_id }, new
-	 * NamesRowMapper());
-	 */
-	
-	
-//		 String sql = "select recommendation_line from recommendations where recommendation_id like :recommendation_id";
-//		 Map<String,Object> params = new HashMap<String,Object>();
-//		 params.put("wt_isrn_proposal_frm_id", wt_isrn_proposal_frm_id+"%RC%");
-//		 
-//		 String message =jdbcTemplate.queryForObject(sql,new BeanPropertyRowMapper<String>(String.class) , params);
-		
-//		String word = "RC"+wt_isrn_proposal_frm_id;
-//		wt_isrn_proposal_frm_id=wt_isrn_proposal_frm_id.replace(wt_isrn_proposal_frm_id, word);
-//		System.out.println(wt_isrn_proposal_frm_id);
-//		
-//		String recommedid = wt_isrn_proposal_frm_id+"RC"+wt_isrn_proposal_frm_id;
-//		System.out.println(recommedid);
-//		String str = "select recommendation_line from recommendations where recommendation_id like ?";
-//		System.out.println(str);
-//	
-//		String message = jdbcTemplate.queryForObject(str, new Object[] { recommedid },
-//					new BeanPropertyRowMapper<String>(String.class));
-		//String str1 =message.getWt_isrn_proposal_frm_id();
-//		System.out.println(message);
-//		String message = jdbcTemplate.queryForObject(str, String.class);
-//		return message;
-//	}
+
 }

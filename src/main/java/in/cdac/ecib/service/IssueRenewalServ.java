@@ -49,7 +49,7 @@ public interface IssueRenewalServ {
 	public void createOfficeNote(IssueRenewal issueRenewal);
 
 
-	public List<IssueRenewal> getListOfOfficeNoteDone();
+	public List<String> getListOfOfficeNoteDone();
 
 
 	public User loginUser(User user);
@@ -58,5 +58,5 @@ public interface IssueRenewalServ {
 	public void insertRecommendationData( String wt_isrn_proposal_frm_id,String recommendation_line);
 
 
-	public String showRecommedation(String wt_isrn_proposal_frm_id);
+	public  List<String> showRecommedation(String wt_isrn_proposal_frm_id);
 }
