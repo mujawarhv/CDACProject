@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -93,7 +94,7 @@ public class BankController {
 			HttpServletRequest request, HttpServletResponse response, BindingResult result, ModelAndView model)
 			throws Exception {
 		if (issueRenewal != null) {
-			 issueRenewalServ.Create(issueRenewal);
+			issueRenewalServ.Create(issueRenewal);
 		} else {
 			String str = "Incorrect details";
 			System.out.println(str);
@@ -170,14 +171,14 @@ public class BankController {
 	@RequestMapping(value = "/updateIssueRenewal.htm")
 	public String update(@ModelAttribute("issueRenewal") IssueRenewal issueRenewal, ModelMap model) {
 		issueRenewalServ.Modify(issueRenewal.getWt_isrn_proposal_frm_id(), issueRenewal);
-		List<IssueRenewal> listIssueRenewal = issueRenewalServ.getAllBankList();
-		model.put("listIssueRenewal", listIssueRenewal);
+//		List<IssueRenewal> listIssueRenewal = issueRenewalServ.getAllBankList();
+//		model.put("listIssueRenewal", listIssueRenewal);
 		return "updateAnnexure";
 	}
 
 	@RequestMapping(value = "/updateIssueRenewalForm.htm")
 	public String updateAnnexure(@ModelAttribute("issueRenewal") IssueRenewal issueRenewal, ModelMap model) {
-		// bankService.Modify(bank.getProposal_frm_id(), bank);
+		//issueRenewalServ.Modify(issueRenewal.getWt_isrn_proposal_frm_id(), issueRenewal);
 		List<IssueRenewal> listIssueRenewal = issueRenewalServ.getAllBankList();
 		model.put("listIssueRenewal", listIssueRenewal);
 		return "Login";
@@ -195,7 +196,7 @@ public class BankController {
 		List<IssueRenewal> listIssueRenewal = issueRenewalServ.getAllBankList();
 		List<IssueRenewal> listOfPreliminaryScrutinyDone = issueRenewalServ.getlistOfPreliminaryScrutinyDone();
 		List<String> listOfRecommedation = issueRenewalServ.getListOfOfficeNoteDone();
-	
+
 		HttpSession session = request.getSession();
 		String wt_isrn_proposal_frm_id = request.getParameter("wt_isrn_proposal_frm_id");
 		session.setAttribute("wt_isrn_proposal_frm_id", wt_isrn_proposal_frm_id);
@@ -217,7 +218,7 @@ public class BankController {
 		List<IssueRenewal> listOfPreliminaryScrutiny = issueRenewalServ.getAllBankList();
 		List<IssueRenewal> listOfPreliminaryScrutinyDone = issueRenewalServ.getlistOfPreliminaryScrutinyDone();
 		List<String> listOfRecommedation = issueRenewalServ.getListOfOfficeNoteDone();
-		
+
 		model.put("listIssueRenewal", listOfPreliminaryScrutiny);
 		model.put("listOfPreliminaryScrutinyDone", listOfPreliminaryScrutinyDone);
 		model.put("listOfRecommedation", listOfRecommedation);
@@ -260,7 +261,7 @@ public class BankController {
 		session.setAttribute("wt_isrn_proposal_frm_id", wt_isrn_proposal_frm_id);
 
 		issueRenewal = issueRenewalServ.getByDocument(issueRenewal.getWt_isrn_proposal_frm_id());
-		
+
 		if (issueRenewal != null)
 			model.put("issueRenewal", issueRenewal);
 		return "DisplayPreliminaryScrutinySecondPage";
@@ -288,11 +289,11 @@ public class BankController {
 	@RequestMapping(value = "/officenote.htm")
 	public String officeNotePage(@RequestParam("proposalfrmid") String proposalfrmid,
 			@ModelAttribute("issueRenewal") IssueRenewal issueRenewal, ModelMap model, HttpServletRequest request) {
-		
+
 		HttpSession session = request.getSession();
 		String wt_isrn_proposal_frm_id = (String) session.getAttribute("wt_isrn_proposal_frm_id");
 		session.setAttribute("wt_isrn_proposal_frm_id", wt_isrn_proposal_frm_id);
-		
+
 		issueRenewal = issueRenewalServ.getOfficeNoteInfo(proposalfrmid);
 		model.addAttribute("issueRenewal", issueRenewal);
 		return "OfficeNote";
@@ -312,7 +313,7 @@ public class BankController {
 		HttpSession session = request.getSession();
 		String wt_isrn_proposal_frm_id = (String) session.getAttribute("wt_isrn_proposal_frm_id");
 		session.setAttribute("wt_isrn_proposal_frm_id", wt_isrn_proposal_frm_id);
-		
+
 		try {
 			boolean isvalid1 = issueRenewalServ.checkId(issueRenewal.getWt_isrn_proposal_frm_id());
 //			boolean isvalid2 = issueRenewalServ.checkCoverType(issueRenewal.getCover_type());
@@ -329,9 +330,7 @@ public class BankController {
 					model.addAttribute("issueRenewal", issueRenewal);
 					return "OfficeNotePS";
 				}
-			}
-
-			else {
+			} else {
 				String str = "Incorrect details";
 				System.out.println(str);
 				request.setAttribute("str", str);
@@ -342,51 +341,53 @@ public class BankController {
 		}
 
 		return "StartPS";
-
 	}
 
 	@RequestMapping(value = "/officenotegeneration.htm")
 	public String generationOfOfficeNote(@ModelAttribute("issueRenewal") IssueRenewal issueRenewal, ModelMap model) {
 		issueRenewalServ.createOfficeNote(issueRenewal);
+
 		List<IssueRenewal> listOfPreliminaryScrutiny = issueRenewalServ.getAllBankList();
 		List<IssueRenewal> listOfPreliminaryScrutinyDone = issueRenewalServ.getlistOfPreliminaryScrutinyDone();
 		List<String> listOfRecommedation = issueRenewalServ.getListOfOfficeNoteDone();
-	
+
 		model.put("listIssueRenewal", listOfPreliminaryScrutiny);
 		model.put("listOfPreliminaryScrutinyDone", listOfPreliminaryScrutinyDone);
 		model.put("listOfRecommedation", listOfRecommedation);
+
 		return "StartPS";
 	}
 
 	@RequestMapping(value = "/addRecommedation.htm")
 	public String AddRecommedation(@RequestParam("isrnfrmid") String isrnfrmid,
 			@ModelAttribute("issueRenewal") IssueRenewal issueRenewal, ModelMap model, HttpServletRequest request) {
-		
+
 		HttpSession session = request.getSession();
 		String wt_isrn_proposal_frm_id = isrnfrmid;
 		session.setAttribute("wt_isrn_proposal_frm_id", wt_isrn_proposal_frm_id);
-		
+
 		List<String> message = issueRenewalServ.showRecommedation(wt_isrn_proposal_frm_id);
 		model.put("message", message);
 		model.addAttribute("issueRenewal", new IssueRenewal());
-		System.out.println(message);
+
 		return "addRecommedation";
 	}
-	
+
 	@RequestMapping(value = "/insertRecommendation.htm")
 	public String insertRecommendation(@RequestParam("recommendation_line") String recommendation_line,
 			@ModelAttribute("issueRenewal") IssueRenewal issueRenewal, ModelMap model, HttpServletRequest request) {
-		
+
 		HttpSession session = request.getSession();
 		String wt_isrn_proposal_frm_id = (String) session.getAttribute("wt_isrn_proposal_frm_id");
 		session.setAttribute("wt_isrn_proposal_frm_id", wt_isrn_proposal_frm_id);
-		
+
 		List<String> message = issueRenewalServ.showRecommedation(wt_isrn_proposal_frm_id);
 		model.put("message", message);
 		model.addAttribute("issueRenewal", new IssueRenewal());
-		
-		issueRenewalServ.insertRecommendationData(wt_isrn_proposal_frm_id,recommendation_line);
+
+		issueRenewalServ.insertRecommendationData(wt_isrn_proposal_frm_id, recommendation_line);
 		model.addAttribute("issueRenewal", new IssueRenewal());
+
 		return "addRecommedation";
 	}
 
@@ -394,59 +395,54 @@ public class BankController {
 	public String addSystemEntry(@ModelAttribute("issueRenewal") IssueRenewal issueRenewal, HttpServletRequest request,
 			HttpServletResponse response, BindingResult result, Model model) throws Exception {
 
-		System.out.println(issueRenewal);
 		issueRenewalServ.insertSystemEntry(issueRenewal);
 		model.addAttribute("issueRenewal", issueRenewal);
 		return "Priliminary_Scrutiny";
 	}
-	
+
 	@RequestMapping(value = "/login.htm", method = RequestMethod.GET)
-	public String login(@ModelAttribute("user") User user,BindingResult result,Model model)
-	{
-		
+	public String login(@ModelAttribute("user") User user, BindingResult result, Model model) {
+
 		model.addAttribute("user", new User());
 		return "login";
 	}
-	
+
 	@RequestMapping(value = "/userlogin.htm", method = RequestMethod.POST)
-	public String userLogin(@ModelAttribute("user") User user,@ModelAttribute("issueRenewal") IssueRenewal issueRenewal,ModelMap model) {
-		
+	public String userLogin(@ModelAttribute("user") User user,
+			@ModelAttribute("issueRenewal") IssueRenewal issueRenewal, ModelMap model) {
+
 		user = issueRenewalServ.loginUser(user);
 
 		String name = user.getUserId();
-		if ( name != null) {
-			if(name.equals("ecgc"))
-			{
+		if (name != null) {
+			if (name.equals("ecgc")) {
 				List<IssueRenewal> listOfPreliminaryScrutiny = issueRenewalServ.getAllBankList();
 				List<IssueRenewal> listOfPreliminaryScrutinyDone = issueRenewalServ.getlistOfPreliminaryScrutinyDone();
 				List<String> listOfRecommedation = issueRenewalServ.getListOfOfficeNoteDone();
-			
+
 				model.put("listIssueRenewal", listOfPreliminaryScrutiny);
 				model.put("listOfPreliminaryScrutinyDone", listOfPreliminaryScrutinyDone);
 				model.put("listOfRecommedation", listOfRecommedation);
-				model.addAttribute("name",name);
+
+				model.addAttribute("name", name);
 				model.addAttribute("issueRenewal", new IssueRenewal());
+
 				return "StartPS";
-			}
-			else if ( name.equals("hatimmujawar")) {
+			} else if (name.equals("hatimmujawar")) {
 				model.addAttribute("issueRenewal", new IssueRenewal());
 				return "addRecommedation";
-			}
-			else
-			{
+			} else {
 				return "login";
 			}
-			
 		} else {
-			//mv.addObject("msg", "Invalid user id or password.");
 			return "login";
 		}
-		
+
 	}
 
-//	@ExceptionHandler(Exception.class)
-//	public String handleException() {
-//		return "ErrorPage";
-//	}
+	@ExceptionHandler(Exception.class)
+	public String handleException() {
+		return "ErrorPage";
+	}
 
 }

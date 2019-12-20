@@ -272,18 +272,6 @@ public class IssueRenewalImpl implements IssueRenewalDao {
 		
 		List<String> list =  jdbcTemplate.query("SELECT wt_isrn_id FROM wt_isrn WHERE wt_isrn_id IN (select wt_isrn_id from wt_isrn_office_note)", new BeanPropertyRowMapper<String>(String.class));
 		return list;
-		
-//		List<IssueRenewal> list = jdbcTemplate.query(
-//				"SELECT wt_isrn_proposal_frm_id FROM wt_isrn WHERE wt_isrn_id IN (select wt_isrn_id from wt_isrn_office_note)",
-//				new RowMapper<IssueRenewal>() {
-//					@Override
-//					public IssueRenewal mapRow(ResultSet rs, int rowNum) throws SQLException {
-//						IssueRenewal issueRenewal = new IssueRenewal();
-//						issueRenewal.setWt_isrn_proposal_frm_id(rs.getString("wt_isrn_proposal_frm_id"));
-//						return issueRenewal;
-//					}
-//				});
-//		return list;
 	}
 
 	@Override
@@ -331,18 +319,6 @@ public class IssueRenewalImpl implements IssueRenewalDao {
                     return rs.getString(1);
             }
        });
-//		List<String> list= jdbcTemplate.queryForObject(sql,
-//				new Object[] { wt_isrn_proposal_frm_id },
-//				new BeanPropertyRowMapper<List<String>>());
-				
-//				jdbcTemplate.query(sql, new Object[] {wt_isrn_proposal_frm_id },
-//				new BeanPropertyRowMapper<String>(String.class));
-		for (String temp : data) {
-			System.out.println(temp);
-		}
-		return data;
-		
+		return data;	
 	}
-
-
 }
