@@ -116,6 +116,11 @@ public class IssueRenewalServImpl implements IssueRenewalServ {
 		return issueRenewalDao.getListOfRecommedationDone();
 	}
 
+	@Override
+	public IssueRenewal getDetailsOfDop(String isrn_id) {
+		return issueRenewalDao.getDetailsOfDop(isrn_id);
+	}
+
 	
 	
 }

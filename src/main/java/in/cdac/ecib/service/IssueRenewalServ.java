@@ -65,4 +65,7 @@ public interface IssueRenewalServ {
 
 
 	public List<String> showRecommedation();
+
+
+	public IssueRenewal getDetailsOfDop(String isrn_id);
 }

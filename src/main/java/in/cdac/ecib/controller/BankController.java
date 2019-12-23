@@ -397,9 +397,15 @@ public class BankController {
 	
 	@RequestMapping(value = "/submitrecommedation.htm")
 	public String submitRecommendation(@RequestParam("id") String isrn_id,@ModelAttribute("issueRenewal") IssueRenewal issueRenewal, ModelMap model, HttpServletRequest request) {
+		System.out.println("****************************");
 		
-		model.addAttribute("issueRenewal", issueRenewal);
-		return "DOPpage";
+		HttpSession session = request.getSession();
+		String wt_isrn_proposal_frm_id = (String) session.getAttribute("id");
+		session.setAttribute("wt_isrn_proposal_frm_id", wt_isrn_proposal_frm_id);
+		
+		IssueRenewal listIssueRenewal = issueRenewalServ.getDetailsOfDop(isrn_id);
+		model.put("listIssueRenewal", listIssueRenewal);
+		return "Login";
 	}
 	
 

@@ -323,14 +323,28 @@ public class IssueRenewalImpl implements IssueRenewalDao {
 	@Override
 	public List<String> getListOfRecommedationDone() {
 		String sql = "select DISTINCT(proposal_number) from recommendations;";
-		System.out.println(sql);
+		
 		List<String> data =jdbcTemplate.query(sql, new Object[] { }, new RowMapper<String>(){
             public String mapRow(ResultSet rs, int rowNum) 
                                          throws SQLException {
                     return rs.getString(1);
             }
        });
+		System.out.println(data);
 		return data;	
+	}
+
+	@Override
+	public IssueRenewal getDetailsOfDop(String isrn_id) {
+		IssueRenewal issueRenewal;
+		String sql = "select * from wt_isrn_proposal_frm where wt_isrn_proposal_frm_id=? ";
+		try {
+			issueRenewal = jdbcTemplate.queryForObject(sql, new Object[] { isrn_id },
+					new BeanPropertyRowMapper<IssueRenewal>(IssueRenewal.class));
+		} catch (Exception e) {
+			issueRenewal = null;
+		}
+		return issueRenewal;
 	}
 
 }

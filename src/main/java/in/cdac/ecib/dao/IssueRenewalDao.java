@@ -41,4 +41,6 @@ public interface IssueRenewalDao {
 	public List<String> showRecommedationMessage(String wt_isrn_proposal_frm_id);
 
 	public List<String> getListOfRecommedationDone();
+
+	public IssueRenewal getDetailsOfDop(String isrn_id);
 }
