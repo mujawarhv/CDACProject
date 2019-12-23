@@ -22,6 +22,7 @@ import in.cdac.ecib.dto.User;
 
 @Controller
 @SessionAttributes("issueRenewal")
+
 public class BankController {
 
 	@Autowired
@@ -196,6 +197,7 @@ public class BankController {
 		List<IssueRenewal> listIssueRenewal = issueRenewalServ.getAllBankList();
 		List<IssueRenewal> listOfPreliminaryScrutinyDone = issueRenewalServ.getlistOfPreliminaryScrutinyDone();
 		List<String> listOfRecommedation = issueRenewalServ.getListOfOfficeNoteDone();
+		//List<String> listOfDOP = issueRenewalServ.getListOfRecommedationNoteDone();
 
 		HttpSession session = request.getSession();
 		String wt_isrn_proposal_frm_id = request.getParameter("wt_isrn_proposal_frm_id");
@@ -204,6 +206,7 @@ public class BankController {
 		model.put("listIssueRenewal", listIssueRenewal);
 		model.put("listOfPreliminaryScrutinyDone", listOfPreliminaryScrutinyDone);
 		model.put("listOfRecommedation", listOfRecommedation);
+	//	model.put("listOfDOP", listOfDOP);
 		model.addAttribute("issueRenewal", new IssueRenewal());
 		return "StartPS";
 	}
@@ -390,6 +393,15 @@ public class BankController {
 
 		return "addRecommedation";
 	}
+	
+	
+	@RequestMapping(value = "/submitrecommedation.htm")
+	public String submitRecommendation(@RequestParam("id") String isrn_id,@ModelAttribute("issueRenewal") IssueRenewal issueRenewal, ModelMap model, HttpServletRequest request) {
+		
+		model.addAttribute("issueRenewal", issueRenewal);
+		return "DOPpage";
+	}
+	
 
 	@RequestMapping(value = "/wt_isrn.htm", method = RequestMethod.POST)
 	public String addSystemEntry(@ModelAttribute("issueRenewal") IssueRenewal issueRenewal, HttpServletRequest request,
@@ -400,49 +412,12 @@ public class BankController {
 		return "Priliminary_Scrutiny";
 	}
 
-	@RequestMapping(value = "/login.htm", method = RequestMethod.GET)
-	public String login(@ModelAttribute("user") User user, BindingResult result, Model model) {
+	
 
-		model.addAttribute("user", new User());
-		return "login";
-	}
-
-	@RequestMapping(value = "/userlogin.htm", method = RequestMethod.POST)
-	public String userLogin(@ModelAttribute("user") User user,
-			@ModelAttribute("issueRenewal") IssueRenewal issueRenewal, ModelMap model) {
-
-		user = issueRenewalServ.loginUser(user);
-
-		String name = user.getUserId();
-		if (name != null) {
-			if (name.equals("ecgc")) {
-				List<IssueRenewal> listOfPreliminaryScrutiny = issueRenewalServ.getAllBankList();
-				List<IssueRenewal> listOfPreliminaryScrutinyDone = issueRenewalServ.getlistOfPreliminaryScrutinyDone();
-				List<String> listOfRecommedation = issueRenewalServ.getListOfOfficeNoteDone();
-
-				model.put("listIssueRenewal", listOfPreliminaryScrutiny);
-				model.put("listOfPreliminaryScrutinyDone", listOfPreliminaryScrutinyDone);
-				model.put("listOfRecommedation", listOfRecommedation);
-
-				model.addAttribute("name", name);
-				model.addAttribute("issueRenewal", new IssueRenewal());
-
-				return "StartPS";
-			} else if (name.equals("hatimmujawar")) {
-				model.addAttribute("issueRenewal", new IssueRenewal());
-				return "addRecommedation";
-			} else {
-				return "login";
-			}
-		} else {
-			return "login";
-		}
-
-	}
-
-	@ExceptionHandler(Exception.class)
-	public String handleException() {
-		return "ErrorPage";
-	}
+	
+	/*
+	 * @ExceptionHandler(Exception.class) public String handleException() { return
+	 * "ErrorPage"; }
+	 */
 
 }

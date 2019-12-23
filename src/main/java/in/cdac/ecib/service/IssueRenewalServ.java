@@ -59,4 +59,10 @@ public interface IssueRenewalServ {
 
 
 	public  List<String> showRecommedation(String wt_isrn_proposal_frm_id);
+
+
+	public List<String> getListOfRecommedationNoteDone();
+
+
+	public List<String> showRecommedation();
 }

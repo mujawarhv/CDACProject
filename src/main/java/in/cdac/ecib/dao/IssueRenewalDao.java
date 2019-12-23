@@ -39,4 +39,6 @@ public interface IssueRenewalDao {
 	public void insertRecommendation(String wt_isrn_proposal_frm_id,String wt_isrn_office_note_recommendation_id);
 
 	public List<String> showRecommedationMessage(String wt_isrn_proposal_frm_id);
+
+	public List<String> getListOfRecommedationDone();
 }

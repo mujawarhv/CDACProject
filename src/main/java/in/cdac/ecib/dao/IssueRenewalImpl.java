@@ -4,9 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.TimeZone;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -280,7 +278,7 @@ public class IssueRenewalImpl implements IssueRenewalDao {
 		String sql = "SELECT user_id, user_password FROM login WHERE user_id=?";
 		user = jdbcTemplate.queryForObject(sql, new Object[] { user.getUserId() },
 				new BeanPropertyRowMapper<User>(User.class));
-
+		System.out.println(user);
 		return user;
 	}
 
@@ -321,4 +319,18 @@ public class IssueRenewalImpl implements IssueRenewalDao {
        });
 		return data;	
 	}
+
+	@Override
+	public List<String> getListOfRecommedationDone() {
+		String sql = "select DISTINCT(proposal_number) from recommendations;";
+		System.out.println(sql);
+		List<String> data =jdbcTemplate.query(sql, new Object[] { }, new RowMapper<String>(){
+            public String mapRow(ResultSet rs, int rowNum) 
+                                         throws SQLException {
+                    return rs.getString(1);
+            }
+       });
+		return data;	
+	}
+
 }

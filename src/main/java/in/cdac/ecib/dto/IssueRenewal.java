@@ -72,7 +72,7 @@ public class IssueRenewal {
 
 	public IssueRenewal() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	

@@ -106,6 +106,16 @@ public class IssueRenewalServImpl implements IssueRenewalServ {
 		return issueRenewalDao.showRecommedationMessage(wt_isrn_proposal_frm_id);
 	}
 
+	@Override
+	public List<String> getListOfRecommedationNoteDone() {
+		return issueRenewalDao.getListOfRecommedationDone();
+	}
+
+	@Override
+	public List<String> showRecommedation() {
+		return issueRenewalDao.getListOfRecommedationDone();
+	}
+
 	
 	
 }
