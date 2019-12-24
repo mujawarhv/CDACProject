@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page errorPage="ErrorPage.jsp"%>
-<%@page import="in.cdac.ecib.dto.*"%><%@page import="java.util.List"%>
+<%@page import="in.cdac.ecib.dto.*"%>
+<%@page import="java.util.List"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="fmt"%>
 
@@ -144,19 +145,14 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Login Screens:</h6>
 						<a class="collapse-item" href="login.htm">Login</a>
-						<!-- 						     <a -->
-						<!-- 							class="collapse-item" href="register.html">Register</a> <a -->
-						<!-- 							class="collapse-item" href="forgot-password.html">Forgot -->
-						<!-- 							Password</a> -->
+				
 						<div class="collapse-divider"></div>
 
 						<a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a>
 						<a class="collapse-item" href="banklogin.htm">Bank Login</a> <a
 							class="collapse-item" href="ecgclogin.htm">ECGC Login</a>
 
-						<!-- 						<h6 class="collapse-header">Other Pages:</h6> -->
-						<!-- 						<a class="collapse-item" href="404.html">404 Page</a> <a -->
-						<!-- 							class="collapse-item" href="blank.html">Blank Page</a> -->
+						
 					</div>
 				</div></li>
 
@@ -414,19 +410,17 @@
 									<div class="card-body">
 
 
+	
 
 										<form:form method="post"
 											class="form-horizontal border border-dark p-3 mb-2 bg-white text-dark mt-5"
-											role="form" modelAttribute="issueRenewal">
+											role="form" modelAttribute="issueRenewal1">
 
 
 											<div class="form-group">
 												<div class="row">
 													<div class=" col-sm-8 ">
-																					<%														
-String str=(String) session.getAttribute("name"); 													
-out.print(str);
-%> 
+
 														<table class="table table-bordered">
 															<thead>
 																<tr>

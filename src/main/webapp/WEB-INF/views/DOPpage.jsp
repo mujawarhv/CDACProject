@@ -4,9 +4,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="fmt"%>
 
-<%
-	List<IssueRenewal> userList = (List<IssueRenewal>) request.getAttribute("listIssueRenewal");
-%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,7 +16,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>ECGC </title>
+<title>ECGC</title>
 
 <!-- Custom fonts for this template-->
 <link
@@ -141,20 +138,20 @@
 					aria-labelledby="headingPages" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Login Screens:</h6>
-						    <a class="collapse-item" href="login.htm">Login</a> 
-<!-- 						    <a -->
-<!-- 							class="collapse-item" href="register.html">Register</a> <a -->
-<!-- 							class="collapse-item" href="forgot-password.html">Forgot -->
-<!-- 							Password</a> -->
+						<a class="collapse-item" href="login.htm">Login</a>
+						<!-- 						    <a -->
+						<!-- 							class="collapse-item" href="register.html">Register</a> <a -->
+						<!-- 							class="collapse-item" href="forgot-password.html">Forgot -->
+						<!-- 							Password</a> -->
 						<div class="collapse-divider"></div>
 
-						 <a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a> <a
-							class="collapse-item" href="banklogin.htm">Bank Login</a> <a
+						<a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a>
+						<a class="collapse-item" href="banklogin.htm">Bank Login</a> <a
 							class="collapse-item" href="ecgclogin.htm">ECGC Login</a>
 
-<!-- 						<h6 class="collapse-header">Other Pages:</h6> -->
-<!-- 						<a class="collapse-item" href="404.html">404 Page</a> <a -->
-<!-- 							class="collapse-item" href="blank.html">Blank Page</a> -->
+						<!-- 						<h6 class="collapse-header">Other Pages:</h6> -->
+						<!-- 						<a class="collapse-item" href="404.html">404 Page</a> <a -->
+						<!-- 							class="collapse-item" href="blank.html">Blank Page</a> -->
 					</div>
 				</div></li>
 
@@ -254,7 +251,8 @@
 											<i class="fas fa-file-alt text-white"></i>
 										</div>
 									</div>
-									<div>2
+									<div>
+										2
 										<div class="small text-gray-500">December 12, 2019</div>
 										<span class="font-weight-bold">A new monthly report is
 											ready to download!</span>
@@ -426,38 +424,125 @@
 
 										<form:form method="post" action="GenerateOfficeNote.htm"
 											class="form-horizontal border border-dark p-3 mb-2 bg-white text-dark mt-5"
-											role="form" modelAttribute="issueRenewal">
+											role="form" modelAttribute="issueRenewal1">
 
 
 											<div class="form-group">
 												<div class="row">
-													<div class="col-sm-8">
-<%														
-String str=(String) session.getAttribute("name"); 													
-out.print(str);
-%> 
+													<div class="col-sm-12">
+
 														<label for="heading" class="col-sm-3 control-label">WT
-															isrn id</label>
+															Proposal Number</label>
 
 														<form:input id="exampleField" type="text"
-														class="form-field__input" path="wt_isrn_proposal_frm_id"
-														placeholder="form-id" disabled="true" /></br>
+															class="form-field__input" path="wt_isrn_proposal_frm_id"
+															placeholder="form-id" disabled="true" />
 
 														<label for="heading" class="col-sm-3 control-label">Cover
 															type</label>
 
-													<form:input id="exampleField"
-															list="Fresh/Renewal" placeholder="insurance type"
-															type="text" class="form-field__input" path="cover_type"
-															disabled="true" /></br>
-
-														<label for="heading" class="col-sm-3 control-label">Bank
+														<form:input id="exampleField" list="Fresh/Renewal"
+															placeholder="insurance type" type="text"
+															class="form-field__input" path="cover_type"
+															disabled="true" />
+															
+														</br> <label for="heading" class="col-sm-3 control-label">Bank
 															Code</label>
 
-														<form:input id="exampleField"
-															list="Fresh/Renewal" placeholder="insurance type"
-															type="text" class="form-field__input" path="bank_code"
+														<form:input id="exampleField" 
+															placeholder="insurance type" type="text"
+															class="form-field__input" path="bank_code"
 															disabled="true" />
+
+														<label for="heading" class="col-sm-3 control-label">Bank
+															Name</label>
+
+														<form:input id="exampleField" 
+															placeholder="insurance type" type="text"
+															class="form-field__input" path="bank_code"
+															disabled="true" />
+
+													</div>
+												</div>
+											</div>
+
+											<div class="form-group">
+												<div class="row">
+													<div class="col-sm-12">
+
+														<h3>Decision Maker Details</h3>
+
+														<label for="heading" class="col-sm-3 control-label">Employee
+															No.</label>
+
+														<form:input id="exampleField" 
+															placeholder="insurance type" type="text"
+															class="form-field__input" path="employee_code"
+															disabled="true" />
+
+														<label for="heading" class="col-sm-3 control-label">Designation</label>
+
+														<form:input id="exampleField"
+															placeholder="insurance type" type="text"
+															class="form-field__input" path="bank_code"
+															disabled="true" />
+
+														<label for="heading" class="col-sm-3 control-label">Name</label>
+
+														<form:input id="exampleField" 
+															placeholder="insurance type" type="text"
+															class="form-field__input" path="bank_code"
+															disabled="true" />
+														<br> <label for="heading"
+															class="col-sm-3 control-label">Decision</label>
+
+														<form:input id="exampleField" 
+															placeholder="insurance type" type="text"
+															class="form-field__input" path="bank_code" />
+
+													</div>
+												</div>
+											</div>
+
+
+											<div class="form-group">
+												<div class="row">
+													<div class="col-sm-12">
+														<h5>Gurantee</h5>
+
+														<label for="heading" class="col-sm-3 control-label">Start
+															Date</label>
+
+														<form:input id="exampleField" 
+															placeholder="insurance type" type="date"
+															pattern="dd/MM/yyyy" class="form-field__input"
+															path="bank_code" />
+
+														<label for="heading" class="col-sm-3 control-label">End
+															Date</label>
+
+														<form:input id="exampleField" 
+															placeholder="insurance type" type="date"
+															pattern="dd/MM/yyyy" class="form-field__input"
+															path="bank_code" />
+
+
+														<label for="heading" class="col-sm-3 control-label">Maximum
+															Liablity</label>
+
+														<form:input id="exampleField" 
+															placeholder="insurance type" type="text"
+															class="form-field__input" path="bank_code" />
+
+
+														<label for="heading" class="col-sm-3 control-label">Discretionary
+															Limit</label>
+
+														<form:input id="exampleField"
+															placeholder="insurance type" type="text"
+															class="form-field__input" path="bank_code" />
+
+
 
 													</div>
 												</div>
@@ -469,9 +554,10 @@ out.print(str);
 													<div class="col-sm-4">
 														<!-- 						<a href="next.htm" class="btn btn-primary active">Next</a> -->
 
-														<input type="submit" value="Generate Office Note"
-															class="btn btn-success active"  />
-														<a href="cancelPreliminaryScrutinypage.htm" class="btn btn-danger active">Cancel</a>
+														<input type="submit" value="Save"
+															class="btn btn-success active" /> <a
+															href="cancelPreliminaryScrutinypage.htm"
+															class="btn btn-danger active">Cancel</a>
 
 
 
@@ -575,8 +661,6 @@ out.print(str);
 					<!-- Custom scripts for all pages-->
 					<script
 						src="${pageContext.request.contextPath}/resources/js/sb-admin-2.min.js"></script>
-						
-	
 </body>
 
 </html>

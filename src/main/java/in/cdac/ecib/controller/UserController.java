@@ -5,6 +5,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +25,8 @@ public class UserController {
 
 	@Autowired
 	IssueRenewalServ issueRenewalServ;
+	
+	private Logger logger = LoggerFactory.getLogger(IssueRenewalServ.class);
 
 	@RequestMapping(value = "/login.htm", method = RequestMethod.GET)
 	public String login(@ModelAttribute("user") User user, BindingResult result, Model model) {
@@ -36,7 +40,8 @@ public class UserController {
 			@ModelAttribute("issueRenewal") IssueRenewal issueRenewal, ModelMap model, HttpServletRequest request) {
 
 		System.out.println("***************************");
-		System.out.println(user);
+		logger.info("user :", user);
+		
 
 		user = issueRenewalServ.loginUser(user);
 		System.out.println(user.getUserId());
@@ -97,7 +102,7 @@ public class UserController {
 				 
 				List<String> message = issueRenewalServ.showRecommedation();
 				model.put("message", message);
-				model.addAttribute("issueRenewal", new IssueRenewal());
+				model.addAttribute("issueRenewal1", new IssueRenewal());
 				return "DOP";
 			} else {
 				return "login";

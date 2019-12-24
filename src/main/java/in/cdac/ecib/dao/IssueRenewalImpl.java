@@ -307,20 +307,15 @@ public class IssueRenewalImpl implements IssueRenewalDao {
 
 	@Override
 	public void insertRecommendation(String wt_isrn_id, String recommendation_line) {
+		
 		System.out.println("wt_isrn_id:" + wt_isrn_id);
 		String recommedid = "SELECT recommendation_id FROM recommendations WHERE recommendation_id =(SELECT MAX(recommendation_id ) FROM recommendations);";
 		String id = jdbcTemplate.queryForObject(recommedid, String.class);
-		System.out.println("id: " + id);
 
 		char myString = id.charAt(id.length() - 1);
-		System.out.println(myString);
-
 		myString = (char) (myString + 1);
-		System.out.println(myString);
-
 		String recommend_Id = wt_isrn_id + "R" + myString;
-		System.out.println(recommend_Id);
-
+	
 		SimpleDateFormat sd = new SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z");
 		Date date = new Date();
 		sd.setTimeZone(TimeZone.getTimeZone("IST"));
@@ -358,14 +353,13 @@ public class IssueRenewalImpl implements IssueRenewalDao {
 
 	@Override
 	public IssueRenewal getDetailsOfDop(String isrn_id) {
+		System.out.println(isrn_id);
 		IssueRenewal issueRenewal;
 		String sql = "select * from wt_isrn_proposal_frm where wt_isrn_proposal_frm_id=? ";
-		try {
+		
 			issueRenewal = jdbcTemplate.queryForObject(sql, new Object[] { isrn_id },
 					new BeanPropertyRowMapper<IssueRenewal>(IssueRenewal.class));
-		} catch (Exception e) {
-			issueRenewal = null;
-		}
+		System.out.println(issueRenewal);
 		return issueRenewal;
 	}
 

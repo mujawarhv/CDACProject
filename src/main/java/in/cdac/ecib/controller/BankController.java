@@ -4,6 +4,9 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +29,9 @@ public class BankController {
 
 	@Autowired
 	private IssueRenewalServ issueRenewalServ;
+	
+	
+	private Logger logger = LoggerFactory.getLogger(IssueRenewalServ.class);
 
 	/*
 	 * When bank click on Login button on index page then it will go to BankLogin
@@ -395,26 +401,44 @@ public class BankController {
 	
 	
 	@RequestMapping(value = "/submitrecommedation.htm")
-	public String submitRecommendation(@RequestParam("id") String isrn_id,@ModelAttribute("issueRenewal") IssueRenewal issueRenewal, ModelMap model, HttpServletRequest request) {
+	public String submitRecommendation(@RequestParam("id") String isrn_id, Model model, HttpServletRequest request) {
 		System.out.println("****************************");
 		
-		HttpSession session = request.getSession();
-		String wt_isrn_proposal_frm_id = (String) session.getAttribute("name");
-		session.setAttribute("wt_isrn_proposal_frm_id", wt_isrn_proposal_frm_id);
+			/*
+			 * HttpSession session = request.getSession(); String wt_isrn_proposal_frm_id =
+			 * (String) session.getAttribute("name");
+			 * session.setAttribute("wt_isrn_proposal_frm_id", wt_isrn_proposal_frm_id);
+			 */
 		
-		IssueRenewal listIssueRenewal = issueRenewalServ.getDetailsOfDop(isrn_id);
-		model.put("listIssueRenewal", listIssueRenewal);
-		return "Login";
+		IssueRenewal issueRenewal1 = issueRenewalServ.getDetailsOfDop(isrn_id);
+		model.addAttribute("issueRenewal1", issueRenewal1);
+		return "DOPpage";
 	}
 	
 
-	@RequestMapping(value = "/wt_isrn.htm", method = RequestMethod.POST)
+	@RequestMapping(value = "/wt_isrn.htm",method = RequestMethod.POST)
 	public String addSystemEntry(@ModelAttribute("issueRenewal") IssueRenewal issueRenewal, HttpServletRequest request,
 			HttpServletResponse response, BindingResult result, Model model) throws Exception {
 
 		issueRenewalServ.insertSystemEntry(issueRenewal);
 		model.addAttribute("issueRenewal", issueRenewal);
 		return "Priliminary_Scrutiny";
+	}
+	
+	@RequestMapping(value = "/dop.htm", method = RequestMethod.GET	)
+	public String Dop(@ModelAttribute("issueRenewal1") IssueRenewal issueRenewal, HttpServletRequest request,
+			HttpServletResponse response, BindingResult result, ModelMap model) throws Exception {
+		
+		/*
+		 * String name = "ecgc3"; HttpSession session = request.getSession();
+		 * session.setAttribute("name",name);
+		 */
+		 
+		List<String> message = issueRenewalServ.showRecommedation();
+		model.put("message", message);
+		
+		model.addAttribute("issueRenewal1", new IssueRenewal());
+		return "DOP";
 	}
 
 	
