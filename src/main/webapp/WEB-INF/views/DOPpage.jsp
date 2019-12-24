@@ -485,20 +485,33 @@
 														<form:input id="exampleField"
 															placeholder="insurance type" type="text"
 															class="form-field__input" path="bank_code"
-															disabled="true" />
-
-														<label for="heading" class="col-sm-3 control-label">Name</label>
-
-														<form:input id="exampleField" 
+															disabled="true" /></br></br>
+															
+														
+														 <div class="form-group row">
+ 															 <label for="heading" class="col-sm-3 control-label"> &nbsp;  Name </label>
+   															
+   															<div class="col-sm-8">
+   																 <form:input id="exampleField"
 															placeholder="insurance type" type="text"
-															class="form-field__input" path="bank_code"
-															disabled="true" />
-														<br> <label for="heading"
+															class="form-control" path="bank_code" />
+  															</div>
+  														</div>
+												
+
+													 <label for="heading"
 															class="col-sm-3 control-label">Decision</label>
-
-														<form:input id="exampleField" 
-															placeholder="insurance type" type="text"
-															class="form-field__input" path="bank_code" />
+															
+													<form:input
+															id="exampleField" list="Decision"
+															placeholder="" type="text"
+															class="form-field__input fas fa-caret-down" path=""  /> 
+															<datalist
+															id="Decision">
+															<option value="Approved" />
+															<option value="Reject" />
+														</datalist>
+												
 
 													</div>
 												</div>
@@ -516,7 +529,7 @@
 														<form:input id="exampleField" 
 															placeholder="insurance type" type="date"
 															pattern="dd/MM/yyyy" class="form-field__input"
-															path="bank_code" />
+															path="bank_code" /> &nbsp; &nbsp;&nbsp;&nbsp;
 
 														<label for="heading" class="col-sm-3 control-label">End
 															Date</label>
@@ -524,7 +537,7 @@
 														<form:input id="exampleField" 
 															placeholder="insurance type" type="date"
 															pattern="dd/MM/yyyy" class="form-field__input"
-															path="bank_code" />
+															path="bank_code" /></br></br>
 
 
 														<label for="heading" class="col-sm-3 control-label">Maximum
@@ -539,10 +552,95 @@
 															Limit</label>
 
 														<form:input id="exampleField"
+															 type="text"
+															class="form-field__input" path="bank_code" /></br></br>
+
+														
+														<label for="heading" class="col-sm-9 control-label">Desire to cover credit/Advances Given to small scale units</label>
+														<form:radiobutton path="" value="Yes"/> Yes
+														<form:radiobutton path="" value="No"/> No</br></br>
+														
+																							
+														
+														<label for="heading" class="col-sm-9 control-label">OBU</label>
+														<form:radiobutton path="" value="Yes"/> Yes
+														<form:radiobutton path="" value="No"/> No</br></br>
+														
+														
+														<label for="heading" class="col-sm-8 control-label">Premium received in previous year 01/04/2018 to 31/03/2019</label>
+														&nbsp; &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp; 
+														<form:input id="exampleField"
+															 type="text"
+															class="form-field__input" path="" disabled="true"/></br></br>
+															
+															
+														
+														<label for="heading" class="col-sm-8 control-label">Set limit to fixed</label>
+														&nbsp; &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp; 
+														<form:input id="exampleField"
 															placeholder="insurance type" type="text"
-															class="form-field__input" path="bank_code" />
+															class="form-field__input" path="bank_code" /></br></br>
+															
+															
+														
+														<label for="heading" class="col-sm-3 control-label">State Govt. Companies /PSUs Included</label>
+														<form:radiobutton path="" value="Yes"/> Yes
+														<form:radiobutton path="" value="No"/> No &nbsp;  &nbsp;
+														<label for="heading" class="col-sm-1 control-label"></label>
+														<label for="heading" class="col-sm-3 control-label">Central Govt. Companies /PSUs Included</label>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+														<form:radiobutton path="" value="Yes"/> Yes
+														<form:radiobutton path="" value="No"/> No</br></br>
+														
+														<label for="heading" class="col-sm-9 control-label">Inclusion Of Central PSUs</label>
+														<form:radiobutton path="" value="Yes"/> Yes
+														<form:radiobutton path="" value="No"/> No</br></br>
+														
+														<label for="heading" class="col-sm-9 control-label">Inclusion Of State PSUs</label>
+														<form:radiobutton path="" value="Yes"/> Yes
+														<form:radiobutton path="" value="No"/> No</br></br>
+															
+															
+														<label for="heading" class="col-sm-3 control-label">Minimum Premium condition</label>
+														&nbsp; 
+														<form:radiobutton path="" value="Yes"/> Yes
+														<form:radiobutton path="" value="No"/> No &nbsp;  &nbsp; &nbsp; 		<label for="heading" class="col-sm-1 control-label"></label>
 
 
+														<label for="heading" class="col-sm-3 control-label">If, yes amount</label>
+
+														<form:input id="exampleField"
+															placeholder="insurance type" type="text"
+															class="form-field__input" path="bank_code" /></br></br>
+															
+														
+														<label for="heading" class="col-sm-8 control-label">Insurance Stamp to be Affixed on Bond (in Rs.)</label>
+															&nbsp; 	&nbsp; 	&nbsp; 	&nbsp; 	&nbsp; 	&nbsp; 
+														<form:input id="exampleField"
+															placeholder="insurance type" type="text"
+															class="form-field__input" path="bank_code" /></br></br>
+															
+														
+														 <div class="form-group row">
+ 															 <label for="heading" class="col-sm-3 control-label">Arrangement for Submission  of Declarations </label>
+   															
+   															<div class="col-sm-8">
+   																 <form:input id="exampleField"
+															placeholder="insurance type" type="text"
+															class="form-control" path="bank_code" />
+  															</div>
+  														</div>
+														
+														
+														 <div class="form-group row">
+ 															 <label for="heading" class="col-sm-3 control-label">Remarks</label>
+   															
+   															<div class="col-sm-8">
+   																 <form:input id="exampleField"
+															placeholder="insurance type" type="text"
+															class="form-control" path="bank_code" />
+  															</div>
+  														</div>
+														
 
 													</div>
 												</div>

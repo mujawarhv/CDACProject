@@ -519,7 +519,8 @@
 															<option value="Bank Of India" />
 															<option value="Bank Of Maharashtra" />
 															<option value="Bank Of Baroda" />
-														</datalist> hereby apply for issuance of <form:input
+														</datalist> hereby apply for issuance of 
+														<form:input
 															id="exampleField" list="Fresh/Renewal"
 															placeholder="insurance type" type="text"
 															class="form-field__input" path="cover_type" /> <datalist
