@@ -4,12 +4,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ page session="true" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="fmt"%>
-<%
-	IssueRenewal issueRenewal = (IssueRenewal) session.getAttribute("issueRenewal");
-%>
-<%
-	List<IssueRenewal> userList = (List<IssueRenewal>) request.getAttribute("listIssueRenewal");
-%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -400,6 +395,9 @@
 	<div class="text-center">
 		<h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
 	</div>
+	
+	
+	
 	<form:form action="userlogin.htm"
 		class="form-horizontal border border-dark p-3 mb-2 bg-white text-dark mt-5"
 		method="post" modelAttribute="user">
@@ -420,6 +418,9 @@
 		</div>
 		<input type="submit" class="btn btn-primary btn-block" value="login">
 	</form:form>
+	
+	
+	
 	<hr>
 	<div class="text-center">
 		<a class="small" href="forgot-password.html">Forgot Password?</a>

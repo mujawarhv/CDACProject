@@ -21,7 +21,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>ECGC </title>
+<title>ECGC</title>
 
 <!-- Custom fonts for this template-->
 <link
@@ -143,20 +143,20 @@
 					aria-labelledby="headingPages" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Login Screens:</h6>
-						    <a class="collapse-item" href="login.htm">Login</a> 
-<!-- 						     <a -->
-<!-- 							class="collapse-item" href="register.html">Register</a> <a -->
-<!-- 							class="collapse-item" href="forgot-password.html">Forgot -->
-<!-- 							Password</a> -->
+						<a class="collapse-item" href="login.htm">Login</a>
+						<!-- 						     <a -->
+						<!-- 							class="collapse-item" href="register.html">Register</a> <a -->
+						<!-- 							class="collapse-item" href="forgot-password.html">Forgot -->
+						<!-- 							Password</a> -->
 						<div class="collapse-divider"></div>
 
-						 <a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a>
-						<a	class="collapse-item" href="banklogin.htm">Bank Login</a> <a
+						<a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a>
+						<a class="collapse-item" href="banklogin.htm">Bank Login</a> <a
 							class="collapse-item" href="ecgclogin.htm">ECGC Login</a>
 
-<!-- 						<h6 class="collapse-header">Other Pages:</h6> -->
-<!-- 						<a class="collapse-item" href="404.html">404 Page</a> <a -->
-<!-- 							class="collapse-item" href="blank.html">Blank Page</a> -->
+						<!-- 						<h6 class="collapse-header">Other Pages:</h6> -->
+						<!-- 						<a class="collapse-item" href="404.html">404 Page</a> <a -->
+						<!-- 							class="collapse-item" href="blank.html">Blank Page</a> -->
 					</div>
 				</div></li>
 
@@ -390,7 +390,7 @@
 					<!-- Page Heading -->
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800"> </h1>
+						<h1 class="h3 mb-0 text-gray-800"></h1>
 					</div>
 
 
@@ -415,7 +415,9 @@
 
 										<form:form method="post"
 											class="form-horizontal border border-dark p-3 mb-2 bg-white text-dark mt-5"
-											role="form" action="uploadFiles.htm" modelAttribute="issueRenewal"  id="issueRenewal" name="issueRenewal">
+											role="form" action="uploadFiles.htm"
+											modelAttribute="issueRenewal" id="issueRenewal"
+											name="issueRenewal">
 
 											<div class="form-group">
 												<label for="heading" class="col-sm-3 control-label"></label>
@@ -427,23 +429,15 @@
 												<div class="col-sm-9">
 													<label for="heading" class="col-sm-3 control-label"><b>FRESH
 															/ RENEWAL </b></label>
-															</div>
-											<div class="col-sm-3">
-<%														
-String str=(String) session.getAttribute("str"); 													
-out.print(str);
-%> 
-												</div></div>
-												<div class="row">
-												<div class="col-sm-9"></div>
+												</div>
 												<div class="col-sm-3">
-												<form:errors path="wt_isrn_proposal_frm_id"/>
-													Form Id
-												<form:input id="exampleField" type="text"
-														class="form-field__input" path="wt_isrn_proposal_frm_id"
-														placeholder="form-id" />
+													<%
+														String str = (String) session.getAttribute("str");
+															out.print(str);
+													%>
 												</div>
 											</div>
+
 
 											<div class="form-group">
 												<div class="row justify-content-center align-items-center">
@@ -851,8 +845,7 @@ out.print(str);
 						src="webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 					<script type="text/javascript">
-						$(
-								"input[name='is_ssi_msme_covered']")
+						$("input[name='is_ssi_msme_covered']")
 								.click(
 										function() {
 											if ($(this).is(':checked')) {
@@ -900,166 +893,212 @@ out.print(str);
 					</script>
 
 					<script type="text/javascript">
-		$("input[name='is_adv_against_lc_covered']")
-				.click(
-						function() {
-							if ($(this).is(':checked')) {
-								$("#exampleField5").attr("disabled", false);
-								$("#exampleField6").attr("disabled", false);
-							} else if ($(this).not(':checked')) {
-								var ok = confirm('Are you sure you want to remove all data?');
-								if (ok) {
-									var remove = '';
-									$("#exampleField5").val('');
-									$("#exampleField6").val('');
-									$("#exampleField5").attr("disabled", true);
-									$("#exampleField6").attr("disabled", true);
-								}
-							}
-						});
-	</script>
-
-					<script type="text/javascript">
-		$("input[name='is_obu_covered']").click(function() {
-			if ($(this).is(':checked')) {
-				$("#exampleField7").attr("disabled", false);
-				$("#exampleField8").attr("disabled", false);
-			} else if ($(this).not(':checked')) {
-				var ok = confirm('Are you sure you want to remove all data?');
-				if (ok) {
-					var remove = '';
-					$("#exampleField7").val('');
-					$("#exampleField8").val('');
-					$("#exampleField7").attr("disabled", true);
-					$("#exampleField8").attr("disabled", true);
-				}
-			}
-		});
-	</script>
-
-					<script type="text/javascript">
-		$(
-				"input[name='is_adv_against_bills_covered']")
-				.click(
-						function() {
-							if ($(this).is(':checked')) {
-								$("#exampleField9").attr("disabled", false);
-								$("#exampleField10").attr("disabled", false);
-							} else if ($(this).not(':checked')) {
-								var ok = confirm('Are you sure you want to remove all data?');
-								if (ok) {
-									var remove = '';
-									$("#exampleField9").val('');
-									$("#exampleField10").val('');
-									$("#exampleField9").attr("disabled", true);
-									$("#exampleField10").attr("disabled", true);
-								}
-							}
-						});
-	</script>
-
-					<script>
-		var hidden = false;
-		function action() {
-			hidden = !hidden;
-			if (hidden) {
-				document.getElementById('update').style.visibility = 'hidden';
-			} else {
-				document.getElementById('togglee').style.visibility = 'visible';
-			}
-		}
-	</script>
-
-<script type="text/javascript">
-
-$(document)
-			.ready(
-					function() {
-
-						$("#success_alert").hide();
-						$("#error_alert").hide();
-
-						jQuery.validator.addMethod("isIssueRenewalIdUnique", function(value, element){
-							var status= false;							
-						    $.get({
-								async : false,
-						    	url : 'isIssueRenewalIdUnique',
-								data : {continentName : value},
-								success : function(res) {
-									alert("RESPONSE :"+res);
-									if(res){
-										console.log("Status :"+res)
-										status = true;
-									}								
-								},
-								error : function(res) {
-									//alert("res e:"+res);									
-								}
-							});						    
-						    return status;
-						}, "IssueRenewalId with the same name already exists."); 
-						
-						
-						$("#issueRenewal")
-								.submit(function(e) {
-									e.preventDefault();
-								})
-								.validate(
-										{
-											rules : {
-												continentId : {
-													required : true,
-													maxlength : 2,
-													remote : 'isIssueRenewalIdUnique'
-													
+						$("input[name='is_adv_against_lc_covered']")
+								.click(
+										function() {
+											if ($(this).is(':checked')) {
+												$("#exampleField5").attr(
+														"disabled", false);
+												$("#exampleField6").attr(
+														"disabled", false);
+											} else if ($(this).not(':checked')) {
+												var ok = confirm('Are you sure you want to remove all data?');
+												if (ok) {
+													var remove = '';
+													$("#exampleField5").val('');
+													$("#exampleField6").val('');
+													$("#exampleField5").attr(
+															"disabled", true);
+													$("#exampleField6").attr(
+															"disabled", true);
 												}
-											},
-											highlight : function(element,
-													errorClass, validClass) {
-												$(element)
-														.addClass(
-																"border-danger text-danger")
-														.removeClass(validClass);
-											},
-											unhighlight : function(element,
-													errorClass, validClass) {
-												$(element)
-														.addClass(validClass)
-														.removeClass(
-																"border-danger text-danger");
-											},
-											submitHandler : function(form) {
-												addContinentDetails();
-												return false; //This doesn't prevent the form from submitting.
 											}
 										});
-					});
+					</script>
 
-	
-	// Function to add language details 
-	function addIssueRenewalDetails() {
+					<script type="text/javascript">
+						$("input[name='is_obu_covered']")
+								.click(
+										function() {
+											if ($(this).is(':checked')) {
+												$("#exampleField7").attr(
+														"disabled", false);
+												$("#exampleField8").attr(
+														"disabled", false);
+											} else if ($(this).not(':checked')) {
+												var ok = confirm('Are you sure you want to remove all data?');
+												if (ok) {
+													var remove = '';
+													$("#exampleField7").val('');
+													$("#exampleField8").val('');
+													$("#exampleField7").attr(
+															"disabled", true);
+													$("#exampleField8").attr(
+															"disabled", true);
+												}
+											}
+										});
+					</script>
 
-		$.post({
-			url : 'uploadFiles.htm',
-			data : $('form[name=issueRenewal]').serialize(),
-			success : function(res) {
-				$("#success_alert").fadeTo(2000, 500).slideUp(500, function() {
-					$("#success_alert").slideUp(500);
-					$("form[name=issueRenewal]").trigger("reset");
-				});
-			},
-			error : function(res) {
-				$("#error_alert").fadeTo(2000, 500).slideUp(500, function() {
-					$("#error_alert").slideUp(500);
-				});
-			}
-		});
-	}
+					<script type="text/javascript">
+						$("input[name='is_adv_against_bills_covered']")
+								.click(
+										function() {
+											if ($(this).is(':checked')) {
+												$("#exampleField9").attr(
+														"disabled", false);
+												$("#exampleField10").attr(
+														"disabled", false);
+											} else if ($(this).not(':checked')) {
+												var ok = confirm('Are you sure you want to remove all data?');
+												if (ok) {
+													var remove = '';
+													$("#exampleField9").val('');
+													$("#exampleField10")
+															.val('');
+													$("#exampleField9").attr(
+															"disabled", true);
+													$("#exampleField10").attr(
+															"disabled", true);
+												}
+											}
+										});
+					</script>
 
+					<script>
+						var hidden = false;
+						function action() {
+							hidden = !hidden;
+							if (hidden) {
+								document.getElementById('update').style.visibility = 'hidden';
+							} else {
+								document.getElementById('togglee').style.visibility = 'visible';
+							}
+						}
+					</script>
 
-</script>
+					<script type="text/javascript">
+						$(document)
+								.ready(
+										function() {
 
+											$("#success_alert").hide();
+											$("#error_alert").hide();
 
+											jQuery.validator
+													.addMethod(
+															"isIssueRenewalIdUnique",
+															function(value,
+																	element) {
+																var status = false;
+																$
+																		.get({
+																			async : false,
+																			url : 'isIssueRenewalIdUnique',
+																			data : {
+																				continentName : value
+																			},
+																			success : function(
+																					res) {
+																				alert("RESPONSE :"
+																						+ res);
+																				if (res) {
+																					console
+																							.log("Status :"
+																									+ res)
+																					status = true;
+																				}
+																			},
+																			error : function(
+																					res) {
+																				//alert("res e:"+res);									
+																			}
+																		});
+																return status;
+															},
+															"IssueRenewalId with the same name already exists.");
+
+											$("#issueRenewal")
+													.submit(function(e) {
+														e.preventDefault();
+													})
+													.validate(
+															{
+																rules : {
+																	continentId : {
+																		required : true,
+																		maxlength : 2,
+																		remote : 'isIssueRenewalIdUnique'
+
+																	}
+																},
+																highlight : function(
+																		element,
+																		errorClass,
+																		validClass) {
+																	$(element)
+																			.addClass(
+																					"border-danger text-danger")
+																			.removeClass(
+																					validClass);
+																},
+																unhighlight : function(
+																		element,
+																		errorClass,
+																		validClass) {
+																	$(element)
+																			.addClass(
+																					validClass)
+																			.removeClass(
+																					"border-danger text-danger");
+																},
+																submitHandler : function(
+																		form) {
+																	addContinentDetails();
+																	return false; //This doesn't prevent the form from submitting.
+																}
+															});
+										});
+
+						// Function to add language details 
+						function addIssueRenewalDetails() {
+
+							$
+									.post({
+										url : 'uploadFiles.htm',
+										data : $('form[name=issueRenewal]')
+												.serialize(),
+										success : function(res) {
+											$("#success_alert")
+													.fadeTo(2000, 500)
+													.slideUp(
+															500,
+															function() {
+																$(
+																		"#success_alert")
+																		.slideUp(
+																				500);
+																$(
+																		"form[name=issueRenewal]")
+																		.trigger(
+																				"reset");
+															});
+										},
+										error : function(res) {
+											$("#error_alert")
+													.fadeTo(2000, 500)
+													.slideUp(
+															500,
+															function() {
+																$(
+																		"#error_alert")
+																		.slideUp(
+																				500);
+															});
+										}
+									});
+						}
+					</script>
 </body>
 
 </html>

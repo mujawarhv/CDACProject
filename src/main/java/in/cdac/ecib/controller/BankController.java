@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import in.cdac.ecib.service.IssueRenewalServ;
 import in.cdac.ecib.dto.IssueRenewal;
-import in.cdac.ecib.dto.User;
 
 @Controller
 @SessionAttributes("issueRenewal")
@@ -400,7 +399,7 @@ public class BankController {
 		System.out.println("****************************");
 		
 		HttpSession session = request.getSession();
-		String wt_isrn_proposal_frm_id = (String) session.getAttribute("id");
+		String wt_isrn_proposal_frm_id = (String) session.getAttribute("name");
 		session.setAttribute("wt_isrn_proposal_frm_id", wt_isrn_proposal_frm_id);
 		
 		IssueRenewal listIssueRenewal = issueRenewalServ.getDetailsOfDop(isrn_id);
@@ -419,6 +418,7 @@ public class BankController {
 	}
 
 	
+
 
 	
 	/*
