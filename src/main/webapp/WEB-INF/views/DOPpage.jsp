@@ -422,7 +422,7 @@
 
 
 
-										<form:form method="post" action="GenerateOfficeNote.htm"
+										<form:form method="post" action="submitDOP.htm"
 											class="form-horizontal border border-dark p-3 mb-2 bg-white text-dark mt-5"
 											role="form" modelAttribute="issueRenewal1">
 
@@ -430,11 +430,11 @@
 											<div class="form-group">
 												<div class="row">
 													<div class="col-sm-12">
-
+${issueRenewal1}
 														<label for="heading" class="col-sm-3 control-label">WT
 															Proposal Number</label>
 
-														<form:input id="exampleField" type="text"
+														<form:input id="exampleField" name="wt_isrn_id" type="text"
 															class="form-field__input" path="wt_isrn_proposal_frm_id"
 															placeholder="form-id" disabled="true" />
 
@@ -450,7 +450,7 @@
 															Code</label>
 
 														<form:input id="exampleField" 
-															placeholder="insurance type" type="text"
+															 type="text"
 															class="form-field__input" path="bank_code"
 															disabled="true" />
 
@@ -458,7 +458,7 @@
 															Name</label>
 
 														<form:input id="exampleField" 
-															placeholder="insurance type" type="text"
+															 type="text"
 															class="form-field__input" path="bank_code"
 															disabled="true" />
 
@@ -475,15 +475,15 @@
 														<label for="heading" class="col-sm-3 control-label">Employee
 															No.</label>
 
-														<form:input id="exampleField" 
-															placeholder="insurance type" type="text"
+														<form:input id="exampleField" name="employee_code"
+															 type="text"
 															class="form-field__input" path="employee_code"
 															disabled="true" />
 
 														<label for="heading" class="col-sm-3 control-label">Designation</label>
 
 														<form:input id="exampleField"
-															placeholder="insurance type" type="text"
+															 type="text"
 															class="form-field__input" path="bank_code"
 															disabled="true" /></br></br>
 															
@@ -493,8 +493,8 @@
    															
    															<div class="col-sm-8">
    																 <form:input id="exampleField"
-															placeholder="insurance type" type="text"
-															class="form-control" path="bank_code" />
+															 type="text"
+															class="form-control" path="" />
   															</div>
   														</div>
 												
@@ -504,8 +504,8 @@
 															
 													<form:input
 															id="exampleField" list="Decision"
-															placeholder="" type="text"
-															class="form-field__input fas fa-caret-down" path=""  /> 
+															placeholder="" type="text" name="decision"
+															class="form-field__input fas fa-caret-down" path=""   /> 
 															<datalist
 															id="Decision">
 															<option value="Approved" />
@@ -527,7 +527,7 @@
 															Date</label>
 
 														<form:input id="exampleField" 
-															placeholder="insurance type" type="date"
+															placeholder="insurance type" name="start_date" type="date"
 															pattern="dd/MM/yyyy" class="form-field__input"
 															path="bank_code" /> &nbsp; &nbsp;&nbsp;&nbsp;
 
@@ -535,7 +535,7 @@
 															Date</label>
 
 														<form:input id="exampleField" 
-															placeholder="insurance type" type="date"
+															placeholder="insurance type" name="end_date" type="date"
 															pattern="dd/MM/yyyy" class="form-field__input"
 															path="bank_code" /></br></br>
 
@@ -544,16 +544,16 @@
 															Liablity</label>
 
 														<form:input id="exampleField" 
-															placeholder="insurance type" type="text"
-															class="form-field__input" path="bank_code" />
+															 name="ml" type="text"
+															class="form-field__input" path="maximum_liability" />
 
 
 														<label for="heading" class="col-sm-3 control-label">Discretionary
 															Limit</label>
 
 														<form:input id="exampleField"
-															 type="text"
-															class="form-field__input" path="bank_code" /></br></br>
+															 type="text" name="dl"
+															class="form-field__input" path="" /></br></br>
 
 														
 														<label for="heading" class="col-sm-9 control-label">Desire to cover credit/Advances Given to small scale units</label>
@@ -567,6 +567,7 @@
 														<form:radiobutton path="" value="No"/> No</br></br>
 														
 														
+														
 														<label for="heading" class="col-sm-8 control-label">Premium received in previous year 01/04/2018 to 31/03/2019</label>
 														&nbsp; &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp; 
 														<form:input id="exampleField"
@@ -577,9 +578,9 @@
 														
 														<label for="heading" class="col-sm-8 control-label">Set limit to fixed</label>
 														&nbsp; &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp; 
-														<form:input id="exampleField"
-															placeholder="insurance type" type="text"
-															class="form-field__input" path="bank_code" /></br></br>
+														<form:input id="exampleField" name="set_limit"
+															placeholder="Set limit to fixed" type="text"
+															class="form-field__input" path="" /></br></br>
 															
 															
 														
@@ -587,14 +588,18 @@
 														<form:radiobutton path="" value="Yes"/> Yes
 														<form:radiobutton path="" value="No"/> No &nbsp;  &nbsp;
 														<label for="heading" class="col-sm-1 control-label"></label>
+														
+														
 														<label for="heading" class="col-sm-3 control-label">Central Govt. Companies /PSUs Included</label>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
 														<form:radiobutton path="" value="Yes"/> Yes
 														<form:radiobutton path="" value="No"/> No</br></br>
+														
 														
 														<label for="heading" class="col-sm-9 control-label">Inclusion Of Central PSUs</label>
 														<form:radiobutton path="" value="Yes"/> Yes
 														<form:radiobutton path="" value="No"/> No</br></br>
 														
+													
 														<label for="heading" class="col-sm-9 control-label">Inclusion Of State PSUs</label>
 														<form:radiobutton path="" value="Yes"/> Yes
 														<form:radiobutton path="" value="No"/> No</br></br>
@@ -603,21 +608,22 @@
 														<label for="heading" class="col-sm-3 control-label">Minimum Premium condition</label>
 														&nbsp; 
 														<form:radiobutton path="" value="Yes"/> Yes
-														<form:radiobutton path="" value="No"/> No &nbsp;  &nbsp; &nbsp; 		<label for="heading" class="col-sm-1 control-label"></label>
+														<form:radiobutton path="" value="No"/> No &nbsp;  &nbsp; &nbsp; 		
+														<label for="heading" class="col-sm-1 control-label"></label>
 
 
 														<label for="heading" class="col-sm-3 control-label">If, yes amount</label>
 
 														<form:input id="exampleField"
-															placeholder="insurance type" type="text"
-															class="form-field__input" path="bank_code" /></br></br>
+														 type="text"
+															class="form-field__input" path="" /></br></br>
 															
 														
 														<label for="heading" class="col-sm-8 control-label">Insurance Stamp to be Affixed on Bond (in Rs.)</label>
 															&nbsp; 	&nbsp; 	&nbsp; 	&nbsp; 	&nbsp; 	&nbsp; 
 														<form:input id="exampleField"
-															placeholder="insurance type" type="text"
-															class="form-field__input" path="bank_code" /></br></br>
+															 type="text"
+															class="form-field__input" path="" /></br></br>
 															
 														
 														 <div class="form-group row">
@@ -625,8 +631,8 @@
    															
    															<div class="col-sm-8">
    																 <form:input id="exampleField"
-															placeholder="insurance type" type="text"
-															class="form-control" path="bank_code" />
+															 type="text"
+															class="form-control" path="" />
   															</div>
   														</div>
 														
@@ -636,8 +642,8 @@
    															
    															<div class="col-sm-8">
    																 <form:input id="exampleField"
-															placeholder="insurance type" type="text"
-															class="form-control" path="bank_code" />
+															 type="text" name="remarks"
+															class="form-control" path="" />
   															</div>
   														</div>
 														
@@ -645,6 +651,77 @@
 													</div>
 												</div>
 											</div>
+											
+											
+											<div class="form-group">
+												<div class="row">
+													<div class="col-sm-12">
+													
+														<table class="table table-bordered">
+															<t3><b>Premium Rate</b></t3>
+															<thead>
+																<tr>
+																	<th>Grade</th>
+																	<th>Effective Date </th>
+																	<th>Premium Rate</th>
+																	<th>Asset Classification</th>
+																	<th>Policy Holder</th>
+																</tr>
+															</thead>
+															
+															<tbody>
+																<tr>
+																	<td>20</td>
+																	<td>16/12/2019</td>
+																	<td>27</td>
+																	<td>STANDARD</td>
+																	<td>No</td>
+																	
+																</tr>
+															</tbody>
+														</table>
+														
+													</div>
+												</div>
+											</div>
+											
+											
+											<div class="form-group">
+												<div class="row">
+													<div class="col-sm-12">
+													
+														<table class="table table-bordered">
+															<t3><b>Cover Percentage Details</b></t3>
+															<thead>
+																<tr>
+																	<th>Ecib Year</th>
+																	<th>Rating</th>
+																	<th>Asset Classification</th>
+																	<th>Account Type</th>
+																	<th>Cover Type </th>
+																	<th>Exporter Type</th>															
+																	<th>Cover Percentage</th>
+																</tr>
+															</thead>
+															
+															<tbody>
+																<tr>
+																	<td>2018-2019</td>
+																	<td>29</td>
+																	<td>STANDARD</td>
+																	<td>Restructured</td>
+																	<td>Below Set Limit</td>
+																	<td>Small Scale Exporter</td>
+																	<td>75/100</td>
+																</tr>
+															</tbody>
+														</table>
+														
+													</div>
+												</div>
+											</div>
+											
+											
 
 											<div class="align-self-center mx-auto">
 												<div class="row">

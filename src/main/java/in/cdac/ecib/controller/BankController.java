@@ -1,5 +1,6 @@
 package in.cdac.ecib.controller;
 
+import java.sql.Date;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -400,20 +401,6 @@ public class BankController {
 	}
 	
 	
-	@RequestMapping(value = "/submitrecommedation.htm")
-	public String submitRecommendation(@RequestParam("id") String isrn_id, Model model, HttpServletRequest request) {
-		System.out.println("****************************");
-		
-			/*
-			 * HttpSession session = request.getSession(); String wt_isrn_proposal_frm_id =
-			 * (String) session.getAttribute("name");
-			 * session.setAttribute("wt_isrn_proposal_frm_id", wt_isrn_proposal_frm_id);
-			 */
-		
-		IssueRenewal issueRenewal1 = issueRenewalServ.getDetailsOfDop(isrn_id);
-		model.addAttribute("issueRenewal1", issueRenewal1);
-		return "DOPpage";
-	}
 	
 
 	@RequestMapping(value = "/wt_isrn.htm",method = RequestMethod.POST)
@@ -424,6 +411,7 @@ public class BankController {
 		model.addAttribute("issueRenewal", issueRenewal);
 		return "Priliminary_Scrutiny";
 	}
+	
 	
 	@RequestMapping(value = "/dop.htm", method = RequestMethod.GET	)
 	public String Dop(@ModelAttribute("issueRenewal1") IssueRenewal issueRenewal, HttpServletRequest request,
@@ -441,8 +429,53 @@ public class BankController {
 		return "DOP";
 	}
 
+	@RequestMapping(value = "/submitrecommedation.htm")
+	public String submitRecommendation(@RequestParam("id") String isrn_id, Model model, HttpServletRequest request) {
+		System.out.println("****************************");
+		
+			/*
+			 * HttpSession session = request.getSession(); String wt_isrn_proposal_frm_id =
+			 * (String) session.getAttribute("name");
+			 * session.setAttribute("wt_isrn_proposal_frm_id", wt_isrn_proposal_frm_id);
+			 */
+		
+		IssueRenewal issueRenewal1 = issueRenewalServ.getDetailsOfDop(isrn_id);
+		model.addAttribute("issueRenewal1", issueRenewal1);
+		return "DOPpage";
+	}
 	
-
+	
+	@RequestMapping(value = "/submitDOP.htm", method = RequestMethod.POST	)
+	public String DopSubmit(@ModelAttribute("issueRenewal1") IssueRenewal issueRenewal1, HttpServletRequest request,
+			HttpServletResponse response, BindingResult result, ModelMap model) throws Exception {
+		
+		System.out.println("*******************");
+	
+		 
+		 
+		String wt_isrn_decision_id = request.getParameter("");
+		String wt_isrn_id = request.getParameter("wt_isrn_id");
+		String employee_code = request.getParameter(issueRenewal1.getEmployee_code());
+		String decision= request.getParameter("decision");
+		String remarks= request.getParameter("remarks");
+		String reason= request.getParameter("");
+		String decision_date= request.getParameter("");
+		String start_date= request.getParameter("start_date");
+		String expiry_date= request. getParameter("end_date");
+		String ml= request.getParameter("ml"); 
+		String dl= request.getParameter("dl");
+		String set_limit= request.getParameter("set_limit");
+		
+		
+		System.out.println(wt_isrn_decision_id + " " + wt_isrn_id +" "+ employee_code +" "+ decision +" "+remarks +" "+reason +" "+start_date +" "+ expiry_date+" "+set_limit);
+	
+		issueRenewalServ.dopDone(decision,remarks,reason,start_date,expiry_date,ml,dl,set_limit,issueRenewal1);
+		
+		model.addAttribute("issueRenewal1", new IssueRenewal());
+		
+		return "DOP";
+	}
+	
 
 	
 	/*

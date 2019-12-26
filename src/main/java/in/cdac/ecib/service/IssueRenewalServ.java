@@ -68,4 +68,9 @@ public interface IssueRenewalServ {
 
 
 	public IssueRenewal getDetailsOfDop(String isrn_id);
+
+
+	public void dopDone(String decision, String remarks, String reason, String start_date, String expiry_date,
+			String ml, String dl, String set_limit, IssueRenewal issueRenewal);
+
 }

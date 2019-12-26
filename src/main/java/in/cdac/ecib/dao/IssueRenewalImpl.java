@@ -347,20 +347,33 @@ public class IssueRenewalImpl implements IssueRenewalDao {
 				return rs.getString(1);
 			}
 		});
-		System.out.println(data);
 		return data;
 	}
 
 	@Override
 	public IssueRenewal getDetailsOfDop(String isrn_id) {
-		System.out.println(isrn_id);
+		
 		IssueRenewal issueRenewal;
 		String sql = "select * from wt_isrn_proposal_frm where wt_isrn_proposal_frm_id=? ";
 		
 			issueRenewal = jdbcTemplate.queryForObject(sql, new Object[] { isrn_id },
 					new BeanPropertyRowMapper<IssueRenewal>(IssueRenewal.class));
-		System.out.println(issueRenewal);
+		
 		return issueRenewal;
+	}
+
+	@Override
+	public void insertdop(String decision, String remarks, String reason, String start_date, String expiry_date,
+			String ml, String dl, String set_limit, IssueRenewal issueRenewal) {
+		
+		SimpleDateFormat sd = new SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z");
+		Date date = new Date();
+		sd.setTimeZone(TimeZone.getTimeZone("IST"));
+		
+		String sql = "insert into wt_isrn_decision (wt_isrn_decision_id, wt_isrn_id, employee_code, decision, remarks, reason, decision_date, start_date, expiry_date, ml, dl, set_limit)"
+				+ " values ('1','"+issueRenewal.getWt_isrn_proposal_frm_id()+"','"+issueRenewal.getEmployee_code() + "','"+decision+"','"+remarks+"','"+sd.format(date)+"','"+start_date+"','"+expiry_date+"','"+ml+"','"+dl+"','"+set_limit+"')";
+		
+		jdbcTemplate.update(sql);
 	}
 
 }

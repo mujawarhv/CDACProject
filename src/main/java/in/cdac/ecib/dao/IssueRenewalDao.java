@@ -43,4 +43,7 @@ public interface IssueRenewalDao {
 	public List<String> getListOfRecommedationDone();
 
 	public IssueRenewal getDetailsOfDop(String isrn_id);
+
+	public void insertdop(String decision, String remarks, String reason, String start_date, String expiry_date,
+			String ml, String dl, String set_limit, IssueRenewal issueRenewal);
 }

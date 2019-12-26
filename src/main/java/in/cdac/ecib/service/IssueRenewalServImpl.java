@@ -121,6 +121,12 @@ public class IssueRenewalServImpl implements IssueRenewalServ {
 		return issueRenewalDao.getDetailsOfDop(isrn_id);
 	}
 
+	@Override
+	public void dopDone(String decision, String remarks, String reason, String start_date, String expiry_date,
+			String ml, String dl, String set_limit, IssueRenewal issueRenewal) {
+		issueRenewalDao.insertdop( decision,  remarks,  reason,  start_date,  expiry_date, ml,  dl,  set_limit,  issueRenewal);
+	}
+
 	
 	
 }
