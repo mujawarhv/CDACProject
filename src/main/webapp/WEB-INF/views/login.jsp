@@ -2,7 +2,7 @@
 <%@ page errorPage="ErrorPage.jsp"%>
 <%@page import="in.cdac.ecib.dto.*"%><%@page import="java.util.List"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ page session="true" %>
+<%@ page session="true"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="fmt"%>
 
 <!DOCTYPE html>
@@ -17,7 +17,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>ECGC </title>
+<title>ECGC</title>
 <!-- Custom fonts for this template-->
 <link
 	href="${pageContext.request.contextPath}/resources/vendor/fontawesome-free/css/all.min.css"
@@ -123,18 +123,14 @@
 					aria-labelledby="headingPages" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 
-					  <h6 class="collapse-header">Login Screens:</h6>
-             <a class="collapse-item" href="login.htm">Login</a> 
-<!--             <a class="collapse-item" href="register.html">Register</a> -->
-<!--             <a class="collapse-item" href="forgot-password.html">Forgot Password</a> -->
-            <div class="collapse-divider"></div>
-            
-            <a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a>
-            <a class="collapse-item" href="banklogin.htm">Bank Login</a>
-			<a class="collapse-item" href="ecgclogin.htm">ECGC Login</a>
-<!-- 			<a class="collapse-item" href="viewAllEventType">View Event Type</a> -->
-<!-- 			<a class="collapse-item" href="addContinentForm">Add Continent</a> -->
-<!--             <a class="collapse-item" href="viewAllContinent">View Continents</a> -->
+						<h6 class="collapse-header">Login Screens:</h6>
+						<a class="collapse-item" href="login.htm">Login</a>
+						<div class="collapse-divider"></div>
+
+						<a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a>
+						<a class="collapse-item" href="banklogin.htm">Bank Login</a> <a
+							class="collapse-item" href="ecgclogin.htm">ECGC Login</a> <a
+							class="collapse-item" href="dop.htm">Decision</a>
 					</div>
 				</div></li>
 
@@ -391,44 +387,48 @@
 								<div class="collapse show" id="collapseCardExample">
 									<div class="card-body">
 
-									<div class="p-5">
-	<div class="text-center">
-		<h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
-	</div>
-	
-	
-	
-	<form:form action="userlogin.htm"
-		class="form-horizontal border border-dark p-3 mb-2 bg-white text-dark mt-5"
-		method="post" modelAttribute="user">
-		<div class="form-group">
-			<form:input type="text" class="form-control" path="userId"
-				id="exampleInputEmail" placeholder="Enter Email Address"></form:input>
-		</div>
-		<div class="form-group">
-			<form:input type="password" path="password" class="form-control"
-				id="exampleInputPassword" placeholder="Password"></form:input>
-		</div>
-		<div class="form-group">
-			<div class="custom-control custom-checkbox small">
-				<input type="checkbox" class="custom-control-input" id="customCheck">
-				<label class="custom-control-label" for="customCheck">Remember
-					Me</label>
-			</div>
-		</div>
-		<input type="submit" class="btn btn-primary btn-block" value="login">
-	</form:form>
-	
-	
-	
-	<hr>
-	<div class="text-center">
-		<a class="small" href="forgot-password.html">Forgot Password?</a>
-	</div>
-	<div class="text-center">
-		<a class="small" href="register.html">Create an Account!</a>
-	</div>
-</div>
+										<div class="p-5">
+											<div class="text-center">
+												<h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+											</div>
+
+
+
+											<form:form action="userlogin.htm"
+												class="form-horizontal border border-dark p-3 mb-2 bg-white text-dark mt-5"
+												method="post" modelAttribute="user">
+												<div class="form-group">
+													<form:input type="text" class="form-control" path="userId"
+														id="exampleInputEmail" placeholder="Enter Email Address"></form:input>
+												</div>
+												<div class="form-group">
+													<form:input type="password" path="password"
+														class="form-control" id="exampleInputPassword"
+														placeholder="Password"></form:input>
+												</div>
+												<div class="form-group">
+													<div class="custom-control custom-checkbox small">
+														<input type="checkbox" class="custom-control-input"
+															id="customCheck"> <label
+															class="custom-control-label" for="customCheck">Remember
+															Me</label>
+													</div>
+												</div>
+												<input type="submit" class="btn btn-primary btn-block"
+													value="login">
+											</form:form>
+
+
+
+											<hr>
+											<div class="text-center">
+												<a class="small" href="forgot-password.html">Forgot
+													Password?</a>
+											</div>
+											<div class="text-center">
+												<a class="small" href="register.html">Create an Account!</a>
+											</div>
+										</div>
 
 
 

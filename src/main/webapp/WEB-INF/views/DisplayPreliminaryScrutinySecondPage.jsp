@@ -40,6 +40,10 @@
 <script
 	src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+						<!-- 						<h6 class="collapse-header">Other Pages:</h6> -->
+						<!-- 						<a class="collapse-item" href="404.html">404 Page</a> <a -->
+						<!-- 							class="collapse-item" href="blank.html">Blank Page</a> -->
+				
 <script type="text/javascript">
 	function sendData() {
 
@@ -144,17 +148,12 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Login Screens:</h6>
 						<a class="collapse-item" href="login.htm">Login</a>
-						<!--             <a class="collapse-item" href="register.html">Register</a> -->
-						<!--             <a class="collapse-item" href="forgot-password.html">Forgot Password</a> -->
-						<div class="collapse-divider"></div>
+					<div class="collapse-divider"></div>
 
 						<a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a>
 						<a class="collapse-item" href="banklogin.htm">Bank Login</a> <a
 							class="collapse-item" href="ecgclogin.htm">ECGC Login</a>
-						<!-- 			<a class="collapse-item" href="viewAllEventType">View Event Type</a> -->
-						<!-- 			<a class="collapse-item" href="addContinentForm">Add Continent</a> -->
-						<!--             <a class="collapse-item" href="viewAllContinent">View Continents</a> -->
-
+					<a class="collapse-item" href="dop.htm">Decision</a> 
 					</div>
 				</div></li>
 
@@ -413,10 +412,10 @@
 
 
 
-										<form:form method="get"
+										<form:form method="get" id="ShowingAnnexure"
 											class="form-horizontal border border-dark p-3 mb-2 bg-white text-dark mt-5"
 											role="form" modelAttribute="issueRenewal"
-											action="DisplayPreliminaryScrutinySecondPage.htm">
+											action="preliminaryScrutinyDone.htm">
 
 											<div class="row">
 
@@ -464,7 +463,7 @@
 																path="annex_statement_of_packing_attached" value="Yes" />
 															No<form:radiobutton
 																path="annex_statement_of_packing_attached" value="No" /></td>
-														<td><form:checkbox
+														<td><form:checkbox id="enable1" name ="checkbox"
 																value="annex_statement_of_packing_attached"
 																element="enable1" checked="checked"
 																path="annex_statement_of_packing_attached" /> <input
@@ -479,7 +478,7 @@
 															No <form:radiobutton
 																path="annex_for_limit_sanction_attached" value="No" />
 														</td>
-														<td><form:checkbox
+														<td><form:checkbox id="enable2" name ="checkbox"
 																value="annex_for_limit_sanction_attached"
 																element="enable2" checked="checked"
 																path="annex_for_limit_sanction_attached" /> <input
@@ -497,7 +496,7 @@
 																value="Yes" /> No<form:radiobutton
 																path="annex_of_stmnt_of_acc_covrd_undr_wt_with_claim_recovery_attchd"
 																value="No" /></td>
-														<td><form:checkbox
+														<td><form:checkbox id="enable3" name ="checkbox"
 																value="annex_of_stmnt_of_acc_covrd_undr_wt_with_claim_recovery_attchd"
 																element="enable3" checked="checked"
 																path="annex_of_stmnt_of_acc_covrd_undr_wt_with_claim_recovery_attchd" />
@@ -517,7 +516,7 @@
 																value="Yes" /> No<form:radiobutton
 																path="annex_of_annual_stmnt_of_acc_covered_under_wt_wo_attchd"
 																value="No" /></td>
-														<td><form:checkbox
+														<td><form:checkbox id="enable4" name ="checkbox"
 																value="annex_of_annual_stmnt_of_acc_covered_under_wt_wo_attchd"
 																element="enable4" checked="checked"
 																path="annex_of_annual_stmnt_of_acc_covered_under_wt_wo_attchd" />
@@ -530,7 +529,7 @@
 														<td>Yes<form:radiobutton
 																path="annex_of_cdr_acc_attached" value="Yes" /> No<form:radiobutton
 																path="annex_of_cdr_acc_attached" value="No" /></td>
-														<td><form:checkbox value="annex_of_cdr_acc_attached"
+														<td><form:checkbox id="enable5" name ="checkbox" value="annex_of_cdr_acc_attached"
 																element="enable5" checked="checked"
 																path="annex_of_cdr_acc_attached" /> <input
 															id="exampleField5" name="exampleField5" type="text"
@@ -544,7 +543,7 @@
 																value="Yes" /> No<form:radiobutton
 																path="annex_of_shipment_export_credit_limit_sanctioned_attached"
 																value="No" /></td>
-														<td><form:checkbox
+														<td><form:checkbox id="enable6" name ="checkbox"
 																value="annex_of_shipment_export_credit_limit_sanctioned_attached"
 																element="enable6" checked="checked"
 																path="annex_of_shipment_export_credit_limit_sanctioned_attached" />
@@ -559,7 +558,7 @@
 																value="Yes" /> No<form:radiobutton
 																path="annex_of_annual_statement_of_acc_in_default_attached"
 																value="No" /></td>
-														<td><form:checkbox
+														<td><form:checkbox id="enable7" name ="checkbox"
 																value="annex_of_annual_statement_of_acc_in_default_attached"
 																element="enable7" checked="checked"
 																path="annex_of_annual_statement_of_acc_in_default_attached" />
@@ -576,7 +575,7 @@
 																value="Yes" /> No<form:radiobutton
 																path="annex_of_annl_stmnt_of_acc_covrd_undr_ecib_or_postn_of_clm_paid"
 																value="No" /></td>
-														<td><form:checkbox
+														<td><form:checkbox id="enable8" name ="checkbox"
 																value="annex_of_annl_stmnt_of_acc_covrd_undr_ecib_or_postn_of_clm_paid"
 																element="enable8" checked="checked"
 																path="annex_of_annl_stmnt_of_acc_covrd_undr_ecib_or_postn_of_clm_paid" />
@@ -591,7 +590,7 @@
 																value="Yes" /> No<form:radiobutton
 																path="annex_of_annual_statment_of_acc_in_default_attached"
 																value="No" /></td>
-														<td><form:checkbox
+														<td><form:checkbox id="enable9" name ="checkbox"
 																value="annex_of_annual_statment_of_acc_in_default_attached"
 																element="enable9" checked="checked"
 																path="annex_of_annual_statment_of_acc_in_default_attached" />
@@ -606,7 +605,7 @@
 																value="Yes" /> No<form:radiobutton
 																path="annex_for_exporter_financial_statement_analysis_attached"
 																value="No" /></td>
-														<td><form:checkbox
+														<td><form:checkbox id="enable10" name ="checkbox"
 																value="annex_for_exporter_financial_statement_analysis_attached"
 																element="enable10" checked="checked"
 																path="annex_for_exporter_financial_statement_analysis_attached" />
@@ -622,19 +621,21 @@
 
 
 														<button onclick="VerificationOfAnnexure();"
-															class="btn btn-primary active">Send For
+														value="action1" name="action1"	class="btn btn-primary active">Send For
 															Clarification</button>
 
-														<a href="preliminaryScrutinyDone.htm"
-															class="btn btn-primary active">PS Done</a> <a
-															href="prep-priliminary-scrutiny.htm"
+														<button onclick="GenerateMessage();"
+															value="action2" name="action2"	class="btn btn-primary active">PS Done</button>
+															
+<!-- 														<a href="preliminaryScrutinyDone.htm" -->
+<!-- 															class="btn btn-primary active">PS Done</a>  -->
+															<a href="prep-priliminary-scrutiny.htm"
 															class="btn btn-primary active">Cancel</a>
 													</div>
 													<div class="col-sm-2"></div>
 												</div>
 											</div>
 										</form:form>
-
 
 
 									</div>
@@ -725,6 +726,11 @@
 													$("#exampleField1").attr(
 															"disabled", true);
 												}
+												else
+												{
+													document.getElementById("enable1").checked = true;
+													$("#exampleField1").attr("disabled", false);
+												}
 											}
 										});
 					</script>
@@ -743,6 +749,11 @@
 													$("#exampleField2").val('');
 													$("#exampleField2").attr(
 															"disabled", true);
+												}
+												else
+												{
+													document.getElementById("enable2").checked = true;
+													$("#exampleField2").attr("disabled", false);
 												}
 											}
 										});
@@ -764,6 +775,11 @@
 													$("#exampleField3").attr(
 															"disabled", true);
 												}
+												else
+												{
+													document.getElementById("enable3").checked = true;
+													$("#exampleField3").attr("disabled", false);
+												}
 											}
 										});
 					</script>
@@ -784,6 +800,11 @@
 													$("#exampleField4").attr(
 															"disabled", true);
 												}
+												else
+												{
+													document.getElementById("enable4").checked = true;
+													$("#exampleField4").attr("disabled", false);
+												}
 											}
 										});
 					</script>
@@ -802,6 +823,11 @@
 													$("#exampleField5").val('');
 													$("#exampleField5").attr(
 															"disabled", true);
+												}
+												else
+												{
+													document.getElementById("enable5").checked = true;
+													$("#exampleField5").attr("disabled", false);
 												}
 											}
 										});
@@ -824,6 +850,11 @@
 													$("#exampleField6").attr(
 															"disabled", true);
 												}
+												else
+												{
+													document.getElementById("enable6").checked = true;
+													$("#exampleField6").attr("disabled", false);
+												}
 											}
 										});
 					</script>
@@ -845,6 +876,11 @@
 													$("#exampleField7").attr(
 															"disabled", true);
 												}
+												else
+												{
+													document.getElementById("enable7").checked = true;
+													$("#exampleField7").attr("disabled", false);
+												}
 											}
 										});
 					</script>
@@ -865,6 +901,11 @@
 													$("#exampleField8").attr(
 															"disabled", true);
 												}
+												else
+												{
+													document.getElementById("enable8").checked = true;
+													$("#exampleField8").attr("disabled", false);
+												}
 											}
 										});
 					</script>
@@ -882,6 +923,11 @@
 									var remove = '';
 									$("#exampleField9").val('');
 									$("#exampleField9").attr("disabled", true);
+								}
+								else
+								{
+									document.getElementById("enable9").checked = true;
+									$("#exampleField9").attr("disabled", false);
 								}
 							}
 						});
@@ -901,6 +947,11 @@
 									$("#exampleField10").val('');
 									$("#exampleField10").attr("disabled", true);
 								}
+								else
+									{
+										document.getElementById("enable10").checked = true;
+										$("#exampleField10").attr("disabled", false);
+									}
 							}
 						});
 	</script>
@@ -928,6 +979,22 @@
          });
      }
 	</script>
+	
+	<script type="text/javascript">
+	 
+	
+	function GenerateMessage() {
+		
+		if($('#ShowingAnnexure input[type="checkbox"]').is(':checked')){
+			 alert("are you sure you want to send message");
+		    }else{
+		alert("Are you sure everything is verified");
+		return false;
+		    }
+		
+	}
+	</script>
+	
 </body>
 
 </html>

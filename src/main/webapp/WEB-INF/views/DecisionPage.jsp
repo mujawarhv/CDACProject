@@ -3,7 +3,9 @@
 <%@page import="in.cdac.ecib.dto.*"%><%@page import="java.util.List"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="fmt"%>
-
+<%
+	List<String> message = (List<String>) request.getAttribute("message");
+%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -139,20 +141,13 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Login Screens:</h6>
 						<a class="collapse-item" href="login.htm">Login</a>
-						<!-- 						    <a -->
-						<!-- 							class="collapse-item" href="register.html">Register</a> <a -->
-						<!-- 							class="collapse-item" href="forgot-password.html">Forgot -->
-						<!-- 							Password</a> -->
-						<div class="collapse-divider"></div>
+					<div class="collapse-divider"></div>
 
 						<a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a>
 						<a class="collapse-item" href="banklogin.htm">Bank Login</a> <a
 							class="collapse-item" href="ecgclogin.htm">ECGC Login</a>
-
-						<!-- 						<h6 class="collapse-header">Other Pages:</h6> -->
-						<!-- 						<a class="collapse-item" href="404.html">404 Page</a> <a -->
-						<!-- 							class="collapse-item" href="blank.html">Blank Page</a> -->
-					</div>
+<a class="collapse-item" href="dop.htm">Decision</a> 
+	</div>
 				</div></li>
 
 			<!-- Nav Item - Charts -->
@@ -430,7 +425,7 @@
 											<div class="form-group">
 												<div class="row">
 													<div class="col-sm-12">
-
+														<h5 class="bg-secondary text-white bg-dark"><b>Basic Details</b></h5>				
 														<label for="heading" class="col-sm-3 control-label">WT
 															Proposal Number</label>
 
@@ -466,62 +461,12 @@
 												</div>
 											</div>
 
-											<div class="form-group">
-												<div class="row">
-													<div class="col-sm-12">
-
-														<h3>Decision Maker Details</h3>
-
-														<label for="heading" class="col-sm-3 control-label">Employee
-															No.</label>
-
-														<form:input id="exampleField" name="employee_code"
-															 type="text"
-															class="form-field__input" path="employee_code"
-															readonly="true" />
-
-														<label for="heading" class="col-sm-3 control-label">Designation</label>
-
-														<form:input id="exampleField"
-															 type="text"
-															class="form-field__input" path="bank_code"
-															readonly="true" /></br></br>
-															
-														
-														 <div class="form-group row">
- 															 <label for="heading" class="col-sm-3 control-label"> &nbsp;  Name </label>
-   															
-   															<div class="col-sm-8">
-   																 <form:input id="exampleField"
-															 type="text"
-															class="form-control" path="" />
-  															</div>
-  														</div>
-												
-
-													 <label for="heading"
-															class="col-sm-3 control-label">Decision</label>
-															
-													<form:input
-															id="exampleField" list="Decision"
-															placeholder="" type="text" name="decision"
-															class="form-field__input fas fa-caret-down" path=""   /> 
-															<datalist
-															id="Decision">
-															<option value="Approved" />
-															<option value="Reject" />
-														</datalist>
-												
-
-													</div>
-												</div>
-											</div>
-
+											
 
 											<div class="form-group">
 												<div class="row">
 													<div class="col-sm-12">
-														<h5>Gurantee</h5>
+														<h5 class="bg-secondary text-white bg-dark"><b>Guarantee Details </b></h5>
 
 														<label for="heading" class="col-sm-3 control-label">Start
 															Date</label>
@@ -584,13 +529,12 @@
 															
 															
 														
-														<label for="heading" class="col-sm-3 control-label">State Govt. Companies /PSUs Included</label>
+														<label for="heading" class="col-sm-9 control-label">State Govt. Companies /PSUs Included</label>
 														<form:radiobutton path="" value="Yes"/> Yes
-														<form:radiobutton path="" value="No"/> No &nbsp;  &nbsp;
-														<label for="heading" class="col-sm-1 control-label"></label>
+														<form:radiobutton path="" value="No"/> No </br></br>
 														
 														
-														<label for="heading" class="col-sm-3 control-label">Central Govt. Companies /PSUs Included</label>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+														<label for="heading" class="col-sm-9 control-label">Central Govt. Companies /PSUs Included</label>
 														<form:radiobutton path="" value="Yes"/> Yes
 														<form:radiobutton path="" value="No"/> No</br></br>
 														
@@ -652,13 +596,13 @@
 												</div>
 											</div>
 											
-											
+											<h5 class="bg-secondary text-white bg-dark"><b>Premium Rate</b></h5>
 											<div class="form-group">
 												<div class="row">
 													<div class="col-sm-12">
 													
 														<table class="table table-bordered">
-															<t3><b>Premium Rate</b></t3>
+															
 															<thead>
 																<tr>
 																	<th>Grade</th>
@@ -685,13 +629,13 @@
 												</div>
 											</div>
 											
-											
+											<h5 class="bg-secondary text-white bg-dark"><b>Cover Percentage Details</b></h5>
 											<div class="form-group">
 												<div class="row">
 													<div class="col-sm-12">
 													
 														<table class="table table-bordered">
-															<t3><b>Cover Percentage Details</b></t3>
+															
 															<thead>
 																<tr>
 																	<th>Ecib Year</th>
@@ -717,6 +661,86 @@
 															</tbody>
 														</table>
 														
+													</div>
+												</div>
+											</div>
+											
+											 <h5 class="bg-secondary text-white bg-dark"><b>Recommedation</b></h5>
+											<div class="row">
+													<div class=" col-sm-8 ">
+
+														<table class="table table-bordered">
+														
+															<thead>
+																<tr>
+																	<th>Recommedation message:</th>
+
+																</tr>
+															</thead>
+
+															<tbody>
+															
+
+																<c:forEach items="${message}" var="item">
+																	<tr>
+																	
+																		<td>${item}</td>
+																	</tr>
+																</c:forEach>
+
+															</tbody>
+														</table>
+													</div>
+												</div>
+											
+											
+											<div class="form-group">
+												<div class="row">
+													<div class="col-sm-12">
+
+														<h5 class="bg-secondary text-white bg-dark"><b>Decision Maker Details</b></h5>
+
+														<label for="heading" class="col-sm-3 control-label">Employee
+															No.</label>
+
+														<form:input id="exampleField" name="employee_code"
+															 type="text"
+															class="form-field__input" path="employee_code"
+															readonly="true" />
+
+														<label for="heading" class="col-sm-3 control-label">Designation</label>
+
+														<form:input id="exampleField"
+															 type="text"
+															class="form-field__input" path="bank_code"
+															readonly="true" /></br></br>
+															
+														
+														 <div class="form-group row">
+ 															 <label for="heading" class="col-sm-3 control-label"> &nbsp;  Name </label>
+   															
+   															<div class="col-sm-8">
+   																 <form:input id="exampleField"
+															 type="text"
+															class="form-control" path="" />
+  															</div>
+  														</div>
+												
+
+													 <label for="heading"
+															class="col-sm-3 control-label">Decision</label>
+															
+													<form:input
+															id="exampleField" list="Decision"
+															placeholder="" type="text" name="decision"
+															class="form-field__input fas fa-caret-down" path=""   /> 
+															<datalist
+															id="Decision">
+															<option value="Approved" />
+															<option value="Reject" />
+														</datalist>
+												
+
 													</div>
 												</div>
 											</div>

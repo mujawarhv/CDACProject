@@ -159,19 +159,12 @@ function HTMLtoPDF() {
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Login Screens:</h6>
 						<a class="collapse-item" href="login.htm">Login</a>
-						<!-- 						    <a -->
-						<!-- 							class="collapse-item" href="register.html">Register</a> <a -->
-						<!-- 							class="collapse-item" href="forgot-password.html">Forgot -->
-						<!-- 							Password</a> -->
 						<div class="collapse-divider"></div>
 
 						<a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a><a
 							class="collapse-item" href="banklogin.htm">Bank Login</a> <a
-							class="collapse-item" href="ecgclogin.htm">ECGC Login</a>
-
-						<!-- 						<h6 class="collapse-header">Other Pages:</h6> -->
-						<!-- 						<a class="collapse-item" href="404.html">404 Page</a> <a -->
-						<!-- 							class="collapse-item" href="blank.html">Blank Page</a> -->
+							class="collapse-item" href="ecgclogin.htm">ECGC Login</a> <a
+							class="collapse-item" href="dop.htm">Decision</a>
 					</div>
 				</div></li>
 
@@ -459,18 +452,14 @@ function HTMLtoPDF() {
 
 												</div>
 											</div>
-											
-												<div class="form-group">
+
+											<div class="form-group">
 												<div class="row">
-													<div class="col-sm-5">												
-													</div>
+													<div class="col-sm-5"></div>
 													<div class="col-sm-4">
 														<label for="heading" class="col-sm-3 control-label"></label>
 													</div>
-													<div class="col-sm-3">
-													
-
-													</div>
+													<div class="col-sm-3"></div>
 												</div>
 											</div>
 
@@ -484,10 +473,7 @@ function HTMLtoPDF() {
 													<div class="col-sm-4">
 														<label for="heading" class="col-sm-3 control-label"></label>
 													</div>
-													<div class="col-sm-3">
-													
-
-													</div>
+													<div class="col-sm-3"></div>
 												</div>
 											</div>
 
@@ -497,11 +483,9 @@ function HTMLtoPDF() {
 													<div class="col-sm-12">
 
 														<label for="heading" class="col-sm-3 control-label">Inward
-															number :</label>${issueRenewal.inward_id}</br> 
-															<label for="heading"
+															number :</label>${issueRenewal.inward_id}</br> <label for="heading"
 															class="col-sm-3 control-label">Inward item number
-															:</label> 2</br> 
-															<label for="heading" class="col-sm-3 control-label">Inward
+															:</label> 2</br> <label for="heading" class="col-sm-3 control-label">Inward
 															date :</label>27/12/2019</br> <label for="heading"
 															class="col-sm-3 control-label">ECGC branch :</label>${issueRenewal.ecgc_branch_code}</br>
 
@@ -517,21 +501,19 @@ function HTMLtoPDF() {
 															class="col-sm-3  control-label">Total outstanding
 															amount as on date : </label>15000</br> <label for="heading"
 															class="col-sm-3  control-label">Anticipated total
-															outstanding amount for coming year :</label>50000</br> <label for="heading"
-															class="col-sm-3  control-label">Stamped/signed :</label>ECGC</br>
-
-
-
-														<label for="heading" class="col-sm-3  control-label">Proposal
-															Cover period :</label>12/12/2019</br> <label for="heading"
+															outstanding amount for coming year :</label>50000</br> <label
+															for="heading" class="col-sm-3  control-label">Stamped/signed
+															:</label>ECGC</br> <label for="heading"
+															class="col-sm-3  control-label">Proposal Cover
+															period :</label>12/12/2019</br> <label for="heading"
 															class="col-sm-3  control-label">Cover first
 															Issued on :</label>15/10/2019</br> <label for="heading"
 															class="col-sm-3  control-label">Total claim paid
 															since issue of Cover :</label>15000</br> <label for="heading"
 															class="col-sm-3  control-label">Total premium
 															paid since issue of Cover :</label>16000</br> <label for="heading"
-															class="col-sm-3  control-label">Proposal date :</label>27/12/2019</br> <label
-															for="heading" class="col-sm-3 control-label">Annexure
+															class="col-sm-3  control-label">Proposal date :</label>27/12/2019</br>
+														<label for="heading" class="col-sm-3 control-label">Annexure
 															2(i) attached :</label>${issueRenewal.annex_statement_of_packing_attached ? 'Yes' : 'No'}
 														</br> <label for="heading" class="col-sm-3 control-label">Annexure
 															2(ii) attached:</label>${issueRenewal.annex_for_limit_sanction_attached ? 'Yes' : 'No'}

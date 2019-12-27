@@ -88,7 +88,7 @@ public class IssueRenewalServImpl implements IssueRenewalServ {
 	}
 
 	@Override
-	public List<String> getListOfOfficeNoteDone() {
+	public List<IssueRenewal> getListOfOfficeNoteDone() {
 		return issueRenewalDao.getListOfOfficeNoteDone();
 	}
 

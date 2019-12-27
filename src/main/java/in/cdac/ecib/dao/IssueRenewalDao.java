@@ -33,7 +33,7 @@ public interface IssueRenewalDao {
 	
 	public void createOfficeNote(IssueRenewal issueRenewal);
 
-	public List<String> getListOfOfficeNoteDone();
+	public List<IssueRenewal> getListOfOfficeNoteDone();
 	
 	public User loginUser(User user);
 

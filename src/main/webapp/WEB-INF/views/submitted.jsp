@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ page import="java.io.*,java.util.*, javax.servlet.*"%>
-<%@ page errorPage="ErrorPage.jsp" %>  
+<%@ page errorPage="ErrorPage.jsp"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page errorPage="ErrorPage.jsp" %>  
+<%@ page errorPage="ErrorPage.jsp"%>
 <%@page import="in.cdac.ecib.dto.*"%><%@page import="java.util.List"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="fmt"%>
 <%
-IssueRenewal issueRenewal = (IssueRenewal) session.getAttribute("issueRenewal");
+	IssueRenewal issueRenewal = (IssueRenewal) session.getAttribute("issueRenewal");
 %>
 <%
 	List<IssueRenewal> userList = (List<IssueRenewal>) request.getAttribute("listIssueRenewal");
@@ -25,7 +25,7 @@ IssueRenewal issueRenewal = (IssueRenewal) session.getAttribute("issueRenewal");
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>ECGC </title>
+<title>ECGC</title>
 
 <!-- Custom fonts for this template-->
 <link
@@ -105,8 +105,8 @@ IssueRenewal issueRenewal = (IssueRenewal) session.getAttribute("issueRenewal");
 				aria-expanded="true" aria-controls="collapseTwo"> <i
 					class="fas fa-fw fa-cog"></i> <span>Components</span>
 			</a>
-				<div id="collapseTwo" class="collapse"
-					aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Custom Components:</h6>
 						<a class="collapse-item" href="buttons.html">Buttons</a> <a
@@ -147,20 +147,15 @@ IssueRenewal issueRenewal = (IssueRenewal) session.getAttribute("issueRenewal");
 					aria-labelledby="headingPages" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Login Screens:</h6>
-							    <a class="collapse-item" href="login.htm">Login</a> 
-<!-- 							     <a -->
-<!-- 							class="collapse-item" href="register.html">Register</a> <a -->
-<!-- 							class="collapse-item" href="forgot-password.html">Forgot -->
-<!-- 							Password</a> -->
+						<a class="collapse-item" href="login.htm">Login</a>
+
+
 						<div class="collapse-divider"></div>
 
-						 <a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a> <a
-							class="collapse-item" href="banklogin.htm">Bank Login</a> <a
-							class="collapse-item" href="ecgclogin.htm">ECGC Login</a>
-
-<!-- 						<h6 class="collapse-header">Other Pages:</h6> -->
-<!-- 						<a class="collapse-item" href="404.html">404 Page</a> <a -->
-<!-- 							class="collapse-item" href="blank.html">Blank Page</a> -->
+						<a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a>
+						<a class="collapse-item" href="banklogin.htm">Bank Login</a> <a
+							class="collapse-item" href="ecgclogin.htm">ECGC Login</a> <a
+							class="collapse-item" href="dop.htm">Decision</a>
 					</div>
 				</div></li>
 
@@ -410,57 +405,59 @@ IssueRenewal issueRenewal = (IssueRenewal) session.getAttribute("issueRenewal");
 								<a href="#collapseCardExample" class="d-block card-header py-3"
 									data-toggle="collapse" role="button" aria-expanded="true"
 									aria-controls="collapseCardExample">
-									<h6 class="m-0 font-weight-bold text-primary">Issue Renewal</h6>
+									<h6 class="m-0 font-weight-bold text-primary">Issue
+										Renewal</h6>
 								</a>
 								<!-- Card Content - Collapse -->
 								<div class="collapse show" id="collapseCardExample">
 									<div class="card-body">
-										
-								
-										
+
+
+
 										<form
-		class="form-horizontal border border-dark p-3 mb-2 bg-white text-dark mt-5"
-		role="form">
-		<div class="row">
+											class="form-horizontal border border-dark p-3 mb-2 bg-white text-dark mt-5"
+											role="form">
+											<div class="row">
 
-			<div class="col-sm-3"></div>
-			<div class="col-sm-6">
-				<h4>
-					<pre>Congratulations Your form is submitted</pre>
-				</h4>
-				<table class="table table-bordered">
-					<thead>
-						<tr>
-							<th>Refrence Number</th>
-							<th>Date of submission</th>
-						</tr>
-					</thead>
+												<div class="col-sm-3"></div>
+												<div class="col-sm-6">
+													<h4>
+														<pre>Congratulations Your form is submitted</pre>
+													</h4>
+													<table class="table table-bordered">
+														<thead>
+															<tr>
+																<th>Refrence Number</th>
+																<th>Date of submission</th>
+															</tr>
+														</thead>
 
-					<tbody>
-						<tr>
-							<td>${num}</td>
-							<td>
-								<%
-									Date date = new Date();
-									out.print("<h6>" + date.toString() + "</h6>");
-								%>
-							</td>
-						</tr>
-						<tr>
-							<td colspan="2"><center>
-									<a href="backToIndex.htm" class="btn btn-danger active">Home</a>
-								</center></td>
-						</tr>
-					</tbody>
-				</table>
+														<tbody>
+															<tr>
+																<td>${num}</td>
+																<td>
+																	<%
+																		Date date = new Date();
+																		out.print("<h6>" + date.toString() + "</h6>");
+																	%>
+																</td>
+															</tr>
+															<tr>
+																<td colspan="2"><center>
+																		<a href="backToIndex.htm"
+																			class="btn btn-danger active">Home</a>
+																	</center></td>
+															</tr>
+														</tbody>
+													</table>
 
-			</div>
-			<div class="col-sm-3"></div>
-		</div>
-	</form>
-										
-										
-										
+												</div>
+												<div class="col-sm-3"></div>
+											</div>
+										</form>
+
+
+
 									</div>
 								</div>
 							</div>
@@ -533,8 +530,6 @@ IssueRenewal issueRenewal = (IssueRenewal) session.getAttribute("issueRenewal");
 					<!-- Custom scripts for all pages-->
 					<script
 						src="${pageContext.request.contextPath}/resources/js/sb-admin-2.min.js"></script>
-						
-						
 </body>
 
 </html>

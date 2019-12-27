@@ -14,7 +14,7 @@
 	List<IssueRenewal> listOfPreliminaryScrutinyDone = (List<IssueRenewal>) request.getAttribute("listOfPreliminaryScrutinyDone");
 %>
 <%
-	List<String> listOfRecommedation = (List<String>) request.getAttribute("listOfRecommedation");
+	List<IssueRenewal> listOfRecommedation = (List<IssueRenewal>) request.getAttribute("listOfRecommedation");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -137,19 +137,12 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Login Screens:</h6>
 						    <a class="collapse-item" href="login.htm">Login</a>  
-<!-- 						    <a -->
-<!-- 							class="collapse-item" href="register.html">Register</a> <a -->
-<!-- 							class="collapse-item" href="forgot-password.html">Forgot -->
-<!-- 							Password</a> -->
 						<div class="collapse-divider"></div>
 
 						<a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a>
 						<a class="collapse-item" href="banklogin.htm">Bank Login</a> <a
 							class="collapse-item" href="ecgclogin.htm">ECGC Login</a>
-
-<!-- 						<h6 class="collapse-header">Other Pages:</h6> -->
-<!-- 						<a class="collapse-item" href="404.html">404 Page</a> <a -->
-<!-- 							class="collapse-item" href="blank.html">Blank Page</a> -->
+<a class="collapse-item" href="dop.htm">Decision</a> 
 					</div>
 				</div></li>
 
@@ -433,9 +426,12 @@ out.print(str);
 												<tr>
 													<td><%=u.getWt_isrn_proposal_frm_id()%></td>
 
-													<td><a
+													<td>
+													
+													<a
 														href="selectIssueRenewalId.htm?proposalfrmid=<%=u.getWt_isrn_proposal_frm_id()%> "
 														class="btn btn-danger active">Preliminary Scrutiny</a></td>
+														
 													<td><a href="GenerateOfficeNote.htm" class="btn btn-danger disabled">Office
 															Note</a></td>
 													<td><a href="addRecommedation.htm"
@@ -519,18 +515,19 @@ out.print(str);
 											</thead>
 
 											<tbody>
-												<%
-													for (int i=1;i<=listOfRecommedation.size();i++) {								
+											<%
+													for (IssueRenewal u : listOfRecommedation) {
 												%>
+												
 												<tr>
-													<td><%=i%></td>
+													<td><%=u.getWt_isrn_proposal_frm_id()%></td>
 
 													<td><a
-														href="selectIssueRenewalId.htm?isrnfrmid=<%=i%> "
+														href="selectIssueRenewalId.htm?isrnfrmid=<%=u.getWt_isrn_proposal_frm_id()%> "
 														class="btn btn-danger disabled">Preliminary Scrutiny</a></td>
-													<td><a href="officenote.htm?isrnfrmid=<%=i%>" class="btn btn-danger disabled">Office
+													<td><a href="officenote.htm?isrnfrmid=<%=u.getWt_isrn_proposal_frm_id()%>" class="btn btn-danger disabled">Office
 															Note</a></td>
-													<td><a href="addRecommedation.htm?isrnfrmid=<%=i%>"
+													<td><a href="addRecommedation.htm?isrnfrmid=<%=u.getWt_isrn_proposal_frm_id()%>"
 														class="btn btn-danger ">recommendation</a></td>
 													<td><a href="index.htm"
 														class="btn btn-danger disabled">Decision</a></td>

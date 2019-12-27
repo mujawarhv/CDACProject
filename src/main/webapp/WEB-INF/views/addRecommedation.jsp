@@ -10,9 +10,11 @@
 <%
 	List<IssueRenewal> userList = (List<IssueRenewal>) request.getAttribute("listIssueRenewal");
 %>
+
 <%
 	List<String> message = (List<String>) request.getAttribute("message");
 %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -133,16 +135,12 @@
 
 						<h6 class="collapse-header">Login Screens:</h6>
 						<a class="collapse-item" href="login.htm">Login</a>
-						<!--             <a class="collapse-item" href="register.html">Register</a> -->
-						<!--             <a class="collapse-item" href="forgot-password.html">Forgot Password</a> -->
-						<div class="collapse-divider"></div>
+					<div class="collapse-divider"></div>
 
 						<a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a>
 						<a class="collapse-item" href="banklogin.htm">Bank Login</a> <a
 							class="collapse-item" href="ecgclogin.htm">ECGC Login</a>
-						<!-- 			<a class="collapse-item" href="viewAllEventType">View Event Type</a> -->
-						<!-- 			<a class="collapse-item" href="addContinentForm">Add Continent</a> -->
-						<!--             <a class="collapse-item" href="viewAllContinent">View Continents</a> -->
+						<a class="collapse-item" href="dop.htm">Decision</a> 
 					</div>
 				</div></li>
 
@@ -436,7 +434,8 @@
 												</div>
 											</div>
 
-
+										
+											
 											<div class="form-group">
 												<div class="row">
 													<div class=" col-sm-8 ">

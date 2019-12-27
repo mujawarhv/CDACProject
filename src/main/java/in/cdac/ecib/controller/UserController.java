@@ -50,7 +50,7 @@ public class UserController {
 			if (name.equals("banklogin")) {
 				List<IssueRenewal> listOfPreliminaryScrutiny = issueRenewalServ.getAllBankList();
 				List<IssueRenewal> listOfPreliminaryScrutinyDone = issueRenewalServ.getlistOfPreliminaryScrutinyDone();
-				List<String> listOfRecommedation = issueRenewalServ.getListOfOfficeNoteDone();
+				List<IssueRenewal> listOfRecommedation = issueRenewalServ.getListOfOfficeNoteDone();
 
 				model.put("listIssueRenewal", listOfPreliminaryScrutiny);
 				model.put("listOfPreliminaryScrutinyDone", listOfPreliminaryScrutinyDone);
@@ -62,7 +62,7 @@ public class UserController {
 			} else if (name.equals("eciblogin")) {
 				List<IssueRenewal> listOfPreliminaryScrutiny = issueRenewalServ.getAllBankList();
 				List<IssueRenewal> listOfPreliminaryScrutinyDone = issueRenewalServ.getlistOfPreliminaryScrutinyDone();
-				List<String> listOfRecommedation = issueRenewalServ.getListOfOfficeNoteDone();
+				List<IssueRenewal> listOfRecommedation = issueRenewalServ.getListOfOfficeNoteDone();
 
 				model.put("listIssueRenewal", listOfPreliminaryScrutiny);
 				model.put("listOfPreliminaryScrutinyDone", listOfPreliminaryScrutinyDone);
@@ -77,7 +77,7 @@ public class UserController {
 
 				List<IssueRenewal> listOfPreliminaryScrutiny = issueRenewalServ.getAllBankList();
 				List<IssueRenewal> listOfPreliminaryScrutinyDone = issueRenewalServ.getlistOfPreliminaryScrutinyDone();
-				List<String> listOfRecommedation = issueRenewalServ.getListOfOfficeNoteDone();
+				List<IssueRenewal> listOfRecommedation = issueRenewalServ.getListOfOfficeNoteDone();
 
 				model.put("listIssueRenewal", listOfPreliminaryScrutiny);
 				model.put("listOfPreliminaryScrutinyDone", listOfPreliminaryScrutinyDone);
@@ -88,7 +88,7 @@ public class UserController {
 
 				List<IssueRenewal> listOfPreliminaryScrutiny = issueRenewalServ.getAllBankList();
 				List<IssueRenewal> listOfPreliminaryScrutinyDone = issueRenewalServ.getlistOfPreliminaryScrutinyDone();
-				List<String> listOfRecommedation = issueRenewalServ.getListOfOfficeNoteDone();
+				List<IssueRenewal> listOfRecommedation = issueRenewalServ.getListOfOfficeNoteDone();
 
 				model.put("listIssueRenewal", listOfPreliminaryScrutiny);
 				model.put("listOfPreliminaryScrutinyDone", listOfPreliminaryScrutinyDone);

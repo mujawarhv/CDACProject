@@ -31,8 +31,7 @@ public class BankController {
 
 	@Autowired
 	private IssueRenewalServ issueRenewalServ;
-	
-	
+
 	private Logger logger = LoggerFactory.getLogger(IssueRenewalServ.class);
 
 	/*
@@ -189,7 +188,8 @@ public class BankController {
 
 	@RequestMapping(value = "/updateIssueRenewalForm.htm")
 	public String updateAnnexure(@ModelAttribute("issueRenewal") IssueRenewal issueRenewal, ModelMap model) {
-		//issueRenewalServ.Modify(issueRenewal.getWt_isrn_proposal_frm_id(), issueRenewal);
+		// issueRenewalServ.Modify(issueRenewal.getWt_isrn_proposal_frm_id(),
+		// issueRenewal);
 		List<IssueRenewal> listIssueRenewal = issueRenewalServ.getAllBankList();
 		model.put("listIssueRenewal", listIssueRenewal);
 		return "Login";
@@ -206,13 +206,12 @@ public class BankController {
 
 		List<IssueRenewal> listIssueRenewal = issueRenewalServ.getAllBankList();
 		List<IssueRenewal> listOfPreliminaryScrutinyDone = issueRenewalServ.getlistOfPreliminaryScrutinyDone();
-		List<String> listOfRecommedation = issueRenewalServ.getListOfOfficeNoteDone();
+		List<IssueRenewal> listOfRecommedation = issueRenewalServ.getListOfOfficeNoteDone();
 
 		HttpSession session = request.getSession();
 		String name = "ECIB Login";
 		session.setAttribute("name", name);
-		
-	
+
 		model.put("listIssueRenewal", listIssueRenewal);
 		model.put("listOfPreliminaryScrutinyDone", listOfPreliminaryScrutinyDone);
 		model.put("listOfRecommedation", listOfRecommedation);
@@ -229,7 +228,7 @@ public class BankController {
 	public String cancelPreliminaryScrutinypage(ModelMap model) {
 		List<IssueRenewal> listOfPreliminaryScrutiny = issueRenewalServ.getAllBankList();
 		List<IssueRenewal> listOfPreliminaryScrutinyDone = issueRenewalServ.getlistOfPreliminaryScrutinyDone();
-		List<String> listOfRecommedation = issueRenewalServ.getListOfOfficeNoteDone();
+		List<IssueRenewal> listOfRecommedation = issueRenewalServ.getListOfOfficeNoteDone();
 
 		model.put("listIssueRenewal", listOfPreliminaryScrutiny);
 		model.put("listOfPreliminaryScrutinyDone", listOfPreliminaryScrutinyDone);
@@ -252,7 +251,7 @@ public class BankController {
 		HttpSession session = request.getSession();
 		String wt_isrn_proposal_frm_id = request.getParameter("proposalfrmid");
 		session.setAttribute("wt_isrn_proposal_frm_id", wt_isrn_proposal_frm_id);
-		
+
 		String name = "ECIB Login";
 		session.setAttribute("name", name);
 
@@ -276,7 +275,7 @@ public class BankController {
 		session.setAttribute("wt_isrn_proposal_frm_id", wt_isrn_proposal_frm_id);
 		String name = "ECIB Login";
 		session.setAttribute("name", name);
-		
+
 		issueRenewal = issueRenewalServ.getByDocument(issueRenewal.getWt_isrn_proposal_frm_id());
 
 		if (issueRenewal != null)
@@ -288,21 +287,36 @@ public class BankController {
 	 * When Preliminary Scrutiny is done after that ECGC officer will click on
 	 * OfficeNote Generation here Page will open.
 	 */
-
-	@RequestMapping(value = "/preliminaryScrutinyDone.htm")
+	@RequestMapping(value = "/preliminaryScrutinyDone.htm", params = "action2")
 	public String officeNoteGeneration(@ModelAttribute("issueRenewal") IssueRenewal issueRenewal, ModelMap model,
 			HttpServletRequest request) {
-
 		HttpSession session = request.getSession();
 		String wt_isrn_proposal_frm_id = (String) session.getAttribute("wt_isrn_proposal_frm_id");
 		session.setAttribute("wt_isrn_proposal_frm_id", wt_isrn_proposal_frm_id);
 		String name = "ECIB Login";
 		session.setAttribute("name", name);
-		
+
 		issueRenewalServ.psCompleted(wt_isrn_proposal_frm_id);
 		issueRenewal = issueRenewalServ.getOfficeNoteInfo(wt_isrn_proposal_frm_id);
 		model.addAttribute("issueRenewal", issueRenewal);
 		return "OfficeNote";
+
+	}
+
+	@RequestMapping(value = "/preliminaryScrutinyDone.htm", params = "action1")
+	public String backToStratPS(@ModelAttribute("issueRenewal") IssueRenewal issueRenewal, ModelMap model,
+			HttpServletRequest request) {
+
+		List<IssueRenewal> listOfPreliminaryScrutiny = issueRenewalServ.getAllBankList();
+		List<IssueRenewal> listOfPreliminaryScrutinyDone = issueRenewalServ.getlistOfPreliminaryScrutinyDone();
+		List<IssueRenewal> listOfRecommedation = issueRenewalServ.getListOfOfficeNoteDone();
+
+		model.put("listIssueRenewal", listOfPreliminaryScrutiny);
+		model.put("listOfPreliminaryScrutinyDone", listOfPreliminaryScrutinyDone);
+		model.put("listOfRecommedation", listOfRecommedation);
+		model.addAttribute("issueRenewal", new IssueRenewal());
+		return "StartPS";
+
 	}
 
 	@RequestMapping(value = "/officenote.htm")
@@ -314,7 +328,7 @@ public class BankController {
 		session.setAttribute("wt_isrn_proposal_frm_id", wt_isrn_proposal_frm_id);
 		String name = "ECIB Login";
 		session.setAttribute("name", name);
-		
+
 		issueRenewal = issueRenewalServ.getOfficeNoteInfo(proposalfrmid);
 		model.addAttribute("issueRenewal", issueRenewal);
 		return "OfficeNote";
@@ -336,7 +350,7 @@ public class BankController {
 		session.setAttribute("wt_isrn_proposal_frm_id", wt_isrn_proposal_frm_id);
 		String name = "ECIB Login";
 		session.setAttribute("name", name);
-		
+
 		try {
 			boolean isvalid1 = issueRenewalServ.checkId(issueRenewal.getWt_isrn_proposal_frm_id());
 //			boolean isvalid2 = issueRenewalServ.checkCoverType(issueRenewal.getCover_type());
@@ -366,16 +380,19 @@ public class BankController {
 		return "StartPS";
 	}
 
+	/*
+	 * This controller is used to add data in office note database and after that it
+	 * will return to main ecib screen i.e StartPS
+	 */
+
 	@RequestMapping(value = "/officenotegeneration.htm")
 	public String generationOfOfficeNote(@ModelAttribute("issueRenewal") IssueRenewal issueRenewal, ModelMap model) {
 		issueRenewalServ.createOfficeNote(issueRenewal);
 
 		List<IssueRenewal> listOfPreliminaryScrutiny = issueRenewalServ.getAllBankList();
 		List<IssueRenewal> listOfPreliminaryScrutinyDone = issueRenewalServ.getlistOfPreliminaryScrutinyDone();
-		List<String> listOfRecommedation = issueRenewalServ.getListOfOfficeNoteDone();
+		List<IssueRenewal> listOfRecommedation = issueRenewalServ.getListOfOfficeNoteDone();
 
-		
-		
 		model.put("listIssueRenewal", listOfPreliminaryScrutiny);
 		model.put("listOfPreliminaryScrutinyDone", listOfPreliminaryScrutinyDone);
 		model.put("listOfRecommedation", listOfRecommedation);
@@ -383,6 +400,9 @@ public class BankController {
 		return "StartPS";
 	}
 
+	/*
+	 * This controller is used to go on recommedation page
+	 */
 	@RequestMapping(value = "/addRecommedation.htm")
 	public String AddRecommedation(@RequestParam("isrnfrmid") String isrnfrmid,
 			@ModelAttribute("issueRenewal") IssueRenewal issueRenewal, ModelMap model, HttpServletRequest request) {
@@ -392,13 +412,18 @@ public class BankController {
 		session.setAttribute("wt_isrn_proposal_frm_id", wt_isrn_proposal_frm_id);
 		String name = "ECIB Login";
 		session.setAttribute("name", name);
-		
+
 		List<String> message = issueRenewalServ.showRecommedation(wt_isrn_proposal_frm_id);
 		model.put("message", message);
 		model.addAttribute("issueRenewal", new IssueRenewal());
 
 		return "addRecommedation";
 	}
+
+	/*
+	 * This controller is used to insert recommedation and will return on same page
+	 * after adding recommedation
+	 */
 
 	@RequestMapping(value = "/insertRecommendation.htm")
 	public String insertRecommendation(@RequestParam("recommendation_line") String recommendation_line,
@@ -409,7 +434,7 @@ public class BankController {
 		session.setAttribute("wt_isrn_proposal_frm_id", wt_isrn_proposal_frm_id);
 		String name = "ECIB Login";
 		session.setAttribute("name", name);
-		
+
 		List<String> message = issueRenewalServ.showRecommedation(wt_isrn_proposal_frm_id);
 		model.put("message", message);
 		model.addAttribute("issueRenewal", new IssueRenewal());
@@ -419,11 +444,8 @@ public class BankController {
 
 		return "addRecommedation";
 	}
-	
-	
-	
 
-	@RequestMapping(value = "/wt_isrn.htm",method = RequestMethod.POST)
+	@RequestMapping(value = "/wt_isrn.htm", method = RequestMethod.POST)
 	public String addSystemEntry(@ModelAttribute("issueRenewal") IssueRenewal issueRenewal, HttpServletRequest request,
 			HttpServletResponse response, BindingResult result, Model model) throws Exception {
 
@@ -431,61 +453,70 @@ public class BankController {
 		model.addAttribute("issueRenewal", issueRenewal);
 		return "Priliminary_Scrutiny";
 	}
-	
-	
-	@RequestMapping(value = "/dop.htm", method = RequestMethod.GET	)
+
+	/*
+	 * This controller will show whose decision is yet to do
+	 */
+
+	@RequestMapping(value = "/dop.htm", method = RequestMethod.GET)
 	public String Dop(@ModelAttribute("issueRenewal1") IssueRenewal issueRenewal, HttpServletRequest request,
 			HttpServletResponse response, BindingResult result, ModelMap model) throws Exception {
-		
+
 		/*
 		 * String name = "ecgc3"; HttpSession session = request.getSession();
 		 * session.setAttribute("name",name);
 		 */
-		 
+
 		List<String> message = issueRenewalServ.showRecommedation();
 		model.put("message", message);
-		
+
 		model.addAttribute("issueRenewal1", new IssueRenewal());
 		return "Decision";
 	}
 
+	/*
+	 * This controller will show the Decision Page
+	 */
+
 	@RequestMapping(value = "/submitrecommedation.htm")
-	public String submitRecommendation(@RequestParam("id") String isrn_id, Model model, HttpServletRequest request) {
+	public String submitRecommendation(@RequestParam("id") String isrn_id, ModelMap model, HttpServletRequest request) {
 		System.out.println("****************************");
-		
-			/*
-			 * HttpSession session = request.getSession(); String wt_isrn_proposal_frm_id =
-			 * (String) session.getAttribute("name");
-			 * session.setAttribute("wt_isrn_proposal_frm_id", wt_isrn_proposal_frm_id);
-			 */
-		
+
+		/*
+		 * HttpSession session = request.getSession(); String wt_isrn_proposal_frm_id =
+		 * (String) session.getAttribute("name");
+		 * session.setAttribute("wt_isrn_proposal_frm_id", wt_isrn_proposal_frm_id);
+		 */
+		List<String> message = issueRenewalServ.showRecommedation(isrn_id);
+		model.put("message", message);
 		IssueRenewal issueRenewal1 = issueRenewalServ.getDetailsOfDop(isrn_id);
 		model.addAttribute("issueRenewal1", issueRenewal1);
 		return "DecisionPage";
 	}
-	
-	
-	@RequestMapping(value = "/submitDOP.htm", method = RequestMethod.POST	)
-	public String DopSubmit(@RequestParam("start_date") Date start_date,@RequestParam("end_date") Date expiry_date,@ModelAttribute("issueRenewal1") IssueRenewal issueRenewal, HttpServletRequest request,
+
+	/*
+	 * This controller will insert Decision data and return to pending decision page
+	 */
+
+	@RequestMapping(value = "/submitDOP.htm", method = RequestMethod.POST)
+	public String DopSubmit(@RequestParam("start_date") Date start_date, @RequestParam("end_date") Date expiry_date,
+			@ModelAttribute("issueRenewal1") IssueRenewal issueRenewal, HttpServletRequest request,
 			HttpServletResponse response, BindingResult result, ModelMap model) throws Exception {
-		
-	
-		String decision= request.getParameter("decision");
-		String remarks= request.getParameter("remarks");
-		String reason= request.getParameter("reason");
-		String ml= request.getParameter("ml"); 
-		String dl= request.getParameter("dl");
-		String set_limit= request.getParameter("set_limit");
-		
-		issueRenewalServ.dopDone(decision,remarks,reason,start_date,expiry_date,ml,dl,set_limit,issueRenewal);
-		
+
+		String decision = request.getParameter("decision");
+		String remarks = request.getParameter("remarks");
+		String reason = request.getParameter("reason");
+		String ml = request.getParameter("ml");
+		String dl = request.getParameter("dl");
+		String set_limit = request.getParameter("set_limit");
+
+		issueRenewalServ.dopDone(decision, remarks, reason, start_date, expiry_date, ml, dl, set_limit, issueRenewal);
+
 		model.addAttribute("issueRenewal1", new IssueRenewal());
-		
+
 		return "Decision";
 	}
-	
 
-	
 	/*
 	 * @ExceptionHandler(Exception.class) public String handleException() { return
 	 * "ErrorPage"; }

@@ -40,12 +40,8 @@ public class IssueRenewalImpl implements IssueRenewalDao {
 			arr[i] = Integer.parseInt(list.get(i));
 		}
 
-		int max = arr[0];
-		for (int i = 0; i < arr.length; i++) {
-			if (max < arr[i]) {
-				max = arr[i];
-			}
-		}
+		Arrays.sort(arr);
+		int max = arr[arr.length-1];
 		max = max + 1;
 		System.out.println(max);
 
@@ -176,10 +172,6 @@ public class IssueRenewalImpl implements IssueRenewalDao {
 
 	@Override
 	public IssueRenewal openOfficeNotePC(IssueRenewal issueRenewal) {
-//		String sql = "select t1.inward_number, t1.inward_item_number,t1.inward_date,t2.wt_isrn_proposal_frm_id,"
-//				+ "t2.ecgc_branch_code,t2.inward_id,t2.bank_code,t2.no_of_govt_companies_covered,t2.amt_outstanding_for_govt_company,t2.amt_outstanding_for_obu,t2.no_of_obu_covered,"
-//				+ "t2.annex_statement_of_packing_attached,t2.annex_for_limit_sanction_attached,t2.annex_of_cdr_acc_attached ,t2.bank_name from i_o t1 "
-//				+ "inner join wt_isrn_proposal_frm t2 on t1.inward_id = t2.inward_id where wt_isrn_proposal_frm_id=?";
 
 		String sql = "select * from wt_isrn_proposal_frm where wt_isrn_proposal_frm_id=?";
 		IssueRenewal issueRenewal1 = jdbcTemplate.queryForObject(sql,
@@ -284,12 +276,22 @@ public class IssueRenewalImpl implements IssueRenewalDao {
 	}
 
 	@Override
-	public List<String> getListOfOfficeNoteDone() {
-
-		String sql = "select wt_isrn_proposal_frm_id from wt_isrn_proposal_frm where wt_isrn_proposal_frm_id IN(select wt_isrn_id from wt_isrn WHERE wt_isrn_id IN (select wt_isrn_id from wt_isrn_office_note where wt_isrn_id NOT IN (Select wt_isrn_id from wt_isrn_decision)))";
-		List<String> list = jdbcTemplate.query(sql,new BeanPropertyRowMapper<String>(String.class));
-		System.out.println(list.toString());
+	public List<IssueRenewal> getListOfOfficeNoteDone() {
+		
+		String sql = "select wt_isrn_proposal_frm_id from wt_isrn_proposal_frm where wt_isrn_proposal_frm_id IN(select wt_isrn_id from wt_isrn WHERE wt_isrn_id IN (select wt_isrn_id from wt_isrn_office_note where wt_isrn_id NOT IN (Select wt_isrn_id from wt_isrn_decision))) order by wt_isrn_proposal_frm_id";
+		
+		List<IssueRenewal> list = jdbcTemplate.query(sql,
+				new RowMapper<IssueRenewal>() {
+					@Override
+					public IssueRenewal mapRow(ResultSet rs, int rowNum) throws SQLException {
+						IssueRenewal issueRenewal = new IssueRenewal();
+						issueRenewal.setWt_isrn_proposal_frm_id(rs.getString("wt_isrn_proposal_frm_id"));
+						return issueRenewal;
+					}
+				});
 		return list;
+
+		
 	}
 
 	@Override
@@ -366,9 +368,26 @@ public class IssueRenewalImpl implements IssueRenewalDao {
 	public void insertdop(String decision, String remarks, String reason, java.sql.Date start_date, java.sql.Date expiry_date,
 			String ml, String dl, String set_limit, IssueRenewal issueRenewal) {
 		
+		String wt_isrn_decision_id = "select wt_isrn_decision_id from wt_isrn_decision;";
+
+		List<String> list = jdbcTemplate.query(wt_isrn_decision_id, new Object[] {}, new RowMapper<String>() {
+			public String mapRow(ResultSet rs, int rowNum) throws SQLException {
+				return rs.getString(1);
+			}
+		});
+
+		int[] arr = new int[list.size()];
+		for (int i = 0; i < list.size(); i++) {
+			arr[i] = Integer.parseInt(list.get(i));
+		}
+
+		Arrays.sort(arr);
+		int max = arr[arr.length-1];
+		max = max + 1;
+		
 	
 		String sql = "insert into wt_isrn_decision (wt_isrn_decision_id, wt_isrn_id, employee_code, decision, remarks, reason, decision_date, start_date, expiry_date, ml, dl, set_limit)"
-				+ " values ('1','"+issueRenewal.getWt_isrn_proposal_frm_id()+"','"+issueRenewal.getEmployee_code() + "','"+decision+"','"+remarks+"','"+reason+"','"+java.time.LocalDate.now()+"','"+start_date+"','"+expiry_date+"','"+ml+"','"+dl+"','"+set_limit+"')";
+				+ " values ('"+max+"','"+issueRenewal.getWt_isrn_proposal_frm_id()+"','"+issueRenewal.getEmployee_code() + "','"+decision+"','"+remarks+"','"+reason+"','"+java.time.LocalDate.now()+"','"+start_date+"','"+expiry_date+"','"+ml+"','"+dl+"','"+set_limit+"')";
 		
 		jdbcTemplate.update(sql);
 	}

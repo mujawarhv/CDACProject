@@ -95,7 +95,7 @@
 
 			<!-- Heading -->
 			<div class="sidebar-heading">Interface</div>
-			
+
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item active"><a class="nav-link" href="#"
 				data-toggle="collapse" data-target="#collapseTwo"
@@ -145,14 +145,14 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Login Screens:</h6>
 						<a class="collapse-item" href="login.htm">Login</a>
-				
+
 						<div class="collapse-divider"></div>
 
 						<a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a>
 						<a class="collapse-item" href="banklogin.htm">Bank Login</a> <a
-							class="collapse-item" href="ecgclogin.htm">ECGC Login</a>
+							class="collapse-item" href="ecgclogin.htm">ECGC Login</a> <a
+							class="collapse-item" href="dop.htm">Decision</a>
 
-						
 					</div>
 				</div></li>
 
@@ -410,7 +410,7 @@
 									<div class="card-body">
 
 
-	
+
 
 										<form:form method="post"
 											class="form-horizontal border border-dark p-3 mb-2 bg-white text-dark mt-5"
@@ -424,7 +424,7 @@
 														<table class="table table-bordered">
 															<thead>
 																<tr>
-																
+
 																	<th>ISRN id</th>
 																	<th></th>
 																</tr>
