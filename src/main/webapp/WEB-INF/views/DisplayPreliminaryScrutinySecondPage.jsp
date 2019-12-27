@@ -1,10 +1,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page errorPage="ErrorPage.jsp" %>  
+<%@ page errorPage="ErrorPage.jsp"%>
 <%@page import="in.cdac.ecib.dto.*"%><%@page import="java.util.List"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="fmt"%>
 <%
-IssueRenewal issueRenewal = (IssueRenewal) session.getAttribute("issueRenewal");
+	IssueRenewal issueRenewal = (IssueRenewal) session.getAttribute("issueRenewal");
 %>
 <%
 	List<IssueRenewal> userList = (List<IssueRenewal>) request.getAttribute("listIssueRenewal");
@@ -21,7 +21,7 @@ IssueRenewal issueRenewal = (IssueRenewal) session.getAttribute("issueRenewal");
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>ECGC </title>
+<title>ECGC</title>
 
 <!-- Custom fonts for this template-->
 <link
@@ -101,8 +101,8 @@ IssueRenewal issueRenewal = (IssueRenewal) session.getAttribute("issueRenewal");
 				aria-expanded="true" aria-controls="collapseTwo"> <i
 					class="fas fa-fw fa-cog"></i> <span>Components</span>
 			</a>
-				<div id="collapseTwo" class="collapse"
-					aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Custom Components:</h6>
 						<a class="collapse-item" href="buttons.html">Buttons</a> <a
@@ -142,19 +142,19 @@ IssueRenewal issueRenewal = (IssueRenewal) session.getAttribute("issueRenewal");
 				<div id="collapsePages" class="collapse show"
 					aria-labelledby="headingPages" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						  <h6 class="collapse-header">Login Screens:</h6>
-             <a class="collapse-item" href="login.htm">Login</a> 
-<!--             <a class="collapse-item" href="register.html">Register</a> -->
-<!--             <a class="collapse-item" href="forgot-password.html">Forgot Password</a> -->
-            <div class="collapse-divider"></div>
-            
-            <a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a>
-            <a class="collapse-item" href="banklogin.htm">Bank Login</a>
-			<a class="collapse-item" href="ecgclogin.htm">ECGC Login</a>
-<!-- 			<a class="collapse-item" href="viewAllEventType">View Event Type</a> -->
-<!-- 			<a class="collapse-item" href="addContinentForm">Add Continent</a> -->
-<!--             <a class="collapse-item" href="viewAllContinent">View Continents</a> -->
-						
+						<h6 class="collapse-header">Login Screens:</h6>
+						<a class="collapse-item" href="login.htm">Login</a>
+						<!--             <a class="collapse-item" href="register.html">Register</a> -->
+						<!--             <a class="collapse-item" href="forgot-password.html">Forgot Password</a> -->
+						<div class="collapse-divider"></div>
+
+						<a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a>
+						<a class="collapse-item" href="banklogin.htm">Bank Login</a> <a
+							class="collapse-item" href="ecgclogin.htm">ECGC Login</a>
+						<!-- 			<a class="collapse-item" href="viewAllEventType">View Event Type</a> -->
+						<!-- 			<a class="collapse-item" href="addContinentForm">Add Continent</a> -->
+						<!--             <a class="collapse-item" href="viewAllContinent">View Continents</a> -->
+
 					</div>
 				</div></li>
 
@@ -388,7 +388,7 @@ IssueRenewal issueRenewal = (IssueRenewal) session.getAttribute("issueRenewal");
 					<!-- Page Heading -->
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">Add Continental</h1>
+						<h1 class="h3 mb-0 text-gray-800">ECIB</h1>
 					</div>
 
 
@@ -404,93 +404,239 @@ IssueRenewal issueRenewal = (IssueRenewal) session.getAttribute("issueRenewal");
 								<a href="#collapseCardExample" class="d-block card-header py-3"
 									data-toggle="collapse" role="button" aria-expanded="true"
 									aria-controls="collapseCardExample">
-									<h6 class="m-0 font-weight-bold text-primary">Issue Renewal</h6>
+									<h6 class="m-0 font-weight-bold text-primary">Issue
+										Renewal</h6>
 								</a>
 								<!-- Card Content - Collapse -->
 								<div class="collapse show" id="collapseCardExample">
 									<div class="card-body">
-										
-								
-										
+
+
+
 										<form:form method="get"
-			class="form-horizontal border border-dark p-3 mb-2 bg-white text-dark mt-5"
-			role="form" modelAttribute="issueRenewal"
-			action="DisplayPreliminaryScrutinySecondPage.htm">
+											class="form-horizontal border border-dark p-3 mb-2 bg-white text-dark mt-5"
+											role="form" modelAttribute="issueRenewal"
+											action="DisplayPreliminaryScrutinySecondPage.htm">
 
- <% 
-String proposalfrmid=(String) session.getAttribute("wt_isrn_proposal_frm_id"); 
-out.print("proposalfrmid "+ proposalfrmid);
-%> 
+											<div class="row">
 
-			<table class="table table-bordered">
-				<thead>
-					<tr>
-						<th>Annexure Name</th>
-						<th>Verify</th>
-						<th>Need Clarification</th>
-					</tr>
-				</thead>
+												<div class="col-sm-9">
+													<%
+														String proposalfrmid = (String) session.getAttribute("wt_isrn_proposal_frm_id");
+															out.print("Proposal Id:-" + proposalfrmid);
+													%>
+												</div>
+												<div class="col-sm-3">
 
-				<tbody>
+													<%
+														String str = (String) session.getAttribute("name");
+															out.print(str);
+													%>
 
-					<tr>
-						<td>${issueRenewal.isAnnex_statement_of_packing_attached()}</td>
-						<td>Yes<form:radiobutton
-								path="annex_statement_of_packing_attached"
-								value="Yes" /> No<form:radiobutton
-								path="annex_statement_of_packing_attached"
-								value="No" /></td>
-						<td><form:checkbox
-								value="annex_statement_of_packing_attached"
-								element="enable1" checked="checked"
-								path="annex_statement_of_packing_attached" />
-							<input id="exampleField1" name="exampleField1" type="text"
-							class="form-field__input" /></td>
-					</tr>
-					<tr>
-						<td>${issueRenewal.isAnnex_for_limit_sanction_attached()}</td>
-						<td>Yes<form:radiobutton path="annex_for_limit_sanction_attached"
-								value="Yes" /> No<form:radiobutton
-								path="annex_for_limit_sanction_attached" value="No" /></td>
-						<td><form:checkbox value="annex_for_limit_sanction_attached"
-								element="enable2" checked="checked"
-								path="annex_for_limit_sanction_attached" /> <input id="exampleField2"
-							name="exampleField1" type="text" class="form-field__input" /></td>
-					</tr>
-					<tr>
-						<td>${issueRenewal.isAnnex_of_stmnt_of_acc_covrd_undr_wt_with_claim_recovery_attchd()}</td>
-						<td>Yes<form:radiobutton
-								path="annex_of_stmnt_of_acc_covrd_undr_wt_with_claim_recovery_attchd" value="Yes" /> No<form:radiobutton
-								path="annex_of_stmnt_of_acc_covrd_undr_wt_with_claim_recovery_attchd" value="No" /></td>
-						<td><form:checkbox
-								value="annex_of_stmnt_of_acc_covrd_undr_wt_with_claim_recovery_attchd" element="enable3"
-								checked="checked" path="annex_of_stmnt_of_acc_covrd_undr_wt_with_claim_recovery_attchd" />
-							<input id="exampleField3" name="exampleField1" type="text"
-							class="form-field__input" /></td>
-					</tr>
-			</table>
-			<div class="align-self-center mx-auto">
-				<div class="row">
-					<div class="col-sm-3"></div>
-					<div class="col-sm-7">
+												</div>
+											</div>
 
-						<button onclick="Clarification();" class="btn btn-primary active">Send
-							For Clarification</button>
-							
-					<button onclick="VerificationOfAnnexure();" class="btn btn-primary active">Send
-							For Clarification</button>
-						
-						<a href="preliminaryScrutinyDone.htm" class="btn btn-primary active">PS Done</a>
-							 <a href="prep-priliminary-scrutiny.htm"
-							class="btn btn-primary active">Cancel</a>
-					</div>
-					<div class="col-sm-2"></div>
-				</div>
-			</div>
-		</form:form>
-										
-										
-										
+											<div class="form-group">
+												<label for="heading" class="col-sm-3 control-label"></label>
+												<div class="col-sm-9"></div>
+											</div>
+											<div class="form-group">
+												<label for="heading" class="col-sm-3 control-label"></label>
+												<div class="col-sm-9"></div>
+											</div>
+											<table class="table table-bordered">
+												<thead>
+													<tr>
+														<th>Annexure Name</th>
+														<th>Is upload</br> Yes/No
+														</th>
+														<th>Verify</th>
+														<th>Need Clarification</th>
+													</tr>
+												</thead>
+
+												<tbody>
+
+													<tr>
+														<td>Annex statement of packing</td>
+														<td>${issueRenewal.isAnnex_statement_of_packing_attached()}</td>
+														<td>Yes<form:radiobutton
+																path="annex_statement_of_packing_attached" value="Yes" />
+															No<form:radiobutton
+																path="annex_statement_of_packing_attached" value="No" /></td>
+														<td><form:checkbox
+																value="annex_statement_of_packing_attached"
+																element="enable1" checked="checked"
+																path="annex_statement_of_packing_attached" /> <input
+															id="exampleField1" name="exampleField1" type="text"
+															class="form-field__input" /></td>
+													</tr>
+													<tr>
+														<td>annex for limit sanction</td>
+														<td>${issueRenewal.isAnnex_for_limit_sanction_attached()}</td>
+														<td>Yes<form:radiobutton
+																path="annex_for_limit_sanction_attached" value="Yes" />
+															No <form:radiobutton
+																path="annex_for_limit_sanction_attached" value="No" />
+														</td>
+														<td><form:checkbox
+																value="annex_for_limit_sanction_attached"
+																element="enable2" checked="checked"
+																path="annex_for_limit_sanction_attached" /> <input
+															id="exampleField2" name="exampleField2" type="text"
+															class="form-field__input" /></td>
+													</tr>
+
+													<tr>
+														<td>annex of statement of acc covered</br> under wt with
+															claim recovery
+														</td>
+														<td>${issueRenewal.isAnnex_of_stmnt_of_acc_covrd_undr_wt_with_claim_recovery_attchd()}</td>
+														<td>Yes<form:radiobutton
+																path="annex_of_stmnt_of_acc_covrd_undr_wt_with_claim_recovery_attchd"
+																value="Yes" /> No<form:radiobutton
+																path="annex_of_stmnt_of_acc_covrd_undr_wt_with_claim_recovery_attchd"
+																value="No" /></td>
+														<td><form:checkbox
+																value="annex_of_stmnt_of_acc_covrd_undr_wt_with_claim_recovery_attchd"
+																element="enable3" checked="checked"
+																path="annex_of_stmnt_of_acc_covrd_undr_wt_with_claim_recovery_attchd" />
+															<input id="exampleField3" name="exampleField3"
+															type="text" class="form-field__input" /></td>
+													</tr>
+
+
+
+													<tr>
+														<td>annex of annual statement of account </br>covered
+															under wt wo
+														</td>
+														<td>${issueRenewal.isAnnex_of_annual_stmnt_of_acc_covered_under_wt_wo_attchd()}</td>
+														<td>Yes<form:radiobutton
+																path="annex_of_annual_stmnt_of_acc_covered_under_wt_wo_attchd"
+																value="Yes" /> No<form:radiobutton
+																path="annex_of_annual_stmnt_of_acc_covered_under_wt_wo_attchd"
+																value="No" /></td>
+														<td><form:checkbox
+																value="annex_of_annual_stmnt_of_acc_covered_under_wt_wo_attchd"
+																element="enable4" checked="checked"
+																path="annex_of_annual_stmnt_of_acc_covered_under_wt_wo_attchd" />
+															<input id="exampleField4" name="exampleField4"
+															type="text" class="form-field__input" /></td>
+													</tr>
+													<tr>
+														<td>annex of cdr acc</td>
+														<td>${issueRenewal.isAnnex_of_cdr_acc_attached()}</td>
+														<td>Yes<form:radiobutton
+																path="annex_of_cdr_acc_attached" value="Yes" /> No<form:radiobutton
+																path="annex_of_cdr_acc_attached" value="No" /></td>
+														<td><form:checkbox value="annex_of_cdr_acc_attached"
+																element="enable5" checked="checked"
+																path="annex_of_cdr_acc_attached" /> <input
+															id="exampleField5" name="exampleField5" type="text"
+															class="form-field__input" /></td>
+													</tr>
+													<tr>
+														<td>annex of shipment export credit limit sanctioned</td>
+														<td>${issueRenewal.isAnnex_of_shipment_export_credit_limit_sanctioned_attached()}</td>
+														<td>Yes<form:radiobutton
+																path="annex_of_shipment_export_credit_limit_sanctioned_attached"
+																value="Yes" /> No<form:radiobutton
+																path="annex_of_shipment_export_credit_limit_sanctioned_attached"
+																value="No" /></td>
+														<td><form:checkbox
+																value="annex_of_shipment_export_credit_limit_sanctioned_attached"
+																element="enable6" checked="checked"
+																path="annex_of_shipment_export_credit_limit_sanctioned_attached" />
+															<input id="exampleField6" name="exampleField6"
+															type="text" class="form-field__input" /></td>
+													</tr>
+													<tr>
+														<td>annex of annual statement of account in default</td>
+														<td>${issueRenewal.isAnnex_of_annual_statement_of_acc_in_default_attached()}</td>
+														<td>Yes<form:radiobutton
+																path="annex_of_annual_statement_of_acc_in_default_attached"
+																value="Yes" /> No<form:radiobutton
+																path="annex_of_annual_statement_of_acc_in_default_attached"
+																value="No" /></td>
+														<td><form:checkbox
+																value="annex_of_annual_statement_of_acc_in_default_attached"
+																element="enable7" checked="checked"
+																path="annex_of_annual_statement_of_acc_in_default_attached" />
+															<input id="exampleField7" name="exampleField7"
+															type="text" class="form-field__input" /></td>
+													</tr>
+													<tr>
+														<td>annex of annual statement of</br> account covered
+															under ecib
+														</td>
+														<td>${issueRenewal.isAnnex_of_annl_stmnt_of_acc_covrd_undr_ecib_or_postn_of_clm_paid()}</td>
+														<td>Yes<form:radiobutton
+																path="annex_of_annl_stmnt_of_acc_covrd_undr_ecib_or_postn_of_clm_paid"
+																value="Yes" /> No<form:radiobutton
+																path="annex_of_annl_stmnt_of_acc_covrd_undr_ecib_or_postn_of_clm_paid"
+																value="No" /></td>
+														<td><form:checkbox
+																value="annex_of_annl_stmnt_of_acc_covrd_undr_ecib_or_postn_of_clm_paid"
+																element="enable8" checked="checked"
+																path="annex_of_annl_stmnt_of_acc_covrd_undr_ecib_or_postn_of_clm_paid" />
+															<input id="exampleField8" name="exampleField8"
+															type="text" class="form-field__input" /></td>
+													</tr>
+													<tr>
+														<td>annex of annual statment of account in default</td>
+														<td>${issueRenewal.isAnnex_of_annual_statment_of_acc_in_default_attached()}</td>
+														<td>Yes<form:radiobutton
+																path="annex_of_annual_statment_of_acc_in_default_attached"
+																value="Yes" /> No<form:radiobutton
+																path="annex_of_annual_statment_of_acc_in_default_attached"
+																value="No" /></td>
+														<td><form:checkbox
+																value="annex_of_annual_statment_of_acc_in_default_attached"
+																element="enable9" checked="checked"
+																path="annex_of_annual_statment_of_acc_in_default_attached" />
+															<input id="exampleField9" name="exampleField9"
+															type="text" class="form-field__input" /></td>
+													</tr>
+													<tr>
+														<td>annex for exporter financial statement analysis</td>
+														<td>${issueRenewal.isAnnex_for_exporter_financial_statement_analysis_attached()}</td>
+														<td>Yes<form:radiobutton
+																path="annex_for_exporter_financial_statement_analysis_attached"
+																value="Yes" /> No<form:radiobutton
+																path="annex_for_exporter_financial_statement_analysis_attached"
+																value="No" /></td>
+														<td><form:checkbox
+																value="annex_for_exporter_financial_statement_analysis_attached"
+																element="enable10" checked="checked"
+																path="annex_for_exporter_financial_statement_analysis_attached" />
+															<input id="exampleField10" name="exampleField10"
+															type="text" class="form-field__input" /></td>
+													</tr>
+											</table>
+											<div class="align-self-center mx-auto">
+												<div class="row">
+													<div class="col-sm-3"></div>
+													<div class="col-sm-7">
+
+
+
+														<button onclick="VerificationOfAnnexure();"
+															class="btn btn-primary active">Send For
+															Clarification</button>
+
+														<a href="preliminaryScrutinyDone.htm"
+															class="btn btn-primary active">PS Done</a> <a
+															href="prep-priliminary-scrutiny.htm"
+															class="btn btn-primary active">Cancel</a>
+													</div>
+													<div class="col-sm-2"></div>
+												</div>
+											</div>
+										</form:form>
+
+
+
 									</div>
 								</div>
 							</div>
@@ -563,62 +709,205 @@ out.print("proposalfrmid "+ proposalfrmid);
 					<!-- Custom scripts for all pages-->
 					<script
 						src="${pageContext.request.contextPath}/resources/js/sb-admin-2.min.js"></script>
-						
-						<script type="text/javascript">
+
+					<script type="text/javascript">
+						$("input[name='annex_statement_of_packing_attached']")
+								.click(
+										function() {
+											if ($(this).is(':checked')) {
+												$("#exampleField1").attr(
+														"disabled", false);
+											} else if ($(this).not(':checked')) {
+												var ok = confirm('Are you sure you want to remove clarification?');
+												if (ok) {
+													var remove = '';
+													$("#exampleField1").val('');
+													$("#exampleField1").attr(
+															"disabled", true);
+												}
+											}
+										});
+					</script>
+
+					<script type="text/javascript">
+						$("input[name='annex_for_limit_sanction_attached']")
+								.click(
+										function() {
+											if ($(this).is(':checked')) {
+												$("#exampleField2").attr(
+														"disabled", false);
+											} else if ($(this).not(':checked')) {
+												var ok = confirm('Are you sure you want to remove clarification?');
+												if (ok) {
+													var remove = '';
+													$("#exampleField2").val('');
+													$("#exampleField2").attr(
+															"disabled", true);
+												}
+											}
+										});
+					</script>
+
+					<script type="text/javascript">
+						$(
+								"input[name='annex_of_stmnt_of_acc_covrd_undr_wt_with_claim_recovery_attchd']")
+								.click(
+										function() {
+											if ($(this).is(':checked')) {
+												$("#exampleField3").attr(
+														"disabled", false);
+											} else if ($(this).not(':checked')) {
+												var ok = confirm('Are you sure you want to remove clarification?');
+												if (ok) {
+													var remove = '';
+													$("#exampleField3").val('');
+													$("#exampleField3").attr(
+															"disabled", true);
+												}
+											}
+										});
+					</script>
+
+					<script type="text/javascript">
+						$(
+								"input[name='annex_of_annual_stmnt_of_acc_covered_under_wt_wo_attchd']")
+								.click(
+										function() {
+											if ($(this).is(':checked')) {
+												$("#exampleField4").attr(
+														"disabled", false);
+											} else if ($(this).not(':checked')) {
+												var ok = confirm('Are you sure you want to remove clarification?');
+												if (ok) {
+													var remove = '';
+													$("#exampleField4").val('');
+													$("#exampleField4").attr(
+															"disabled", true);
+												}
+											}
+										});
+					</script>
+
+					<script type="text/javascript">
+						$("input[name='annex_of_cdr_acc_attached']")
+								.click(
+										function() {
+											if ($(this).is(':checked')) {
+												$("#exampleField5").attr(
+														"disabled", false);
+											} else if ($(this).not(':checked')) {
+												var ok = confirm('Are you sure you want to remove clarification?');
+												if (ok) {
+													var remove = '';
+													$("#exampleField5").val('');
+													$("#exampleField5").attr(
+															"disabled", true);
+												}
+											}
+										});
+					</script>
+
+
+					<script type="text/javascript">
+						$(
+								"input[name='annex_of_shipment_export_credit_limit_sanctioned_attached']")
+								.click(
+										function() {
+											if ($(this).is(':checked')) {
+												$("#exampleField6").attr(
+														"disabled", false);
+											} else if ($(this).not(':checked')) {
+												var ok = confirm('Are you sure you want to remove clarification?');
+												if (ok) {
+													var remove = '';
+													$("#exampleField6").val('');
+													$("#exampleField6").attr(
+															"disabled", true);
+												}
+											}
+										});
+					</script>
+
+
+					<script type="text/javascript">
+						$(
+								"input[name='annex_of_annual_statement_of_acc_in_default_attached']")
+								.click(
+										function() {
+											if ($(this).is(':checked')) {
+												$("#exampleField7").attr(
+														"disabled", false);
+											} else if ($(this).not(':checked')) {
+												var ok = confirm('Are you sure you want to remove clarification?');
+												if (ok) {
+													var remove = '';
+													$("#exampleField7").val('');
+													$("#exampleField7").attr(
+															"disabled", true);
+												}
+											}
+										});
+					</script>
+
+					<script type="text/javascript">
+						$(
+								"input[name='annex_of_annl_stmnt_of_acc_covrd_undr_ecib_or_postn_of_clm_paid']")
+								.click(
+										function() {
+											if ($(this).is(':checked')) {
+												$("#exampleField8").attr(
+														"disabled", false);
+											} else if ($(this).not(':checked')) {
+												var ok = confirm('Are you sure you want to remove clarification?');
+												if (ok) {
+													var remove = '';
+													$("#exampleField8").val('');
+													$("#exampleField8").attr(
+															"disabled", true);
+												}
+											}
+										});
+					</script>
+
+					<script type="text/javascript">
 		$(
-				"input[name='annex_statement_of_packing_attached']")
+				"input[name='annex_of_annual_statment_of_acc_in_default_attached']")
 				.click(
 						function() {
 							if ($(this).is(':checked')) {
-								$("#exampleField1").attr("disabled", false);
+								$("#exampleField9").attr("disabled", false);
 							} else if ($(this).not(':checked')) {
 								var ok = confirm('Are you sure you want to remove clarification?');
 								if (ok) {
 									var remove = '';
-									$("#exampleField1").val('');
-									$("#exampleField1").attr("disabled", true);
+									$("#exampleField9").val('');
+									$("#exampleField9").attr("disabled", true);
 								}
 							}
 						});
 	</script>
 
-	<script type="text/javascript">
+					<script type="text/javascript">
 		$(
-				"input[name='annex_for_limit_sanction_attached']")
+				"input[name='annex_for_exporter_financial_statement_analysis_attached']")
 				.click(
 						function() {
 							if ($(this).is(':checked')) {
-								$("#exampleField2").attr("disabled", false);
+								$("#exampleField10").attr("disabled", false);
 							} else if ($(this).not(':checked')) {
 								var ok = confirm('Are you sure you want to remove clarification?');
 								if (ok) {
 									var remove = '';
-									$("#exampleField2").val('');
-									$("#exampleField2").attr("disabled", true);
+									$("#exampleField10").val('');
+									$("#exampleField10").attr("disabled", true);
 								}
 							}
 						});
 	</script>
 
-	<script type="text/javascript">
-		$(
-				"input[name='annex_of_stmnt_of_acc_covrd_undr_wt_with_claim_recovery_attchd']")
-				.click(
-						function() {
-							if ($(this).is(':checked')) {
-								$("#exampleField3").attr("disabled", false);
-							} else if ($(this).not(':checked')) {
-								var ok = confirm('Are you sure you want to remove clarification?');
-								if (ok) {
-									var remove = '';
-									$("#exampleField3").val('');
-									$("#exampleField3").attr("disabled", true);
-								}
-							}
-						});
-	</script>
 
-	<script type="text/javascript">
+
+					<script type="text/javascript">
 	
 	 function Clarification(){
          alert("Clarification send!!");
@@ -629,8 +918,8 @@ out.print("proposalfrmid "+ proposalfrmid);
      }
 		
 	</script>
-	
-	<script type="text/javascript">
+
+					<script type="text/javascript">
 	 function VerificationOfAnnexure(){
 		 alert("Annexure Verificed!!");
          $.ajax({  
@@ -639,7 +928,6 @@ out.print("proposalfrmid "+ proposalfrmid);
          });
      }
 	</script>
-	
 </body>
 
 </html>

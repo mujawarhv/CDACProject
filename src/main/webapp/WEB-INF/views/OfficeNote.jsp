@@ -390,7 +390,7 @@ IssueRenewal issueRenewal = (IssueRenewal) session.getAttribute("issueRenewal");
 					<!-- Page Heading -->
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">Add Continental</h1>
+						<h1 class="h3 mb-0 text-gray-800">ECIB</h1>
 					</div>
 
 
@@ -430,6 +430,27 @@ IssueRenewal issueRenewal = (IssueRenewal) session.getAttribute("issueRenewal");
 											class="form-horizontal border border-dark p-3 mb-2 bg-white text-dark mt-5"
 											role="form" modelAttribute="issueRenewal">
 
+	<div class="row">
+
+												<div class="col-sm-9">
+													<%
+														String proposalfrmid = (String) session.getAttribute("wt_isrn_proposal_frm_id");
+															out.print("Proposal Id:-" + proposalfrmid);
+													%>
+												</div>
+												<div class="col-sm-3">
+
+													<%
+														String str = (String) session.getAttribute("name");
+															out.print(str);
+													%>
+
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="heading" class="col-sm-3 control-label"></label>
+												<div class="col-sm-9"></div>
+											</div>
 
 											<div class="form-group">
 												<div class="row">

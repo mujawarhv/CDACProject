@@ -21,7 +21,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>ECGC </title>
+<title>ECGC</title>
 
 <!-- Custom fonts for this template-->
 <link
@@ -143,20 +143,20 @@
 					aria-labelledby="headingPages" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Login Screens:</h6>
-						    <a class="collapse-item" href="login.htm">Login</a>
-<!-- 						      <a -->
-<!-- 							class="collapse-item" href="register.html">Register</a> <a -->
-<!-- 							class="collapse-item" href="forgot-password.html">Forgot -->
-<!-- 							Password</a> -->
+						<a class="collapse-item" href="login.htm">Login</a>
+						<!-- 						      <a -->
+						<!-- 							class="collapse-item" href="register.html">Register</a> <a -->
+						<!-- 							class="collapse-item" href="forgot-password.html">Forgot -->
+						<!-- 							Password</a> -->
 						<div class="collapse-divider"></div>
 
-						 <a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a> <a
-							class="collapse-item" href="banklogin.htm">Bank Login</a> <a
+						<a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a>
+						<a class="collapse-item" href="banklogin.htm">Bank Login</a> <a
 							class="collapse-item" href="ecgclogin.htm">ECGC Login</a>
 
-<!-- 						<h6 class="collapse-header">Other Pages:</h6> -->
-<!-- 						<a class="collapse-item" href="404.html">404 Page</a> <aofficenotegeneration.htm -->
-<!-- 							class="collapse-item" href="blank.html">Blank Page</a> -->
+						<!-- 						<h6 class="collapse-header">Other Pages:</h6> -->
+						<!-- 						<a class="collapse-item" href="404.html">404 Page</a> <aofficenotegeneration.htm -->
+						<!-- 							class="collapse-item" href="blank.html">Blank Page</a> -->
 					</div>
 				</div></li>
 
@@ -390,7 +390,7 @@
 					<!-- Page Heading -->
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">Add Continental</h1>
+						<h1 class="h3 mb-0 text-gray-800">ECIB</h1>
 					</div>
 
 
@@ -418,6 +418,34 @@
 										<form:form method="post" action="officenotegeneration.htm"
 											class="form-horizontal border border-dark p-3 mb-2 bg-white text-dark mt-5"
 											role="form" modelAttribute="issueRenewal">
+											<div class="row">
+
+												<div class="col-sm-9">
+													<%
+														String proposalfrmid = (String) session.getAttribute("wt_isrn_proposal_frm_id");
+															out.print("Proposal Id:-" + proposalfrmid);
+													%>
+												</div>
+												<div class="col-sm-3">
+
+													<%
+														String str = (String) session.getAttribute("name");
+															out.print(str);
+													%>
+
+												</div>
+											</div>
+
+											<div class="form-group">
+												<div class="row">
+													<div class="col-sm-5"></div>
+
+													<div class="col-sm-4">
+														<label for="heading" class="col-sm-3 control-label"></label>
+													</div>
+													<div class="col-sm-3"></div>
+												</div>
+											</div>
 
 
 											<div class="form-group">
@@ -430,12 +458,7 @@
 													<div class="col-sm-4">
 														<label for="heading" class="col-sm-3 control-label"></label>
 													</div>
-													<div class="col-sm-3">
-<!-- 														<a href="javascript:genPDF()" -->
-<!-- 															class="btn btn-danger active">Generate PDF</a> -->
-													
-
-													</div>
+													<div class="col-sm-3"></div>
 												</div>
 											</div>
 
@@ -446,78 +469,39 @@
 													<div class="col-sm-12">
 
 														<label for="heading" class="col-sm-3 control-label">Inward
-															number</label>${issueRenewal.inward_id} </br>
+															number</label>${issueRenewal.inward_id} </br> <label for="heading"
+															class="col-sm-3 control-label">Inward item number</label>2
+														</br> <label for="heading" class="col-sm-3 control-label">Inward
+															date</label>27/12/2019 </br> <label for="heading"
+															class="col-sm-3 control-label">ECGC branch</label>${issueRenewal.ecgc_branch_code}</br>
 
-													
-														<label for="heading" class="col-sm-3 control-label">Inward
-															item number</label> </br>
-													
 
-												
 
-														<label for="heading" class="col-sm-3 control-label">Inward
-															date</label> </br>
-
-													
-
-														<label for="heading" class="col-sm-3 control-label">ECGC
-															branch</label>${issueRenewal.ecgc_branch_code}</br>
-
-														
-												
 
 														<label for="heading" class="col-sm-3 control-label">Bank
-															code</label> ${issueRenewal.bank_code }</br>
-
-														
-
-														<label for="heading" class="col-sm-3 control-label">Bank
-															name</label>${issueRenewal.bank_name } </br>
-
-													
-											
-
-														<label for="heading" class="col-sm-3 control-label">Accounts
-															good as on date</label> </br>
-
-														
-
-														<label for="heading" class="col-sm-3 control-label">Total
-															outstanding amount as on date</label> </br>
-
-														
+															code</label> ${issueRenewal.bank_code }</br> <label for="heading"
+															class="col-sm-3 control-label">Bank name</label>${issueRenewal.bank_name }
+														</br> <label for="heading" class="col-sm-3 control-label">Accounts
+															good as on date</label>1500 </br> <label for="heading"
+															class="col-sm-3 control-label">Total outstanding
+															amount as on date</label>15000 </br> <label for="heading"
+															class="col-sm-3 control-label">Anticipated total
+															outstanding amount for coming year</label>${issueRenewal.anticipated_outstanding_in_current_year }</br>
 
 
-														<label for="heading" class="col-sm-3 control-label">Anticipated
-															total outstanding amount for coming year</label>${issueRenewal.anticipated_outstanding_in_current_year }</br>
+														<label for="heading" class="col-sm-3 control-label">Stamped/signed</label>yes
 
 
-														<label for="heading" class="col-sm-3 control-label">Stamped/signed</label>
-
-														
- </br>
-													
-
-														<label for="heading" class="col-sm-3 control-label">Proposal
-															date</label> </br>
-
-														
-
-														<label for="heading" class="col-sm-3 control-label">Annexure
-															2(i) attached</label>${issueRenewal.annex_of_cdr_acc_attached ? 'Yes' : 'No'} </br>
-
-
-													
-														<label for="heading" class="col-sm-3 control-label">Annexure
-															2(ii) attached</label>${issueRenewal.annex_of_cdr_acc_attached ? 'Yes' : 'No'} </br>
-
-														<label
-															for="heading" class="col-sm-3 control-label">Annexure
-															3 attached</label>${issueRenewal.annex_of_cdr_acc_attached ? 'Yes' : 'No'} </br>
-
-													
-
-														<label for="heading" class="col-sm-3 control-label">Remarks</label> </br>
+														</br> <label for="heading" class="col-sm-3 control-label">Proposal
+															date</label>27/12/2019 </br> <label for="heading"
+															class="col-sm-3 control-label">Annexure 2(i)
+															attached</label>${issueRenewal.annex_of_cdr_acc_attached ? 'Yes' : 'No'}
+														</br> <label for="heading" class="col-sm-3 control-label">Annexure
+															2(ii) attached</label>${issueRenewal.annex_of_cdr_acc_attached ? 'Yes' : 'No'}
+														</br> <label for="heading" class="col-sm-3 control-label">Annexure
+															3 attached</label>${issueRenewal.annex_of_cdr_acc_attached ? 'Yes' : 'No'}
+														</br> <label for="heading" class="col-sm-3 control-label">Remarks</label>ECGC
+														</br>
 
 
 													</div>
@@ -543,17 +527,12 @@
 															</thead>
 															<tbody>
 																<tr>
-																<td><label
-															for="heading" class="control-label">2525</label></td>
-															<td><label
-															for="heading" class="control-label">725</label></td>
-															<td><label
-															for="heading" class="control-label">785725</label></td>
-															<td><label
-															for="heading" class="control-label">240</label></td>
-															<td><label
-															for="heading" class="control-label">58757</label></td>
-																
+																	<td><label for="heading" class="control-label">2525</label></td>
+																	<td><label for="heading" class="control-label">725</label></td>
+																	<td><label for="heading" class="control-label">785725</label></td>
+																	<td><label for="heading" class="control-label">240</label></td>
+																	<td><label for="heading" class="control-label">58757</label></td>
+
 																</tr>
 															</tbody>
 														</table>
@@ -571,7 +550,12 @@
 														<table class="table table-bordered">
 															<thead>
 																<label><b>PSU Details</b></label>
-															<thead>
+
+
+
+
+																<thead>
+															
 															<thead>
 																<tr>
 																	<th>No of PSU</th>
@@ -583,16 +567,11 @@
 															</thead>
 															<tbody>
 															<tr>
-																<td><label
-															for="heading" class="control-label">2525</label></td>
-															<td><label
-															for="heading" class="control-label">725</label></td>
-															<td><label
-															for="heading" class="control-label">785725</label></td>
-															<td><label
-															for="heading" class="control-label">240</label></td>
-															<td><label
-															for="heading" class="control-label">58757</label></td>
+																<td><label for="heading" class="control-label">2525</label></td>
+															<td><label for="heading" class="control-label">725</label></td>
+															<td><label for="heading" class="control-label">785725</label></td>
+															<td><label for="heading" class="control-label">240</label></td>
+															<td><label for="heading" class="control-label">58757</label></td>
 																
 																</tr>
 															</tbody>
@@ -610,7 +589,9 @@
 														<table class="table table-bordered">
 															<thead>
 																<label><b>SSI details</b></label>
+															
 															<thead>
+															
 															<thead>
 																<tr>
 																	<th>No of SSI units</th>
@@ -622,16 +603,11 @@
 															</thead>
 															<tbody>
 															<tr>
-																<td><label
-															for="heading" class="control-label">2525</label></td>
-															<td><label
-															for="heading" class="control-label">725</label></td>
-															<td><label
-															for="heading" class="control-label">785725</label></td>
-															<td><label
-															for="heading" class="control-label">240</label></td>
-															<td><label
-															for="heading" class="control-label">58757</label></td>
+																<td><label for="heading" class="control-label">2525</label></td>
+															<td><label for="heading" class="control-label">725</label></td>
+															<td><label for="heading" class="control-label">785725</label></td>
+															<td><label for="heading" class="control-label">240</label></td>
+															<td><label for="heading" class="control-label">58757</label></td>
 																
 																</tr>
 															</tbody>
@@ -648,7 +624,9 @@
 															<thead>
 																<label><b>Past experience with bank branch
 																		(for 3 years)</b></label>
+															
 															<thead>
+															
 															<thead>
 																<tr>
 																	<th>All accounts</th>
@@ -660,16 +638,11 @@
 															</thead>
 															<tbody>
 																<tr>
-																<td><label
-															for="heading" class="control-label">2525</label></td>
-															<td><label
-															for="heading" class="control-label">725</label></td>
-															<td><label
-															for="heading" class="control-label">785725</label></td>
-															<td><label
-															for="heading" class="control-label">240</label></td>
-															<td><label
-															for="heading" class="control-label">58757</label></td>
+																<td><label for="heading" class="control-label">2525</label></td>
+															<td><label for="heading" class="control-label">725</label></td>
+															<td><label for="heading" class="control-label">785725</label></td>
+															<td><label for="heading" class="control-label">240</label></td>
+															<td><label for="heading" class="control-label">58757</label></td>
 																
 																</tr>
 															</tbody>
@@ -686,7 +659,9 @@
 															<thead>
 																<label><b>Past experience with bank branch
 																		(for 3 years)</b></label>
+															
 															<thead>
+															
 															<thead>
 																<tr>
 																	<th>Discretionary limit</th>
@@ -698,16 +673,11 @@
 															</thead>
 															<tbody>
 																<tr>
-																<td><label
-															for="heading" class="control-label">2525</label></td>
-															<td><label
-															for="heading" class="control-label">725</label></td>
-															<td><label
-															for="heading" class="control-label">785725</label></td>
-															<td><label
-															for="heading" class="control-label">240</label></td>
-															<td><label
-															for="heading" class="control-label">58757</label></td>
+																<td><label for="heading" class="control-label">2525</label></td>
+															<td><label for="heading" class="control-label">725</label></td>
+															<td><label for="heading" class="control-label">785725</label></td>
+															<td><label for="heading" class="control-label">240</label></td>
+															<td><label for="heading" class="control-label">58757</label></td>
 																
 																</tr>
 															</tbody>
@@ -724,7 +694,9 @@
 															<thead>
 																<label><b>Past experience with bank branch
 																		(for 3 years)</b></label>
+															
 															<thead>
+															
 															<thead>
 																<tr>
 																	<th>Number of defaults reported</th>
@@ -736,16 +708,11 @@
 															</thead>
 															<tbody>
 															<tr>
-																<td><label
-															for="heading" class="control-label">2525</label></td>
-															<td><label
-															for="heading" class="control-label">725</label></td>
-															<td><label
-															for="heading" class="control-label">785725</label></td>
-															<td><label
-															for="heading" class="control-label">240</label></td>
-															<td><label
-															for="heading" class="control-label">58757</label></td>
+																<td><label for="heading" class="control-label">2525</label></td>
+															<td><label for="heading" class="control-label">725</label></td>
+															<td><label for="heading" class="control-label">785725</label></td>
+															<td><label for="heading" class="control-label">240</label></td>
+															<td><label for="heading" class="control-label">58757</label></td>
 																
 																</tr>
 															</tbody>
@@ -761,7 +728,9 @@
 															<thead>
 																<label><b>Past experience with bank branch
 																		(for 3 years)</b></label>
+															
 															<thead>
+															
 															<thead>
 																<tr>
 																	<th>Risk value</th>
@@ -773,16 +742,11 @@
 															</thead>
 															<tbody>
 																<tr>
-																<td><label
-															for="heading" class="control-label">2525</label></td>
-															<td><label
-															for="heading" class="control-label">725</label></td>
-															<td><label
-															for="heading" class="control-label">785725</label></td>
-															<td><label
-															for="heading" class="control-label">240</label></td>
-															<td><label
-															for="heading" class="control-label">58757</label></td>
+																<td><label for="heading" class="control-label">2525</label></td>
+															<td><label for="heading" class="control-label">725</label></td>
+															<td><label for="heading" class="control-label">785725</label></td>
+															<td><label for="heading" class="control-label">240</label></td>
+															<td><label for="heading" class="control-label">58757</label></td>
 																
 																</tr>
 															</tbody>
@@ -800,7 +764,9 @@
 															<thead>
 																<label><b>Past experience with bank branch
 																		(for 3 years)</b></label>
+															
 															<thead>
+															
 															<thead>
 																<tr>
 
@@ -814,16 +780,11 @@
 															</thead>
 															<tbody>
 																<tr>
-																<td><label
-															for="heading" class="control-label">2525</label></td>
-															<td><label
-															for="heading" class="control-label">725</label></td>
-															<td><label
-															for="heading" class="control-label">785725</label></td>
-															<td><label
-															for="heading" class="control-label">240</label></td>
-															<td><label
-															for="heading" class="control-label">58757</label></td>
+																<td><label for="heading" class="control-label">2525</label></td>
+															<td><label for="heading" class="control-label">725</label></td>
+															<td><label for="heading" class="control-label">785725</label></td>
+															<td><label for="heading" class="control-label">240</label></td>
+															<td><label for="heading" class="control-label">58757</label></td>
 																
 																</tr>
 															</tbody>
@@ -840,7 +801,8 @@
 														<label for="heading" class="col-sm-3 control-label">Generated
 															BY</label><br> <label for="heading"
 															class="col-sm-3 control-label">Date:-</label><br>
-															<input type="submit" class="btn btn-danger" value="Generate OfficeNote" onclick="window.print()">
+															<input type="submit" class="btn btn-danger"
+															value="Generate OfficeNote" onclick="window.print()">
 																<a href="cancelPreliminaryScrutinypage.htm"
 															class="btn btn-danger active form-actions">Cancel</a>
 													</div>
@@ -868,11 +830,8 @@
 						<div class="col-lg-12">
 
 							<!-- Dropdown Card Example -->
-
-
-
-							<!-- Footer -->
-							<footer class="sticky-footer bg-white">
+						<!-- Footer -->
+																<footer class="sticky-footer bg-white">
 								<div class="container my-auto">
 									<div class="copyright text-center my-auto">
 										<span>Copyright &copy; Your Website 2019</span>
@@ -881,7 +840,8 @@
 							</footer>
 							<!-- End of Footer -->
 
-						</div>
+						
+															</div>
 						<!-- End of Content Wrapper -->
 
 					</div>

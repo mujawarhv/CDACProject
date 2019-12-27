@@ -445,6 +445,9 @@ out.print("WT_ISRN_ID:- "+ proposalfrmid);
 
 															&nbsp; &nbsp; <input type="submit" value="Add Recommend"
 																class="btn btn-success active" />
+																
+															&nbsp; &nbsp; <a href="submitrecommedation.htm"
+														class="btn btn-danger"><center>Submit Recommedation</center></a></td>
 														</div>
 													</div>
 												</div>

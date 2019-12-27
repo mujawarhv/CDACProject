@@ -1,5 +1,6 @@
 package in.cdac.ecib.service;
 
+import java.sql.Date;
 import java.util.List;
 import in.cdac.ecib.dto.IssueRenewal;
 import in.cdac.ecib.dto.User;
@@ -70,7 +71,7 @@ public interface IssueRenewalServ {
 	public IssueRenewal getDetailsOfDop(String isrn_id);
 
 
-	public void dopDone(String decision, String remarks, String reason, String start_date, String expiry_date,
+	public void dopDone(String decision, String remarks, String reason, Date start_date, Date expiry_date,
 			String ml, String dl, String set_limit, IssueRenewal issueRenewal);
 
 }

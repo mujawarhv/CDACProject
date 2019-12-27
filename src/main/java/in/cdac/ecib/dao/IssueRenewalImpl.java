@@ -3,10 +3,7 @@ package in.cdac.ecib.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.TimeZone;
-
+import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -289,9 +286,9 @@ public class IssueRenewalImpl implements IssueRenewalDao {
 	@Override
 	public List<String> getListOfOfficeNoteDone() {
 
-		List<String> list = jdbcTemplate.query(
-				"SELECT wt_isrn_id FROM wt_isrn WHERE wt_isrn_id IN (select wt_isrn_id from wt_isrn_office_note)",
-				new BeanPropertyRowMapper<String>(String.class));
+		String sql = "select wt_isrn_proposal_frm_id from wt_isrn_proposal_frm where wt_isrn_proposal_frm_id IN(select wt_isrn_id from wt_isrn WHERE wt_isrn_id IN (select wt_isrn_id from wt_isrn_office_note where wt_isrn_id NOT IN (Select wt_isrn_id from wt_isrn_decision)))";
+		List<String> list = jdbcTemplate.query(sql,new BeanPropertyRowMapper<String>(String.class));
+		System.out.println(list.toString());
 		return list;
 	}
 
@@ -320,16 +317,16 @@ public class IssueRenewalImpl implements IssueRenewalDao {
 		Date date = new Date();
 		sd.setTimeZone(TimeZone.getTimeZone("IST"));
 
-		String sql = "insert into recommendations(employee_code, recommendation_line, recommendation_date, recommendation_id, proposal_number) values('343521','"
+		String sql = "insert into recommendations(employee_code, recommendation_line, recommendation_date, recommendation_id, wt_isrn_id) values('343521','"
 				+ recommendation_line + "','" + sd.format(date) + "','" + recommend_Id + "','" + wt_isrn_id + "')";
 		jdbcTemplate.update(sql);
 	}
+	
 
 	@Override
 	public List<String> showRecommedationMessage(String wt_isrn_proposal_frm_id) {
 		System.out.println(wt_isrn_proposal_frm_id);
-		String sql = "select recommendation_line from recommendations where proposal_number=?";
-		System.out.println(sql);
+		String sql = "select recommendation_line from recommendations where wt_isrn_id=?";
 		List<String> data = jdbcTemplate.query(sql, new Object[] { wt_isrn_proposal_frm_id }, new RowMapper<String>() {
 			public String mapRow(ResultSet rs, int rowNum) throws SQLException {
 				return rs.getString(1);
@@ -337,10 +334,11 @@ public class IssueRenewalImpl implements IssueRenewalDao {
 		});
 		return data;
 	}
+	
 
 	@Override
 	public List<String> getListOfRecommedationDone() {
-		String sql = "select DISTINCT(proposal_number) from recommendations;";
+		String sql = "select DISTINCT(wt_isrn_id) from recommendations where wt_isrn_id NOT IN(Select wt_isrn_id from wt_isrn_decision);";
 
 		List<String> data = jdbcTemplate.query(sql, new Object[] {}, new RowMapper<String>() {
 			public String mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -349,6 +347,7 @@ public class IssueRenewalImpl implements IssueRenewalDao {
 		});
 		return data;
 	}
+	
 
 	@Override
 	public IssueRenewal getDetailsOfDop(String isrn_id) {
@@ -361,19 +360,19 @@ public class IssueRenewalImpl implements IssueRenewalDao {
 		
 		return issueRenewal;
 	}
+	
 
 	@Override
-	public void insertdop(String decision, String remarks, String reason, String start_date, String expiry_date,
+	public void insertdop(String decision, String remarks, String reason, java.sql.Date start_date, java.sql.Date expiry_date,
 			String ml, String dl, String set_limit, IssueRenewal issueRenewal) {
 		
-		SimpleDateFormat sd = new SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z");
-		Date date = new Date();
-		sd.setTimeZone(TimeZone.getTimeZone("IST"));
-		
+	
 		String sql = "insert into wt_isrn_decision (wt_isrn_decision_id, wt_isrn_id, employee_code, decision, remarks, reason, decision_date, start_date, expiry_date, ml, dl, set_limit)"
-				+ " values ('1','"+issueRenewal.getWt_isrn_proposal_frm_id()+"','"+issueRenewal.getEmployee_code() + "','"+decision+"','"+remarks+"','"+sd.format(date)+"','"+start_date+"','"+expiry_date+"','"+ml+"','"+dl+"','"+set_limit+"')";
+				+ " values ('1','"+issueRenewal.getWt_isrn_proposal_frm_id()+"','"+issueRenewal.getEmployee_code() + "','"+decision+"','"+remarks+"','"+reason+"','"+java.time.LocalDate.now()+"','"+start_date+"','"+expiry_date+"','"+ml+"','"+dl+"','"+set_limit+"')";
 		
 		jdbcTemplate.update(sql);
 	}
+
+	
 
 }

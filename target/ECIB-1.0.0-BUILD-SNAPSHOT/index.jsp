@@ -166,7 +166,7 @@
             <a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a>
             <a class="collapse-item" href="banklogin.htm">Bank Login</a>
 			<a class="collapse-item" href="ecgclogin.htm">ECGC Login</a>
-<!-- 			<a class="collapse-item" href="viewAllEventType">View Event Type</a> -->
+			<a class="collapse-item" href="dop.htm">Decision</a> 
 <!-- 			<a class="collapse-item" href="addContinentForm">Add Continent</a> -->
 <!--             <a class="collapse-item" href="viewAllContinent">View Continents</a> -->
            

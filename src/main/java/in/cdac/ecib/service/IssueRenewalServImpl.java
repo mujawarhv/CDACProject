@@ -1,5 +1,6 @@
 package in.cdac.ecib.service;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -122,7 +123,7 @@ public class IssueRenewalServImpl implements IssueRenewalServ {
 	}
 
 	@Override
-	public void dopDone(String decision, String remarks, String reason, String start_date, String expiry_date,
+	public void dopDone(String decision, String remarks, String reason, Date start_date, Date expiry_date,
 			String ml, String dl, String set_limit, IssueRenewal issueRenewal) {
 		issueRenewalDao.insertdop( decision,  remarks,  reason,  start_date,  expiry_date, ml,  dl,  set_limit,  issueRenewal);
 	}

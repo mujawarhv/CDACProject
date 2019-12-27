@@ -518,25 +518,24 @@ out.print(str);
 											</thead>
 
 											<tbody>
-												<%
-													for (int i=1;i<=listOfRecommedation.size();i++) {								
-												%>
+																			
+																
+												<c:forEach var="i" items="${listOfRecommedation}">						
+												
 												<tr>
-													<td><%=i%></td>
+													<td> <c:out value="${i}"/></td>
 
 													<td><a
-														href="selectIssueRenewalId.htm?isrnfrmid=<%=i%> "
+														href="selectIssueRenewalId.htm?isrnfrmid=${i}"
 														class="btn btn-danger disabled">Preliminary Scrutiny</a></td>
-													<td><a href="officenote.htm?isrnfrmid=<%=i%>" class="btn btn-danger disabled">Office
+													<td><a href="officenote.htm?isrnfrmid=${i}" class="btn btn-danger disabled">Office
 															Note</a></td>
-													<td><a href="addRecommedation.htm?isrnfrmid=<%=i%>"
+													<td><a href="addRecommedation.htm?isrnfrmid=${i}"
 														class="btn btn-danger ">recommendation</a></td>
 													<td><a href="index.htm"
 														class="btn btn-danger disabled">Decision</a></td>
 												</tr>
-												<%
-													}
-												%>
+												</c:forEach>
 
 											</tbody>
 										</table>

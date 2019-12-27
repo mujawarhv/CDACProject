@@ -1,14 +1,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page errorPage="ErrorPage.jsp"%>
-<%@page import="in.cdac.ecib.dto.*"%><%@page import="java.util.List"%>
+<%@page import="in.cdac.ecib.dto.*"%>
+<%@page import="java.util.List"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="fmt"%>
+
 <%
-	IssueRenewal issueRenewal = (IssueRenewal) session.getAttribute("issueRenewal");
+	List<String> message = (List<String>) request.getAttribute("message");
 %>
-<%
-	List<IssueRenewal> userList = (List<IssueRenewal>) request.getAttribute("listIssueRenewal");
-%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,7 +21,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>ECGC </title>
+<title>ECGC</title>
 
 <!-- Custom fonts for this template-->
 <link
@@ -95,10 +95,7 @@
 
 			<!-- Heading -->
 			<div class="sidebar-heading">Interface</div>
-			<%
-				String str = (String) session.getAttribute("str1");
-				out.print(str);
-			%>
+			
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item active"><a class="nav-link" href="#"
 				data-toggle="collapse" data-target="#collapseTwo"
@@ -148,19 +145,14 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Login Screens:</h6>
 						<a class="collapse-item" href="login.htm">Login</a>
-						<!-- 						     <a -->
-						<!-- 							class="collapse-item" href="register.html">Register</a> <a -->
-						<!-- 							class="collapse-item" href="forgot-password.html">Forgot -->
-						<!-- 							Password</a> -->
+				
 						<div class="collapse-divider"></div>
 
 						<a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a>
 						<a class="collapse-item" href="banklogin.htm">Bank Login</a> <a
 							class="collapse-item" href="ecgclogin.htm">ECGC Login</a>
 
-						<!-- 						<h6 class="collapse-header">Other Pages:</h6> -->
-						<!-- 						<a class="collapse-item" href="404.html">404 Page</a> <a -->
-						<!-- 							class="collapse-item" href="blank.html">Blank Page</a> -->
+						
 					</div>
 				</div></li>
 
@@ -418,13 +410,43 @@
 									<div class="card-body">
 
 
+	
 
 										<form:form method="post"
 											class="form-horizontal border border-dark p-3 mb-2 bg-white text-dark mt-5"
-											role="form" action="saveIssueRenewal.htm"
-											modelAttribute="issueRenewal">
+											role="form" modelAttribute="issueRenewal1">
 
 
+											<div class="form-group">
+												<div class="row">
+													<div class=" col-sm-8 ">
+
+														<table class="table table-bordered">
+															<thead>
+																<tr>
+																
+																	<th>ISRN id</th>
+																	<th></th>
+																</tr>
+															</thead>
+
+															<tbody>
+
+																<c:forEach items="${message}" var="item">
+																	<tr>
+
+																		<td>${item}</td>
+																		<td><a href="submitrecommedation.htm?id=${item}"
+																			class="btn btn-danger"><center>DOP</center></a></td>
+																	</tr>
+																</c:forEach>
+
+															</tbody>
+														</table>
+													</div>
+												</div>
+
+											</div>
 										</form:form>
 
 
@@ -491,18 +513,18 @@
 							</div>
 						</div>
 					</div>
-				
 
 
-				<!-- Bootstrap core JavaScript-->
 
-				<!-- Core plugin JavaScript-->
-				<script
-					src="${pageContext.request.contextPath}/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
+					<!-- Bootstrap core JavaScript-->
 
-				<!-- Custom scripts for all pages-->
-				<script
-					src="${pageContext.request.contextPath}/resources/js/sb-admin-2.min.js"></script>
+					<!-- Core plugin JavaScript-->
+					<script
+						src="${pageContext.request.contextPath}/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+					<!-- Custom scripts for all pages-->
+					<script
+						src="${pageContext.request.contextPath}/resources/js/sb-admin-2.min.js"></script>
 </body>
 
 </html>

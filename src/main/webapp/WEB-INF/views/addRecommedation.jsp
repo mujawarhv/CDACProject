@@ -404,6 +404,38 @@
 											class="form-horizontal border border-dark p-3 mb-2 bg-white text-dark mt-5"
 											role="form" modelAttribute="issueRenewal">
 
+<div class="row">
+
+												<div class="col-sm-9">
+													<%
+														String proposalfrmid = (String) session.getAttribute("wt_isrn_proposal_frm_id");
+															out.print("Proposal Id:-" + proposalfrmid);
+													%>
+												</div>
+												<div class="col-sm-3">
+
+													<%
+														String str = (String) session.getAttribute("name");
+															out.print(str);
+													%>
+
+												</div>
+											</div>
+											
+												<div class="form-group">
+												<div class="row">
+													<div class="col-sm-5">
+														
+													</div>
+
+													<div class="col-sm-4">
+														<label for="heading" class="col-sm-3 control-label"></label>
+													</div>
+													<div class="col-sm-3">											
+													</div>
+												</div>
+											</div>
+
 
 											<div class="form-group">
 												<div class="row">
@@ -418,10 +450,7 @@
 															</thead>
 
 															<tbody>
-																<% 
-String proposalfrmid=(String) session.getAttribute("wt_isrn_proposal_frm_id"); 
-out.print("WT_ISRN_ID:- "+ proposalfrmid);
-%>
+															
 
 																<c:forEach items="${message}" var="item">
 																	<tr>
@@ -443,11 +472,9 @@ out.print("WT_ISRN_ID:- "+ proposalfrmid);
 															<textarea name="recommendation_line" id="recommend"
 																class="md-textarea form-control" rows=""></textarea>
 
-															&nbsp; &nbsp; <input type="submit" value="Add Recommend"
+															&nbsp; &nbsp; <input type="submit" value="Submit Recommedation"
 																class="btn btn-success active" />
-																
-															&nbsp; &nbsp; <a href="submitrecommedation.htm"
-														class="btn btn-danger"><center>Submit Recommedation</center></a></td>
+														
 														</div>
 													</div>
 												</div>
