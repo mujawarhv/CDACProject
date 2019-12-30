@@ -104,7 +104,6 @@ public class BankController {
 			issueRenewalServ.Create(issueRenewal);
 		} else {
 			String str = "Incorrect details";
-			System.out.println(str);
 			request.setAttribute("str", str);
 			model = new ModelAndView("ErrorPage");
 		}
@@ -138,9 +137,7 @@ public class BankController {
 		return "Login";
 		
 	}
-
-	
-	
+		
 	
 	
 	/*

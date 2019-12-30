@@ -249,8 +249,6 @@ public class IssueRenewalImpl implements IssueRenewalDao {
 	@Override
 	public void createOfficeNote(IssueRenewal issueRenewal) {
 
-		System.out.println(issueRenewal.getWt_isrn_proposal_frm_id());
-
 		String wt_isrn_office_note_id = "SELECT wt_isrn_office_note_id FROM wt_isrn_office_note WHERE wt_isrn_office_note_id = (SELECT MAX(wt_isrn_office_note_id ) FROM wt_isrn_office_note);";
 		String office_note_id = jdbcTemplate.queryForObject(wt_isrn_office_note_id, String.class);
 
@@ -266,11 +264,11 @@ public class IssueRenewalImpl implements IssueRenewalDao {
 
 		int id = Integer.parseInt(office_note_id);
 		id = id + 1;
-		System.out.println(id + "   " + wt_isrn_proposal_id);
+	
 		String sql = "insert into wt_isrn_office_note(wt_isrn_office_note_id,wt_isrn_id,filename,employee_code,dated) values('"
 				+ id + "','" + wt_isrn_proposal_id + "','xyz.pdf','" + issueRenewal.getEmployee_code()
 				+ "','2019-12-27') ";
-		System.out.println(sql);
+		
 		jdbcTemplate.update(sql);
 
 	}
@@ -300,7 +298,7 @@ public class IssueRenewalImpl implements IssueRenewalDao {
 		String sql = "SELECT user_id, user_password FROM login WHERE user_id=?";
 		user = jdbcTemplate.queryForObject(sql, new Object[] { user.getUserId() },
 				new BeanPropertyRowMapper<User>(User.class));
-		System.out.println(user);
+	
 		return user;
 	}
 
@@ -335,6 +333,7 @@ public class IssueRenewalImpl implements IssueRenewalDao {
 			System.out.println("max:"+max);
 		}
 		
+		
 	
 		SimpleDateFormat sd = new SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z");
 		Date date = new Date();
@@ -348,7 +347,7 @@ public class IssueRenewalImpl implements IssueRenewalDao {
 
 	@Override
 	public List<String> showRecommedationMessage(String wt_isrn_proposal_frm_id) {
-		System.out.println(wt_isrn_proposal_frm_id);
+		
 		String sql = "select recommendation_line from recommendations where wt_isrn_id=?";
 		List<String> data = jdbcTemplate.query(sql, new Object[] { wt_isrn_proposal_frm_id }, new RowMapper<String>() {
 			public String mapRow(ResultSet rs, int rowNum) throws SQLException {
