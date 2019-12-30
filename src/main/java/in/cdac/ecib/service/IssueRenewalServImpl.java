@@ -128,6 +128,16 @@ public class IssueRenewalServImpl implements IssueRenewalServ {
 		issueRenewalDao.insertdop( decision,  remarks,  reason,  start_date,  expiry_date, ml,  dl,  set_limit,  issueRenewal);
 	}
 
+	@Override
+	public int submitIssueRenewal(String proposalfrmid) {
+		return issueRenewalDao.submitIssueRenewal(proposalfrmid);
+	}
+
+	@Override
+	public List<IssueRenewal> getIssueRenewalList() {
+		return issueRenewalDao.IssueRenewalList();
+	}
+
 	
 	
 }

@@ -422,8 +422,10 @@
 												<div class="col-sm-3"></div>
 												<div class="col-sm-6">
 													<h4>
-														<pre>Congratulations Your form is submitted</pre>
+														Congratulations Your form is submitted
 													</h4>
+													<br><br>				
+													<h3>Notified to bank</h3>
 													<table class="table table-bordered">
 														<thead>
 															<tr>
@@ -439,9 +441,12 @@
 																	<%
 																		Date date = new Date();
 																		out.print("<h6>" + date.toString() + "</h6>");
+																		
 																	%>
+																		
 																</td>
 															</tr>
+																
 															<tr>
 																<td colspan="2"><center>
 																		<a href="backToIndex.htm"

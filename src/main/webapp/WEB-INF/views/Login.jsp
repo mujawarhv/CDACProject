@@ -472,9 +472,11 @@
 														<td><%=u.getCover_type()%></td>
 														<td><a
 															href="editIssueRenewalForm.htm?proposalfrmid=<%=u.getWt_isrn_proposal_frm_id()%>"
-															id="editbutton">Edit</a></td>
-														<td><input id="mySubmitButton" type="button"
-															value="Submit" /></td>
+															class="btn btn-success active" id="editbutton">Edit</a></td>
+														<td><a
+															href="submitIssueRenewalForm.htm?proposalfrmid=<%=u.getWt_isrn_proposal_frm_id()%>"
+														class="btn btn-danger active"	id="submitbutton">Submit</a></td>
+														
 													</tr>
 													<%
 														}

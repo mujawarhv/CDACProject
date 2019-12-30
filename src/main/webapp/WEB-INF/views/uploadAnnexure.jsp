@@ -479,8 +479,7 @@
 													<div class="col-sm-4">
 														<a href="PreviousBackToIssueRenewal.htm"
 															class="btn btn-primary active">Previous</a>
-														<form:input type="submit" value="Save"
-															class="btn btn-info active" path="" />
+													
 														<form:input type="submit" value="Submit"
 															class="btn btn-success active" onclick="uploadFile()"
 															path="" />
