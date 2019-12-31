@@ -54,7 +54,7 @@
 	</beans:bean>
 	
 	<beans:bean id="issueRenewalServ" class="in.cdac.ecib.service.IssueRenewalServImpl"></beans:bean>
-	<beans:bean id="issueRenewalDao" class="in.cdac.ecib.dao.IssueRenewalImpl"></beans:bean>
+	<beans:bean id="issueRenewalDao" class="in.cdac.ecib.dao.IssueRenewalDaoImpl"></beans:bean>
 	
 <!-- 	<beans:bean id="addEventService" class="training.demo.service.AddEventService"></beans:bean> -->
 <!-- 	<beans:bean id="addEventDao" class="training.demo.dao.AddEventDao"></beans:bean> -->

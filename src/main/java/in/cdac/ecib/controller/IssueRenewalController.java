@@ -26,12 +26,12 @@ import in.cdac.ecib.dto.IssueRenewal;
 @Controller
 @SessionAttributes("issueRenewal")
 
-public class BankController {
+public class IssueRenewalController {
 
 	@Autowired
 	private IssueRenewalServ issueRenewalServ;
 
-	 private Logger logger = LoggerFactory.getLogger(IssueRenewalServ.class);
+	private Logger logger = LoggerFactory.getLogger(IssueRenewalServ.class);
 
 	/*
 	 * When bank click on Login button on index page then it will go to BankLogin
@@ -66,8 +66,6 @@ public class BankController {
 		model.addAttribute("str", str);
 		return "Login";
 	}
-
-
 
 	/*
 	 * When a new proposal come then Bank or ECGC officer will logged in and when
@@ -111,14 +109,12 @@ public class BankController {
 	 * that form.
 	 */
 
-	
-
 	@RequestMapping(value = "saveIssueRenewal.htm", method = RequestMethod.POST)
-	public String saveForm(@ModelAttribute("issueRenewal") IssueRenewal issueRenewal,HttpServletRequest request, BindingResult result,
-			ModelMap model) {
-	
+	public String saveForm(@ModelAttribute("issueRenewal") IssueRenewal issueRenewal, HttpServletRequest request,
+			BindingResult result, ModelMap model) {
+
 		// int id = issueRenewalServ.getById(bank);
-		
+
 		String str = "ECGC Login";
 		HttpSession session = request.getSession();
 		session.setAttribute("str", str);
@@ -126,11 +122,9 @@ public class BankController {
 		model.put("listIssueRenewal", listIssueRenewal);
 		model.addAttribute("str", str);
 		return "Login";
-		
+
 	}
-		
-	
-	
+
 	/*
 	 * When bank or ecgc is uploading the documents and if he want to go to previous
 	 * page then using previous button he can come back to IssueRenewal form.
@@ -154,27 +148,24 @@ public class BankController {
 		model.put("listIssueRenewal", listIssueRenewal);
 		return "Login";
 	}
-	
-	@RequestMapping(value = "/submitIssueRenewalForm.htm")
-	public String submitParticularIssueRenewalForm(@RequestParam("proposalfrmid") String proposalfrmid, ModelMap model,HttpServletRequest request) {
-		 issueRenewalServ.submitIssueRenewal(proposalfrmid);
-		
-			int num = (int) (Math.random() * Integer.MAX_VALUE);
-			model.addAttribute("num", num);
-		return "submitted";
-		
-	}
-	
-	
 
-	@RequestMapping(value = "/editIssueRenewalForm.htm",method = RequestMethod.GET)
+	@RequestMapping(value = "/submitIssueRenewalForm.htm")
+	public String submitParticularIssueRenewalForm(@RequestParam("proposalfrmid") String proposalfrmid, ModelMap model,
+			HttpServletRequest request) {
+		issueRenewalServ.submitIssueRenewal(proposalfrmid);
+
+		int num = (int) (Math.random() * Integer.MAX_VALUE);
+		model.addAttribute("num", num);
+		return "submitted";
+
+	}
+
+	@RequestMapping(value = "/editIssueRenewalForm.htm", method = RequestMethod.GET)
 	public String editParticularUserForm(@RequestParam("proposalfrmid") String proposalfrmid, ModelMap model) {
 		IssueRenewal issueRenewal = issueRenewalServ.selectUser(proposalfrmid);
 		model.addAttribute("issueRenewal", issueRenewal);
 		return "issueRenewalUpdate";
 	}
-	
-	
 
 	/*
 	 * When changes made in IssueRenewal form after clicking on update button all
@@ -191,7 +182,8 @@ public class BankController {
 	}
 
 	@RequestMapping(value = "/updateIssueRenewalForm.htm")
-	public String updateIssueRenewalAnnexure(@ModelAttribute("issueRenewal") IssueRenewal issueRenewal, ModelMap model) {
+	public String updateIssueRenewalAnnexure(@ModelAttribute("issueRenewal") IssueRenewal issueRenewal,
+			ModelMap model) {
 		// issueRenewalServ.Modify(issueRenewal.getWt_isrn_proposal_frm_id(),
 		// issueRenewal);
 		List<IssueRenewal> listIssueRenewal = issueRenewalServ.getAllBankList();
@@ -296,13 +288,13 @@ public class BankController {
 			HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		String wt_isrn_proposal_frm_id = (String) session.getAttribute("wt_isrn_proposal_frm_id");
-		
+
 		session.setAttribute("wt_isrn_proposal_frm_id", wt_isrn_proposal_frm_id);
 		String name = "ECIB Login";
 		session.setAttribute("name", name);
 
 		issueRenewalServ.psCompleted(wt_isrn_proposal_frm_id);
-		
+
 		issueRenewal = issueRenewalServ.getOfficeNoteInfo(wt_isrn_proposal_frm_id);
 		model.addAttribute("issueRenewal", issueRenewal);
 		return "officeNote";
@@ -332,7 +324,7 @@ public class BankController {
 		HttpSession session = request.getSession();
 		String wt_isrn_proposal_frm_id = proposalfrmid;
 		session.setAttribute("wt_isrn_proposal_frm_id", wt_isrn_proposal_frm_id);
-		
+
 		String name = "ECIB Login";
 		session.setAttribute("name", name);
 
@@ -376,7 +368,7 @@ public class BankController {
 				}
 			} else {
 				String str = "Incorrect details";
-				System.out.println(str);
+
 				request.setAttribute("str", str);
 				return "errorPage";
 			}
@@ -394,7 +386,7 @@ public class BankController {
 
 	@RequestMapping(value = "/officenotegeneration.htm")
 	public String generationOfOfficeNote(@ModelAttribute("issueRenewal") IssueRenewal issueRenewal, ModelMap model) {
-		
+
 		issueRenewalServ.createOfficeNote(issueRenewal);
 
 		List<IssueRenewal> listOfPreliminaryScrutiny = issueRenewalServ.getIssueRenewalList();
@@ -421,7 +413,6 @@ public class BankController {
 		String name = "ECIB Login";
 		session.setAttribute("name", name);
 
-		
 		model.addAttribute("issueRenewal", new IssueRenewal());
 
 		return "addRecommedation";
@@ -442,7 +433,6 @@ public class BankController {
 		String name = "ECIB Login";
 		session.setAttribute("name", name);
 
-
 		issueRenewalServ.insertRecommendationData(wt_isrn_proposal_frm_id, recommendation_line);
 		List<String> message = issueRenewalServ.showRecommedation(wt_isrn_proposal_frm_id);
 		model.put("message", message);
@@ -461,9 +451,8 @@ public class BankController {
 		String name = "ECIB Login";
 		session.setAttribute("name", name);
 
-
 		issueRenewalServ.insertRecommendationData(wt_isrn_proposal_frm_id, recommendation_line);
-		
+
 		List<IssueRenewal> listOfPreliminaryScrutiny = issueRenewalServ.getIssueRenewalList();
 		List<IssueRenewal> listOfPreliminaryScrutinyDone = issueRenewalServ.getlistOfPreliminaryScrutinyDone();
 		List<IssueRenewal> listOfRecommedation = issueRenewalServ.getListOfOfficeNoteDone();
@@ -474,8 +463,7 @@ public class BankController {
 
 		return "startPS";
 	}
-	
-	
+
 	@RequestMapping(value = "/wt_isrn.htm", method = RequestMethod.POST)
 	public String addSystemEntry(@ModelAttribute("issueRenewal") IssueRenewal issueRenewal, HttpServletRequest request,
 			HttpServletResponse response, BindingResult result, Model model) throws Exception {
@@ -511,7 +499,7 @@ public class BankController {
 
 	@RequestMapping(value = "/openDecisionPage.htm")
 	public String submitRecommendation(@RequestParam("id") String isrn_id, ModelMap model, HttpServletRequest request) {
-	
+
 		/*
 		 * HttpSession session = request.getSession(); String wt_isrn_proposal_frm_id =
 		 * (String) session.getAttribute("name");
@@ -546,7 +534,6 @@ public class BankController {
 		model.put("message", message);
 		model.addAttribute("issueRenewal1", new IssueRenewal());
 
-		
 		return "decision";
 	}
 

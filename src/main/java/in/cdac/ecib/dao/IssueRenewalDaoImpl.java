@@ -15,7 +15,7 @@ import in.cdac.ecib.dto.IssueRenewal;
 import in.cdac.ecib.dto.User;
 
 @Repository
-public class IssueRenewalImpl implements IssueRenewalDao {
+public class IssueRenewalDaoImpl implements IssueRenewalDao {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
@@ -44,7 +44,7 @@ public class IssueRenewalImpl implements IssueRenewalDao {
 		Arrays.sort(arr);
 		int max = arr[arr.length-1];
 		max = max + 1;
-		System.out.println(max);
+	
 
 		String str = "insert into wt_isrn_proposal_frm(wt_isrn_proposal_frm_id,annex_statement_of_packing_attached, "
 				+ "	annex_for_limit_sanction_attached, annex_of_stmnt_of_acc_covrd_undr_wt_with_claim_recovery_attchd, "
@@ -259,7 +259,7 @@ public class IssueRenewalImpl implements IssueRenewalDao {
 				new Object[] { issueRenewal.getWt_isrn_proposal_frm_id() },
 				new BeanPropertyRowMapper<IssueRenewal>(IssueRenewal.class));
 
-		System.out.println(isrn_id);
+		
 
 		String wt_isrn_proposal_id = issueRenewal.getWt_isrn_proposal_frm_id();
 
@@ -331,7 +331,7 @@ public class IssueRenewalImpl implements IssueRenewalDao {
 			char myString = max.charAt(max.length() - 1);
 			myString = (char) (myString + 1);
 			recommend_Id = wt_isrn_id + "R" + myString;
-			System.out.println("max:"+max);
+		
 		}
 		
 		

@@ -1,4 +1,4 @@
-package com.cdac.ecib.util;
+package in.cdac.ecib.util;
 
 
 import java.sql.ResultSet;
