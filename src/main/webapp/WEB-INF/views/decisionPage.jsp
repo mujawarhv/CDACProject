@@ -417,7 +417,7 @@
 
 
 
-										<form:form method="post" action="submitDOP.htm"
+										<form:form method="post" action="submitDecision.htm"
 											class="form-horizontal border border-dark p-3 mb-2 bg-white text-dark mt-5"
 											role="form" modelAttribute="issueRenewal1">
 
@@ -458,7 +458,7 @@
 															readonly="true" />
 
 													</div>
-												</div>
+												</div>submitDOP.htm
 											</div>
 
 											

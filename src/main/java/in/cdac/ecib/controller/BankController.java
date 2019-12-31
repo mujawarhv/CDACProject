@@ -509,7 +509,7 @@ public class BankController {
 	 * This controller will show the Decision Page
 	 */
 
-	@RequestMapping(value = "/submitrecommedation.htm")
+	@RequestMapping(value = "/openDecisionPage.htm")
 	public String submitRecommendation(@RequestParam("id") String isrn_id, ModelMap model, HttpServletRequest request) {
 	
 		/*
@@ -528,7 +528,7 @@ public class BankController {
 	 * This controller will insert Decision data and return to pending decision page
 	 */
 
-	@RequestMapping(value = "/submitDOP.htm", method = RequestMethod.POST)
+	@RequestMapping(value = "/submitDecision.htm", method = RequestMethod.POST)
 	public String dopSubmit(@RequestParam("start_date") Date start_date, @RequestParam("end_date") Date expiry_date,
 			@ModelAttribute("issueRenewal1") IssueRenewal issueRenewal, HttpServletRequest request,
 			HttpServletResponse response, BindingResult result, ModelMap model) throws Exception {
