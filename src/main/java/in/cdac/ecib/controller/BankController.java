@@ -74,7 +74,7 @@ public class BankController {
 
 	@RequestMapping(value = "/index1.htm")
 	public String index(ModelMap model) {
-		return "StartPS";
+		return "startPS";
 	}
 
 	/*
@@ -86,7 +86,7 @@ public class BankController {
 	public String prepLoginForm(@RequestParam("cover_type_wtpc_wtps") String cover_type_wtpc_wtps, ModelMap model,
 			HttpServletRequest request) {
 		model.addAttribute("issueRenewal", new IssueRenewal());
-		return "IssueRenewal";
+		return "issueRenewalForm";
 	}
 
 	/*
@@ -147,7 +147,7 @@ public class BankController {
 	@RequestMapping(value = "/PreviousBackToIssueRenewal.htm")
 	public String prevPage(ModelMap model) {
 		model.addAttribute("issueRenewal", new IssueRenewal());
-		return "IssueRenewal";
+		return "issueRenewalForm";
 	}
 
 	/*
@@ -179,7 +179,7 @@ public class BankController {
 	public String editParticularUserForm(@RequestParam("proposalfrmid") String proposalfrmid, ModelMap model) {
 		IssueRenewal issueRenewal = issueRenewalServ.selectUser(proposalfrmid);
 		model.addAttribute("issueRenewal", issueRenewal);
-		return "IssueRenewalUpdate";
+		return "issueRenewalUpdate";
 	}
 	
 	
@@ -228,7 +228,7 @@ public class BankController {
 		model.put("listOfPreliminaryScrutinyDone", listOfPreliminaryScrutinyDone);
 		model.put("listOfRecommedation", listOfRecommedation);
 		model.addAttribute("issueRenewal", new IssueRenewal());
-		return "StartPS";
+		return "startPS";
 	}
 
 	/*
@@ -247,7 +247,7 @@ public class BankController {
 		model.put("listOfRecommedation", listOfRecommedation);
 		model.addAttribute("issueRenewal", new IssueRenewal());
 
-		return "StartPS";
+		return "startPS";
 	}
 
 	/*
@@ -269,7 +269,7 @@ public class BankController {
 
 		IssueRenewal issueRenewal = issueRenewalServ.selectUser(proposalfrmid);
 		model.addAttribute("issueRenewal", issueRenewal);
-		return "DisplayPreliminarySrutinyForm";
+		return "displayPreliminarySrutinyForm";
 	}
 
 	/*
@@ -292,7 +292,7 @@ public class BankController {
 
 		if (issueRenewal != null)
 			model.put("issueRenewal", issueRenewal);
-		return "DisplayPreliminaryScrutinySecondPage";
+		return "displayPreliminaryScrutinySecondPage";
 	}
 
 	/*
@@ -313,7 +313,7 @@ public class BankController {
 		
 		issueRenewal = issueRenewalServ.getOfficeNoteInfo(wt_isrn_proposal_frm_id);
 		model.addAttribute("issueRenewal", issueRenewal);
-		return "OfficeNote";
+		return "officeNote";
 
 	}
 
@@ -329,7 +329,7 @@ public class BankController {
 		model.put("listOfPreliminaryScrutinyDone", listOfPreliminaryScrutinyDone);
 		model.put("listOfRecommedation", listOfRecommedation);
 		model.addAttribute("issueRenewal", new IssueRenewal());
-		return "StartPS";
+		return "startPS";
 
 	}
 
@@ -346,7 +346,7 @@ public class BankController {
 
 		issueRenewal = issueRenewalServ.getOfficeNoteInfo(proposalfrmid);
 		model.addAttribute("issueRenewal", issueRenewal);
-		return "OfficeNote";
+		return "officeNote";
 	}
 
 	/*
@@ -375,29 +375,29 @@ public class BankController {
 				if (issueRenewal.getCover_type().equals("1")) {
 					issueRenewal = issueRenewalServ.openOfficeNotePC(issueRenewal);
 					model.addAttribute("issueRenewal", issueRenewal);
-					return "OfficeNotePC";
+					return "officeNotePC";
 
 				} else if (issueRenewal.getCover_type().equals("2")) {
 					issueRenewal = issueRenewalServ.openOfficeNotePS(issueRenewal);
 					model.addAttribute("issueRenewal", issueRenewal);
-					return "OfficeNotePS";
+					return "officeNotePS";
 				}
 			} else {
 				String str = "Incorrect details";
 				System.out.println(str);
 				request.setAttribute("str", str);
-				return "ErrorPage";
+				return "errorPage";
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return "StartPS";
+		return "startPS";
 	}
 
 	/*
 	 * This controller is used to add data in office note database and after that it
-	 * will return to main ecib screen i.e StartPS
+	 * will return to main ecib screen i.e startPS
 	 */
 
 	@RequestMapping(value = "/officenotegeneration.htm")
@@ -413,7 +413,7 @@ public class BankController {
 		model.put("listOfPreliminaryScrutinyDone", listOfPreliminaryScrutinyDone);
 		model.put("listOfRecommedation", listOfRecommedation);
 
-		return "StartPS";
+		return "startPS";
 	}
 
 	/*
@@ -456,7 +456,7 @@ public class BankController {
 		model.put("message", message);
 		model.addAttribute("issueRenewal", new IssueRenewal());
 
-		return "Recommedation2";
+		return "recommedation2";
 	}
 
 	@RequestMapping(value = "/insertRecommendation2.htm")
@@ -480,7 +480,7 @@ public class BankController {
 		model.put("listOfPreliminaryScrutinyDone", listOfPreliminaryScrutinyDone);
 		model.put("listOfRecommedation", listOfRecommedation);
 
-		return "StartPS";
+		return "startPS";
 	}
 	
 	
@@ -490,7 +490,7 @@ public class BankController {
 
 		issueRenewalServ.insertSystemEntry(issueRenewal);
 		model.addAttribute("issueRenewal", issueRenewal);
-		return "Priliminary_Scrutiny";
+		return "priliminaryScrutiny";
 	}
 
 	/*
@@ -510,7 +510,7 @@ public class BankController {
 		model.put("message", message);
 
 		model.addAttribute("issueRenewal1", new IssueRenewal());
-		return "Decision";
+		return "decision";
 	}
 
 	/*
@@ -529,7 +529,7 @@ public class BankController {
 		model.put("message", message);
 		IssueRenewal issueRenewal1 = issueRenewalServ.getDetailsOfDop(isrn_id);
 		model.addAttribute("issueRenewal1", issueRenewal1);
-		return "DecisionPage";
+		return "decisionPage";
 	}
 
 	/*
@@ -555,12 +555,12 @@ public class BankController {
 		model.addAttribute("issueRenewal1", new IssueRenewal());
 
 		
-		return "Decision";
+		return "decision";
 	}
 
 	/*
 	 * @ExceptionHandler(Exception.class) public String handleException() { return
-	 * "ErrorPage"; }
+	 * "errorPage"; }
 	 */
 
 }
