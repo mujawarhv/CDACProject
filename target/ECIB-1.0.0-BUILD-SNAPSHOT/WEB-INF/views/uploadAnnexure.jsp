@@ -21,7 +21,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>ECGC </title>
+<title>ECGC</title>
 
 <!-- Custom fonts for this template-->
 <link
@@ -87,7 +87,8 @@
 			<!-- Nav Item - Dashboard -->
 			<li class="nav-item"><a class="nav-link" href="index.html">
 					<i class="fas fa-fw fa-tachometer-alt"></i> <span>Dashboard</span>
-			</a></li><a class="collapse-item" href="login.html">Login</a>
+			</a></li>
+			<a class="collapse-item" href="login.html">Login</a>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider">
@@ -146,20 +147,14 @@
 					aria-labelledby="headingPages" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Login Screens:</h6>
-						    <a class="collapse-item" href="login.htm">Login</a> 
-<!-- 						     <a -->
-<!-- 							class="collapse-item" href="register.html">Register</a> <a -->
-<!-- 							class="collapse-item" href="forgot-password.html">Forgot -->
-<!-- 							Password</a> -->
+						<a class="collapse-item" href="login.htm">Login</a>
+
 						<div class="collapse-divider"></div>
 
 						<a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a>
 						<a class="collapse-item" href="banklogin.htm">Bank Login</a> <a
-							class="collapse-item" href="ecgclogin.htm">ECGC Login</a>
-
-<!-- 						<h6 class="collapse-header">Other Pages:</h6> -->
-<!-- 						<a class="collapse-item" href="404.html">404 Page</a> <a -->
-<!-- 							class="collapse-item" href="blank.html">Blank Page</a> -->
+							class="collapse-item" href="ecgclogin.htm">ECGC Login</a> <a
+							class="collapse-item" href="dop.htm">Decision</a>
 					</div>
 				</div></li>
 
@@ -393,7 +388,7 @@
 					<!-- Page Heading -->
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">Add Continental</h1>
+						<h1 class="h3 mb-0 text-gray-800">ECIB</h1>
 					</div>
 
 
@@ -409,7 +404,7 @@
 								<a href="#collapseCardExample" class="d-block card-header py-3"
 									data-toggle="collapse" role="button" aria-expanded="true"
 									aria-controls="collapseCardExample">
-									<h6 class="m-0 font-weight-bold text-primary">Issue
+									<h6 class="m-0 font-weight-bold text-primary">Cover Issue
 										Renewal</h6>
 								</a>
 								<!-- Card Content - Collapse -->
@@ -426,18 +421,18 @@
 											<div class="form-group">
 												<label for="heading" class="col-sm-3 control-label">
 													<%
-														String str2 = (String) session.getAttribute("str1");
+														String str2 = (String) session.getAttribute("str");
 															out.print(str2);
 													%>
 												</label>
-													<div class="form-group">
+												<div class="form-group">
 
-												<label for="heading" class="col-sm-3 control-label"></label>
-												<div class="col-sm-9">
-													Annexure1 <input type='file' id='file' multiple="multiple">
-													<button onclick="upload();">Upload</button>
+													<label for="heading" class="col-sm-3 control-label"></label>
+													<div class="col-sm-9">
+														Annexure1 <input type='file' id='file' multiple="multiple">
+														<button onclick="upload();">Upload</button>
+													</div>
 												</div>
-											</div>
 											</div>
 
 											<div class="form-group">
@@ -484,8 +479,7 @@
 													<div class="col-sm-4">
 														<a href="PreviousBackToIssueRenewal.htm"
 															class="btn btn-primary active">Previous</a>
-														<form:input type="submit" value="Save"
-															class="btn btn-info active" path="" />
+													
 														<form:input type="submit" value="Submit"
 															class="btn btn-success active" onclick="uploadFile()"
 															path="" />
@@ -573,17 +567,15 @@
 
 					<script type="text/javascript">
 						function upload() {
-						
+
 							alert("File Successfully uploaded!");
 						}
 					</script>
-					 <script type="text/javascript">
-
-        $(document).ready(function() {
-            document.myRedirectForm.submit();
-        });
-
-    </script>
+					<script type="text/javascript">
+						$(document).ready(function() {
+							document.myRedirectForm.submit();
+						});
+					</script>
 </body>
 
 </html>

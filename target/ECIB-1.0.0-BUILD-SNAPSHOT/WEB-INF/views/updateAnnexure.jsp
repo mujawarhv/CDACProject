@@ -144,19 +144,14 @@ IssueRenewal issueRenewal = (IssueRenewal) session.getAttribute("issueRenewal");
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Login Screens:</h6>
 							    <a class="collapse-item" href="login.htm">Login</a> 
-<!-- 							     <a -->
-<!-- 							class="collapse-item" href="register.html">Register</a> <a -->
-<!-- 							class="collapse-item" href="forgot-password.html">Forgot -->
-<!-- 							Password</a> -->
+
 						<div class="collapse-divider"></div>
 
 						 <a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a> <a
 							class="collapse-item" href="banklogin.htm">Bank Login</a> <a
 							class="collapse-item" href="ecgclogin.htm">ECGC Login</a>
+<a class="collapse-item" href="dop.htm">Decision</a> 
 
-<!-- 						<h6 class="collapse-header">Other Pages:</h6> -->
-<!-- 						<a class="collapse-item" href="404.html">404 Page</a> <a -->
-<!-- 							class="collapse-item" href="blank.html">Blank Page</a> -->
 					</div>
 				</div></li>
 
@@ -390,7 +385,7 @@ IssueRenewal issueRenewal = (IssueRenewal) session.getAttribute("issueRenewal");
 					<!-- Page Heading -->
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">Add Continental</h1>
+						<h1 class="h3 mb-0 text-gray-800">ECIB</h1>
 					</div>
 
 
@@ -406,7 +401,7 @@ IssueRenewal issueRenewal = (IssueRenewal) session.getAttribute("issueRenewal");
 								<a href="#collapseCardExample" class="d-block card-header py-3"
 									data-toggle="collapse" role="button" aria-expanded="true"
 									aria-controls="collapseCardExample">
-									<h6 class="m-0 font-weight-bold text-primary">Issue Renewal</h6>
+									<h6 class="m-0 font-weight-bold text-primary">Cover Issue Renewal</h6>
 								</a>
 								<!-- Card Content - Collapse -->
 								<div class="collapse show" id="collapseCardExample">

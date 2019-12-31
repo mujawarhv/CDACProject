@@ -2,7 +2,7 @@
 <%@ page errorPage="ErrorPage.jsp"%>
 <%@page import="in.cdac.ecib.dto.*"%><%@page import="java.util.List"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ page session="true" %>
+<%@ page session="true"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="fmt"%>
 <%
 	IssueRenewal issueRenewal = (IssueRenewal) session.getAttribute("issueRenewal");
@@ -11,7 +11,8 @@
 	List<IssueRenewal> userList = (List<IssueRenewal>) request.getAttribute("listIssueRenewal");
 %>
 <%
-	List<IssueRenewal> listOfPreliminaryScrutinyDone = (List<IssueRenewal>) request.getAttribute("listOfPreliminaryScrutinyDone");
+	List<IssueRenewal> listOfPreliminaryScrutinyDone = (List<IssueRenewal>) request
+			.getAttribute("listOfPreliminaryScrutinyDone");
 %>
 <%
 	List<IssueRenewal> listOfRecommedation = (List<IssueRenewal>) request.getAttribute("listOfRecommedation");
@@ -28,7 +29,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>ECGC </title>
+<title>ECGC</title>
 
 <!-- Custom fonts for this template-->
 <link
@@ -136,13 +137,13 @@
 					aria-labelledby="headingPages" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Login Screens:</h6>
-						    <a class="collapse-item" href="login.htm">Login</a>  
+						<a class="collapse-item" href="login.htm">Login</a>
 						<div class="collapse-divider"></div>
 
 						<a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a>
 						<a class="collapse-item" href="banklogin.htm">Bank Login</a> <a
-							class="collapse-item" href="ecgclogin.htm">ECGC Login</a>
-<a class="collapse-item" href="dop.htm">Decision</a> 
+							class="collapse-item" href="ecgclogin.htm">ECGC Login</a> <a
+							class="collapse-item" href="dop.htm">Decision</a>
 					</div>
 				</div></li>
 
@@ -395,154 +396,169 @@
 									<h6 class="m-0 font-weight-bold text-primary">Issue
 										Renewal</h6>
 								</a>
-								
-<form:form method="post"
-											class="form-horizontal border border-dark p-3 mb-2 bg-white text-dark mt-5"
-											role="form" modelAttribute="issueRenewal">								
-								<!-- Card Content - Collapse -->
-								<div class="collapse show" id="collapseCardExample">
-									<div class="card-body">
-<%														
-String str=(String) session.getAttribute("name"); 													
-out.print(str);
-%> 
-</br>
-</br>
-										<table class="table table-bordered">
-											<thead>
-												<tr>
-													<th>Proposal Id</th>
-													<th>Priliminary Scrutiny</th>
-													<th>Office Note</th>
-													<th>Recommendation</th>
-													<th>Decision</th>
-												</tr>
-											</thead>
 
-											<tbody>
-												<%
-													for (IssueRenewal u : userList) {
-												%>
-												<tr>
-													<td><%=u.getWt_isrn_proposal_frm_id()%></td>
-
-													<td>
-													
-													<a
-														href="selectIssueRenewalId.htm?proposalfrmid=<%=u.getWt_isrn_proposal_frm_id()%> "
-														class="btn btn-danger active">Preliminary Scrutiny</a></td>
-														
-													<td><a href="GenerateOfficeNote.htm" class="btn btn-danger disabled">Office
-															Note</a></td>
-													<td><a href="addRecommedation.htm"
-														class="btn btn-danger disabled">recommendation</a></td>
-													<td><a href="index.htm"
-														class="btn btn-danger disabled">Decision</a></td>
-												</tr>
-												<%
-													}
-												%>
-
-											</tbody>
-										</table>
-
-
-
-
-
-
-
-									</div>
-								</div>
-								
-								<div class="collapse show" id="collapseCardExample">
-									<div class="card-body">
-		
-										<H3>pending for Office Note Generation</H3>
-										<table class="table table-bordered">
-											<thead>
-												<tr>
-													<th>Proposal Id</th>
-													<th>Priliminary Scrutiny</th>
-													<th>Office Note</th>
-													<th>Recommendation</th>
-													<th>Decision</th>
-												</tr>
-											</thead>
-
-											<tbody>
-												<%
-													for (IssueRenewal u : listOfPreliminaryScrutinyDone) {
-												%>
-												<tr>
-													<td><%=u.getWt_isrn_proposal_frm_id()%></td>
-
-													<td><a
-														href="selectIssueRenewalId.htm?proposalfrmid=<%=u.getWt_isrn_proposal_frm_id()%> "
-														class="btn btn-danger disabled">Preliminary Scrutiny</a></td>
-													<td><a href="officenote.htm?proposalfrmid=<%=u.getWt_isrn_proposal_frm_id()%>" class="btn btn-danger active">Office
-															Note</a></td>
-													<td><a href="addRecommedation.htm"
-														class="btn btn-danger disabled">recommendation</a></td>
-													<td><a href="index.htm"
-														class="btn btn-danger disabled">Decision</a></td>
-												</tr>
-												<%
-													}
-												%>
-
-											</tbody>
-										</table>
-
-
-
-									</div>
-								</div>
-								
-								<div class="collapse show" id="collapseCardExample">
-									<div class="card-body">
-		
-										<H3> Recommendation</H3>
-										<table class="table table-bordered">
-											<thead>
-												<tr>
-													<th>ISRN Id</th>
-													<th>Priliminary Scrutiny</th>
-													<th>Office Note</th>
-													<th>Recommendation</th>
-													<th>Decision</th>
-												</tr>
-											</thead>
-
-											<tbody>
+								<form:form method="post"
+									class="form-horizontal border border-dark p-3 mb-2 bg-white text-dark mt-5"
+									role="form" modelAttribute="issueRenewal">
+									<!-- Card Content - Collapse -->
+									<div class="collapse show" id="collapseCardExample">
+										<div class="card-body">
 											<%
-													for (IssueRenewal u : listOfRecommedation) {
-												%>
-												
-												<tr>
-													<td><%=u.getWt_isrn_proposal_frm_id()%></td>
+												String str = (String) session.getAttribute("name");
+													out.print(str);
+											%>
+											</br> </br>
+											<table class="table table-bordered">
+												<thead>
+													<tr>
+														<th>Proposal Id</th>
+														<th>Priliminary Scrutiny</th>
+														<th>Office Note</th>
+														<th>Recommendation</th>
+														<th>Decision</th>
+													</tr>
+												</thead>
 
-													<td><a
-														href="selectIssueRenewalId.htm?isrnfrmid=<%=u.getWt_isrn_proposal_frm_id()%> "
-														class="btn btn-danger disabled">Preliminary Scrutiny</a></td>
-													<td><a href="officenote.htm?isrnfrmid=<%=u.getWt_isrn_proposal_frm_id()%>" class="btn btn-danger disabled">Office
-															Note</a></td>
-													<td><a href="addRecommedation.htm?isrnfrmid=<%=u.getWt_isrn_proposal_frm_id()%>"
-														class="btn btn-danger ">recommendation</a></td>
-													<td><a href="index.htm"
-														class="btn btn-danger disabled">Decision</a></td>
-												</tr>
-												<%
-													}
-												%>
+												<tbody>
+													<%
+														for (IssueRenewal u : userList) {
+													%>
+													<tr>
+														<td><%=u.getWt_isrn_proposal_frm_id()%></td>
 
-											</tbody>
-										</table>
+														<%-- <c:choose>
+																<c:when test="${Button.isPreliminary_scrutiny}== true ">
+																	<td><a
+															href="selectIssueRenewalId.htm?proposalfrmid=<%=u.getWt_isrn_proposal_frm_id()%> "
+															class="btn btn-danger active">Preliminary Scrutiny</a></td>
+
+																</c:when>
+																<c:otherwise>
+																<td><a
+															href="selectIssueRenewalId.htm?proposalfrmid=<%=u.getWt_isrn_proposal_frm_id()%> "
+															class="btn btn-danger disabled">Preliminary Scrutiny</a></td>
+
+																</c:otherwise>
+															</c:choose> --%>
+															
+															 <td><a
+															href="selectIssueRenewalId.htm?proposalfrmid=<%=u.getWt_isrn_proposal_frm_id()%> "
+															class="btn btn-danger active">Preliminary Scrutiny</a></td>
+
+														<td><a href="GenerateOfficeNote.htm"
+															class="btn btn-danger disabled">Office Note</a></td>
+														<td><a href="addRecommedation.htm"
+															class="btn btn-danger disabled">recommendation</a></td>
+														<td><a href="index.htm"
+															class="btn btn-danger disabled">Decision</a></td>
+													</tr>
+													<%
+														}
+													%>
+
+												</tbody>
+											</table>
 
 
 
+
+
+
+
+										</div>
 									</div>
-								</div>
+
+									<div class="collapse show" id="collapseCardExample">
+										<div class="card-body">
+
+											<H3>pending for Office Note Generation</H3>
+											<table class="table table-bordered">
+												<thead>
+													<tr>
+														<th>Proposal Id</th>
+														<th>Priliminary Scrutiny</th>
+														<th>Office Note</th>
+														<th>Recommendation</th>
+														<th>Decision</th>
+													</tr>
+												</thead>
+
+												<tbody>
+													<%
+														for (IssueRenewal u : listOfPreliminaryScrutinyDone) {
+													%>
+													<tr>
+														<td><%=u.getWt_isrn_proposal_frm_id()%></td>
+
+														<td><a
+															href="selectIssueRenewalId.htm?proposalfrmid=<%=u.getWt_isrn_proposal_frm_id()%> "
+															class="btn btn-danger disabled">Preliminary Scrutiny</a></td>
+														<td><a
+															href="officenote.htm?proposalfrmid=<%=u.getWt_isrn_proposal_frm_id()%>"
+															class="btn btn-danger active">Office Note</a></td>
+														<td><a href="addRecommedation.htm"
+															class="btn btn-danger disabled">recommendation</a></td>
+														<td><a href="index.htm"
+															class="btn btn-danger disabled">Decision</a></td>
+													</tr>
+													<%
+														}
+													%>
+
+												</tbody>
+											</table>
+
+
+
+										</div>
+									</div>
+
+									<div class="collapse show" id="collapseCardExample">
+										<div class="card-body">
+
+											<H3>Recommendation</H3>
+											<table class="table table-bordered">
+												<thead>
+													<tr>
+														<th>ISRN Id</th>
+														<th>Priliminary Scrutiny</th>
+														<th>Office Note</th>
+														<th>Recommendation</th>
+														<th>Decision</th>
+													</tr>
+												</thead>
+
+												<tbody>
+													<%
+														for (IssueRenewal u : listOfRecommedation) {
+													%>
+
+													<tr>
+														<td><%=u.getWt_isrn_proposal_frm_id()%></td>
+
+														<td><a
+															href="selectIssueRenewalId.htm?isrnfrmid=<%=u.getWt_isrn_proposal_frm_id()%> "
+															class="btn btn-danger disabled">Preliminary Scrutiny</a></td>
+														<td><a
+															href="officenote.htm?isrnfrmid=<%=u.getWt_isrn_proposal_frm_id()%>"
+															class="btn btn-danger disabled">Office Note</a></td>
+														<td><a
+															href="addRecommedation.htm?isrnfrmid=<%=u.getWt_isrn_proposal_frm_id()%>"
+															class="btn btn-danger ">recommendation</a></td>
+														<td><a href="index.htm"
+															class="btn btn-danger disabled">Decision</a></td>
+													</tr>
+													<%
+														}
+													%>
+
+												</tbody>
+											</table>
+
+
+
+										</div>
+									</div>
 								</form:form>
 							</div>
 

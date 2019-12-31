@@ -22,7 +22,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>ECGC </title>
+<title>ECGC</title>
 
 <!-- Custom fonts for this template-->
 <link
@@ -158,20 +158,13 @@ function HTMLtoPDF() {
 					aria-labelledby="headingPages" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Login Screens:</h6>
-						    <a class="collapse-item" href="login.htm">Login</a>  
-<!-- 						    <a -->
-<!-- 							class="collapse-item" href="register.html">Register</a> <a -->
-<!-- 							class="collapse-item" href="forgot-password.html">Forgot -->
-<!-- 							Password</a> -->
+						<a class="collapse-item" href="login.htm">Login</a>
 						<div class="collapse-divider"></div>
 
 						<a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a><a
 							class="collapse-item" href="banklogin.htm">Bank Login</a> <a
-							class="collapse-item" href="ecgclogin.htm">ECGC Login</a>
-
-<!-- 						<h6 class="collapse-header">Other Pages:</h6> -->
-<!-- 						<a class="collapse-item" href="404.html">404 Page</a> <a -->
-<!-- 							class="collapse-item" href="blank.html">Blank Page</a> -->
+							class="collapse-item" href="ecgclogin.htm">ECGC Login</a> <a
+							class="collapse-item" href="dop.htm">Decision</a>
 					</div>
 				</div></li>
 
@@ -405,7 +398,7 @@ function HTMLtoPDF() {
 					<!-- Page Heading -->
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">Add Continental</h1>
+						<h1 class="h3 mb-0 text-gray-800">ECIB</h1>
 					</div>
 
 
@@ -442,6 +435,33 @@ function HTMLtoPDF() {
 											class="form-horizontal border border-dark p-3 mb-2 bg-white text-dark mt-5"
 											role="form" modelAttribute="issueRenewal">
 
+											<div class="row">
+
+												<div class="col-sm-9">
+													<%
+														String proposalfrmid = (String) session.getAttribute("wt_isrn_proposal_frm_id");
+															out.print("Proposal Id:-" + proposalfrmid);
+													%>
+												</div>
+												<div class="col-sm-3">
+
+													<%
+														String str = (String) session.getAttribute("name");
+															out.print(str);
+													%>
+
+												</div>
+											</div>
+
+											<div class="form-group">
+												<div class="row">
+													<div class="col-sm-5"></div>
+													<div class="col-sm-4">
+														<label for="heading" class="col-sm-3 control-label"></label>
+													</div>
+													<div class="col-sm-3"></div>
+												</div>
+											</div>
 
 											<div class="form-group">
 												<div class="row">
@@ -453,14 +473,7 @@ function HTMLtoPDF() {
 													<div class="col-sm-4">
 														<label for="heading" class="col-sm-3 control-label"></label>
 													</div>
-													<div class="col-sm-3">
-														<!-- 														<input type="button" value="Generate PDF" onclick="HTMLtoPDF();" -->
-														<!-- 															class="btn btn-success active" > -->
-														<!-- 														<a href="javascript:HTMLtoPDF()" -->
-														<!-- 															class="btn btn-danger active">Generate PDF</a> -->
-												
-
-													</div>
+													<div class="col-sm-3"></div>
 												</div>
 											</div>
 
@@ -470,86 +483,43 @@ function HTMLtoPDF() {
 													<div class="col-sm-12">
 
 														<label for="heading" class="col-sm-3 control-label">Inward
-															number :</label>${issueRenewal.inward_id}</br> 
-															
-															
-														<label for="heading"
+															number :</label>${issueRenewal.inward_id}</br> <label for="heading"
 															class="col-sm-3 control-label">Inward item number
-															:</label>
-															
-															</br> 
-														<label for="heading" class="col-sm-3 control-label">Inward
-															date :</label></br> 
-															
-															
-														<label for="heading"
+															:</label> 2</br> <label for="heading" class="col-sm-3 control-label">Inward
+															date :</label>27/12/2019</br> <label for="heading"
 															class="col-sm-3 control-label">ECGC branch :</label>${issueRenewal.ecgc_branch_code}</br>
 
 
 														<label for="heading" class="col-sm-3 control-label">Bank
-															code :</label>${issueRenewal.bank_code } </br> 
-															
-														<label for="heading"
+															code :</label>${issueRenewal.bank_code } </br> <label for="heading"
 															class="col-sm-3 control-label">Bank name : </label>${issueRenewal.bank_name }</br>
 
 
 
 														<label for="heading" class="col-sm-3  control-label">Accounts
-															good as on date :</label> </br> 
-															
-														
-														<label for="heading"
+															good as on date :</label>12/12/2019 </br> <label for="heading"
 															class="col-sm-3  control-label">Total outstanding
-															amount as on date : </label></br> 
-															
-														
-														<label for="heading"
+															amount as on date : </label>15000</br> <label for="heading"
 															class="col-sm-3  control-label">Anticipated total
-															outstanding amount for coming year :</label></br> 
-															
-														<label for="heading"
-															class="col-sm-3  control-label">Stamped/signed :</label></br>
-
-
-
-														<label for="heading" class="col-sm-3  control-label">Proposal
-															Cover period :</label></br> 
-															
-															
-														<label for="heading"
+															outstanding amount for coming year :</label>50000</br> <label
+															for="heading" class="col-sm-3  control-label">Stamped/signed
+															:</label>ECGC</br> <label for="heading"
+															class="col-sm-3  control-label">Proposal Cover
+															period :</label>12/12/2019</br> <label for="heading"
 															class="col-sm-3  control-label">Cover first
-															Issued on :</label></br> 
-															
-															
-														<label for="heading"
+															Issued on :</label>15/10/2019</br> <label for="heading"
 															class="col-sm-3  control-label">Total claim paid
-															since issue of Cover :</label></br> 
-															
-															
-														<label for="heading"
+															since issue of Cover :</label>15000</br> <label for="heading"
 															class="col-sm-3  control-label">Total premium
-															paid since issue of Cover :</label></br> 
-															
-															
-														<label for="heading"
-															class="col-sm-3  control-label">Proposal date :</label></br> <label
-															for="heading" class="col-sm-3 control-label">Annexure
+															paid since issue of Cover :</label>16000</br> <label for="heading"
+															class="col-sm-3  control-label">Proposal date :</label>27/12/2019</br>
+														<label for="heading" class="col-sm-3 control-label">Annexure
 															2(i) attached :</label>${issueRenewal.annex_statement_of_packing_attached ? 'Yes' : 'No'}
-														</br> 
-														
-														
-														<label for="heading" class="col-sm-3 control-label">Annexure
+														</br> <label for="heading" class="col-sm-3 control-label">Annexure
 															2(ii) attached:</label>${issueRenewal.annex_for_limit_sanction_attached ? 'Yes' : 'No'}
-														</br> 
-														
-														
-														<label for="heading" class="col-sm-3 control-label">Annexure
+														</br> <label for="heading" class="col-sm-3 control-label">Annexure
 															3 attached :</label>${issueRenewal.annex_of_cdr_acc_attached ? 'Yes' : 'No'}
-														</br> 
-														
-														
-														
-														<label for="heading" class="col-sm-3 control-label">Remarks
+														</br> <label for="heading" class="col-sm-3 control-label">Remarks
 															:</label></br>
 
 
@@ -575,18 +545,13 @@ function HTMLtoPDF() {
 																</tr>
 															</thead>
 															<tbody>
-																	<tr>
-																<td><label
-															for="heading" class="control-label"></label>2250</td>
-															<td><label
-															for="heading" class="control-label"></label>2520</td>
-															<td><label
-															for="heading" class="control-label"></label>5250</td>
-															<td><label
-															for="heading" class="control-label"></label>5420</td>
-															<td><label
-															for="heading" class="control-label"></label>2540</td>
-																
+																<tr>
+																	<td><label for="heading" class="control-label"></label>2250</td>
+																	<td><label for="heading" class="control-label"></label>2520</td>
+																	<td><label for="heading" class="control-label"></label>5250</td>
+																	<td><label for="heading" class="control-label"></label>5420</td>
+																	<td><label for="heading" class="control-label"></label>2540</td>
+
 																</tr>
 															</tbody>
 														</table>
@@ -612,18 +577,13 @@ function HTMLtoPDF() {
 																</tr>
 															</thead>
 															<tbody>
-																	<tr>
-																<td><label
-															for="heading" class="control-label">${issueRenewal.no_of_obu_covered }</label></td>
-															<td><label
-															for="heading" class="control-label"></label></td>
-															<td><label
-															for="heading" class="control-label">${issueRenewal.amt_outstanding_for_obu }</label></td>
-															<td><label
-															for="heading" class="control-label"></label></td>
-															<td><label
-															for="heading" class="control-label"></label></td>
-																
+																<tr>
+																	<td><label for="heading" class="control-label">${issueRenewal.no_of_obu_covered }</label></td>
+																	<td><label for="heading" class="control-label">163500</label></td>
+																	<td><label for="heading" class="control-label">${issueRenewal.amt_outstanding_for_obu }</label></td>
+																	<td><label for="heading" class="control-label">50000</label></td>
+																	<td><label for="heading" class="control-label">65000</label></td>
+
 																</tr>
 															</tbody>
 
@@ -651,18 +611,13 @@ function HTMLtoPDF() {
 																</tr>
 															</thead>
 															<tbody>
-																	<tr>
-																<td><label
-															for="heading" class="control-label"></label>${issueRenewal.no_of_govt_companies_covered}</td>
-															<td><label
-															for="heading" class="control-label"></label></td>
-															<td><label
-															for="heading" class="control-label"></label>${issueRenewal.amt_outstanding_for_govt_company }</td>
-															<td><label
-															for="heading" class="control-label"></label></td>
-															<td><label
-															for="heading" class="control-label"></label></td>
-																
+																<tr>
+																	<td><label for="heading" class="control-label"></label>${issueRenewal.no_of_govt_companies_covered}</td>
+																	<td><label for="heading" class="control-label">35222</label></td>
+																	<td><label for="heading" class="control-label"></label>${issueRenewal.amt_outstanding_for_govt_company }</td>
+																	<td><label for="heading" class="control-label">50000</label></td>
+																	<td><label for="heading" class="control-label">60000</label></td>
+
 																</tr>
 															</tbody>
 														</table>
@@ -688,18 +643,13 @@ function HTMLtoPDF() {
 																</tr>
 															</thead>
 															<tbody>
-																	<tr>
-																<td><label
-															for="heading" class="control-label"></label>22540</td>
-															<td><label
-															for="heading" class="control-label"></label>25420</td>
-															<td><label
-															for="heading" class="control-label"></label>52750</td>
-															<td><label
-															for="heading" class="control-label"></label>54270</td>
-															<td><label
-															for="heading" class="control-label"></label>25470</td>
-																
+																<tr>
+																	<td><label for="heading" class="control-label"></label>22540</td>
+																	<td><label for="heading" class="control-label"></label>25420</td>
+																	<td><label for="heading" class="control-label"></label>52750</td>
+																	<td><label for="heading" class="control-label"></label>54270</td>
+																	<td><label for="heading" class="control-label"></label>25470</td>
+
 																</tr>
 															</tbody>
 														</table>
@@ -726,18 +676,13 @@ function HTMLtoPDF() {
 																</tr>
 															</thead>
 															<tbody>
-																	<tr>
-																<td><label
-															for="heading" class="control-label"></label>24250</td>
-															<td><label
-															for="heading" class="control-label"></label>2520</td>
-															<td><label
-															for="heading" class="control-label"></label>52450</td>
-															<td><label
-															for="heading" class="control-label"></label>54420</td>
-															<td><label
-															for="heading" class="control-label"></label>24540</td>
-																
+																<tr>
+																	<td><label for="heading" class="control-label"></label>24250</td>
+																	<td><label for="heading" class="control-label"></label>2520</td>
+																	<td><label for="heading" class="control-label"></label>52450</td>
+																	<td><label for="heading" class="control-label"></label>54420</td>
+																	<td><label for="heading" class="control-label"></label>24540</td>
+
 																</tr>
 															</tbody>
 														</table>
@@ -763,18 +708,13 @@ function HTMLtoPDF() {
 																</tr>
 															</thead>
 															<tbody>
-																	<tr>
-																<td><label
-															for="heading" class="control-label"></label>42250</td>
-															<td><label
-															for="heading" class="control-label"></label>72520</td>
-															<td><label
-															for="heading" class="control-label"></label>5250</td>
-															<td><label
-															for="heading" class="control-label"></label>5420</td>
-															<td><label
-															for="heading" class="control-label"></label>2540</td>
-																
+																<tr>
+																	<td><label for="heading" class="control-label"></label>42250</td>
+																	<td><label for="heading" class="control-label"></label>72520</td>
+																	<td><label for="heading" class="control-label"></label>5250</td>
+																	<td><label for="heading" class="control-label"></label>5420</td>
+																	<td><label for="heading" class="control-label"></label>2540</td>
+
 																</tr>
 															</tbody>
 														</table>
@@ -801,18 +741,13 @@ function HTMLtoPDF() {
 																</tr>
 															</thead>
 															<tbody>
-																	<tr>
-																<td><label
-															for="heading" class="control-label"></label>2250</td>
-															<td><label
-															for="heading" class="control-label"></label>2520</td>
-															<td><label
-															for="heading" class="control-label"></label>5250</td>
-															<td><label
-															for="heading" class="control-label"></label>5420</td>
-															<td><label
-															for="heading" class="control-label"></label>2540</td>
-																
+																<tr>
+																	<td><label for="heading" class="control-label"></label>2250</td>
+																	<td><label for="heading" class="control-label"></label>2520</td>
+																	<td><label for="heading" class="control-label"></label>5250</td>
+																	<td><label for="heading" class="control-label"></label>5420</td>
+																	<td><label for="heading" class="control-label"></label>2540</td>
+
 																</tr>
 															</tbody>
 														</table>
@@ -839,18 +774,13 @@ function HTMLtoPDF() {
 																</tr>
 															</thead>
 															<tbody>
-																	<tr>
-																<td><label
-															for="heading" class="control-label"></label>2250</td>
-															<td><label
-															for="heading" class="control-label"></label>2520</td>
-															<td><label
-															for="heading" class="control-label"></label>5250</td>
-															<td><label
-															for="heading" class="control-label"></label>5420</td>
-															<td><label
-															for="heading" class="control-label"></label>2540</td>
-																
+																<tr>
+																	<td><label for="heading" class="control-label"></label>2250</td>
+																	<td><label for="heading" class="control-label"></label>2520</td>
+																	<td><label for="heading" class="control-label"></label>5250</td>
+																	<td><label for="heading" class="control-label"></label>5420</td>
+																	<td><label for="heading" class="control-label"></label>2540</td>
+
 																</tr>
 															</tbody>
 														</table>
@@ -877,18 +807,13 @@ function HTMLtoPDF() {
 																</tr>
 															</thead>
 															<tbody>
-																	<tr>
-																<td><label
-															for="heading" class="control-label"></label>2250</td>
-															<td><label
-															for="heading" class="control-label"></label>2520</td>
-															<td><label
-															for="heading" class="control-label"></label>5250</td>
-															<td><label
-															for="heading" class="control-label"></label>5420</td>
-															<td><label
-															for="heading" class="control-label"></label>2540</td>
-																
+																<tr>
+																	<td><label for="heading" class="control-label"></label>2250</td>
+																	<td><label for="heading" class="control-label"></label>2520</td>
+																	<td><label for="heading" class="control-label"></label>5250</td>
+																	<td><label for="heading" class="control-label"></label>5420</td>
+																	<td><label for="heading" class="control-label"></label>2540</td>
+
 																</tr>
 															</tbody>
 														</table>
@@ -914,18 +839,13 @@ function HTMLtoPDF() {
 																</tr>
 															</thead>
 															<tbody>
-																	<tr>
-																<td><label
-															for="heading" class="control-label"></label>2250</td>
-															<td><label
-															for="heading" class="control-label"></label>2520</td>
-															<td><label
-															for="heading" class="control-label"></label>5250</td>
-															<td><label
-															for="heading" class="control-label"></label>5420</td>
-															<td><label
-															for="heading" class="control-label"></label>2540</td>
-																
+																<tr>
+																	<td><label for="heading" class="control-label"></label>2250</td>
+																	<td><label for="heading" class="control-label"></label>2520</td>
+																	<td><label for="heading" class="control-label"></label>5250</td>
+																	<td><label for="heading" class="control-label"></label>5420</td>
+																	<td><label for="heading" class="control-label"></label>2540</td>
+
 																</tr>
 															</tbody>
 														</table>
@@ -952,18 +872,13 @@ function HTMLtoPDF() {
 																</tr>
 															</thead>
 															<tbody>
-																	<tr>
-																<td><label
-															for="heading" class="control-label"></label>2250</td>
-															<td><label
-															for="heading" class="control-label"></label>2520</td>
-															<td><label
-															for="heading" class="control-label"></label>5250</td>
-															<td><label
-															for="heading" class="control-label"></label>5420</td>
-															<td><label
-															for="heading" class="control-label"></label>2540</td>
-																
+																<tr>
+																	<td><label for="heading" class="control-label"></label>2250</td>
+																	<td><label for="heading" class="control-label"></label>2520</td>
+																	<td><label for="heading" class="control-label"></label>5250</td>
+																	<td><label for="heading" class="control-label"></label>5420</td>
+																	<td><label for="heading" class="control-label"></label>2540</td>
+
 																</tr>
 															</tbody>
 														</table>
@@ -990,16 +905,12 @@ function HTMLtoPDF() {
 																</tr>
 															</thead>
 															<tbody>
-																	<tr>
-																<td><label
-															for="heading" class="control-label"></label>2250</td>
-															<td><label
-															for="heading" class="control-label"></label>2520</td>
-															<td><label
-															for="heading" class="control-label"></label>5250</td>
-															<td><label
-															for="heading" class="control-label"></label>5420</td>
-															
+																<tr>
+																	<td><label for="heading" class="control-label"></label>2250</td>
+																	<td><label for="heading" class="control-label"></label>2520</td>
+																	<td><label for="heading" class="control-label"></label>5250</td>
+																	<td><label for="heading" class="control-label"></label>5420</td>
+
 																</tr>
 															</tbody>
 														</table>
@@ -1014,11 +925,10 @@ function HTMLtoPDF() {
 													<div class="col-sm-6">
 														<label for="heading" class="col-sm-3 control-label">Generated
 															BY</label><br> <label for="heading"
-															class="col-sm-3 control-label">Date:-</label><br> 
-																	<input type="submit" class="btn btn-danger active"
+															class="col-sm-3 control-label">Date:-</label><br> <input
+															type="submit" class="btn btn-danger active"
 															value="Generate OfficeNote" onclick="window.print()">
-															<a
-															href="cancelPreliminaryScrutinypage.htm"
+														<a href="cancelPreliminaryScrutinypage.htm"
 															class="btn btn-danger active form-actions">Cancel</a>
 													</div>
 

@@ -8,10 +8,10 @@ import in.cdac.ecib.dto.User;
 public interface IssueRenewalServ {
 	
 	
-	public void Create(IssueRenewal issueRenewal);
+	public void create(IssueRenewal issueRenewal);
 	
 
-	public int Modify(String id,IssueRenewal issueRenewal);
+	public int modify(String id,IssueRenewal issueRenewal);
 
 	
 	public List<IssueRenewal> getAllBankList();

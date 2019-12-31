@@ -10,9 +10,7 @@
 <%
 	List<IssueRenewal> userList = (List<IssueRenewal>) request.getAttribute("listIssueRenewal");
 %>
-<%
-	List<String> message = (List<String>) request.getAttribute("message");
-%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -133,16 +131,12 @@
 
 						<h6 class="collapse-header">Login Screens:</h6>
 						<a class="collapse-item" href="login.htm">Login</a>
-						<!--             <a class="collapse-item" href="register.html">Register</a> -->
-						<!--             <a class="collapse-item" href="forgot-password.html">Forgot Password</a> -->
-						<div class="collapse-divider"></div>
+					<div class="collapse-divider"></div>
 
 						<a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a>
 						<a class="collapse-item" href="banklogin.htm">Bank Login</a> <a
 							class="collapse-item" href="ecgclogin.htm">ECGC Login</a>
-						<!-- 			<a class="collapse-item" href="viewAllEventType">View Event Type</a> -->
-						<!-- 			<a class="collapse-item" href="addContinentForm">Add Continent</a> -->
-						<!--             <a class="collapse-item" href="viewAllContinent">View Continents</a> -->
+						<a class="collapse-item" href="dop.htm">Decision</a> 
 					</div>
 				</div></li>
 
@@ -404,34 +398,45 @@
 											class="form-horizontal border border-dark p-3 mb-2 bg-white text-dark mt-5"
 											role="form" modelAttribute="issueRenewal">
 
+<div class="row">
 
+												<div class="col-sm-9">
+													<%
+														String proposalfrmid = (String) session.getAttribute("wt_isrn_proposal_frm_id");
+															out.print("Proposal Id:-" + proposalfrmid);
+													%>
+												</div>
+												<div class="col-sm-3">
+
+													<%
+														String str = (String) session.getAttribute("name");
+															out.print(str);
+													%>
+
+												</div>
+											</div>
+											
+												<div class="form-group">
+												<div class="row">
+													<div class="col-sm-5">
+														
+													</div>
+
+													<div class="col-sm-4">
+														<label for="heading" class="col-sm-3 control-label"></label>
+													</div>
+													<div class="col-sm-3">											
+													</div>
+												</div>
+											</div>
+
+										
+											
 											<div class="form-group">
 												<div class="row">
 													<div class=" col-sm-8 ">
 
-														<table class="table table-bordered">
-															<thead>
-																<tr>
-																	<th>Your message:</th>
-
-																</tr>
-															</thead>
-
-															<tbody>
-																<% 
-String proposalfrmid=(String) session.getAttribute("wt_isrn_proposal_frm_id"); 
-out.print("WT_ISRN_ID:- "+ proposalfrmid);
-%>
-
-																<c:forEach items="${message}" var="item">
-																	<tr>
-																	
-																		<td>${item}</td>
-																	</tr>
-																</c:forEach>
-
-															</tbody>
-														</table>
+														
 													</div>
 												</div>
 												<div class="row">
@@ -443,11 +448,9 @@ out.print("WT_ISRN_ID:- "+ proposalfrmid);
 															<textarea name="recommendation_line" id="recommend"
 																class="md-textarea form-control" rows=""></textarea>
 
-															&nbsp; &nbsp; <input type="submit" value="Add Recommend"
+															&nbsp; &nbsp; <input type="submit" value="Submit Recommedation"
 																class="btn btn-success active" />
-																
-															&nbsp; &nbsp; <a href="submitrecommedation.htm"
-														class="btn btn-danger"><center>Submit Recommedation</center></a></td>
+														
 														</div>
 													</div>
 												</div>

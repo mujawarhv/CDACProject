@@ -7,9 +7,9 @@ import in.cdac.ecib.dto.User;
 
 public interface IssueRenewalDao {
 	
-	public void Save(IssueRenewal issueRenewal);
+	public void save(IssueRenewal issueRenewal);
 
-	public int Update(String id, IssueRenewal issueRenewal); 
+	public int update(String id, IssueRenewal issueRenewal); 
 
 	public List<IssueRenewal > userList();
 	

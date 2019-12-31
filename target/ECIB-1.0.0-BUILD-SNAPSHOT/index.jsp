@@ -159,16 +159,13 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Login Screens:</h6>
              <a class="collapse-item" href="login.htm">Login</a> 
-<!--             <a class="collapse-item" href="register.html">Register</a> -->
-<!--             <a class="collapse-item" href="forgot-password.html">Forgot Password</a> -->
             <div class="collapse-divider"></div>
             
             <a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a>
             <a class="collapse-item" href="banklogin.htm">Bank Login</a>
 			<a class="collapse-item" href="ecgclogin.htm">ECGC Login</a>
 			<a class="collapse-item" href="dop.htm">Decision</a> 
-<!-- 			<a class="collapse-item" href="addContinentForm">Add Continent</a> -->
-<!--             <a class="collapse-item" href="viewAllContinent">View Continents</a> -->
+
            
            
             

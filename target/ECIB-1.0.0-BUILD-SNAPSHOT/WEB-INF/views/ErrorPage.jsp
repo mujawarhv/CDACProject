@@ -8,7 +8,7 @@
    
    <body>
        <h1>Opps...</h1>
-      <p>Sorry, an error occurred.</p>
+      <p>Sorry, an  error occurred.</p>
 	
 <%-- 	<%= exception %>   --%>
    </body>

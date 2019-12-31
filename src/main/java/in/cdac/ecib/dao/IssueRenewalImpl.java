@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import in.cdac.ecib.dto.Button;
 import in.cdac.ecib.dto.IssueRenewal;
 import in.cdac.ecib.dto.User;
 
@@ -25,7 +26,7 @@ public class IssueRenewalImpl implements IssueRenewalDao {
 	 */
 
 	@Override
-	public void Save(IssueRenewal issueRenewal) {
+	public void save(IssueRenewal issueRenewal) {
 
 		String sql = "select wt_isrn_proposal_frm_id from wt_isrn_proposal_frm;";
 
@@ -94,7 +95,7 @@ public class IssueRenewalImpl implements IssueRenewalDao {
 	 */
 
 	@Override
-	public int Update(String id, IssueRenewal issueRenewal) {
+	public int update(String id, IssueRenewal issueRenewal) {
 		String sql = "UPDATE wt_isrn_proposal_frm SET bank_name='" + issueRenewal.getBank_name() + "',cover_type='"
 				+ issueRenewal.getCover_type() + "',is_ssi_msme_covered='" + issueRenewal.isIs_ssi_msme_covered()
 				+ "',is_govt_company_covered='" + issueRenewal.isIs_govt_company_covered() + "', is_obu_covered='"
@@ -439,6 +440,21 @@ public class IssueRenewalImpl implements IssueRenewalDao {
 		return list;
 	}
 
+	
+	public List<Button> buttonList() {
+		List<Button> list = jdbcTemplate.query(
+				"SELECT * FROM button ",
+				new RowMapper<Button>() {
+					@Override
+					public Button mapRow(ResultSet rs, int rowNum) throws SQLException {
+						Button button = new Button();
+						button.setPreliminary_scrutiny(rs.getBoolean("preliminary_scrutiny"));
+						button.setOffice_note(rs.getBoolean("office_note"));
+						return button;
+					}
+				});
+		return list;
+	}
 	
 
 }

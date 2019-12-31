@@ -9,7 +9,6 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -32,7 +31,7 @@ public class BankController {
 	@Autowired
 	private IssueRenewalServ issueRenewalServ;
 
-	private Logger logger = LoggerFactory.getLogger(IssueRenewalServ.class);
+	 private Logger logger = LoggerFactory.getLogger(IssueRenewalServ.class);
 
 	/*
 	 * When bank click on Login button on index page then it will go to BankLogin
@@ -101,7 +100,7 @@ public class BankController {
 			HttpServletRequest request, HttpServletResponse response, BindingResult result, ModelAndView model)
 			throws Exception {
 		if (issueRenewal != null) {
-			issueRenewalServ.Create(issueRenewal);
+			issueRenewalServ.create(issueRenewal);
 		} else {
 			String str = "Incorrect details";
 			request.setAttribute("str", str);
@@ -192,15 +191,15 @@ public class BankController {
 	 */
 
 	@RequestMapping(value = "/updateIssueRenewal.htm")
-	public String update(@ModelAttribute("issueRenewal") IssueRenewal issueRenewal, ModelMap model) {
-		issueRenewalServ.Modify(issueRenewal.getWt_isrn_proposal_frm_id(), issueRenewal);
+	public String updateIssueRenewalForm(@ModelAttribute("issueRenewal") IssueRenewal issueRenewal, ModelMap model) {
+		issueRenewalServ.modify(issueRenewal.getWt_isrn_proposal_frm_id(), issueRenewal);
 //		List<IssueRenewal> listIssueRenewal = issueRenewalServ.getAllBankList();
 //		model.put("listIssueRenewal", listIssueRenewal);
 		return "updateAnnexure";
 	}
 
 	@RequestMapping(value = "/updateIssueRenewalForm.htm")
-	public String updateAnnexure(@ModelAttribute("issueRenewal") IssueRenewal issueRenewal, ModelMap model) {
+	public String updateIssueRenewalAnnexure(@ModelAttribute("issueRenewal") IssueRenewal issueRenewal, ModelMap model) {
 		// issueRenewalServ.Modify(issueRenewal.getWt_isrn_proposal_frm_id(),
 		// issueRenewal);
 		List<IssueRenewal> listIssueRenewal = issueRenewalServ.getAllBankList();
@@ -238,7 +237,7 @@ public class BankController {
 	 */
 
 	@RequestMapping(value = "/cancelPreliminaryScrutinypage.htm")
-	public String cancelPreliminaryScrutinypage(ModelMap model) {
+	public String cancelPreliminaryScrutinyForm(ModelMap model) {
 		List<IssueRenewal> listOfPreliminaryScrutiny = issueRenewalServ.getIssueRenewalList();
 		List<IssueRenewal> listOfPreliminaryScrutinyDone = issueRenewalServ.getlistOfPreliminaryScrutinyDone();
 		List<IssueRenewal> listOfRecommedation = issueRenewalServ.getListOfOfficeNoteDone();
@@ -311,6 +310,7 @@ public class BankController {
 		session.setAttribute("name", name);
 
 		issueRenewalServ.psCompleted(wt_isrn_proposal_frm_id);
+		
 		issueRenewal = issueRenewalServ.getOfficeNoteInfo(wt_isrn_proposal_frm_id);
 		model.addAttribute("issueRenewal", issueRenewal);
 		return "OfficeNote";
@@ -318,7 +318,7 @@ public class BankController {
 	}
 
 	@RequestMapping(value = "/preliminaryScrutinyDone.htm", params = "action1")
-	public String backToStratPS(@ModelAttribute("issueRenewal") IssueRenewal issueRenewal, ModelMap model,
+	public String backToStartPS(@ModelAttribute("issueRenewal") IssueRenewal issueRenewal, ModelMap model,
 			HttpServletRequest request) {
 
 		List<IssueRenewal> listOfPreliminaryScrutiny = issueRenewalServ.getIssueRenewalList();
@@ -402,6 +402,7 @@ public class BankController {
 
 	@RequestMapping(value = "/officenotegeneration.htm")
 	public String generationOfOfficeNote(@ModelAttribute("issueRenewal") IssueRenewal issueRenewal, ModelMap model) {
+		
 		issueRenewalServ.createOfficeNote(issueRenewal);
 
 		List<IssueRenewal> listOfPreliminaryScrutiny = issueRenewalServ.getIssueRenewalList();
@@ -419,7 +420,7 @@ public class BankController {
 	 * This controller is used to go on recommedation page
 	 */
 	@RequestMapping(value = "/addRecommedation.htm")
-	public String AddRecommedation(@RequestParam("isrnfrmid") String isrnfrmid,
+	public String addRecommedation(@RequestParam("isrnfrmid") String isrnfrmid,
 			@ModelAttribute("issueRenewal") IssueRenewal issueRenewal, ModelMap model, HttpServletRequest request) {
 
 		HttpSession session = request.getSession();
@@ -497,7 +498,7 @@ public class BankController {
 	 */
 
 	@RequestMapping(value = "/dop.htm", method = RequestMethod.GET)
-	public String Dop(@ModelAttribute("issueRenewal1") IssueRenewal issueRenewal, HttpServletRequest request,
+	public String dop(@ModelAttribute("issueRenewal1") IssueRenewal issueRenewal, HttpServletRequest request,
 			HttpServletResponse response, BindingResult result, ModelMap model) throws Exception {
 
 		/*
@@ -518,8 +519,7 @@ public class BankController {
 
 	@RequestMapping(value = "/submitrecommedation.htm")
 	public String submitRecommendation(@RequestParam("id") String isrn_id, ModelMap model, HttpServletRequest request) {
-		System.out.println("****************************");
-
+	
 		/*
 		 * HttpSession session = request.getSession(); String wt_isrn_proposal_frm_id =
 		 * (String) session.getAttribute("name");
@@ -537,7 +537,7 @@ public class BankController {
 	 */
 
 	@RequestMapping(value = "/submitDOP.htm", method = RequestMethod.POST)
-	public String DopSubmit(@RequestParam("start_date") Date start_date, @RequestParam("end_date") Date expiry_date,
+	public String dopSubmit(@RequestParam("start_date") Date start_date, @RequestParam("end_date") Date expiry_date,
 			@ModelAttribute("issueRenewal1") IssueRenewal issueRenewal, HttpServletRequest request,
 			HttpServletResponse response, BindingResult result, ModelMap model) throws Exception {
 
@@ -550,8 +550,11 @@ public class BankController {
 
 		issueRenewalServ.dopDone(decision, remarks, reason, start_date, expiry_date, ml, dl, set_limit, issueRenewal);
 
+		List<String> message = issueRenewalServ.showRecommedation();
+		model.put("message", message);
 		model.addAttribute("issueRenewal1", new IssueRenewal());
 
+		
 		return "Decision";
 	}
 

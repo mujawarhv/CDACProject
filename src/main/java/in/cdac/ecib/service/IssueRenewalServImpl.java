@@ -17,13 +17,13 @@ public class IssueRenewalServImpl implements IssueRenewalServ {
 	IssueRenewalDao issueRenewalDao;
 
 	@Override
-	public void Create(IssueRenewal issueRenewal) {
-		issueRenewalDao.Save(issueRenewal);		
+	public void create(IssueRenewal issueRenewal) {
+		issueRenewalDao.save(issueRenewal);		
 	}
 
 	@Override
-	public int Modify(String id,IssueRenewal issueRenewal) {
-		return issueRenewalDao.Update(id, issueRenewal);		
+	public int modify(String id,IssueRenewal issueRenewal) {
+		return issueRenewalDao.update(id, issueRenewal);		
 	}
 
 	@Override
