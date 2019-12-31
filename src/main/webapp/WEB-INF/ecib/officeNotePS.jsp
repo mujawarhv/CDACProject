@@ -4,7 +4,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="fmt"%>
 <%
-IssueRenewal issueRenewal = (IssueRenewal) session.getAttribute("issueRenewal");
+	IssueRenewal issueRenewal = (IssueRenewal) session.getAttribute("issueRenewal");
 %>
 <%
 	List<IssueRenewal> userList = (List<IssueRenewal>) request.getAttribute("listIssueRenewal");
@@ -21,7 +21,7 @@ IssueRenewal issueRenewal = (IssueRenewal) session.getAttribute("issueRenewal");
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>ECGC </title>
+<title>ECGC</title>
 
 <!-- Custom fonts for this template-->
 <link
@@ -143,16 +143,13 @@ IssueRenewal issueRenewal = (IssueRenewal) session.getAttribute("issueRenewal");
 					aria-labelledby="headingPages" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Login Screens:</h6>
-						    <a class="collapse-item" href="login.htm">Login</a> 
-
+						<a class="collapse-item" href="login.htm">Login</a>
 						<div class="collapse-divider"></div>
 
-						 <a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a> <a
-							class="collapse-item" href="banklogin.htm">Bank Login</a> <a
-							class="collapse-item" href="ecgclogin.htm">ECGC Login</a>
-
-<a class="collapse-item" href="dop.htm">Decision</a> 
-					</div>
+						<a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a>
+            <a class="collapse-item" href="banklogin.htm">Bank Login</a>
+			<a class="collapse-item" href="eciblogin.htm">ECIB Login</a>
+			<a class="collapse-item" href="decision.htm">Decision</a> 	</div>
 				</div></li>
 
 			<!-- Nav Item - Charts -->
@@ -251,7 +248,7 @@ IssueRenewal issueRenewal = (IssueRenewal) session.getAttribute("issueRenewal");
 											<i class="fas fa-file-alt text-white"></i>
 										</div>
 									</div>
-									<div>2
+									<div>
 										<div class="small text-gray-500">December 12, 2019</div>
 										<span class="font-weight-bold">A new monthly report is
 											ready to download!</span>
@@ -410,22 +407,10 @@ IssueRenewal issueRenewal = (IssueRenewal) session.getAttribute("issueRenewal");
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-										<form:form method="post" action="GenerateOfficeNote.htm"
+										<form:form method="post" action="officenotegeneration.htm"
 											class="form-horizontal border border-dark p-3 mb-2 bg-white text-dark mt-5"
 											role="form" modelAttribute="issueRenewal">
-
-	<div class="row">
+											<div class="row">
 
 												<div class="col-sm-9">
 													<%
@@ -442,79 +427,384 @@ IssueRenewal issueRenewal = (IssueRenewal) session.getAttribute("issueRenewal");
 
 												</div>
 											</div>
-											<div class="form-group">
-												<label for="heading" class="col-sm-3 control-label"></label>
-												<div class="col-sm-9"></div>
-											</div>
 
 											<div class="form-group">
 												<div class="row">
-													<div class="col-sm-8">
+													<div class="col-sm-5"></div>
 
-														<label for="heading" class="col-sm-3 control-label">WT
-															isrn id</label>
+													<div class="col-sm-4">
+														<label for="heading" class="col-sm-3 control-label"></label>
+													</div>
+													<div class="col-sm-3"></div>
+												</div>
+											</div>
 
-														<form:input id="exampleField" type="text"
-														class="form-field__input" path="wt_isrn_proposal_frm_id"
-														placeholder="form-id" disabled="true" /></br>
 
-														<label for="heading" class="col-sm-3 control-label">Cover
-															type</label>
+											<div class="form-group">
+												<div class="row">
+													<div class="col-sm-5">
+														<label for="heading" class="col-sm-3 control-label">Office
+															Note PS</label>
+													</div>
 
-													<form:input id="exampleField"
-															list="Fresh/Renewal" placeholder="insurance type"
-															type="text" class="form-field__input" path="cover_type"
-															disabled="true" /></br>
+													<div class="col-sm-4">
+														<label for="heading" class="col-sm-3 control-label"></label>
+													</div>
+													<div class="col-sm-3"></div>
+												</div>
+											</div>
+
+
+
+											<div class="form-group">
+												<div class="row">
+													<div class="col-sm-12">
+
+														<label for="heading" class="col-sm-3 control-label">Inward
+															number</label>${issueRenewal.inward_id} </br> <label for="heading"
+															class="col-sm-3 control-label">Inward item number</label>2
+														</br> <label for="heading" class="col-sm-3 control-label">Inward
+															date</label>27/12/2019 </br> <label for="heading"
+															class="col-sm-3 control-label">ECGC branch</label>${issueRenewal.ecgc_branch_code}</br>
+
+
+
 
 														<label for="heading" class="col-sm-3 control-label">Bank
-															Code</label>
+															code</label> ${issueRenewal.bank_code }</br> <label for="heading"
+															class="col-sm-3 control-label">Bank name</label>${issueRenewal.bank_name }
+														</br> <label for="heading" class="col-sm-3 control-label">Accounts
+															good as on date</label>1500 </br> <label for="heading"
+															class="col-sm-3 control-label">Total outstanding
+															amount as on date</label>15000 </br> <label for="heading"
+															class="col-sm-3 control-label">Anticipated total
+															outstanding amount for coming year</label>${issueRenewal.anticipated_outstanding_in_current_year }</br>
 
-														<form:input id="exampleField"
-															list="Fresh/Renewal" placeholder="insurance type"
-															type="text" class="form-field__input" path="bank_code"
-															disabled="true" />
+
+														<label for="heading" class="col-sm-3 control-label">Stamped/signed</label>yes
+
+
+														</br> <label for="heading" class="col-sm-3 control-label">Proposal
+															date</label>27/12/2019 </br> <label for="heading"
+															class="col-sm-3 control-label">Annexure 2(i)
+															attached</label>${issueRenewal.annex_of_cdr_acc_attached ? 'Yes' : 'No'}
+														</br> <label for="heading" class="col-sm-3 control-label">Annexure
+															2(ii) attached</label>${issueRenewal.annex_of_cdr_acc_attached ? 'Yes' : 'No'}
+														</br> <label for="heading" class="col-sm-3 control-label">Annexure
+															3 attached</label>${issueRenewal.annex_of_cdr_acc_attached ? 'Yes' : 'No'}
+														</br> <label for="heading" class="col-sm-3 control-label">Remarks</label>ECGC
+														</br>
+
 
 													</div>
 												</div>
 											</div>
 
-											<div class="align-self-center mx-auto">
+											<div class="form-group">
 												<div class="row">
-													<div class="col-sm-4"></div>
-													<div class="col-sm-4">
-														<!-- 						<a href="next.htm" class="btn btn-primary active">Next</a> -->
+													<div class="col-sm-12">
 
-														<input type="submit" value="Generate Office Note"
-															class="btn btn-success active"  />
-														<a href="cancelPreliminaryScrutinypage.htm" class="btn btn-danger active">Cancel</a>
+														<table class="table table-bordered">
+															<thead>
+																<label><b>LC Details </b></label>
+															</thead>
+															<thead>
+																<tr>
+																	<th class="th-sm">No of LC accounts</th>
+																	<th class="th-sm">Total limit (Rs in lacs)</th>
+																	<th class="th-sm">Total outstanding (Rs in lacs)</th>
+																	<th class="th-sm">No of default accounts</th>
+																	<th class="th-sm">Default amount</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td><label for="heading" class="control-label">2525</label></td>
+																	<td><label for="heading" class="control-label">725</label></td>
+																	<td><label for="heading" class="control-label">785725</label></td>
+																	<td><label for="heading" class="control-label">240</label></td>
+																	<td><label for="heading" class="control-label">58757</label></td>
 
-
-
+																</tr>
+															</tbody>
+														</table>
 													</div>
-													<div class="col-sm-4"></div>
 												</div>
-
 											</div>
+
+
+
+
+											<div class="form-group">
+												<div class="row">
+													<div class="col-sm-12">
+
+														<table class="table table-bordered">
+															<thead>
+																<label><b>PSU Details</b></label>
+
+
+
+
+																<thead>
+															
+															<thead>
+																<tr>
+																	<th>No of PSU</th>
+																	<th>Total limit (Rs in Lacs)</th>
+																	<th>Total outstanding (Rs in Lacs)</th>
+																	<th>No. of default accounts</th>
+																	<th>Default amount</th>
+																</tr>
+															</thead>
+															<tbody>
+															<tr>
+																<td><label for="heading" class="control-label">2525</label></td>
+															<td><label for="heading" class="control-label">725</label></td>
+															<td><label for="heading" class="control-label">785725</label></td>
+															<td><label for="heading" class="control-label">240</label></td>
+															<td><label for="heading" class="control-label">58757</label></td>
+																
+																</tr>
+															</tbody>
+
+														</table>
+													</div>
+												</div>
+											</div>
+
+
+											<div class="form-group">
+												<div class="row">
+													<div class="col-sm-12">
+
+														<table class="table table-bordered">
+															<thead>
+																<label><b>SSI details</b></label>
+															
+															<thead>
+															
+															<thead>
+																<tr>
+																	<th>No of SSI units</th>
+																	<th>Total limit (Rs in Lacs)</th>
+																	<th>Total outstanding (Rs in Lacs)</th>
+																	<th>No. of default accounts</th>
+																	<th>Default amount</th>
+																</tr>
+															</thead>
+															<tbody>
+															<tr>
+																<td><label for="heading" class="control-label">2525</label></td>
+															<td><label for="heading" class="control-label">725</label></td>
+															<td><label for="heading" class="control-label">785725</label></td>
+															<td><label for="heading" class="control-label">240</label></td>
+															<td><label for="heading" class="control-label">58757</label></td>
+																
+																</tr>
+															</tbody>
+														</table>
+													</div>
+												</div>
+											</div>
+
+
+											<div class="form-group">
+												<div class="row">
+													<div class="col-sm-12">
+														<table class="table table-bordered">
+															<thead>
+																<label><b>Past experience with bank branch
+																		(for 3 years)</b></label>
+															
+															<thead>
+															
+															<thead>
+																<tr>
+																	<th>All accounts</th>
+																	<th>Amount of claim paid</th>
+																	<th>Amount of claim pending</th>
+																	<th>Claim amount pending for recovery</th>
+																	<th>Claim amount recovered</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																<td><label for="heading" class="control-label">2525</label></td>
+															<td><label for="heading" class="control-label">725</label></td>
+															<td><label for="heading" class="control-label">785725</label></td>
+															<td><label for="heading" class="control-label">240</label></td>
+															<td><label for="heading" class="control-label">58757</label></td>
+																
+																</tr>
+															</tbody>
+														</table>
+													</div>
+												</div>
+											</div>
+
+
+											<div class="form-group">
+												<div class="row">
+													<div class="col-sm-12">
+														<table class="table table-bordered">
+															<thead>
+																<label><b>Past experience with bank branch
+																		(for 3 years)</b></label>
+															
+															<thead>
+															
+															<thead>
+																<tr>
+																	<th>Discretionary limit</th>
+																	<th>Max liability</th>
+																	<th>Number of claim cases pending for recovery</th>
+																	<th>Number of claims paid</th>
+																	<th>Number of claims pending</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																<td><label for="heading" class="control-label">2525</label></td>
+															<td><label for="heading" class="control-label">725</label></td>
+															<td><label for="heading" class="control-label">785725</label></td>
+															<td><label for="heading" class="control-label">240</label></td>
+															<td><label for="heading" class="control-label">58757</label></td>
+																
+																</tr>
+															</tbody>
+														</table>
+													</div>
+												</div>
+											</div>
+
+
+											<div class="form-group">
+												<div class="row">
+													<div class="col-sm-12">
+														<table class="table table-bordered">
+															<thead>
+																<label><b>Past experience with bank branch
+																		(for 3 years)</b></label>
+															
+															<thead>
+															
+															<thead>
+																<tr>
+																	<th>Number of defaults reported</th>
+																	<th>Outstanding</th>
+																	<th>Premium claim ratio</th>
+																	<th>Premium income</th>
+																	<th>PSU accounts</th>
+																</tr>
+															</thead>
+															<tbody>
+															<tr>
+																<td><label for="heading" class="control-label">2525</label></td>
+															<td><label for="heading" class="control-label">725</label></td>
+															<td><label for="heading" class="control-label">785725</label></td>
+															<td><label for="heading" class="control-label">240</label></td>
+															<td><label for="heading" class="control-label">58757</label></td>
+																
+																</tr>
+															</tbody>
+														</table>
+													</div>
+												</div>
+											</div>
+
+											<div class="form-group">
+												<div class="row">
+													<div class="col-sm-12">
+														<table class="table table-bordered">
+															<thead>
+																<label><b>Past experience with bank branch
+																		(for 3 years)</b></label>
+															
+															<thead>
+															
+															<thead>
+																<tr>
+																	<th>Risk value</th>
+																	<th>SSI Accounts</th>
+																	<th>Risk value</th>
+																	<th>Total limit in respect of all accounts</th>
+																	<th>Total premium paid since issue of Cover</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																<td><label for="heading" class="control-label">2525</label></td>
+															<td><label for="heading" class="control-label">725</label></td>
+															<td><label for="heading" class="control-label">785725</label></td>
+															<td><label for="heading" class="control-label">240</label></td>
+															<td><label for="heading" class="control-label">58757</label></td>
+																
+																</tr>
+															</tbody>
+														</table>
+													</div>
+												</div>
+											</div>
+
+
+
+											<div class="form-group">
+												<div class="row">
+													<div class="col-sm-12">
+														<table class="table table-bordered">
+															<thead>
+																<label><b>Past experience with bank branch
+																		(for 3 years)</b></label>
+															
+															<thead>
+															
+															<thead>
+																<tr>
+
+																	<th>Total value of default during the year</th>
+																	<th>Value of report default</th>
+																	<th>Year I (mm/dd/yyyy)</th>
+																	<th>Year II (mm/dd/yyyy)</th>
+																	<th>Year III (mm/dd/yyyy)</th>
+
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																<td><label for="heading" class="control-label">2525</label></td>
+															<td><label for="heading" class="control-label">725</label></td>
+															<td><label for="heading" class="control-label">785725</label></td>
+															<td><label for="heading" class="control-label">240</label></td>
+															<td><label for="heading" class="control-label">58757</label></td>
+																
+																</tr>
+															</tbody>
+														</table>
+													</div>
+												</div>
+											</div>
+
+
+											<div class="form-group">
+												<div class="row">
+													<div class="col-sm-6"></div>
+													<div class="col-sm-6">
+														<label for="heading" class="col-sm-3 control-label">Generated
+															BY</label><br> <label for="heading"
+															class="col-sm-3 control-label">Date:-</label><br>
+															<input type="submit" class="btn btn-danger"
+															value="Generate OfficeNote" onclick="window.print()">
+																<a href="cancelPreliminaryScrutinypage.htm"
+															class="btn btn-danger active form-actions">Cancel</a>
+													</div>
+													
+												</div>
+											</div>
+
 
 
 										</form:form>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -532,11 +822,8 @@ IssueRenewal issueRenewal = (IssueRenewal) session.getAttribute("issueRenewal");
 						<div class="col-lg-12">
 
 							<!-- Dropdown Card Example -->
-
-
-
-							<!-- Footer -->
-							<footer class="sticky-footer bg-white">
+						<!-- Footer -->
+																<footer class="sticky-footer bg-white">
 								<div class="container my-auto">
 									<div class="copyright text-center my-auto">
 										<span>Copyright &copy; Your Website 2019</span>
@@ -545,7 +832,8 @@ IssueRenewal issueRenewal = (IssueRenewal) session.getAttribute("issueRenewal");
 							</footer>
 							<!-- End of Footer -->
 
-						</div>
+						
+															</div>
 						<!-- End of Content Wrapper -->
 
 					</div>
@@ -590,8 +878,32 @@ IssueRenewal issueRenewal = (IssueRenewal) session.getAttribute("issueRenewal");
 					<!-- Custom scripts for all pages-->
 					<script
 						src="${pageContext.request.contextPath}/resources/js/sb-admin-2.min.js"></script>
-						
-	
+
+					<script>
+		function genPDF() {
+			const element = document.getElementById("maindiv");
+			var doc = new jsPDF('p', 'mm', 'a4');
+			var specialElementHandlers = {
+				'#maindiv' : function(element, render) {
+					return true;
+				}
+			};
+
+			doc.fromHTML($('#maindiv').get(0), 20, 20, {
+				'width' : 500,
+				'elementHandlers' : specialElementHandlers
+			});
+			
+			doc.setFontSize(26);
+			doc.setTextColor(92, 76, 76);
+			doc.save('test.pdf');
+		}
+	</script>
+				</div>
+			</div>
+		</div>
+	</div>
+
 </body>
 
 </html>

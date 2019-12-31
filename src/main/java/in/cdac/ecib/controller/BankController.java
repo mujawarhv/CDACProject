@@ -167,7 +167,7 @@ public class BankController {
 	
 	
 
-	@RequestMapping(value = "/editIssueRenewalForm.htm",method = RequestMethod.POST)
+	@RequestMapping(value = "/editIssueRenewalForm.htm",method = RequestMethod.GET)
 	public String editParticularUserForm(@RequestParam("proposalfrmid") String proposalfrmid, ModelMap model) {
 		IssueRenewal issueRenewal = issueRenewalServ.selectUser(proposalfrmid);
 		model.addAttribute("issueRenewal", issueRenewal);

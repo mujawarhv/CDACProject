@@ -2,6 +2,7 @@
 <%@ page errorPage="ErrorPage.jsp"%>
 <%@page import="in.cdac.ecib.dto.*"%><%@page import="java.util.List"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ page session="true"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="fmt"%>
 <%
 	IssueRenewal issueRenewal = (IssueRenewal) session.getAttribute("issueRenewal");
@@ -9,6 +10,11 @@
 <%
 	List<IssueRenewal> userList = (List<IssueRenewal>) request.getAttribute("listIssueRenewal");
 %>
+
+<%
+	List<String> message = (List<String>) request.getAttribute("message");
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,7 +28,6 @@
 <meta name="author" content="">
 
 <title>ECGC</title>
-
 <!-- Custom fonts for this template-->
 <link
 	href="${pageContext.request.contextPath}/resources/vendor/fontawesome-free/css/all.min.css"
@@ -130,13 +135,12 @@
 
 						<h6 class="collapse-header">Login Screens:</h6>
 						<a class="collapse-item" href="login.htm">Login</a>
-
-						<div class="collapse-divider"></div>
+					<div class="collapse-divider"></div>
 
 						<a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a>
-						<a class="collapse-item" href="banklogin.htm">Bank Login</a> <a
-							class="collapse-item" href="ecgclogin.htm">ECGC Login</a> <a
-							class="collapse-item" href="dop.htm">Decision</a>
+            <a class="collapse-item" href="banklogin.htm">Bank Login</a>
+			<a class="collapse-item" href="eciblogin.htm">ECIB Login</a>
+			<a class="collapse-item" href="decision.htm">Decision</a> 
 					</div>
 				</div></li>
 
@@ -386,106 +390,97 @@
 								<a href="#collapseCardExample" class="d-block card-header py-3"
 									data-toggle="collapse" role="button" aria-expanded="true"
 									aria-controls="collapseCardExample">
-									<h6 class="m-0 font-weight-bold text-primary">Cover Issue
+									<h6 class="m-0 font-weight-bold text-primary">Issue
 										Renewal</h6>
 								</a>
 								<!-- Card Content - Collapse -->
 								<div class="collapse show" id="collapseCardExample">
 									<div class="card-body">
 
-										<form:form method="post" id="myForm"
+										<form method="post" id="myForm"
+											action="insertRecommendation2.htm"
 											class="form-horizontal border border-dark p-3 mb-2 bg-white text-dark mt-5"
 											role="form" modelAttribute="issueRenewal">
 
+<div class="row">
 
+												<div class="col-sm-9">
+													<%
+														String proposalfrmid = (String) session.getAttribute("wt_isrn_proposal_frm_id");
+															out.print("Proposal Id:-" + proposalfrmid);
+													%>
+												</div>
+												<div class="col-sm-3">
 
+													<%
+														String str = (String) session.getAttribute("name");
+															out.print(str);
+													%>
+
+												</div>
+											</div>
+											
+												<div class="form-group">
+												<div class="row">
+													<div class="col-sm-5">
+														
+													</div>
+
+													<div class="col-sm-4">
+														<label for="heading" class="col-sm-3 control-label"></label>
+													</div>
+													<div class="col-sm-3">											
+													</div>
+												</div>
+											</div>
+
+										
+											
 											<div class="form-group">
 												<div class="row">
-													<c:set var="pageName" scope="request" value="str" />
-													<div class="col-sm-9">You have successfully Logged In</div>
-													<div class="col-sm-3">
-														<label for="heading" class="col-sm-9 control-label"><b>
+													<div class=" col-sm-8 ">
 
+														<table class="table table-bordered">
+															<thead>
+																<tr>
+																	<th>Your message:</th>
 
-														</b>${str}</label>
+																</tr>
+															</thead>
+
+															<tbody>
+															
+
+																<c:forEach items="${message}" var="item">
+																	<tr>
+																	
+																		<td>${item}</td>
+																	</tr>
+																</c:forEach>
+
+															</tbody>
+														</table>
 													</div>
 												</div>
-											</div>
+												<div class="row">
+													<div class=" col-sm-8 ">
 
-											<div class="form-group">
-												<label for="heading" class="col-sm-3 control-label"></label>
-												<div class="col-sm-9">
-													Apply for Cover Type <input id="exampleField"
-														list="cover_type_wtpc_wtps" type="text"
-														class="form-field__input" placeholder="Choose Cover type" />
 
-													<datalist id="cover_type_wtpc_wtps">
-														<option value="WT-PC" />
-														<option value="WT-PS" />
-														<option value="IN" />
-														<option value="B2PC" />
-													</datalist>
+														<i class="fas fa-pencil-alt prefix"></i>
+														<div class="input-group">
+															<textarea name="recommendation_line" id="recommend"
+																class="md-textarea form-control" rows=""></textarea>
 
-													<a href="IssueRenewalForm.htm?cover_type_wtpc_wtps"
-														class="btn btn-primary active">New</a>
-												</div>
-											</div>
-
-											<div class="form-group">
-												<label for="heading" class="col-sm-3 control-label"><b>List
-														of Partially filled form</b></label>
-												<div class="col-sm-9"></div>
-											</div>
-
-											<div class="form-group">
-												<div class="row justify-content-center align-items-center">
-													<div class="col-sm-3"></div>
-													<div class="col-sm-9">
-														<label for="heading" class="col-sm-9 control-label"><b>
-														</b></label>
-													</div>
-													<div>
-														<b>List Of Partial Filled Form</b>
-													</div>
-												</div>
-											</div>
-
-											<table class="table table-bordered">
-												<thead>
-													<tr>
-														<th>SL No</th>
-														<th>Document Attached</th>
-														<th>Cover Type</th>
-														<th>Update</th>
-														<th>Submit</th>
-													</tr>
-												</thead>
-
-												<tbody>
-
-													<%
-														for (IssueRenewal u : userList) {
-													%>
-													<tr>
-														<td><%=u.getWt_isrn_proposal_frm_id()%></td>
-														<td><%=u.getBank_name()%></td>
-														<td><%=u.getCover_type()%></td>
-														<td><a
-															href="editIssueRenewalForm.htm?proposalfrmid=<%=u.getWt_isrn_proposal_frm_id()%>"
-															class="btn btn-success active" id="editbutton">Edit</a></td>
-														<td><a
-															href="submitIssueRenewalForm.htm?proposalfrmid=<%=u.getWt_isrn_proposal_frm_id()%>"
-														class="btn btn-danger active"	id="submitbutton">Submit</a></td>
+															&nbsp; &nbsp; <input type="submit" value="Submit Recommedation"
+																class="btn btn-success active" />
 														
-													</tr>
-													<%
-														}
-													%>
+														</div>
+													</div>
+												</div>
+											</div>
 
-												</tbody>
-											</table>
 
-										</form:form>
+										</form>
 
 
 

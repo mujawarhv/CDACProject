@@ -2,19 +2,10 @@
 <%@ page errorPage="ErrorPage.jsp"%>
 <%@page import="in.cdac.ecib.dto.*"%><%@page import="java.util.List"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ page session="true"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="fmt"%>
-<%
-	IssueRenewal issueRenewal = (IssueRenewal) session.getAttribute("issueRenewal");
-%>
-<%
-	List<IssueRenewal> userList = (List<IssueRenewal>) request.getAttribute("listIssueRenewal");
-%>
-
 <%
 	List<String> message = (List<String>) request.getAttribute("message");
 %>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,6 +19,7 @@
 <meta name="author" content="">
 
 <title>ECGC</title>
+
 <!-- Custom fonts for this template-->
 <link
 	href="${pageContext.request.contextPath}/resources/vendor/fontawesome-free/css/all.min.css"
@@ -45,6 +37,21 @@
 <script
 	src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+<script type="text/javascript">
+	function sendData() {
+
+		$.post({
+			url : 'savemembership',
+			data : $('form[name=membershipForm]').serialize(),
+			success : function(res) {
+
+				alert("Result is: " + res)
+
+			}
+		});
+
+	}
+</script>
 
 
 </head>
@@ -132,16 +139,15 @@
 				<div id="collapsePages" class="collapse show"
 					aria-labelledby="headingPages" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-
 						<h6 class="collapse-header">Login Screens:</h6>
 						<a class="collapse-item" href="login.htm">Login</a>
 					<div class="collapse-divider"></div>
 
-						<a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a>
-						<a class="collapse-item" href="banklogin.htm">Bank Login</a> <a
-							class="collapse-item" href="ecgclogin.htm">ECGC Login</a>
-						<a class="collapse-item" href="dop.htm">Decision</a> 
-					</div>
+					<a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a>
+            <a class="collapse-item" href="banklogin.htm">Bank Login</a>
+			<a class="collapse-item" href="eciblogin.htm">ECIB Login</a>
+			<a class="collapse-item" href="decision.htm">Decision</a> 
+	</div>
 				</div></li>
 
 			<!-- Nav Item - Charts -->
@@ -241,6 +247,7 @@
 										</div>
 									</div>
 									<div>
+										2
 										<div class="small text-gray-500">December 12, 2019</div>
 										<span class="font-weight-bold">A new monthly report is
 											ready to download!</span>
@@ -374,7 +381,7 @@
 					<!-- Page Heading -->
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800"></h1>
+						<h1 class="h3 mb-0 text-gray-800">ECIB</h1>
 					</div>
 
 
@@ -397,53 +404,276 @@
 								<div class="collapse show" id="collapseCardExample">
 									<div class="card-body">
 
-										<form method="post" id="myForm"
-											action="insertRecommendation2.htm"
+
+
+
+
+
+
+
+
+
+
+
+
+
+										<form:form method="post" action="submitDecision.htm"
 											class="form-horizontal border border-dark p-3 mb-2 bg-white text-dark mt-5"
-											role="form" modelAttribute="issueRenewal">
+											role="form" modelAttribute="issueRenewal1">
 
-<div class="row">
 
-												<div class="col-sm-9">
-													<%
-														String proposalfrmid = (String) session.getAttribute("wt_isrn_proposal_frm_id");
-															out.print("Proposal Id:-" + proposalfrmid);
-													%>
-												</div>
-												<div class="col-sm-3">
-
-													<%
-														String str = (String) session.getAttribute("name");
-															out.print(str);
-													%>
-
-												</div>
-											</div>
-											
-												<div class="form-group">
-												<div class="row">
-													<div class="col-sm-5">
-														
-													</div>
-
-													<div class="col-sm-4">
-														<label for="heading" class="col-sm-3 control-label"></label>
-													</div>
-													<div class="col-sm-3">											
-													</div>
-												</div>
-											</div>
-
-										
-											
 											<div class="form-group">
 												<div class="row">
+													<div class="col-sm-12">
+														<h5 class="bg-secondary text-white bg-dark"><b>Basic Details</b></h5>				
+														<label for="heading" class="col-sm-3 control-label">WT
+															Proposal Number</label>
+
+														<form:input id="exampleField" name="wt_isrn_id" type="text"
+															class="form-field__input" path="wt_isrn_proposal_frm_id"
+															placeholder="form-id" readonly="true" />
+
+														<label for="heading" class="col-sm-3 control-label">Cover
+															type</label>
+
+														<form:input id="exampleField" list="Fresh/Renewal"
+															placeholder="insurance type" type="text"
+															class="form-field__input" path="cover_type"
+															readonly="true" />
+															
+														</br> <label for="heading" class="col-sm-3 control-label">Bank
+															Code</label>
+
+														<form:input id="exampleField" 
+															 type="text"
+															class="form-field__input" path="bank_code"
+															readonly="true" />
+
+														<label for="heading" class="col-sm-3 control-label">Bank
+															Name</label>
+
+														<form:input id="exampleField" 
+															 type="text"
+															class="form-field__input" path="bank_code"
+															readonly="true" />
+
+													</div>
+												</div>submitDOP.htm
+											</div>
+
+											
+
+											<div class="form-group">
+												<div class="row">
+													<div class="col-sm-12">
+														<h5 class="bg-secondary text-white bg-dark"><b>Guarantee Details </b></h5>
+
+														<label for="heading" class="col-sm-3 control-label">Start
+															Date</label>
+
+														<input id="exampleField" 
+															placeholder="insurance type" name="start_date" type="date"
+															pattern="dd/MM/yyyy" class="form-field__input"
+															 /> &nbsp; &nbsp;&nbsp;&nbsp;
+
+														<label for="heading" class="col-sm-3 control-label">End
+															Date</label>
+
+														<input id="exampleField" 
+															placeholder="insurance type" name="end_date" type="date"
+															pattern="dd/MM/yyyy" class="form-field__input"
+															 /></br></br>
+
+
+														<label for="heading" class="col-sm-3 control-label">Maximum
+															Liablity</label>
+
+														<form:input id="exampleField" 
+															 name="ml" type="text"
+															class="form-field__input" path="" />
+
+
+														<label for="heading" class="col-sm-3 control-label">Discretionary
+															Limit</label>
+
+														<form:input id="exampleField"
+															 type="text" name="dl"
+															class="form-field__input" path="" /></br></br>
+
+														
+														<label for="heading" class="col-sm-9 control-label">Desire to cover credit/Advances Given to small scale units</label>
+														<form:radiobutton path="" value="Yes"/> Yes
+														<form:radiobutton path="" value="No"/> No</br></br>
+														
+																							
+														
+														<label for="heading" class="col-sm-9 control-label">OBU</label>
+														<form:radiobutton path="" value="Yes"/> Yes
+														<form:radiobutton path="" value="No"/> No</br></br>
+														
+														
+														
+														<label for="heading" class="col-sm-8 control-label">Premium received in previous year 01/04/2018 to 31/03/2019</label>
+														&nbsp; &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp; 
+														<form:input id="exampleField"
+															 type="text"
+															class="form-field__input" path="" readonly="true"/></br></br>
+															
+															
+														
+														<label for="heading" class="col-sm-8 control-label">Set limit to fixed</label>
+														&nbsp; &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp; 
+														<form:input id="exampleField" name="set_limit"
+															placeholder="Set limit to fixed" type="text"
+															class="form-field__input" path="" /></br></br>
+															
+															
+														
+														<label for="heading" class="col-sm-9 control-label">State Govt. Companies /PSUs Included</label>
+														<form:radiobutton path="" value="Yes"/> Yes
+														<form:radiobutton path="" value="No"/> No </br></br>
+														
+														
+														<label for="heading" class="col-sm-9 control-label">Central Govt. Companies /PSUs Included</label>
+														<form:radiobutton path="" value="Yes"/> Yes
+														<form:radiobutton path="" value="No"/> No</br></br>
+														
+														
+														<label for="heading" class="col-sm-9 control-label">Inclusion Of Central PSUs</label>
+														<form:radiobutton path="" value="Yes"/> Yes
+														<form:radiobutton path="" value="No"/> No</br></br>
+														
+													
+														<label for="heading" class="col-sm-9 control-label">Inclusion Of State PSUs</label>
+														<form:radiobutton path="" value="Yes"/> Yes
+														<form:radiobutton path="" value="No"/> No</br></br>
+															
+															
+														<label for="heading" class="col-sm-3 control-label">Minimum Premium condition</label>
+														&nbsp; 
+														<form:radiobutton path="" value="Yes"/> Yes
+														<form:radiobutton path="" value="No"/> No &nbsp;  &nbsp; &nbsp; 		
+														<label for="heading" class="col-sm-1 control-label"></label>
+
+
+														<label for="heading" class="col-sm-3 control-label">If, yes amount</label>
+
+														<form:input id="exampleField"
+														 type="text"
+															class="form-field__input" path="" /></br></br>
+															
+														
+														<label for="heading" class="col-sm-8 control-label">Insurance Stamp to be Affixed on Bond (in Rs.)</label>
+															&nbsp; 	&nbsp; 	&nbsp; 	&nbsp; 	&nbsp; 	&nbsp; 
+														<form:input id="exampleField"
+															 type="text"
+															class="form-field__input" path="" /></br></br>
+															
+														
+														 <div class="form-group row">
+ 															 <label for="heading" class="col-sm-3 control-label">Arrangement for Submission  of Declarations </label>
+   															
+   															<div class="col-sm-8">
+   																 <form:input id="exampleField" name="reason"
+															 type="text"
+															class="form-control" path="" />
+  															</div>
+  														</div>
+														
+														
+														 <div class="form-group row">
+ 															 <label for="heading" class="col-sm-3 control-label">Remarks</label>
+   															
+   															<div class="col-sm-8">
+   																 <form:input id="exampleField"
+															 type="text" name="remarks"
+															class="form-control" path="" />
+  															</div>
+  														</div>
+														
+
+													</div>
+												</div>
+											</div>
+											
+											<h5 class="bg-secondary text-white bg-dark"><b>Premium Rate</b></h5>
+											<div class="form-group">
+												<div class="row">
+													<div class="col-sm-12">
+													
+														<table class="table table-bordered">
+															
+															<thead>
+																<tr>
+																	<th>Grade</th>
+																	<th>Effective Date </th>
+																	<th>Premium Rate</th>
+																	<th>Asset Classification</th>
+																	<th>Policy Holder</th>
+																</tr>
+															</thead>
+															
+															<tbody>
+																<tr>
+																	<td>20</td>
+																	<td>16/12/2019</td>
+																	<td>27</td>
+																	<td>STANDARD</td>
+																	<td>No</td>
+																	
+																</tr>
+															</tbody>
+														</table>
+														
+													</div>
+												</div>
+											</div>
+											
+											<h5 class="bg-secondary text-white bg-dark"><b>Cover Percentage Details</b></h5>
+											<div class="form-group">
+												<div class="row">
+													<div class="col-sm-12">
+													
+														<table class="table table-bordered">
+															
+															<thead>
+																<tr>
+																	<th>Ecib Year</th>
+																	<th>Rating</th>
+																	<th>Asset Classification</th>
+																	<th>Account Type</th>
+																	<th>Cover Type </th>
+																	<th>Exporter Type</th>															
+																	<th>Cover Percentage</th>
+																</tr>
+															</thead>
+															
+															<tbody>
+																<tr>
+																	<td>2018-2019</td>
+																	<td>29</td>
+																	<td>STANDARD</td>
+																	<td>Restructured</td>
+																	<td>Below Set Limit</td>
+																	<td>Small Scale Exporter</td>
+																	<td>75/100</td>
+																</tr>
+															</tbody>
+														</table>
+														
+													</div>
+												</div>
+											</div>
+											
+											 <h5 class="bg-secondary text-white bg-dark"><b>Recommedation</b></h5>
+											<div class="row">
 													<div class=" col-sm-8 ">
 
 														<table class="table table-bordered">
+														
 															<thead>
 																<tr>
-																	<th>Your message:</th>
+																	<th>Recommedation message:</th>
 
 																</tr>
 															</thead>
@@ -462,25 +692,98 @@
 														</table>
 													</div>
 												</div>
+											
+											
+											<div class="form-group">
 												<div class="row">
-													<div class=" col-sm-8 ">
+													<div class="col-sm-12">
 
+														<h5 class="bg-secondary text-white bg-dark"><b>Decision Maker Details</b></h5>
 
-														<i class="fas fa-pencil-alt prefix"></i>
-														<div class="input-group">
-															<textarea name="recommendation_line" id="recommend"
-																class="md-textarea form-control" rows=""></textarea>
+														<label for="heading" class="col-sm-3 control-label">Employee
+															No.</label>
 
-															&nbsp; &nbsp; <input type="submit" value="Submit Recommedation"
-																class="btn btn-success active" />
+														<form:input id="exampleField" name="employee_code"
+															 type="text"
+															class="form-field__input" path="employee_code"
+															readonly="true" />
+
+														<label for="heading" class="col-sm-3 control-label">Designation</label>
+
+														<form:input id="exampleField"
+															 type="text"
+															class="form-field__input" path="bank_code"
+															readonly="true" /></br></br>
+															
 														
-														</div>
+														 <div class="form-group row">
+ 															 <label for="heading" class="col-sm-3 control-label"> &nbsp;  Name </label>
+   															
+   															<div class="col-sm-8">
+   																 <form:input id="exampleField"
+															 type="text"
+															class="form-control" path="" />
+  															</div>
+  														</div>
+												
+
+													 <label for="heading"
+															class="col-sm-3 control-label">Decision</label>
+															
+													<form:input
+															id="exampleField" list="Decision"
+															placeholder="" type="text" name="decision"
+															class="form-field__input fas fa-caret-down" path=""   /> 
+															<datalist
+															id="Decision">
+															<option value="Approved" />
+															<option value="Reject" />
+														</datalist>
+												
+
 													</div>
 												</div>
 											</div>
+											
+											
+
+											<div class="align-self-center mx-auto">
+												<div class="row">
+													<div class="col-sm-4"></div>
+													<div class="col-sm-4">
+														<!-- 						<a href="next.htm" class="btn btn-primary active">Next</a> -->
+
+														<input type="submit" value="Save"
+															class="btn btn-success active" /> <a
+															href="cancelPreliminaryScrutinypage.htm"
+															class="btn btn-danger active">Cancel</a>
 
 
-										</form>
+
+													</div>
+													<div class="col-sm-4"></div>
+												</div>
+
+											</div>
+
+
+										</form:form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

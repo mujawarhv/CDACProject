@@ -4,6 +4,12 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ page session="true"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="fmt"%>
+<%
+	IssueRenewal issueRenewal = (IssueRenewal) session.getAttribute("issueRenewal");
+%>
+<%
+	List<IssueRenewal> userList = (List<IssueRenewal>) request.getAttribute("listIssueRenewal");
+%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -125,12 +131,12 @@
 
 						<h6 class="collapse-header">Login Screens:</h6>
 						<a class="collapse-item" href="login.htm">Login</a>
-						<div class="collapse-divider"></div>
+					<div class="collapse-divider"></div>
 
 						<a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a>
-						<a class="collapse-item" href="banklogin.htm">Bank Login</a> <a
-							class="collapse-item" href="ecgclogin.htm">ECGC Login</a> <a
-							class="collapse-item" href="dop.htm">Decision</a>
+            <a class="collapse-item" href="banklogin.htm">Bank Login</a>
+			<a class="collapse-item" href="eciblogin.htm">ECIB Login</a>
+			<a class="collapse-item" href="decision.htm">Decision</a> 
 					</div>
 				</div></li>
 
@@ -281,7 +287,7 @@
 									<div class="font-weight-bold">
 										<div class="text-truncate">Hi there! I am wondering if
 											you can help me with a problem I've been having.</div>
-										<div class="small text-gray-500">Emily Fowler · 58m</div>
+										<div class="small text-gray-500">Emily Fowler Â· 58m</div>
 									</div>
 								</a> <a class="dropdown-item d-flex align-items-center" href="#">
 									<div class="dropdown-list-image mr-3">
@@ -292,7 +298,7 @@
 									<div>
 										<div class="text-truncate">I have the photos that you
 											ordered last month, how would you like them sent to you?</div>
-										<div class="small text-gray-500">Jae Chun · 1d</div>
+										<div class="small text-gray-500">Jae Chun Â· 1d</div>
 									</div>
 								</a> <a class="dropdown-item d-flex align-items-center" href="#">
 									<div class="dropdown-list-image mr-3">
@@ -304,7 +310,7 @@
 										<div class="text-truncate">Last month's report looks
 											great, I am very happy with the progress so far, keep up the
 											good work!</div>
-										<div class="small text-gray-500">Morgan Alvarez · 2d</div>
+										<div class="small text-gray-500">Morgan Alvarez Â· 2d</div>
 									</div>
 								</a> <a class="dropdown-item d-flex align-items-center" href="#">
 									<div class="dropdown-list-image mr-3">
@@ -316,7 +322,7 @@
 										<div class="text-truncate">Am I a good boy? The reason I
 											ask is because someone told me that people say this to all
 											dogs, even if they aren't good...</div>
-										<div class="small text-gray-500">Chicken the Dog · 2w</div>
+										<div class="small text-gray-500">Chicken the Dog Â· 2w</div>
 									</div>
 								</a> <a class="dropdown-item text-center small text-gray-500"
 									href="#">Read More Messages</a>
@@ -387,48 +393,71 @@
 								<div class="collapse show" id="collapseCardExample">
 									<div class="card-body">
 
-										<div class="p-5">
-											<div class="text-center">
-												<h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+										<form method="post" id="myForm"
+											action="insertRecommendation.htm"
+											class="form-horizontal border border-dark p-3 mb-2 bg-white text-dark mt-5"
+											role="form" modelAttribute="issueRenewal">
+
+<div class="row">
+
+												<div class="col-sm-9">
+													<%
+														String proposalfrmid = (String) session.getAttribute("wt_isrn_proposal_frm_id");
+															out.print("Proposal Id:-" + proposalfrmid);
+													%>
+												</div>
+												<div class="col-sm-3">
+
+													<%
+														String str = (String) session.getAttribute("name");
+															out.print(str);
+													%>
+
+												</div>
 											</div>
-
-
-
-											<form:form action="userlogin.htm"
-												class="form-horizontal border border-dark p-3 mb-2 bg-white text-dark mt-5"
-												method="post" modelAttribute="user">
+											
 												<div class="form-group">
-													<form:input type="text" class="form-control" path="userId"
-														id="exampleInputEmail" placeholder="Enter Email Address"></form:input>
-												</div>
-												<div class="form-group">
-													<form:input type="password" path="password"
-														class="form-control" id="exampleInputPassword"
-														placeholder="Password"></form:input>
-												</div>
-												<div class="form-group">
-													<div class="custom-control custom-checkbox small">
-														<input type="checkbox" class="custom-control-input"
-															id="customCheck"> <label
-															class="custom-control-label" for="customCheck">Remember
-															Me</label>
+												<div class="row">
+													<div class="col-sm-5">
+														
+													</div>
+
+													<div class="col-sm-4">
+														<label for="heading" class="col-sm-3 control-label"></label>
+													</div>
+													<div class="col-sm-3">											
 													</div>
 												</div>
-												<input type="submit" class="btn btn-primary btn-block"
-													value="login">
-											</form:form>
-
-
-
-											<hr>
-											<div class="text-center">
-												<a class="small" href="forgot-password.html">Forgot
-													Password?</a>
 											</div>
-											<div class="text-center">
-												<a class="small" href="register.html">Create an Account!</a>
+
+										
+											
+											<div class="form-group">
+												<div class="row">
+													<div class=" col-sm-8 ">
+
+														
+													</div>
+												</div>
+												<div class="row">
+													<div class=" col-sm-8 ">
+
+
+														<i class="fas fa-pencil-alt prefix"></i>
+														<div class="input-group">
+															<textarea name="recommendation_line" id="recommend"
+																class="md-textarea form-control" rows=""></textarea>
+
+															&nbsp; &nbsp; <input type="submit" value="Submit Recommedation"
+																class="btn btn-success active" />
+														
+														</div>
+													</div>
+												</div>
 											</div>
-										</div>
+
+
+										</form>
 
 
 
@@ -482,7 +511,7 @@
 										Leave?</h5>
 									<button class="close" type="button" data-dismiss="modal"
 										aria-label="Close">
-										<span aria-hidden="true">×</span>
+										<span aria-hidden="true">Ã—</span>
 									</button>
 								</div>
 								<div class="modal-body">Select "Logout" below if you are

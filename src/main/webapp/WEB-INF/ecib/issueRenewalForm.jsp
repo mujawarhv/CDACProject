@@ -21,7 +21,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>ECGC </title>
+<title>ECGC</title>
 
 <!-- Custom fonts for this template-->
 <link
@@ -143,14 +143,14 @@
 					aria-labelledby="headingPages" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Login Screens:</h6>
-						    <a class="collapse-item" href="login.htm">Login</a>  
-					<div class="collapse-divider"></div>
+						<a class="collapse-item" href="login.htm">Login</a>
+						<div class="collapse-divider"></div>
 
-						 <a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a>
-						<a	class="collapse-item" href="banklogin.htm">Bank Login</a> <a
-							class="collapse-item" href="ecgclogin.htm">ECGC Login</a>
-<a class="collapse-item" href="dop.htm">Decision</a> 
-					</div>
+						<a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a>
+            <a class="collapse-item" href="banklogin.htm">Bank Login</a>
+			<a class="collapse-item" href="eciblogin.htm">ECIB Login</a>
+			<a class="collapse-item" href="decision.htm">Decision</a> 
+						</div>
 				</div></li>
 
 			<!-- Nav Item - Charts -->
@@ -383,7 +383,7 @@
 					<!-- Page Heading -->
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">ECIB</h1>
+						<h1 class="h3 mb-0 text-gray-800"></h1>
 					</div>
 
 
@@ -399,7 +399,7 @@
 								<a href="#collapseCardExample" class="d-block card-header py-3"
 									data-toggle="collapse" role="button" aria-expanded="true"
 									aria-controls="collapseCardExample">
-									<h6 class="m-0 font-weight-bold text-primary">Issue
+									<h6 class="m-0 font-weight-bold text-primary">Cover Issue
 										Renewal</h6>
 								</a>
 								<!-- Card Content - Collapse -->
@@ -408,7 +408,9 @@
 
 										<form:form method="post"
 											class="form-horizontal border border-dark p-3 mb-2 bg-white text-dark mt-5"
-											role="form" action="updateIssueRenewal.htm" modelAttribute="issueRenewal">
+											role="form" action="uploadFiles.htm"
+											modelAttribute="issueRenewal" id="issueRenewal"
+											name="issueRenewal">
 
 											<div class="form-group">
 												<label for="heading" class="col-sm-3 control-label"></label>
@@ -420,21 +422,15 @@
 												<div class="col-sm-9">
 													<label for="heading" class="col-sm-3 control-label"><b>FRESH
 															/ RENEWAL </b></label>
-															</div>
-											<div class="col-sm-3">
-															
-												</div></div>
-												<div class="row">
-												<div class="col-sm-9"></div>
+												</div>
 												<div class="col-sm-3">
-
-													Form Id
-													<form:input id="exampleField" type="text"
-														class="form-field__input" path="wt_isrn_proposal_frm_id"
-														placeholder="form-id" />
-
+													<%
+														String str = (String) session.getAttribute("str");
+															out.print(str);
+													%>
 												</div>
 											</div>
+
 
 											<div class="form-group">
 												<div class="row justify-content-center align-items-center">
@@ -516,11 +512,12 @@
 															<option value="Bank Of India" />
 															<option value="Bank Of Maharashtra" />
 															<option value="Bank Of Baroda" />
-														</datalist> hereby apply for issuance of <form:input
+														</datalist> hereby apply for issuance of 
+														<form:input
 															id="exampleField" list="Fresh/Renewal"
 															placeholder="insurance type" type="text"
-															class="form-field__input" path="cover_type" />
-														<datalist id="Fresh/Renewal">
+															class="form-field__input" path="cover_type" /> <datalist
+															id="Fresh/Renewal">
 															<option value="WT/PS" />
 															<option value="WT/PC" />
 														</datalist> of Export Credit Insurance for Banks(Whole Turnover Post
@@ -588,8 +585,7 @@
 																class="form-field__input"
 																path="no_of_acct_default_reported" /></td>
 														<td><form:input id="exampleField" type="text"
-																class="form-field__input"
-																path="amt_of_default_reported" /></td>
+																class="form-field__input" path="amt_of_default_reported" /></td>
 													</tr>
 
 													<tr>
@@ -617,10 +613,10 @@
 														<td>Total outstanding under Post Shipment Accounts as
 															on 31st March,2017</td>
 														<td><form:input id="exampleField" type="text"
+																class="form-field__input" path="" /></td>
+														<td><form:input id="exampleField" type="text"
 																class="form-field__input"
 																path="total_outstanding_under_pc_ps" /></td>
-														<td><form:input id="exampleField" type="text"
-																class="form-field__input" path="total_outstanding_under_pc_ps" /></td>
 													</tr>
 
 													<tr>
@@ -628,10 +624,10 @@
 														<td>Anticipated level of average outstanding during
 															the current year</td>
 														<td><form:input id="exampleField" type="text"
+																class="form-field__input" path="" /></td>
+														<td><form:input id="exampleField" type="text"
 																class="form-field__input"
 																path="anticipated_outstanding_in_current_year" /></td>
-														<td><form:input id="exampleField" type="text"
-																class="form-field__input" path="anticipated_outstanding_in_current_year" /></td>
 													</tr>
 
 													<tr>
@@ -698,17 +694,14 @@
 															be covered under the ECIB, <br>If yes
 															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <form:checkbox
 																element="enable4" checked="checked"
-																path="is_obu_covered"
-																items="${is_obu_covered}" />
+																path="is_obu_covered" items="${is_obu_covered}" />
 														</td>
 														<td><form:input id="exampleField7"
 																name="exampleField7" type="text"
-																class="form-field__input"
-																path="no_of_obu_covered" /></td>
+																class="form-field__input" path="no_of_obu_covered" /></td>
 														<td><form:input id="exampleField8"
 																name="exampleField8" type="text"
-																class="form-field__input"
-																path="amt_outstanding_for_obu" /></td>
+																class="form-field__input" path="amt_outstanding_for_obu" /></td>
 													</tr>
 
 													<tr>
@@ -846,8 +839,7 @@
 						src="webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 					<script type="text/javascript">
-						$(
-								"input[name='is_ssi_msme_covered']")
+						$("input[name='is_ssi_msme_covered']")
 								.click(
 										function() {
 											if ($(this).is(':checked')) {
@@ -895,75 +887,212 @@
 					</script>
 
 					<script type="text/javascript">
-		$("input[name='is_adv_against_lc_covered']")
-				.click(
-						function() {
-							if ($(this).is(':checked')) {
-								$("#exampleField5").attr("disabled", false);
-								$("#exampleField6").attr("disabled", false);
-							} else if ($(this).not(':checked')) {
-								var ok = confirm('Are you sure you want to remove all data?');
-								if (ok) {
-									var remove = '';
-									$("#exampleField5").val('');
-									$("#exampleField6").val('');
-									$("#exampleField5").attr("disabled", true);
-									$("#exampleField6").attr("disabled", true);
-								}
-							}
-						});
-	</script>
+						$("input[name='is_adv_against_lc_covered']")
+								.click(
+										function() {
+											if ($(this).is(':checked')) {
+												$("#exampleField5").attr(
+														"disabled", false);
+												$("#exampleField6").attr(
+														"disabled", false);
+											} else if ($(this).not(':checked')) {
+												var ok = confirm('Are you sure you want to remove all data?');
+												if (ok) {
+													var remove = '';
+													$("#exampleField5").val('');
+													$("#exampleField6").val('');
+													$("#exampleField5").attr(
+															"disabled", true);
+													$("#exampleField6").attr(
+															"disabled", true);
+												}
+											}
+										});
+					</script>
 
 					<script type="text/javascript">
-		$("input[name='is_obu_covered']").click(function() {
-			if ($(this).is(':checked')) {
-				$("#exampleField7").attr("disabled", false);
-				$("#exampleField8").attr("disabled", false);
-			} else if ($(this).not(':checked')) {
-				var ok = confirm('Are you sure you want to remove all data?');
-				if (ok) {
-					var remove = '';
-					$("#exampleField7").val('');
-					$("#exampleField8").val('');
-					$("#exampleField7").attr("disabled", true);
-					$("#exampleField8").attr("disabled", true);
-				}
-			}
-		});
-	</script>
+						$("input[name='is_obu_covered']")
+								.click(
+										function() {
+											if ($(this).is(':checked')) {
+												$("#exampleField7").attr(
+														"disabled", false);
+												$("#exampleField8").attr(
+														"disabled", false);
+											} else if ($(this).not(':checked')) {
+												var ok = confirm('Are you sure you want to remove all data?');
+												if (ok) {
+													var remove = '';
+													$("#exampleField7").val('');
+													$("#exampleField8").val('');
+													$("#exampleField7").attr(
+															"disabled", true);
+													$("#exampleField8").attr(
+															"disabled", true);
+												}
+											}
+										});
+					</script>
 
 					<script type="text/javascript">
-		$(
-				"input[name='is_adv_against_bills_covered']")
-				.click(
-						function() {
-							if ($(this).is(':checked')) {
-								$("#exampleField9").attr("disabled", false);
-								$("#exampleField10").attr("disabled", false);
-							} else if ($(this).not(':checked')) {
-								var ok = confirm('Are you sure you want to remove all data?');
-								if (ok) {
-									var remove = '';
-									$("#exampleField9").val('');
-									$("#exampleField10").val('');
-									$("#exampleField9").attr("disabled", true);
-									$("#exampleField10").attr("disabled", true);
-								}
-							}
-						});
-	</script>
+						$("input[name='is_adv_against_bills_covered']")
+								.click(
+										function() {
+											if ($(this).is(':checked')) {
+												$("#exampleField9").attr(
+														"disabled", false);
+												$("#exampleField10").attr(
+														"disabled", false);
+											} else if ($(this).not(':checked')) {
+												var ok = confirm('Are you sure you want to remove all data?');
+												if (ok) {
+													var remove = '';
+													$("#exampleField9").val('');
+													$("#exampleField10")
+															.val('');
+													$("#exampleField9").attr(
+															"disabled", true);
+													$("#exampleField10").attr(
+															"disabled", true);
+												}
+											}
+										});
+					</script>
 
 					<script>
-		var hidden = false;
-		function action() {
-			hidden = !hidden;
-			if (hidden) {
-				document.getElementById('update').style.visibility = 'hidden';
-			} else {
-				document.getElementById('togglee').style.visibility = 'visible';
-			}
-		}
-	</script>
+						var hidden = false;
+						function action() {
+							hidden = !hidden;
+							if (hidden) {
+								document.getElementById('update').style.visibility = 'hidden';
+							} else {
+								document.getElementById('togglee').style.visibility = 'visible';
+							}
+						}
+					</script>
+
+					<script type="text/javascript">
+						$(document)
+								.ready(
+										function() {
+
+											$("#success_alert").hide();
+											$("#error_alert").hide();
+
+											jQuery.validator
+													.addMethod(
+															"isIssueRenewalIdUnique",
+															function(value,
+																	element) {
+																var status = false;
+																$
+																		.get({
+																			async : false,
+																			url : 'isIssueRenewalIdUnique',
+																			data : {
+																				continentName : value
+																			},
+																			success : function(
+																					res) {
+																				alert("RESPONSE :"
+																						+ res);
+																				if (res) {
+																					console
+																							.log("Status :"
+																									+ res)
+																					status = true;
+																				}
+																			},
+																			error : function(
+																					res) {
+																				//alert("res e:"+res);									
+																			}
+																		});
+																return status;
+															},
+															"IssueRenewalId with the same name already exists.");
+
+											$("#issueRenewal")
+													.submit(function(e) {
+														e.preventDefault();
+													})
+													.validate(
+															{
+																rules : {
+																	continentId : {
+																		required : true,
+																		maxlength : 2,
+																		remote : 'isIssueRenewalIdUnique'
+
+																	}
+																},
+																highlight : function(
+																		element,
+																		errorClass,
+																		validClass) {
+																	$(element)
+																			.addClass(
+																					"border-danger text-danger")
+																			.removeClass(
+																					validClass);
+																},
+																unhighlight : function(
+																		element,
+																		errorClass,
+																		validClass) {
+																	$(element)
+																			.addClass(
+																					validClass)
+																			.removeClass(
+																					"border-danger text-danger");
+																},
+																submitHandler : function(
+																		form) {
+																	addContinentDetails();
+																	return false; //This doesn't prevent the form from submitting.
+																}
+															});
+										});
+
+						// Function to add language details 
+						function addIssueRenewalDetails() {
+
+							$
+									.post({
+										url : 'uploadFiles.htm',
+										data : $('form[name=issueRenewal]')
+												.serialize(),
+										success : function(res) {
+											$("#success_alert")
+													.fadeTo(2000, 500)
+													.slideUp(
+															500,
+															function() {
+																$(
+																		"#success_alert")
+																		.slideUp(
+																				500);
+																$(
+																		"form[name=issueRenewal]")
+																		.trigger(
+																				"reset");
+															});
+										},
+										error : function(res) {
+											$("#error_alert")
+													.fadeTo(2000, 500)
+													.slideUp(
+															500,
+															function() {
+																$(
+																		"#error_alert")
+																		.slideUp(
+																				500);
+															});
+										}
+									});
+						}
+					</script>
 </body>
 
 </html>

@@ -135,7 +135,7 @@ public class IssueRenewalImpl implements IssueRenewalDao {
 	@Override
 	public List<IssueRenewal> userList() {
 		List<IssueRenewal> list = jdbcTemplate.query(
-				"SELECT * FROM wt_isrn_proposal_frm where issue_renewal_flag IS  NULL  order by wt_isrn_proposal_frm_id ",
+				"SELECT * FROM wt_isrn_proposal_frm where issue_renewal_flag IS  false  order by wt_isrn_proposal_frm_id ",
 				new RowMapper<IssueRenewal>() {
 					@Override
 					public IssueRenewal mapRow(ResultSet rs, int rowNum) throws SQLException {

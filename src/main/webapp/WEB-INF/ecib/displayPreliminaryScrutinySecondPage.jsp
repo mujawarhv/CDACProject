@@ -40,6 +40,10 @@
 <script
 	src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+						<!-- 						<h6 class="collapse-header">Other Pages:</h6> -->
+						<!-- 						<a class="collapse-item" href="404.html">404 Page</a> <a -->
+						<!-- 							class="collapse-item" href="blank.html">Blank Page</a> -->
+				
 <script type="text/javascript">
 	function sendData() {
 
@@ -144,13 +148,13 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Login Screens:</h6>
 						<a class="collapse-item" href="login.htm">Login</a>
-						<div class="collapse-divider"></div>
+					<div class="collapse-divider"></div>
 
 						<a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a>
-						<a class="collapse-item" href="banklogin.htm">Bank Login</a> <a
-							class="collapse-item" href="ecgclogin.htm">ECGC Login</a>
-<a class="collapse-item" href="dop.htm">Decision</a> 
-						</div>
+            <a class="collapse-item" href="banklogin.htm">Bank Login</a>
+			<a class="collapse-item" href="eciblogin.htm">ECIB Login</a>
+			<a class="collapse-item" href="decision.htm">Decision</a> 
+					</div>
 				</div></li>
 
 			<!-- Nav Item - Charts -->
@@ -408,27 +412,17 @@
 
 
 
-
-
-
-
-
-
-
-
-
-										<form:form
+										<form:form method="get" id="ShowingAnnexure"
 											class="form-horizontal border border-dark p-3 mb-2 bg-white text-dark mt-5"
-											role="form" action="DisplayPreliminaryScrutinySecondPage.htm"
-											modelAttribute="issueRenewal">
+											role="form" modelAttribute="issueRenewal"
+											action="preliminaryScrutinyDone.htm">
 
 											<div class="row">
 
 												<div class="col-sm-9">
 													<%
-														String proposalfrmid = request.getParameter("proposalfrmid");
+														String proposalfrmid = (String) session.getAttribute("wt_isrn_proposal_frm_id");
 															out.print("Proposal Id:-" + proposalfrmid);
-															session.setAttribute("proposalfrmid", proposalfrmid);
 													%>
 												</div>
 												<div class="col-sm-3">
@@ -441,328 +435,207 @@
 												</div>
 											</div>
 
-
-
 											<div class="form-group">
 												<label for="heading" class="col-sm-3 control-label"></label>
 												<div class="col-sm-9"></div>
 											</div>
-
-											<div class="row">
-
-												<div class="col-sm-9">
-													<label for="heading" class="col-sm-3 control-label"><b>FRESH
-															/ RENEWAL</b></label>
-												</div>
-												<div class="col-sm-3">
-
-													Form Id
-													<form:input id="exampleField" type="text"
-														class="form-field__input" path="wt_isrn_proposal_frm_id"
-														placeholder="form-id" disabled="true" />
-
-												</div>
-											</div>
-
 											<div class="form-group">
-												<div class="row justify-content-center align-items-center">
-													<div class="col-sm-3"></div>
-													<div class="col-sm-9">
-														<label for="heading" class="col-sm-9 control-label"><b>PROPOSAL
-																FOR EXPORT CREDIT INSURANCE FOR BANKS</b></label> <label
-															for="heading" class="col-sm-9 control-label"><b>
-																&nbsp; &nbsp; (WHOLE TURNOVER POST SHIPMENT-ECIB WT-PS)
-														</b></label>
-													</div>
-												</div>
+												<label for="heading" class="col-sm-3 control-label"></label>
+												<div class="col-sm-9"></div>
 											</div>
-
-											<div class="form-group">
-												<div class="row">
-													<div class="col-sm-3"></div>
-													<div class="col-sm-9">
-														<label for="heading">(To be submitted by the Head
-															Office of the Bank to the Head Office of ECGC Ltd. </label> <label
-															for="heading">&nbsp; &nbsp; together with a
-															non-refundable processing fee of Rs 10,000/-)</label>
-													</div>
-												</div>
-											</div>
-
-											<div class="form-field">
-												<div class="form-field__control">
-													<label for="exampleField" class="form-field__label">We,
-														<form:input id="exampleField" list="Bank-Name" type="text"
-															class="form-field__input" placeholder="(Name of Bank)"
-															path="bank_name" disabled="true" /> hereby apply for
-														issuance of <form:input id="exampleField"
-															list="Fresh/Renewal" placeholder="insurance type"
-															type="text" class="form-field__input" path="cover_type"
-															disabled="true" />of Export Credit Insurance for
-														Banks(Whole Turnover Post shipment) ECIB(WT-PS) of the
-														ECGC Ltd(formerly Export Credit Guarantee Corporation of
-														India Limited)
-													</label>
-													<p>
-														(herein after refer's to as the "Corporation") for a
-														period of one year from
-
-														<form:input id="exampleField" type="date"
-															pattern="dd/MM/yyyy" class="form-field__input"
-															path="from_date" disabled="true" />
-
-														to
-
-
-														<form:input id="exampleField" type="date"
-															pattern="dd/MM/yyyy" class="form-field__input"
-															path="to_date" disabled="true" />
-
-														with a Maximum Liability of Rs
-														<form:input id="exampleField" type="text"
-															class="form-field__input" path="maximum_liability"
-															disabled="true" />
-														Crores.
-													</p>
-												</div>
-											</div>
-
-											<div class="form-field__control">
-												<p>
-													2. We furnish below information on the accounts:<br> <label
-														for="heading" class="form-field__label"> </label> &nbsp;
-													&nbsp;
-												</p>
-											</div>
-
 											<table class="table table-bordered">
 												<thead>
 													<tr>
-														<th>SL No</th>
-														<th>Particulars</th>
-														<th>No of Account</th>
-														<th>Amount<br>(Rs in Lacs)
+														<th>Annexure Name</th>
+														<th>Is upload</br> Yes/No
 														</th>
+														<th>Verify</th>
+														<th>Need Clarification</th>
 													</tr>
 												</thead>
 
 												<tbody>
-													<tr>
-														<td>a</td>
-														<td>Limit Approved as on 31.03.2017</td>
-														<td><form:input id="exampleField" type="text"
-																class="form-field__input"
-																path="no_of_limit_approved_acc" disabled="true" /></td>
-														<td><form:input id="exampleField" type="text"
-																class="form-field__input"
-																path="amt_of_limit_approved_acc" disabled="true" /></td>
-													</tr>
 
 													<tr>
-														<td>b</td>
-														<td>Defaults reported to ECGC as on 31.03.2017</td>
-														<td><form:input id="exampleField" type="text"
-																class="form-field__input"
-																path="no_of_acct_default_reported" disabled="true" /></td>
-														<td><form:input id="exampleField" type="text"
-																class="form-field__input" path="amt_of_default_reported"
-																disabled="true" /></td>
-													</tr>
-
-													<tr>
-														<td>c</td>
-														<td>No of SMA 2 account as on 31.03.2017</td>
-														<td><form:input id="exampleField" type="text"
-																class="form-field__input" path="no_of_sma2_acc"
-																disabled="true" /></td>
-														<td><form:input id="exampleField" type="text"
-																class="form-field__input"
-																path="amt_outstanding_of_sma2_acc" disabled="true" /></td>
-													</tr>
-
-													<tr>
-														<td>d</td>
-														<td>No of CDR accounts as on 31.03.2017</td>
-														<td><form:input id="exampleField" type="text"
-																class="form-field__input" path="no_of_cdr_acc"
-																disabled="true" /></td>
-														<td><form:input id="exampleField" type="text"
-																class="form-field__input"
-																path="amount_outstanding_cdr_accounts" disabled="true" /></td>
-													</tr>
-
-													<tr>
-														<td>e</td>
-														<td>Total outstanding under Post Shipment Accounts as
-															on 31st March,2017</td>
-														<td><form:input id="exampleField" type="text"
-																class="form-field__input" path="" disabled="true" /></td>
-														<td><form:input id="exampleField" type="text"
-																class="form-field__input"
-																path="total_outstanding_under_pc_ps" disabled="true" /></td>
-													</tr>
-
-													<tr>
-														<td>f</td>
-														<td>Anticipated level of average outstanding during
-															the current year</td>
-														<td><form:input id="exampleField" type="text"
-																class="form-field__input" path="" disabled="true" /></td>
-														<td><form:input id="exampleField" type="text"
-																class="form-field__input"
-																path="anticipated_outstanding_in_current_year"
-																disabled="true" /></td>
-													</tr>
-
-													<tr>
-														<td>g</td>
-														<td>Whether Small Scale Industrial Units/MSME are to
-															be covered under the ECIB, <br>If yes
-															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <form:checkbox
+														<td>Annex statement of packing</td>
+														<td>${issueRenewal.isAnnex_statement_of_packing_attached()}</td>
+														<td>Yes<form:radiobutton
+																path="annex_statement_of_packing_attached" value="Yes" />
+															No<form:radiobutton
+																path="annex_statement_of_packing_attached" value="No" /></td>
+														<td><form:checkbox id="enable1" name ="checkbox"
+																value="annex_statement_of_packing_attached"
 																element="enable1" checked="checked"
-																path="is_ssi_msme_covered"
-																items="${is_ssi_msme_covered}" disabled="true" />
-														</td>
-														<td><form:input id="exampleField1"
-																name="exampleField1" type="text"
-																class="form-field__input"
-																path="no_of_ssi_msme_acc_covered" disabled="true" /></td>
-														<td><form:input id="exampleField2"
-																name="exampleField2" type="text"
-																class="form-field__input"
-																path="amt_outstanding_for_ssi_msme" disabled="true" /></td>
-
+																path="annex_statement_of_packing_attached" /> <input
+															id="exampleField1" name="exampleField1" type="text"
+															class="form-field__input" /></td>
 													</tr>
-
 													<tr>
-														<td>h</td>
-														<td>Whether Government Companies-are to be covered
-															under the ECIB <br>If yes
-															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <form:checkbox
+														<td>annex for limit sanction</td>
+														<td>${issueRenewal.isAnnex_for_limit_sanction_attached()}</td>
+														<td>Yes<form:radiobutton
+																path="annex_for_limit_sanction_attached" value="Yes" />
+															No <form:radiobutton
+																path="annex_for_limit_sanction_attached" value="No" />
+														</td>
+														<td><form:checkbox id="enable2" name ="checkbox"
+																value="annex_for_limit_sanction_attached"
 																element="enable2" checked="checked"
-																path="is_govt_company_covered"
-																items="${is_govt_company_covered}" disabled="true" />
-														</td>
-														<td><form:input id="exampleField3"
-																name="exampleField3" type="text"
-																class="form-field__input"
-																path="no_of_govt_companies_covered" disabled="true" /></td>
-														<td><form:input id="exampleField4"
-																name="exampleField4" type="text"
-																class="form-field__input"
-																path="amt_outstanding_for_govt_company" disabled="true" /></td>
+																path="annex_for_limit_sanction_attached" /> <input
+															id="exampleField2" name="exampleField2" type="text"
+															class="form-field__input" /></td>
 													</tr>
 
 													<tr>
-														<td>i</td>
-														<td>Whether advances against Letters of Credit are
-															covered under the ECIB, <br>If yes
-															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <form:checkbox
+														<td>annex of statement of acc covered</br> under wt with
+															claim recovery
+														</td>
+														<td>${issueRenewal.isAnnex_of_stmnt_of_acc_covrd_undr_wt_with_claim_recovery_attchd()}</td>
+														<td>Yes<form:radiobutton
+																path="annex_of_stmnt_of_acc_covrd_undr_wt_with_claim_recovery_attchd"
+																value="Yes" /> No<form:radiobutton
+																path="annex_of_stmnt_of_acc_covrd_undr_wt_with_claim_recovery_attchd"
+																value="No" /></td>
+														<td><form:checkbox id="enable3" name ="checkbox"
+																value="annex_of_stmnt_of_acc_covrd_undr_wt_with_claim_recovery_attchd"
 																element="enable3" checked="checked"
-																path="is_adv_against_lc_covered"
-																items="${is_adv_against_lc_covered}" disabled="true" />
-														</td>
-														<td><form:input id="exampleField5"
-																name="exampleField5" type="text"
-																class="form-field__input"
-																path="no_of_acc_for_which_adv_against_lc_covered"
-																disabled="true" /></td>
-														<td><form:input id="exampleField6"
-																name="exampleField6" type="text"
-																class="form-field__input"
-																path="amt_outstanding_from_adv_against_lc"
-																disabled="true" /></td>
+																path="annex_of_stmnt_of_acc_covrd_undr_wt_with_claim_recovery_attchd" />
+															<input id="exampleField3" name="exampleField3"
+															type="text" class="form-field__input" /></td>
 													</tr>
 
+
+
 													<tr>
-														<td>j</td>
-														<td>Whether the Overseas Business Units(OBU) are to
-															be covered under the ECIB, <br>If yes
-															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <form:checkbox
+														<td>annex of annual statement of account </br>covered
+															under wt wo
+														</td>
+														<td>${issueRenewal.isAnnex_of_annual_stmnt_of_acc_covered_under_wt_wo_attchd()}</td>
+														<td>Yes<form:radiobutton
+																path="annex_of_annual_stmnt_of_acc_covered_under_wt_wo_attchd"
+																value="Yes" /> No<form:radiobutton
+																path="annex_of_annual_stmnt_of_acc_covered_under_wt_wo_attchd"
+																value="No" /></td>
+														<td><form:checkbox id="enable4" name ="checkbox"
+																value="annex_of_annual_stmnt_of_acc_covered_under_wt_wo_attchd"
 																element="enable4" checked="checked"
-																path="is_obu_covered" items="${is_obu_covered}"
-																disabled="true" />
-														</td>
-														<td><form:input id="exampleField7"
-																name="exampleField7" type="text"
-																class="form-field__input" path="no_of_obu_covered"
-																disabled="true" /></td>
-														<td><form:input id="exampleField8"
-																name="exampleField8" type="text"
-																class="form-field__input" path="amt_outstanding_for_obu"
-																disabled="true" /></td>
+																path="annex_of_annual_stmnt_of_acc_covered_under_wt_wo_attchd" />
+															<input id="exampleField4" name="exampleField4"
+															type="text" class="form-field__input" /></td>
 													</tr>
-
 													<tr>
-														<td>k</td>
-														<td>Whether advances against bills drawn on overseas
-															Associates<br> are to be covered under the ECIB, If
-															yes &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <form:checkbox
+														<td>annex of cdr acc</td>
+														<td>${issueRenewal.isAnnex_of_cdr_acc_attached()}</td>
+														<td>Yes<form:radiobutton
+																path="annex_of_cdr_acc_attached" value="Yes" /> No<form:radiobutton
+																path="annex_of_cdr_acc_attached" value="No" /></td>
+														<td><form:checkbox id="enable5" name ="checkbox" value="annex_of_cdr_acc_attached"
 																element="enable5" checked="checked"
-																path="is_adv_against_bills_covered"
-																items="${is_adv_against_bills_covered}" disabled="true" />
-														</td>
-														<td><form:input id="exampleField9"
-																name="exampleField9" type="text"
-																class="form-field__input"
-																path="no_of_acc_to_be_covrd_for_advances_against_bill_of_associate"
-																disabled="true" /></td>
-														<td><form:input id="exampleField10"
-																name="exampleField10" type="text"
-																class="form-field__input"
-																path="amt_upto_which_adv_against_bill_covered"
-																disabled="true" /></td>
+																path="annex_of_cdr_acc_attached" /> <input
+															id="exampleField5" name="exampleField5" type="text"
+															class="form-field__input" /></td>
 													</tr>
-
 													<tr>
-														<td>l</td>
-														<td>Considering the size of operations, the
-															Discretionary<br> Limit desired by the bank for new
-															accounts <br>(Max. Rs 100 Lakhs)(To be removed)
-														</td>
-														<td>N/A</td>
-														<td><form:input id="exampleField" type="text"
-																class="form-field__input"
-																path="desired_dl_for_new_account" disabled="true" /></td>
+														<td>annex of shipment export credit limit sanctioned</td>
+														<td>${issueRenewal.isAnnex_of_shipment_export_credit_limit_sanctioned_attached()}</td>
+														<td>Yes<form:radiobutton
+																path="annex_of_shipment_export_credit_limit_sanctioned_attached"
+																value="Yes" /> No<form:radiobutton
+																path="annex_of_shipment_export_credit_limit_sanctioned_attached"
+																value="No" /></td>
+														<td><form:checkbox id="enable6" name ="checkbox"
+																value="annex_of_shipment_export_credit_limit_sanctioned_attached"
+																element="enable6" checked="checked"
+																path="annex_of_shipment_export_credit_limit_sanctioned_attached" />
+															<input id="exampleField6" name="exampleField6"
+															type="text" class="form-field__input" /></td>
 													</tr>
-												</tbody>
+													<tr>
+														<td>annex of annual statement of account in default</td>
+														<td>${issueRenewal.isAnnex_of_annual_statement_of_acc_in_default_attached()}</td>
+														<td>Yes<form:radiobutton
+																path="annex_of_annual_statement_of_acc_in_default_attached"
+																value="Yes" /> No<form:radiobutton
+																path="annex_of_annual_statement_of_acc_in_default_attached"
+																value="No" /></td>
+														<td><form:checkbox id="enable7" name ="checkbox"
+																value="annex_of_annual_statement_of_acc_in_default_attached"
+																element="enable7" checked="checked"
+																path="annex_of_annual_statement_of_acc_in_default_attached" />
+															<input id="exampleField7" name="exampleField7"
+															type="text" class="form-field__input" /></td>
+													</tr>
+													<tr>
+														<td>annex of annual statement of</br> account covered
+															under ecib
+														</td>
+														<td>${issueRenewal.isAnnex_of_annl_stmnt_of_acc_covrd_undr_ecib_or_postn_of_clm_paid()}</td>
+														<td>Yes<form:radiobutton
+																path="annex_of_annl_stmnt_of_acc_covrd_undr_ecib_or_postn_of_clm_paid"
+																value="Yes" /> No<form:radiobutton
+																path="annex_of_annl_stmnt_of_acc_covrd_undr_ecib_or_postn_of_clm_paid"
+																value="No" /></td>
+														<td><form:checkbox id="enable8" name ="checkbox"
+																value="annex_of_annl_stmnt_of_acc_covrd_undr_ecib_or_postn_of_clm_paid"
+																element="enable8" checked="checked"
+																path="annex_of_annl_stmnt_of_acc_covrd_undr_ecib_or_postn_of_clm_paid" />
+															<input id="exampleField8" name="exampleField8"
+															type="text" class="form-field__input" /></td>
+													</tr>
+													<tr>
+														<td>annex of annual statment of account in default</td>
+														<td>${issueRenewal.isAnnex_of_annual_statment_of_acc_in_default_attached()}</td>
+														<td>Yes<form:radiobutton
+																path="annex_of_annual_statment_of_acc_in_default_attached"
+																value="Yes" /> No<form:radiobutton
+																path="annex_of_annual_statment_of_acc_in_default_attached"
+																value="No" /></td>
+														<td><form:checkbox id="enable9" name ="checkbox"
+																value="annex_of_annual_statment_of_acc_in_default_attached"
+																element="enable9" checked="checked"
+																path="annex_of_annual_statment_of_acc_in_default_attached" />
+															<input id="exampleField9" name="exampleField9"
+															type="text" class="form-field__input" /></td>
+													</tr>
+													<tr>
+														<td>annex for exporter financial statement analysis</td>
+														<td>${issueRenewal.isAnnex_for_exporter_financial_statement_analysis_attached()}</td>
+														<td>Yes<form:radiobutton
+																path="annex_for_exporter_financial_statement_analysis_attached"
+																value="Yes" /> No<form:radiobutton
+																path="annex_for_exporter_financial_statement_analysis_attached"
+																value="No" /></td>
+														<td><form:checkbox id="enable10" name ="checkbox"
+																value="annex_for_exporter_financial_statement_analysis_attached"
+																element="enable10" checked="checked"
+																path="annex_for_exporter_financial_statement_analysis_attached" />
+															<input id="exampleField10" name="exampleField10"
+															type="text" class="form-field__input" /></td>
+													</tr>
 											</table>
-
 											<div class="align-self-center mx-auto">
 												<div class="row">
-													<div class="col-sm-4"></div>
-													<div class="col-sm-4">
+													<div class="col-sm-3"></div>
+													<div class="col-sm-7">
 
-														<form:input type="submit" value="Next"
-															class="btn btn-success active" path="" />
-														<a href="cancelPreliminaryScrutinypage.htm"
-															class="btn btn-danger active">Cancel</a>
 
+
+														<button onclick="VerificationOfAnnexure();"
+														value="action1" name="action1"	class="btn btn-primary active">Send For
+															Clarification</button>
+
+														<button onclick="GenerateMessage();"
+															value="action2" name="action2"	class="btn btn-primary active">PS Done</button>
+															
+<!-- 														<a href="preliminaryScrutinyDone.htm" -->
+<!-- 															class="btn btn-primary active">PS Done</a>  -->
+															<a href="prep-priliminary-scrutiny.htm"
+															class="btn btn-primary active">Cancel</a>
 													</div>
-													<div class="col-sm-4"></div>
+													<div class="col-sm-2"></div>
 												</div>
-
 											</div>
-
-
-
-
 										</form:form>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 									</div>
@@ -837,6 +710,291 @@
 					<!-- Custom scripts for all pages-->
 					<script
 						src="${pageContext.request.contextPath}/resources/js/sb-admin-2.min.js"></script>
+
+					<script type="text/javascript">
+						$("input[name='annex_statement_of_packing_attached']")
+								.click(
+										function() {
+											if ($(this).is(':checked')) {
+												$("#exampleField1").attr(
+														"disabled", false);
+											} else if ($(this).not(':checked')) {
+												var ok = confirm('Are you sure you want to remove clarification?');
+												if (ok) {
+													var remove = '';
+													$("#exampleField1").val('');
+													$("#exampleField1").attr(
+															"disabled", true);
+												}
+												else
+												{
+													document.getElementById("enable1").checked = true;
+													$("#exampleField1").attr("disabled", false);
+												}
+											}
+										});
+					</script>
+
+					<script type="text/javascript">
+						$("input[name='annex_for_limit_sanction_attached']")
+								.click(
+										function() {
+											if ($(this).is(':checked')) {
+												$("#exampleField2").attr(
+														"disabled", false);
+											} else if ($(this).not(':checked')) {
+												var ok = confirm('Are you sure you want to remove clarification?');
+												if (ok) {
+													var remove = '';
+													$("#exampleField2").val('');
+													$("#exampleField2").attr(
+															"disabled", true);
+												}
+												else
+												{
+													document.getElementById("enable2").checked = true;
+													$("#exampleField2").attr("disabled", false);
+												}
+											}
+										});
+					</script>
+
+					<script type="text/javascript">
+						$(
+								"input[name='annex_of_stmnt_of_acc_covrd_undr_wt_with_claim_recovery_attchd']")
+								.click(
+										function() {
+											if ($(this).is(':checked')) {
+												$("#exampleField3").attr(
+														"disabled", false);
+											} else if ($(this).not(':checked')) {
+												var ok = confirm('Are you sure you want to remove clarification?');
+												if (ok) {
+													var remove = '';
+													$("#exampleField3").val('');
+													$("#exampleField3").attr(
+															"disabled", true);
+												}
+												else
+												{
+													document.getElementById("enable3").checked = true;
+													$("#exampleField3").attr("disabled", false);
+												}
+											}
+										});
+					</script>
+
+					<script type="text/javascript">
+						$(
+								"input[name='annex_of_annual_stmnt_of_acc_covered_under_wt_wo_attchd']")
+								.click(
+										function() {
+											if ($(this).is(':checked')) {
+												$("#exampleField4").attr(
+														"disabled", false);
+											} else if ($(this).not(':checked')) {
+												var ok = confirm('Are you sure you want to remove clarification?');
+												if (ok) {
+													var remove = '';
+													$("#exampleField4").val('');
+													$("#exampleField4").attr(
+															"disabled", true);
+												}
+												else
+												{
+													document.getElementById("enable4").checked = true;
+													$("#exampleField4").attr("disabled", false);
+												}
+											}
+										});
+					</script>
+
+					<script type="text/javascript">
+						$("input[name='annex_of_cdr_acc_attached']")
+								.click(
+										function() {
+											if ($(this).is(':checked')) {
+												$("#exampleField5").attr(
+														"disabled", false);
+											} else if ($(this).not(':checked')) {
+												var ok = confirm('Are you sure you want to remove clarification?');
+												if (ok) {
+													var remove = '';
+													$("#exampleField5").val('');
+													$("#exampleField5").attr(
+															"disabled", true);
+												}
+												else
+												{
+													document.getElementById("enable5").checked = true;
+													$("#exampleField5").attr("disabled", false);
+												}
+											}
+										});
+					</script>
+
+
+					<script type="text/javascript">
+						$(
+								"input[name='annex_of_shipment_export_credit_limit_sanctioned_attached']")
+								.click(
+										function() {
+											if ($(this).is(':checked')) {
+												$("#exampleField6").attr(
+														"disabled", false);
+											} else if ($(this).not(':checked')) {
+												var ok = confirm('Are you sure you want to remove clarification?');
+												if (ok) {
+													var remove = '';
+													$("#exampleField6").val('');
+													$("#exampleField6").attr(
+															"disabled", true);
+												}
+												else
+												{
+													document.getElementById("enable6").checked = true;
+													$("#exampleField6").attr("disabled", false);
+												}
+											}
+										});
+					</script>
+
+
+					<script type="text/javascript">
+						$(
+								"input[name='annex_of_annual_statement_of_acc_in_default_attached']")
+								.click(
+										function() {
+											if ($(this).is(':checked')) {
+												$("#exampleField7").attr(
+														"disabled", false);
+											} else if ($(this).not(':checked')) {
+												var ok = confirm('Are you sure you want to remove clarification?');
+												if (ok) {
+													var remove = '';
+													$("#exampleField7").val('');
+													$("#exampleField7").attr(
+															"disabled", true);
+												}
+												else
+												{
+													document.getElementById("enable7").checked = true;
+													$("#exampleField7").attr("disabled", false);
+												}
+											}
+										});
+					</script>
+
+					<script type="text/javascript">
+						$(
+								"input[name='annex_of_annl_stmnt_of_acc_covrd_undr_ecib_or_postn_of_clm_paid']")
+								.click(
+										function() {
+											if ($(this).is(':checked')) {
+												$("#exampleField8").attr(
+														"disabled", false);
+											} else if ($(this).not(':checked')) {
+												var ok = confirm('Are you sure you want to remove clarification?');
+												if (ok) {
+													var remove = '';
+													$("#exampleField8").val('');
+													$("#exampleField8").attr(
+															"disabled", true);
+												}
+												else
+												{
+													document.getElementById("enable8").checked = true;
+													$("#exampleField8").attr("disabled", false);
+												}
+											}
+										});
+					</script>
+
+					<script type="text/javascript">
+		$(
+				"input[name='annex_of_annual_statment_of_acc_in_default_attached']")
+				.click(
+						function() {
+							if ($(this).is(':checked')) {
+								$("#exampleField9").attr("disabled", false);
+							} else if ($(this).not(':checked')) {
+								var ok = confirm('Are you sure you want to remove clarification?');
+								if (ok) {
+									var remove = '';
+									$("#exampleField9").val('');
+									$("#exampleField9").attr("disabled", true);
+								}
+								else
+								{
+									document.getElementById("enable9").checked = true;
+									$("#exampleField9").attr("disabled", false);
+								}
+							}
+						});
+	</script>
+
+					<script type="text/javascript">
+		$(
+				"input[name='annex_for_exporter_financial_statement_analysis_attached']")
+				.click(
+						function() {
+							if ($(this).is(':checked')) {
+								$("#exampleField10").attr("disabled", false);
+							} else if ($(this).not(':checked')) {
+								var ok = confirm('Are you sure you want to remove clarification?');
+								if (ok) {
+									var remove = '';
+									$("#exampleField10").val('');
+									$("#exampleField10").attr("disabled", true);
+								}
+								else
+									{
+										document.getElementById("enable10").checked = true;
+										$("#exampleField10").attr("disabled", false);
+									}
+							}
+						});
+	</script>
+
+
+
+					<script type="text/javascript">
+	
+	 function Clarification(){
+         alert("Clarification send!!");
+         $.ajax({  
+             type : 'GET',  
+         });
+         
+     }
+		
+	</script>
+
+					<script type="text/javascript">
+	 function VerificationOfAnnexure(){
+		 alert("Annexure Verificed!!");
+         $.ajax({  
+             type : 'GET',  
+            
+         });
+     }
+	</script>
+	
+	<script type="text/javascript">
+	 
+	
+	function GenerateMessage() {
+		
+		if($('#ShowingAnnexure input[type="checkbox"]').is(':checked')){
+			 alert("are you sure you want to send message");
+		    }else{
+		alert("Are you sure everything is verified");
+		return false;
+		    }
+		
+	}
+	</script>
+	
 </body>
 
 </html>

@@ -1,10 +1,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page errorPage="ErrorPage.jsp" %>  
+<%@ page errorPage="ErrorPage.jsp"%>
 <%@page import="in.cdac.ecib.dto.*"%><%@page import="java.util.List"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="fmt"%>
 <%
-IssueRenewal issueRenewal = (IssueRenewal) session.getAttribute("issueRenewal");
+	IssueRenewal issueRenewal = (IssueRenewal) session.getAttribute("issueRenewal");
 %>
 <%
 	List<IssueRenewal> userList = (List<IssueRenewal>) request.getAttribute("listIssueRenewal");
@@ -21,7 +21,7 @@ IssueRenewal issueRenewal = (IssueRenewal) session.getAttribute("issueRenewal");
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>ECGC </title>
+<title>ECGC</title>
 
 <!-- Custom fonts for this template-->
 <link
@@ -88,21 +88,25 @@ IssueRenewal issueRenewal = (IssueRenewal) session.getAttribute("issueRenewal");
 			<li class="nav-item"><a class="nav-link" href="index.html">
 					<i class="fas fa-fw fa-tachometer-alt"></i> <span>Dashboard</span>
 			</a></li>
+			<a class="collapse-item" href="login.html">Login</a>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider">
 
 			<!-- Heading -->
 			<div class="sidebar-heading">Interface</div>
-
+			<%
+				String str = (String) session.getAttribute("str1");
+				out.print(str);
+			%>
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item active"><a class="nav-link" href="#"
 				data-toggle="collapse" data-target="#collapseTwo"
 				aria-expanded="true" aria-controls="collapseTwo"> <i
 					class="fas fa-fw fa-cog"></i> <span>Components</span>
 			</a>
-				<div id="collapseTwo" class="collapse"
-					aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Custom Components:</h6>
 						<a class="collapse-item" href="buttons.html">Buttons</a> <a
@@ -143,15 +147,14 @@ IssueRenewal issueRenewal = (IssueRenewal) session.getAttribute("issueRenewal");
 					aria-labelledby="headingPages" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Login Screens:</h6>
-							    <a class="collapse-item" href="login.htm">Login</a> 
+						<a class="collapse-item" href="login.htm">Login</a>
 
 						<div class="collapse-divider"></div>
 
-						 <a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a> <a
-							class="collapse-item" href="banklogin.htm">Bank Login</a> <a
-							class="collapse-item" href="ecgclogin.htm">ECGC Login</a>
-<a class="collapse-item" href="dop.htm">Decision</a> 
-
+						<a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a>
+            <a class="collapse-item" href="banklogin.htm">Bank Login</a>
+			<a class="collapse-item" href="eciblogin.htm">ECIB Login</a>
+			<a class="collapse-item" href="decision.htm">Decision</a> 
 					</div>
 				</div></li>
 
@@ -401,84 +404,94 @@ IssueRenewal issueRenewal = (IssueRenewal) session.getAttribute("issueRenewal");
 								<a href="#collapseCardExample" class="d-block card-header py-3"
 									data-toggle="collapse" role="button" aria-expanded="true"
 									aria-controls="collapseCardExample">
-									<h6 class="m-0 font-weight-bold text-primary">Cover Issue Renewal</h6>
+									<h6 class="m-0 font-weight-bold text-primary">Cover Issue
+										Renewal</h6>
 								</a>
 								<!-- Card Content - Collapse -->
 								<div class="collapse show" id="collapseCardExample">
 									<div class="card-body">
-										
-								
-										
-											<form:form method="post"
-			class="form-horizontal border border-dark p-3 mb-2 bg-white text-dark mt-5"
-			role="form" action="updateIssueRenewalForm.htm" modelAttribute="issueRenewal">
 
-			<div class="form-group">
-				<label for="heading" class="col-sm-3 control-label">	<%
-String str=(String) session.getAttribute("str1"); 
-out.print(str);
-%></label>
-				<div class="col-sm-9">
-					Annexure1 <input type='file' id='file' multiple="multiple">
-					<button onclick="upload();">Upload</button>
-				</div>
-			</div>
 
-			<div class="form-group">
-				<label for="heading" class="col-sm-3 control-label"></label>
-				<div class="col-sm-9"></div>
-			</div>
 
-			<div class="form-group">
-				<label for="heading" class="col-sm-3 control-label"></label>
-				<div class="col-sm-9">
-					Annexure2 <input type='file' id='file' multiple="multiple">
-					<button onclick="upload();">Upload</button>
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="heading" class="col-sm-3 control-label"></label>
-				<div class="col-sm-9"></div>
-			</div>
-			<div class="form-group">
-				<label for="heading" class="col-sm-3 control-label"></label>
-				<div class="col-sm-9">
-					Annexure3<input type='file' id='file' multiple="multiple">
-					<button onclick="upload();">Upload</button>
-				</div>
-			</div>
+										<form:form method="post"
+											class="form-horizontal border border-dark p-3 mb-2 bg-white text-dark mt-5"
+											role="form" action="saveIssueRenewal.htm"
+											modelAttribute="issueRenewal">
 
-			<div class="form-group">
-				<label for="heading" class="col-sm-3 control-label"></label>
-				<div class="col-sm-9"></div>
-			</div>
+											<div class="form-group">
+												<label for="heading" class="col-sm-3 control-label">
+													<%
+														String str2 = (String) session.getAttribute("str");
+															out.print(str2);
+													%>
+												</label>
+												<div class="form-group">
 
-			<div class="form-group">
-				<label for="heading" class="col-sm-3 control-label"></label>
-				<div class="col-sm-9">
-					Annexure4 <input type='file' id='file' multiple="multiple">
-					<button onclick="upload();">Upload</button>
-				</div>
-			</div>
+													<label for="heading" class="col-sm-3 control-label"></label>
+													<div class="col-sm-9">
+														Annexure1 <input type='file' id='file' multiple="multiple">
+														<button onclick="upload();">Upload</button>
+													</div>
+												</div>
+											</div>
 
-			<div class="align-self-center mx-auto">
-				<div class="row">
-					<div class="col-sm-4"></div>
-					<div class="col-sm-4">
-<!-- 						<a href="PreviousBackToIssueRenewal.htm" class="btn btn-primary active">Previous</a> -->
-<%-- 						<form:input type="submit" value="Save" --%>
-<%-- 							class="btn btn-info active" path="" /> --%>
-						<form:input type="submit" value="Submit"
-							class="btn btn-success active" path="" />
-						<a href="backToIndex.htm" class="btn btn-danger active">Cancel</a>
-					</div>
-					<div class="col-sm-4"></div>
-				</div>
-			</div>
-		</form:form>
-										
-										
-										
+											<div class="form-group">
+												<label for="heading" class="col-sm-3 control-label"></label>
+												<div class="col-sm-9"></div>
+											</div>
+
+											<div class="form-group">
+
+												<label for="heading" class="col-sm-3 control-label"></label>
+												<div class="col-sm-9">
+													Annexure2 <input type='file' id='file' multiple="multiple">
+													<button onclick="upload();">Upload</button>
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="heading" class="col-sm-3 control-label"></label>
+												<div class="col-sm-9"></div>
+											</div>
+											<div class="form-group">
+												<label for="heading" class="col-sm-3 control-label"></label>
+												<div class="col-sm-9">
+													Annexure3<input type='file' id='file' multiple="multiple">
+													<button onclick="upload();">Upload</button>
+												</div>
+											</div>
+
+											<div class="form-group">
+												<label for="heading" class="col-sm-3 control-label"></label>
+												<div class="col-sm-9"></div>
+											</div>
+
+											<div class="form-group">
+												<label for="heading" class="col-sm-3 control-label"></label>
+												<div class="col-sm-9">
+													Annexure4 <input type='file' id='file' multiple="multiple">
+													<button onclick="upload();">Upload</button>
+												</div>
+											</div>
+
+											<div class="align-self-center mx-auto">
+												<div class="row">
+													<div class="col-sm-4"></div>
+													<div class="col-sm-4">
+														<a href="PreviousBackToIssueRenewal.htm"
+															class="btn btn-primary active">Previous</a>
+													
+														<form:input type="submit" value="Submit"
+															class="btn btn-success active" onclick="uploadFile()"
+															path="" />
+														<a href="backToIndex.htm" class="btn btn-danger active">Cancel</a>
+													</div>
+													<div class="col-sm-4"></div>
+												</div>
+											</div>
+										</form:form>
+
+
+
 									</div>
 								</div>
 							</div>
@@ -551,12 +564,18 @@ out.print(str);
 					<!-- Custom scripts for all pages-->
 					<script
 						src="${pageContext.request.contextPath}/resources/js/sb-admin-2.min.js"></script>
-						
-						<script type="text/javascript">
-		function upload() {
-			alert("File Successfully uploaded!");
-		}
-	</script>
+
+					<script type="text/javascript">
+						function upload() {
+
+							alert("File Successfully uploaded!");
+						}
+					</script>
+					<script type="text/javascript">
+						$(document).ready(function() {
+							document.myRedirectForm.submit();
+						});
+					</script>
 </body>
 
 </html>

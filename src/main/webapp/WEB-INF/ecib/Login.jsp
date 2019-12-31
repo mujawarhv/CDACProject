@@ -4,7 +4,10 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="fmt"%>
 <%
-	List<String> message = (List<String>) request.getAttribute("message");
+	IssueRenewal issueRenewal = (IssueRenewal) session.getAttribute("issueRenewal");
+%>
+<%
+	List<IssueRenewal> userList = (List<IssueRenewal>) request.getAttribute("listIssueRenewal");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,21 +40,6 @@
 <script
 	src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-<script type="text/javascript">
-	function sendData() {
-
-		$.post({
-			url : 'savemembership',
-			data : $('form[name=membershipForm]').serialize(),
-			success : function(res) {
-
-				alert("Result is: " + res)
-
-			}
-		});
-
-	}
-</script>
 
 
 </head>
@@ -139,15 +127,17 @@
 				<div id="collapsePages" class="collapse show"
 					aria-labelledby="headingPages" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
+
 						<h6 class="collapse-header">Login Screens:</h6>
 						<a class="collapse-item" href="login.htm">Login</a>
-					<div class="collapse-divider"></div>
+
+						<div class="collapse-divider"></div>
 
 						<a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a>
-						<a class="collapse-item" href="banklogin.htm">Bank Login</a> <a
-							class="collapse-item" href="ecgclogin.htm">ECGC Login</a>
-<a class="collapse-item" href="dop.htm">Decision</a> 
-	</div>
+            <a class="collapse-item" href="banklogin.htm">Bank Login</a>
+			<a class="collapse-item" href="eciblogin.htm">ECIB Login</a>
+			<a class="collapse-item" href="decision.htm">Decision</a> 
+					</div>
 				</div></li>
 
 			<!-- Nav Item - Charts -->
@@ -247,7 +237,6 @@
 										</div>
 									</div>
 									<div>
-										2
 										<div class="small text-gray-500">December 12, 2019</div>
 										<span class="font-weight-bold">A new monthly report is
 											ready to download!</span>
@@ -381,7 +370,7 @@
 					<!-- Page Heading -->
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">ECIB</h1>
+						<h1 class="h3 mb-0 text-gray-800"></h1>
 					</div>
 
 
@@ -397,393 +386,106 @@
 								<a href="#collapseCardExample" class="d-block card-header py-3"
 									data-toggle="collapse" role="button" aria-expanded="true"
 									aria-controls="collapseCardExample">
-									<h6 class="m-0 font-weight-bold text-primary">Issue
+									<h6 class="m-0 font-weight-bold text-primary">Cover Issue
 										Renewal</h6>
 								</a>
 								<!-- Card Content - Collapse -->
 								<div class="collapse show" id="collapseCardExample">
 									<div class="card-body">
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-										<form:form method="post" action="submitDecision.htm"
+										<form:form method="post" id="myForm"
 											class="form-horizontal border border-dark p-3 mb-2 bg-white text-dark mt-5"
-											role="form" modelAttribute="issueRenewal1">
+											role="form" modelAttribute="issueRenewal">
+
 
 
 											<div class="form-group">
 												<div class="row">
-													<div class="col-sm-12">
-														<h5 class="bg-secondary text-white bg-dark"><b>Basic Details</b></h5>				
-														<label for="heading" class="col-sm-3 control-label">WT
-															Proposal Number</label>
+													<c:set var="pageName" scope="request" value="str" />
+													<div class="col-sm-9">You have successfully Logged In</div>
+													<div class="col-sm-3">
+														<label for="heading" class="col-sm-9 control-label"><b>
 
-														<form:input id="exampleField" name="wt_isrn_id" type="text"
-															class="form-field__input" path="wt_isrn_proposal_frm_id"
-															placeholder="form-id" readonly="true" />
 
-														<label for="heading" class="col-sm-3 control-label">Cover
-															type</label>
-
-														<form:input id="exampleField" list="Fresh/Renewal"
-															placeholder="insurance type" type="text"
-															class="form-field__input" path="cover_type"
-															readonly="true" />
-															
-														</br> <label for="heading" class="col-sm-3 control-label">Bank
-															Code</label>
-
-														<form:input id="exampleField" 
-															 type="text"
-															class="form-field__input" path="bank_code"
-															readonly="true" />
-
-														<label for="heading" class="col-sm-3 control-label">Bank
-															Name</label>
-
-														<form:input id="exampleField" 
-															 type="text"
-															class="form-field__input" path="bank_code"
-															readonly="true" />
-
+														</b>${str}</label>
 													</div>
-												</div>submitDOP.htm
+												</div>
 											</div>
-
-											
 
 											<div class="form-group">
-												<div class="row">
-													<div class="col-sm-12">
-														<h5 class="bg-secondary text-white bg-dark"><b>Guarantee Details </b></h5>
+												<label for="heading" class="col-sm-3 control-label"></label>
+												<div class="col-sm-9">
+													Apply for Cover Type <input id="exampleField"
+														list="cover_type_wtpc_wtps" type="text"
+														class="form-field__input" placeholder="Choose Cover type" />
 
-														<label for="heading" class="col-sm-3 control-label">Start
-															Date</label>
+													<datalist id="cover_type_wtpc_wtps">
+														<option value="WT-PC" />
+														<option value="WT-PS" />
+														<option value="IN" />
+														<option value="B2PC" />
+													</datalist>
 
-														<input id="exampleField" 
-															placeholder="insurance type" name="start_date" type="date"
-															pattern="dd/MM/yyyy" class="form-field__input"
-															 /> &nbsp; &nbsp;&nbsp;&nbsp;
-
-														<label for="heading" class="col-sm-3 control-label">End
-															Date</label>
-
-														<input id="exampleField" 
-															placeholder="insurance type" name="end_date" type="date"
-															pattern="dd/MM/yyyy" class="form-field__input"
-															 /></br></br>
-
-
-														<label for="heading" class="col-sm-3 control-label">Maximum
-															Liablity</label>
-
-														<form:input id="exampleField" 
-															 name="ml" type="text"
-															class="form-field__input" path="" />
-
-
-														<label for="heading" class="col-sm-3 control-label">Discretionary
-															Limit</label>
-
-														<form:input id="exampleField"
-															 type="text" name="dl"
-															class="form-field__input" path="" /></br></br>
-
-														
-														<label for="heading" class="col-sm-9 control-label">Desire to cover credit/Advances Given to small scale units</label>
-														<form:radiobutton path="" value="Yes"/> Yes
-														<form:radiobutton path="" value="No"/> No</br></br>
-														
-																							
-														
-														<label for="heading" class="col-sm-9 control-label">OBU</label>
-														<form:radiobutton path="" value="Yes"/> Yes
-														<form:radiobutton path="" value="No"/> No</br></br>
-														
-														
-														
-														<label for="heading" class="col-sm-8 control-label">Premium received in previous year 01/04/2018 to 31/03/2019</label>
-														&nbsp; &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp; 
-														<form:input id="exampleField"
-															 type="text"
-															class="form-field__input" path="" readonly="true"/></br></br>
-															
-															
-														
-														<label for="heading" class="col-sm-8 control-label">Set limit to fixed</label>
-														&nbsp; &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp; 
-														<form:input id="exampleField" name="set_limit"
-															placeholder="Set limit to fixed" type="text"
-															class="form-field__input" path="" /></br></br>
-															
-															
-														
-														<label for="heading" class="col-sm-9 control-label">State Govt. Companies /PSUs Included</label>
-														<form:radiobutton path="" value="Yes"/> Yes
-														<form:radiobutton path="" value="No"/> No </br></br>
-														
-														
-														<label for="heading" class="col-sm-9 control-label">Central Govt. Companies /PSUs Included</label>
-														<form:radiobutton path="" value="Yes"/> Yes
-														<form:radiobutton path="" value="No"/> No</br></br>
-														
-														
-														<label for="heading" class="col-sm-9 control-label">Inclusion Of Central PSUs</label>
-														<form:radiobutton path="" value="Yes"/> Yes
-														<form:radiobutton path="" value="No"/> No</br></br>
-														
-													
-														<label for="heading" class="col-sm-9 control-label">Inclusion Of State PSUs</label>
-														<form:radiobutton path="" value="Yes"/> Yes
-														<form:radiobutton path="" value="No"/> No</br></br>
-															
-															
-														<label for="heading" class="col-sm-3 control-label">Minimum Premium condition</label>
-														&nbsp; 
-														<form:radiobutton path="" value="Yes"/> Yes
-														<form:radiobutton path="" value="No"/> No &nbsp;  &nbsp; &nbsp; 		
-														<label for="heading" class="col-sm-1 control-label"></label>
-
-
-														<label for="heading" class="col-sm-3 control-label">If, yes amount</label>
-
-														<form:input id="exampleField"
-														 type="text"
-															class="form-field__input" path="" /></br></br>
-															
-														
-														<label for="heading" class="col-sm-8 control-label">Insurance Stamp to be Affixed on Bond (in Rs.)</label>
-															&nbsp; 	&nbsp; 	&nbsp; 	&nbsp; 	&nbsp; 	&nbsp; 
-														<form:input id="exampleField"
-															 type="text"
-															class="form-field__input" path="" /></br></br>
-															
-														
-														 <div class="form-group row">
- 															 <label for="heading" class="col-sm-3 control-label">Arrangement for Submission  of Declarations </label>
-   															
-   															<div class="col-sm-8">
-   																 <form:input id="exampleField" name="reason"
-															 type="text"
-															class="form-control" path="" />
-  															</div>
-  														</div>
-														
-														
-														 <div class="form-group row">
- 															 <label for="heading" class="col-sm-3 control-label">Remarks</label>
-   															
-   															<div class="col-sm-8">
-   																 <form:input id="exampleField"
-															 type="text" name="remarks"
-															class="form-control" path="" />
-  															</div>
-  														</div>
-														
-
-													</div>
+													<a href="IssueRenewalForm.htm?cover_type_wtpc_wtps"
+														class="btn btn-primary active">New</a>
 												</div>
 											</div>
-											
-											<h5 class="bg-secondary text-white bg-dark"><b>Premium Rate</b></h5>
+
 											<div class="form-group">
-												<div class="row">
-													<div class="col-sm-12">
-													
-														<table class="table table-bordered">
-															
-															<thead>
-																<tr>
-																	<th>Grade</th>
-																	<th>Effective Date </th>
-																	<th>Premium Rate</th>
-																	<th>Asset Classification</th>
-																	<th>Policy Holder</th>
-																</tr>
-															</thead>
-															
-															<tbody>
-																<tr>
-																	<td>20</td>
-																	<td>16/12/2019</td>
-																	<td>27</td>
-																	<td>STANDARD</td>
-																	<td>No</td>
-																	
-																</tr>
-															</tbody>
-														</table>
-														
-													</div>
-												</div>
+												<label for="heading" class="col-sm-3 control-label"><b>List
+														of Partially filled form</b></label>
+												<div class="col-sm-9"></div>
 											</div>
-											
-											<h5 class="bg-secondary text-white bg-dark"><b>Cover Percentage Details</b></h5>
+
 											<div class="form-group">
-												<div class="row">
-													<div class="col-sm-12">
-													
-														<table class="table table-bordered">
-															
-															<thead>
-																<tr>
-																	<th>Ecib Year</th>
-																	<th>Rating</th>
-																	<th>Asset Classification</th>
-																	<th>Account Type</th>
-																	<th>Cover Type </th>
-																	<th>Exporter Type</th>															
-																	<th>Cover Percentage</th>
-																</tr>
-															</thead>
-															
-															<tbody>
-																<tr>
-																	<td>2018-2019</td>
-																	<td>29</td>
-																	<td>STANDARD</td>
-																	<td>Restructured</td>
-																	<td>Below Set Limit</td>
-																	<td>Small Scale Exporter</td>
-																	<td>75/100</td>
-																</tr>
-															</tbody>
-														</table>
-														
+												<div class="row justify-content-center align-items-center">
+													<div class="col-sm-3"></div>
+													<div class="col-sm-9">
+														<label for="heading" class="col-sm-9 control-label"><b>
+														</b></label>
+													</div>
+													<div>
+														<b>List Of Partial Filled Form</b>
 													</div>
 												</div>
 											</div>
-											
-											 <h5 class="bg-secondary text-white bg-dark"><b>Recommedation</b></h5>
-											<div class="row">
-													<div class=" col-sm-8 ">
 
-														<table class="table table-bordered">
+											<table class="table table-bordered">
+												<thead>
+													<tr>
+														<th>SL No</th>
+														<th>Document Attached</th>
+														<th>Cover Type</th>
+														<th>Update</th>
+														<th>Submit</th>
+													</tr>
+												</thead>
+
+												<tbody>
+
+													<%
+														for (IssueRenewal u : userList) {
+													%>
+													<tr>
+														<td><%=u.getWt_isrn_proposal_frm_id()%></td>
+														<td><%=u.getBank_name()%></td>
+														<td><%=u.getCover_type()%></td>
+														<td><a
+															href="editIssueRenewalForm.htm?proposalfrmid=<%=u.getWt_isrn_proposal_frm_id()%>"
+															class="btn btn-success active" id="editbutton">Edit</a></td>
+														<td><a
+															href="submitIssueRenewalForm.htm?proposalfrmid=<%=u.getWt_isrn_proposal_frm_id()%>"
+														class="btn btn-danger active"	id="submitbutton">Submit</a></td>
 														
-															<thead>
-																<tr>
-																	<th>Recommedation message:</th>
+													</tr>
+													<%
+														}
+													%>
 
-																</tr>
-															</thead>
-
-															<tbody>
-															
-
-																<c:forEach items="${message}" var="item">
-																	<tr>
-																	
-																		<td>${item}</td>
-																	</tr>
-																</c:forEach>
-
-															</tbody>
-														</table>
-													</div>
-												</div>
-											
-											
-											<div class="form-group">
-												<div class="row">
-													<div class="col-sm-12">
-
-														<h5 class="bg-secondary text-white bg-dark"><b>Decision Maker Details</b></h5>
-
-														<label for="heading" class="col-sm-3 control-label">Employee
-															No.</label>
-
-														<form:input id="exampleField" name="employee_code"
-															 type="text"
-															class="form-field__input" path="employee_code"
-															readonly="true" />
-
-														<label for="heading" class="col-sm-3 control-label">Designation</label>
-
-														<form:input id="exampleField"
-															 type="text"
-															class="form-field__input" path="bank_code"
-															readonly="true" /></br></br>
-															
-														
-														 <div class="form-group row">
- 															 <label for="heading" class="col-sm-3 control-label"> &nbsp;  Name </label>
-   															
-   															<div class="col-sm-8">
-   																 <form:input id="exampleField"
-															 type="text"
-															class="form-control" path="" />
-  															</div>
-  														</div>
-												
-
-													 <label for="heading"
-															class="col-sm-3 control-label">Decision</label>
-															
-													<form:input
-															id="exampleField" list="Decision"
-															placeholder="" type="text" name="decision"
-															class="form-field__input fas fa-caret-down" path=""   /> 
-															<datalist
-															id="Decision">
-															<option value="Approved" />
-															<option value="Reject" />
-														</datalist>
-												
-
-													</div>
-												</div>
-											</div>
-											
-											
-
-											<div class="align-self-center mx-auto">
-												<div class="row">
-													<div class="col-sm-4"></div>
-													<div class="col-sm-4">
-														<!-- 						<a href="next.htm" class="btn btn-primary active">Next</a> -->
-
-														<input type="submit" value="Save"
-															class="btn btn-success active" /> <a
-															href="cancelPreliminaryScrutinypage.htm"
-															class="btn btn-danger active">Cancel</a>
-
-
-
-													</div>
-													<div class="col-sm-4"></div>
-												</div>
-
-											</div>
-
+												</tbody>
+											</table>
 
 										</form:form>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

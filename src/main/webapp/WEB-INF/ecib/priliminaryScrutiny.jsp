@@ -1,14 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<%@ page import="java.io.*,java.util.*, javax.servlet.*"%>
-<%@ page errorPage="ErrorPage.jsp"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page errorPage="ErrorPage.jsp"%>
+<%@ page errorPage="ErrorPage.jsp" %>  
 <%@page import="in.cdac.ecib.dto.*"%><%@page import="java.util.List"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="fmt"%>
 <%
-	IssueRenewal issueRenewal = (IssueRenewal) session.getAttribute("issueRenewal");
+IssueRenewal issueRenewal = (IssueRenewal) session.getAttribute("issueRenewal");
 %>
 <%
 	List<IssueRenewal> userList = (List<IssueRenewal>) request.getAttribute("listIssueRenewal");
@@ -25,7 +21,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>ECGC</title>
+<title>ECGC </title>
 
 <!-- Custom fonts for this template-->
 <link
@@ -105,8 +101,8 @@
 				aria-expanded="true" aria-controls="collapseTwo"> <i
 					class="fas fa-fw fa-cog"></i> <span>Components</span>
 			</a>
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-					data-parent="#accordionSidebar">
+				<div id="collapseTwo" class="collapse"
+					aria-labelledby="headingTwo" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Custom Components:</h6>
 						<a class="collapse-item" href="buttons.html">Buttons</a> <a
@@ -147,15 +143,15 @@
 					aria-labelledby="headingPages" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Login Screens:</h6>
-						<a class="collapse-item" href="login.htm">Login</a>
-
+							<a class="collapse-item" href="login.htm">Login</a>
 
 						<div class="collapse-divider"></div>
 
-						<a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a>
-						<a class="collapse-item" href="banklogin.htm">Bank Login</a> <a
-							class="collapse-item" href="ecgclogin.htm">ECGC Login</a> <a
-							class="collapse-item" href="dop.htm">Decision</a>
+					<a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a>
+            <a class="collapse-item" href="banklogin.htm">Bank Login</a>
+			<a class="collapse-item" href="eciblogin.htm">ECIB Login</a>
+			<a class="collapse-item" href="decision.htm">Decision</a> 
+
 					</div>
 				</div></li>
 
@@ -405,64 +401,129 @@
 								<a href="#collapseCardExample" class="d-block card-header py-3"
 									data-toggle="collapse" role="button" aria-expanded="true"
 									aria-controls="collapseCardExample">
-									<h6 class="m-0 font-weight-bold text-primary">Issue
-										Renewal</h6>
+									<h6 class="m-0 font-weight-bold text-primary">Issue Renewal</h6>
 								</a>
 								<!-- Card Content - Collapse -->
 								<div class="collapse show" id="collapseCardExample">
 									<div class="card-body">
+										
+								
+								
+								
+								
+								
+										
+											<form:form method="post"
+			class="form-horizontal border border-dark p-3 mb-2 bg-white text-dark mt-5"
+			role="form" modelAttribute="issueRenewal">
 
+			<div class="form-group">
+				<label for="heading" class="col-sm-3 control-label"></label>
+				<div class="col-sm-9"></div>
+			</div>
 
+			<div class="form-group">
+				<label for="heading" class="col-sm-3 control-label"><b>Preliminary
+					Scrutiny</b></label>
+				<div class="col-sm-9"></div>
+			</div>
 
-										<form
-											class="form-horizontal border border-dark p-3 mb-2 bg-white text-dark mt-5"
-											role="form">
-											<div class="row">
+			<table class="table table-bordered">
+				<tbody>
+				
+					<tr>
+						<td>WT ISRN ID  &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input id="exampleField" type="text"
+							class="form-field__input" placeholder="WT isrn id" />
+						</td>
+					</tr>
+					
+					<tr>
+						<td>isrn proposal frm id  &nbsp; &nbsp;&nbsp;&nbsp;  <form:input id="exampleField" type="text"
+							class="form-field__input" path="wt_isrn_proposal_frm_id" placeholder="isrn proposal frm id" ></form:input>
+						</td>
+					</tr>
+					
+					<tr>
+						<td>Employee code  &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<form:input id="exampleField" type="text"
+							class="form-field__input" placeholder="Employee code" path="employee_code"></form:input>
+						</td>
+					</tr>
+					
+					<tr>
+						<td>Maximum Liability  &nbsp; &nbsp;  &nbsp; &nbsp;<form:input id="exampleField" type="text"
+							class="form-field__input" placeholder="maximum liability" path="maximum_liability" ></form:input>
+						</td>
+					</tr>
+					
+					<tr>
+						<td>Discretionary Limit  &nbsp; &nbsp; &nbsp; <form:input id="exampleField" type="text"
+							class="form-field__input" placeholder="WT isrn id" path=""></form:input>
+						</td>
+					</tr>
+					
+					<tr>
+						<td>Cover Percentage   &nbsp; &nbsp; &nbsp; &nbsp;<form:input id="exampleField" type="text"
+							class="form-field__input" placeholder="cover percentage" path=""></form:input>
+						</td>
+					</tr>
+					
+					<tr>
+						<td>Premium Rate  &nbsp;  &nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp; &nbsp;<form:input id="exampleField" type="text"
+							class="form-field__input" placeholder="premium rate" path=""></form:input>
+						</td>
+					</tr>
+				<tr>
+					
+					<tr>
+					<td><a href="wt_isrn.htm" class="btn btn-primary active">Add system entry</a></td>
+					</tr>
+				
+					</tbody>
+			</table>
+			<div class="form-group">
+				<div class="row justify-content-center align-items-center">
+					<div class="col-sm-3"></div>
+					<div class="col-sm-9">
+						<label for="heading" class="col-sm-9 control-label"><b>
+						</b></label>
+					</div>
+					<div>
+						<b>Latest Notification</b>
+					</div>
+				</div>
+			</div>
 
-												<div class="col-sm-3"></div>
-												<div class="col-sm-6">
-													<h4>
-														Congratulations Your form is submitted
-													</h4>
-													<br><br>				
-													<h3>Notified to bank</h3>
-													<table class="table table-bordered">
-														<thead>
-															<tr>
-																<th>Refrence Number</th>
-																<th>Date of submission</th>
-															</tr>
-														</thead>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>SL No</th>
+						<th>Document Attached</th>
+						<th>Cover Type</th>
+						<th>Need for Clarification</th>
+					</tr>
+				</thead>
 
-														<tbody>
-															<tr>
-																<td>${num}</td>
-																<td>
-																	<%
-																		Date date = new Date();
-																		out.print("<h6>" + date.toString() + "</h6>");
-																		
-																	%>
-																		
-																</td>
-															</tr>
-																
-															<tr>
-																<td colspan="2"><center>
-																		<a href="backToIndex.htm"
-																			class="btn btn-danger active">Home</a>
-																	</center></td>
-															</tr>
-														</tbody>
-													</table>
+				<tbody>
+					<%
+						for (IssueRenewal u : userList) {
+					%>
+					<tr>
+						<td><%=u.getWt_isrn_proposal_frm_id()%></td>
+						<td><%=u.getBank_name()%></td>
+						<td><%=u.getCover_type()%></td>
+						<td><a
+							href="selectIssueRenewalId.htm?proposalfrmid=<%=u.getWt_isrn_proposal_frm_id()%>">Select</a></td>
+					</tr>
+					<%
+						}
+					%>
 
-												</div>
-												<div class="col-sm-3"></div>
-											</div>
-										</form>
-
-
-
+				</tbody>
+			</table>
+		</form:form>
+										
+										
+										
 									</div>
 								</div>
 							</div>
@@ -535,6 +596,22 @@
 					<!-- Custom scripts for all pages-->
 					<script
 						src="${pageContext.request.contextPath}/resources/js/sb-admin-2.min.js"></script>
+						
+						<script type="text/javascript">
+		$("input[name='chkbox1']").click(function() {
+			if ($(this).is(':checked')) {
+				$("#exampleField1").attr("disabled", false);
+
+			} else if ($(this).not(':checked')) {
+				var ok = confirm('Are you sure you want to disable?');
+				if (ok) {
+					var remove = '';
+					$("#exampleField1").val('');
+					$("#exampleField1").attr("disabled", true);
+				}
+			}
+		});
+	</script>
 </body>
 
 </html>
