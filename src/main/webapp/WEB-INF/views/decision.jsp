@@ -432,11 +432,11 @@
 
 															<tbody>
 
-																<c:forEach items="${message}" var="item">
+																<c:forEach items="${message}" var="id">
 																	<tr>
 
-																		<td>${item}</td>
-																		<td><a href="submitrecommedation.htm?id=${item}"
+																		<td>${id}</td>
+																		<td><a href="openDecisionPage.htm?id=${id}"
 																			class="btn btn-danger"><center>Decision</center></a></td>
 																	</tr>
 																</c:forEach>

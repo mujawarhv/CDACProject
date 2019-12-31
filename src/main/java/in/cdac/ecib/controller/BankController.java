@@ -56,7 +56,7 @@ public class BankController {
 	 * apply for new IssueRenewal.
 	 */
 
-	@RequestMapping(value = "/ecgclogin.htm")
+	@RequestMapping(value = "/eciblogin.htm")
 	public String ecibLoginForm(ModelMap model, HttpServletRequest request) {
 		String str = "ECGC Login";
 		HttpSession session = request.getSession();
@@ -67,15 +67,7 @@ public class BankController {
 		return "Login";
 	}
 
-	/*
-	 * Here ECGC officer will be able to do Prelimiary Scrutiny as well as he will
-	 * be able to generate Office Note and Recommendation.
-	 */
 
-	@RequestMapping(value = "/index1.htm")
-	public String index(ModelMap model) {
-		return "startPS";
-	}
 
 	/*
 	 * When a new proposal come then Bank or ECGC officer will logged in and when
@@ -175,7 +167,7 @@ public class BankController {
 	
 	
 
-	@RequestMapping(value = "/editIssueRenewalForm.htm")
+	@RequestMapping(value = "/editIssueRenewalForm.htm",method = RequestMethod.POST)
 	public String editParticularUserForm(@RequestParam("proposalfrmid") String proposalfrmid, ModelMap model) {
 		IssueRenewal issueRenewal = issueRenewalServ.selectUser(proposalfrmid);
 		model.addAttribute("issueRenewal", issueRenewal);
@@ -497,7 +489,7 @@ public class BankController {
 	 * This controller will show whose decision is yet to do
 	 */
 
-	@RequestMapping(value = "/dop.htm", method = RequestMethod.GET)
+	@RequestMapping(value = "/decision.htm", method = RequestMethod.GET)
 	public String dop(@ModelAttribute("issueRenewal1") IssueRenewal issueRenewal, HttpServletRequest request,
 			HttpServletResponse response, BindingResult result, ModelMap model) throws Exception {
 
