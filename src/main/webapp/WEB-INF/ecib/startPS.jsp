@@ -446,7 +446,7 @@
 															class="btn btn-danger active">Preliminary Scrutiny</a></td>
 
 														<td><a href="GenerateOfficeNote.htm"
-															class="btn btn-danger disabled">Office Note</a></td>
+															class="btn btn-danger disabled" >Office Note</a></td>
 														<td><a href="addRecommedation.htm"
 															class="btn btn-danger disabled">recommendation</a></td>
 														<td><a href="index.htm"

@@ -738,6 +738,7 @@
 															id="Decision">
 															<option value="Approved" />
 															<option value="Reject" />
+															<option value="Drop" />
 														</datalist>
 												
 

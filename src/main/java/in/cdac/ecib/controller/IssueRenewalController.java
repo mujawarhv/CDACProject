@@ -33,7 +33,7 @@ public class IssueRenewalController {
 
 	private Logger logger = LoggerFactory.getLogger(IssueRenewalServ.class);
 
-	/*
+	/**
 	 * When bank click on Login button on index page then it will go to BankLogin
 	 * and then bank will be able to see filled IssueRenewalForm and can also apply
 	 * for new IssueRenewal.
@@ -50,7 +50,7 @@ public class IssueRenewalController {
 		return "Login";
 	}
 
-	/*
+	/**
 	 * When ECGC click on Login button on index page then it will go to ECGCLogin
 	 * and then ECGC user will be able to see filled IssueRenewalForm and can also
 	 * apply for new IssueRenewal.
@@ -67,7 +67,7 @@ public class IssueRenewalController {
 		return "Login";
 	}
 
-	/*
+	/**
 	 * When a new proposal come then Bank or ECGC officer will logged in and when
 	 * click IssueRenewalForm then a new form will open required details are filled.
 	 */
@@ -79,7 +79,7 @@ public class IssueRenewalController {
 		return "issueRenewalForm";
 	}
 
-	/*
+	/**
 	 * When a new IssueRenewalForm form is filled then it goes to next page by
 	 * clicking Next button and here on uploadAnnexure all the required annexures
 	 * are uploaded.
@@ -103,10 +103,9 @@ public class IssueRenewalController {
 		return model;
 	}
 
-	/*
+	/**
 	 * When annexure are uploaded then next state is to save the form when clicked
-	 * on submit button here form is saved and one refrence number is generated for
-	 * that form.
+	 * on submit button here form is saved and return back on home screen
 	 */
 
 	@RequestMapping(value = "saveIssueRenewal.htm", method = RequestMethod.POST)
@@ -125,7 +124,7 @@ public class IssueRenewalController {
 
 	}
 
-	/*
+	/**
 	 * When bank or ecgc is uploading the documents and if he want to go to previous
 	 * page then using previous button he can come back to IssueRenewal form.
 	 */
@@ -136,7 +135,7 @@ public class IssueRenewalController {
 		return "issueRenewalForm";
 	}
 
-	/*
+	/**
 	 * When bank or ecgc user is filling the form and if he want to cancel the
 	 * filling form then using cancel button he can cancel the partially filled form
 	 * and return back to index page.
@@ -148,7 +147,12 @@ public class IssueRenewalController {
 		model.put("listIssueRenewal", listIssueRenewal);
 		return "Login";
 	}
-
+	
+	/**
+	 * When form is filled and there is no any changes after that is ecgc want to submit
+	 * form then he will click on submit button and after that
+	 *  one refrence number is generated for that form.
+	*/
 	@RequestMapping(value = "/submitIssueRenewalForm.htm")
 	public String submitParticularIssueRenewalForm(@RequestParam("proposalfrmid") String proposalfrmid, ModelMap model,
 			HttpServletRequest request) {
@@ -159,7 +163,12 @@ public class IssueRenewalController {
 		return "submitted";
 
 	}
-
+	
+	/**
+	 * When ecgc officer want to make any changes in previously filled form then
+	 * he will click on edit button and redirect to update screen
+	 */
+	
 	@RequestMapping(value = "/editIssueRenewalForm.htm", method = RequestMethod.GET)
 	public String editParticularUserForm(@RequestParam("proposalfrmid") String proposalfrmid, ModelMap model) {
 		IssueRenewal issueRenewal = issueRenewalServ.selectUser(proposalfrmid);
@@ -167,11 +176,14 @@ public class IssueRenewalController {
 		return "issueRenewalUpdate";
 	}
 
-	/*
+	
+	/**
 	 * When changes made in IssueRenewal form after clicking on update button all
-	 * changes will saved to database and return back to the particular logged
+	 * changes will saved to database and will go to update annexure
 	 * Screen.
 	 */
+	
+	
 
 	@RequestMapping(value = "/updateIssueRenewal.htm")
 	public String updateIssueRenewalForm(@ModelAttribute("issueRenewal") IssueRenewal issueRenewal, ModelMap model) {
@@ -180,7 +192,15 @@ public class IssueRenewalController {
 //		model.put("listIssueRenewal", listIssueRenewal);
 		return "updateAnnexure";
 	}
+	
+	
 
+	/**
+	 * When changes made in IssueRenewal annexure form after clicking on update button all
+	 * changes will saved to database and return back to the particular logged
+	 * Screen.
+	 */
+	
 	@RequestMapping(value = "/updateIssueRenewalForm.htm")
 	public String updateIssueRenewalAnnexure(@ModelAttribute("issueRenewal") IssueRenewal issueRenewal,
 			ModelMap model) {
@@ -191,7 +211,7 @@ public class IssueRenewalController {
 		return "Login";
 	}
 
-	/*
+	/**
 	 * When ECGC officer is logged in then the IssueRenewal form which are submitted
 	 * by bank or ecgc that only will be proceed for Preliminary Scrutiny all the
 	 * forms that are submitted will be shown here.
@@ -215,7 +235,7 @@ public class IssueRenewalController {
 		return "startPS";
 	}
 
-	/*
+	/**
 	 * If ECGC Officer opens any form for Preliminary Scrutiny and if he want to go
 	 * back to select any other form then he will click on cancel button.
 	 */
@@ -234,7 +254,7 @@ public class IssueRenewalController {
 		return "startPS";
 	}
 
-	/*
+	/**
 	 * Here ECGC officer will click on submitted IssueRenewal Form and then he will
 	 * be able to check the IssueRenewal Form that all the filled data are
 	 * applicable or not and after that it will go on Annexure Page.
@@ -256,10 +276,9 @@ public class IssueRenewalController {
 		return "displayPreliminarySrutinyForm";
 	}
 
-	/*
+	/**
 	 * Here ECGC officer will click on Annexure Page and will check that all
-	 * uploaded Annexure are correct or not if found correct then he will verify the
-	 * Form if some missing data found then he will send for clarification.
+	 * uploaded Annexure are correct or not if found correct then he will verify it
 	 */
 
 	@RequestMapping(value = "/DisplayPreliminaryScrutinySecondPage.htm")
@@ -279,10 +298,12 @@ public class IssueRenewalController {
 		return "displayPreliminaryScrutinySecondPage";
 	}
 
-	/*
+	
+	/**
 	 * When Preliminary Scrutiny is done after that ECGC officer will click on
 	 * OfficeNote Generation here Page will open.
 	 */
+	
 	@RequestMapping(value = "/preliminaryScrutinyDone.htm", params = "action2")
 	public String officeNoteGeneration(@ModelAttribute("issueRenewal") IssueRenewal issueRenewal, ModelMap model,
 			HttpServletRequest request) {
@@ -300,7 +321,11 @@ public class IssueRenewalController {
 		return "officeNote";
 
 	}
-
+	
+	/**
+	* Here if some missing annexure found then he will send for clarification.
+	*/
+	
 	@RequestMapping(value = "/preliminaryScrutinyDone.htm", params = "action1")
 	public String backToStartPS(@ModelAttribute("issueRenewal") IssueRenewal issueRenewal, ModelMap model,
 			HttpServletRequest request) {
@@ -316,7 +341,12 @@ public class IssueRenewalController {
 		return "startPS";
 
 	}
-
+	
+	/**
+	 * If Preliminary Scrutiny is done and he want to generate OfficeNote then using this he can open
+	 * OfficeNote page
+	*/
+	
 	@RequestMapping(value = "/officenote.htm")
 	public String officeNotePage(@RequestParam("proposalfrmid") String proposalfrmid,
 			@ModelAttribute("issueRenewal") IssueRenewal issueRenewal, ModelMap model, HttpServletRequest request) {
@@ -333,7 +363,7 @@ public class IssueRenewalController {
 		return "officeNote";
 	}
 
-	/*
+	/**
 	 * Here ECGC office after doing Preliminary Scrutiny will go for Office Note
 	 * Generation where ECGC officer has to fill cover type, ISRN id and bank code
 	 * after that it will go to that particular covert type form and office note is
@@ -379,7 +409,7 @@ public class IssueRenewalController {
 		return "startPS";
 	}
 
-	/*
+	/**
 	 * This controller is used to add data in office note database and after that it
 	 * will return to main ecib screen i.e startPS
 	 */
@@ -400,8 +430,8 @@ public class IssueRenewalController {
 		return "startPS";
 	}
 
-	/*
-	 * This controller is used to go on recommedation page
+	/**
+	 * This controller is used to go on recommendation page
 	 */
 	@RequestMapping(value = "/addRecommedation.htm")
 	public String addRecommedation(@RequestParam("isrnfrmid") String isrnfrmid,
@@ -418,9 +448,9 @@ public class IssueRenewalController {
 		return "addRecommedation";
 	}
 
-	/*
-	 * This controller is used to insert recommedation and will return on same page
-	 * after adding recommedation
+	/**
+	 * This controller is used to insert recommendation and will return on second page
+	 * after adding recommendation
 	 */
 
 	@RequestMapping(value = "/insertRecommendation.htm")
@@ -440,7 +470,11 @@ public class IssueRenewalController {
 
 		return "recommedation2";
 	}
-
+	
+	/**
+	 * This controller is used for second loop recommendation i.e to insert only second recommendation
+	*/
+	
 	@RequestMapping(value = "/insertRecommendation2.htm")
 	public String insertRecommendation2(@RequestParam("recommendation_line") String recommendation_line,
 			@ModelAttribute("issueRenewal") IssueRenewal issueRenewal, ModelMap model, HttpServletRequest request) {
@@ -463,6 +497,7 @@ public class IssueRenewalController {
 
 		return "startPS";
 	}
+	
 
 	@RequestMapping(value = "/wt_isrn.htm", method = RequestMethod.POST)
 	public String addSystemEntry(@ModelAttribute("issueRenewal") IssueRenewal issueRenewal, HttpServletRequest request,
@@ -473,7 +508,7 @@ public class IssueRenewalController {
 		return "priliminaryScrutiny";
 	}
 
-	/*
+	/**
 	 * This controller will show whose decision is yet to do
 	 */
 
@@ -493,7 +528,7 @@ public class IssueRenewalController {
 		return "decision";
 	}
 
-	/*
+	/**
 	 * This controller will show the Decision Page
 	 */
 
@@ -512,7 +547,7 @@ public class IssueRenewalController {
 		return "decisionPage";
 	}
 
-	/*
+	/**
 	 * This controller will insert Decision data and return to pending decision page
 	 */
 
@@ -537,9 +572,13 @@ public class IssueRenewalController {
 		return "decision";
 	}
 
-	/*
-	 * @ExceptionHandler(Exception.class) public String handleException() { return
-	 * "errorPage"; }
-	 */
+	/**
+	* This controller is used for showing error page and handling any exception
+	*/  
+	
+	@ExceptionHandler(Exception.class) public String handleException() { return
+	  "errorPage"; }
+	 
+	 
 
 }
