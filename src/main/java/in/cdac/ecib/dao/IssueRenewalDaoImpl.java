@@ -29,6 +29,8 @@ public class IssueRenewalDaoImpl implements IssueRenewalDao {
 	public void save(IssueRenewal issueRenewal) {
 
 		String sql = "select wt_isrn_proposal_frm_id from wt_isrn_proposal_frm;";
+		
+	
 
 		List<String> list = jdbcTemplate.query(sql, new Object[] {}, new RowMapper<String>() {
 			public String mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -40,18 +42,28 @@ public class IssueRenewalDaoImpl implements IssueRenewalDao {
 		for (int i = 0; i < list.size(); i++) {
 			arr[i] = Integer.parseInt(list.get(i));
 		}
+		int max=0;
+		if (arr.length == 0) 
+		{
+			max=max+1;
+		}
+		else
+		{
+			Arrays.sort(arr);
+		    max = arr[arr.length-1];
+			max = max + 1;
+		
+		
+		}
 
-		Arrays.sort(arr);
-		int max = arr[arr.length-1];
-		max = max + 1;
-	
+		
 
 		String str = "insert into wt_isrn_proposal_frm(wt_isrn_proposal_frm_id,annex_statement_of_packing_attached, "
 				+ "	annex_for_limit_sanction_attached, annex_of_stmnt_of_acc_covrd_undr_wt_with_claim_recovery_attchd, "
 				+ "	annex_of_annual_stmnt_of_acc_covered_under_wt_wo_attchd, annex_of_cdr_acc_attached, "
 				+ "	annex_of_shipment_export_credit_limit_sanctioned_attached, annex_of_annual_statement_of_acc_in_default_attached, "
 				+ "	annex_of_annl_stmnt_of_acc_covrd_undr_ecib_or_postn_of_clm_paid, annex_of_annual_statment_of_acc_in_default_attached,"
-				+ "	annex_for_exporter_financial_statement_analysis_attached,ecgc_branch_code, bank_code,employee_code,bank_name,inward_id,cover_type,from_date,"
+				+ "	annex_for_exporter_financial_statement_analysis_attached,ecgc_branch_code, bank_code,issue_renewal_flag,employee_code,form_status,bank_employee_name,bank_name,inward_id,cover_type,from_date,"
 				+ "to_date,maximum_liability,no_of_limit_approved_acc,amt_of_limit_approved_acc,"
 				+ "no_of_acct_default_reported,amt_of_default_reported,"
 				+ "no_of_sma2_acc,amt_outstanding_of_sma2_acc, no_of_cdr_acc,amount_outstanding_cdr_accounts,"
@@ -62,7 +74,7 @@ public class IssueRenewalDaoImpl implements IssueRenewalDao {
 				+ "is_obu_covered,no_of_obu_covered,amt_outstanding_for_obu,is_adv_against_bills_covered,"
 				+ "no_of_acc_to_be_covrd_for_advances_against_bill_of_associate,amt_upto_which_adv_against_bill_covered,"
 				+ "desired_dl_for_new_account)values('" + max
-				+ "','true','true','true','true','true','true','true','true','true','true','1','00271','343521','"
+				+ "','true','true','true','true','true','true','true','true','true','true','1','00271','false','343521','fail','hatim','"
 				+ issueRenewal.getBank_name() + "','2','" + issueRenewal.getCover_type() + "','"
 				+ issueRenewal.getFrom_date() + "','" + issueRenewal.getTo_date() + "','"
 				+ issueRenewal.getMaximum_liability() + "','" + issueRenewal.getNo_of_limit_approved_acc() + "','"
@@ -86,7 +98,7 @@ public class IssueRenewalDaoImpl implements IssueRenewalDao {
 				+ issueRenewal.getDesired_dl_for_new_account() + "')";
 
 		jdbcTemplate.update(str);
-
+		
 	}
 
 	/*
@@ -227,15 +239,19 @@ public class IssueRenewalDaoImpl implements IssueRenewalDao {
 
 	@Override
 	public int prelimiaryScrutinyCompleted(String wt_isrn_proposal_frm_id) {
-		String sql = "UPDATE wt_isrn_proposal_frm SET issue_renewal_flag=true WHERE wt_isrn_proposal_frm_id='"
-				+ wt_isrn_proposal_frm_id + "'";
+		String button_status = "UPDATE wt_isrn_button_status set prelim_status='false', office_note_status='true', reco_status='false', decision_status='false' WHERE isrn_id='"+wt_isrn_proposal_frm_id+"'";
+		jdbcTemplate.update(button_status);
+		
+		String sql = "UPDATE wt_isrn_proposal_frm SET form_status='pass' WHERE wt_isrn_proposal_frm_id='"+ wt_isrn_proposal_frm_id + "'";
 		return jdbcTemplate.update(sql);
+		
+	
 	}
 
 	@Override
 	public List<IssueRenewal> getlistOfPreliminaryScrutinyDone() {
 		List<IssueRenewal> list = jdbcTemplate.query(
-				"SELECT wt_isrn_proposal_frm_id FROM wt_isrn_proposal_frm where issue_renewal_flag=true and wt_isrn_proposal_frm_id not in(SELECT wt_isrn_proposal_frm_id from wt_isrn where wt_isrn_id  in(select wt_isrn_id from wt_isrn_office_note)) order by wt_isrn_proposal_frm_id ",
+				"SELECT wt_isrn_proposal_frm_id FROM wt_isrn_proposal_frm where form_status='pass' and wt_isrn_proposal_frm_id not in(SELECT wt_isrn_proposal_frm_id from wt_isrn where wt_isrn_id  in(select wt_isrn_id from wt_isrn_office_note)) order by wt_isrn_proposal_frm_id ",
 				new RowMapper<IssueRenewal>() {
 					@Override
 					public IssueRenewal mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -253,16 +269,17 @@ public class IssueRenewalDaoImpl implements IssueRenewalDao {
 		String wt_isrn_office_note_id = "SELECT wt_isrn_office_note_id FROM wt_isrn_office_note WHERE wt_isrn_office_note_id = (SELECT MAX(wt_isrn_office_note_id ) FROM wt_isrn_office_note);";
 		String office_note_id = jdbcTemplate.queryForObject(wt_isrn_office_note_id, String.class);
 
-		String sql1 = "select wt_isrn_id from wt_isrn where wt_isrn_proposal_frm_id=?";
+		String sql1 = "select  * from wt_isrn where wt_isrn_proposal_frm_id=?";
 
 		IssueRenewal isrn_id = jdbcTemplate.queryForObject(sql1,
 				new Object[] { issueRenewal.getWt_isrn_proposal_frm_id() },
 				new BeanPropertyRowMapper<IssueRenewal>(IssueRenewal.class));
 
-		
+		System.out.println(isrn_id);
 
 		String wt_isrn_proposal_id = issueRenewal.getWt_isrn_proposal_frm_id();
 
+		
 		int id = Integer.parseInt(office_note_id);
 		id = id + 1;
 	
@@ -271,6 +288,9 @@ public class IssueRenewalDaoImpl implements IssueRenewalDao {
 				+ "','2019-12-27') ";
 		
 		jdbcTemplate.update(sql);
+		
+		String button_status = "UPDATE wt_isrn_button_status set prelim_status='false', office_note_status='false', reco_status='true', decision_status='false' WHERE isrn_id='"+issueRenewal.getWt_isrn_proposal_frm_id()+"'";
+		jdbcTemplate.update(button_status);
 
 	}
 
@@ -343,6 +363,10 @@ public class IssueRenewalDaoImpl implements IssueRenewalDao {
 		String sql = "insert into recommendations(employee_code, recommendation_line, recommendation_date, recommendation_id, wt_isrn_id) values('343521','"
 				+ recommendation_line + "','" + sd.format(date) + "','" + recommend_Id + "','" + wt_isrn_id + "')";
 		jdbcTemplate.update(sql);
+	
+		String button_status = "UPDATE wt_isrn_button_status set prelim_status='false', office_note_status='false', reco_status='false', decision_status='true' WHERE isrn_id='"+wt_isrn_id+"'";
+		jdbcTemplate.update(button_status);
+		
 	}
 	
 
@@ -404,21 +428,33 @@ public class IssueRenewalDaoImpl implements IssueRenewalDao {
 		for (int i = 0; i < list.size(); i++) {
 			arr[i] = Integer.parseInt(list.get(i));
 		}
-
+		int max=0;
+		if (arr.length == 0) 
+		{
+			max =1;	
+		}
+		else
+		{
 		Arrays.sort(arr);
-		int max = arr[arr.length-1];
+		max = arr[arr.length-1];
 		max = max + 1;
-		
+		}
 	
 		String sql = "insert into wt_isrn_decision (wt_isrn_decision_id, wt_isrn_id, employee_code, decision, remarks, reason, decision_date, start_date, expiry_date, ml, dl, set_limit)"
 				+ " values ('"+max+"','"+issueRenewal.getWt_isrn_proposal_frm_id()+"','"+issueRenewal.getEmployee_code() + "','"+decision+"','"+remarks+"','"+reason+"','"+java.time.LocalDate.now()+"','"+start_date+"','"+expiry_date+"','"+ml+"','"+dl+"','"+set_limit+"')";
 		
 		jdbcTemplate.update(sql);
+		
+		String button_status = "UPDATE wt_isrn_button_status set prelim_status='false', office_note_status='false', reco_status='false', decision_status='false' WHERE isrn_id='"+issueRenewal.getWt_isrn_proposal_frm_id()+"'";
+		jdbcTemplate.update(button_status);
 	}
 
 	@Override
 	public int submitIssueRenewal(String proposalfrmid) {
-		String sql = "UPDATE wt_isrn_proposal_frm SET issue_renewal_flag='false'  WHERE wt_isrn_proposal_frm_id='"+ proposalfrmid+"'  ";
+		
+		String button_status = "INSERT INTO wt_isrn_button_status(isrn_id, prelim_status, office_note_status, reco_status, decision_status)VALUES ('"+proposalfrmid+"','true','false','false','false');";
+		jdbcTemplate.update(button_status);
+		String sql = "UPDATE wt_isrn_proposal_frm SET issue_renewal_flag='true'  WHERE wt_isrn_proposal_frm_id='"+ proposalfrmid+"'  ";
 		return jdbcTemplate.update(sql);
 	}
 	
@@ -426,7 +462,7 @@ public class IssueRenewalDaoImpl implements IssueRenewalDao {
 	@Override
 	public List<IssueRenewal> IssueRenewalList() {
 		List<IssueRenewal> list = jdbcTemplate.query(
-				"SELECT * FROM wt_isrn_proposal_frm where issue_renewal_flag=false order by wt_isrn_proposal_frm_id",
+				" SELECT * FROM wt_isrn_proposal_frm where issue_renewal_flag=true and form_status='fail'",
 				new RowMapper<IssueRenewal>() {
 					@Override
 					public IssueRenewal mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -443,16 +479,22 @@ public class IssueRenewalDaoImpl implements IssueRenewalDao {
 	
 	public List<Button> buttonList() {
 		List<Button> list = jdbcTemplate.query(
-				"SELECT * FROM button ",
+				"SELECT * FROM wt_isrn_button_status order by isrn_id",
 				new RowMapper<Button>() {
 					@Override
 					public Button mapRow(ResultSet rs, int rowNum) throws SQLException {
 						Button button = new Button();
-						button.setPreliminary_scrutiny(rs.getBoolean("preliminary_scrutiny"));
-						button.setOffice_note(rs.getBoolean("office_note"));
+						button.setIsrn_id(rs.getString("isrn_id"));
+						button.setPrelim_status(rs.getBoolean("prelim_status"));
+						button.setOffice_note_status(rs.getBoolean("office_note_status"));
+						button.setReco_status(rs.getBoolean("reco_status"));
+						button.setDecision_status(rs.getBoolean("decision_status"));
 						return button;
 					}
 				});
+		
+		
+		
 		return list;
 	}
 	

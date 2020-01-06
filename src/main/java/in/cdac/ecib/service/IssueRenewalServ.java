@@ -2,6 +2,8 @@ package in.cdac.ecib.service;
 
 import java.sql.Date;
 import java.util.List;
+
+import in.cdac.ecib.dto.Button;
 import in.cdac.ecib.dto.IssueRenewal;
 import in.cdac.ecib.dto.User;
 
@@ -79,5 +81,7 @@ public interface IssueRenewalServ {
 
 
 	public List<IssueRenewal> getIssueRenewalList();
+	
+	public List<Button> getListOfButton();
 
 }

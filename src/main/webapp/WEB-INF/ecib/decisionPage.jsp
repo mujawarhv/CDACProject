@@ -141,7 +141,7 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Login Screens:</h6>
 						<a class="collapse-item" href="login.htm">Login</a>
-					<div class="collapse-divider"></div>
+					<div class="collapse-divider"></div>danger
 
 					<a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a>
             <a class="collapse-item" href="banklogin.htm">Bank Login</a>
@@ -722,7 +722,7 @@
    															<div class="col-sm-8">
    																 <form:input id="exampleField"
 															 type="text"
-															class="form-control" path="" />
+															class="form-control" path="bank_employee_name" />
   															</div>
   														</div>
 												

@@ -7,6 +7,10 @@
 <%
 	IssueRenewal issueRenewal = (IssueRenewal) session.getAttribute("issueRenewal");
 %>
+
+
+
+
 <%
 	List<IssueRenewal> userList = (List<IssueRenewal>) request.getAttribute("listIssueRenewal");
 %>

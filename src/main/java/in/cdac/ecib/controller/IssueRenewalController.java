@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import in.cdac.ecib.service.IssueRenewalServ;
+import in.cdac.ecib.dto.Button;
 import in.cdac.ecib.dto.IssueRenewal;
 
 @Controller
@@ -44,6 +45,7 @@ public class IssueRenewalController {
 		String str = "Bank Login";
 		HttpSession session = request.getSession();
 		session.setAttribute("str", str);
+		logger.info(str);
 		List<IssueRenewal> listIssueRenewal = issueRenewalServ.getAllBankList();
 		model.put("listIssueRenewal", listIssueRenewal);
 		model.addAttribute("str", str);
@@ -223,6 +225,8 @@ public class IssueRenewalController {
 		List<IssueRenewal> listIssueRenewal = issueRenewalServ.getIssueRenewalList();
 		List<IssueRenewal> listOfPreliminaryScrutinyDone = issueRenewalServ.getlistOfPreliminaryScrutinyDone();
 		List<IssueRenewal> listOfRecommedation = issueRenewalServ.getListOfOfficeNoteDone();
+		
+		List<Button> listOfDetails = issueRenewalServ.getListOfButton();
 
 		HttpSession session = request.getSession();
 		String name = "ECIB Login";
@@ -231,6 +235,7 @@ public class IssueRenewalController {
 		model.put("listIssueRenewal", listIssueRenewal);
 		model.put("listOfPreliminaryScrutinyDone", listOfPreliminaryScrutinyDone);
 		model.put("listOfRecommedation", listOfRecommedation);
+		model.put("listOfDetails", listOfDetails);
 		model.addAttribute("issueRenewal", new IssueRenewal());
 		return "startPS";
 	}
@@ -241,14 +246,21 @@ public class IssueRenewalController {
 	 */
 
 	@RequestMapping(value = "/cancelPreliminaryScrutinypage.htm")
-	public String cancelPreliminaryScrutinyForm(ModelMap model) {
-		List<IssueRenewal> listOfPreliminaryScrutiny = issueRenewalServ.getIssueRenewalList();
+	public String cancelPreliminaryScrutinyForm(ModelMap model, HttpServletRequest request) {
+		List<IssueRenewal> listIssueRenewal = issueRenewalServ.getIssueRenewalList();
 		List<IssueRenewal> listOfPreliminaryScrutinyDone = issueRenewalServ.getlistOfPreliminaryScrutinyDone();
 		List<IssueRenewal> listOfRecommedation = issueRenewalServ.getListOfOfficeNoteDone();
+		
+		List<Button> listOfDetails = issueRenewalServ.getListOfButton();
 
-		model.put("listIssueRenewal", listOfPreliminaryScrutiny);
+		HttpSession session = request.getSession();
+		String name = "ECIB Login";
+		session.setAttribute("name", name);
+
+		model.put("listIssueRenewal", listIssueRenewal);
 		model.put("listOfPreliminaryScrutinyDone", listOfPreliminaryScrutinyDone);
 		model.put("listOfRecommedation", listOfRecommedation);
+		model.put("listOfDetails", listOfDetails);
 		model.addAttribute("issueRenewal", new IssueRenewal());
 
 		return "startPS";
@@ -309,13 +321,12 @@ public class IssueRenewalController {
 			HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		String wt_isrn_proposal_frm_id = (String) session.getAttribute("wt_isrn_proposal_frm_id");
-
+		
 		session.setAttribute("wt_isrn_proposal_frm_id", wt_isrn_proposal_frm_id);
 		String name = "ECIB Login";
 		session.setAttribute("name", name);
-
+		
 		issueRenewalServ.psCompleted(wt_isrn_proposal_frm_id);
-
 		issueRenewal = issueRenewalServ.getOfficeNoteInfo(wt_isrn_proposal_frm_id);
 		model.addAttribute("issueRenewal", issueRenewal);
 		return "officeNote";
@@ -330,13 +341,19 @@ public class IssueRenewalController {
 	public String backToStartPS(@ModelAttribute("issueRenewal") IssueRenewal issueRenewal, ModelMap model,
 			HttpServletRequest request) {
 
-		List<IssueRenewal> listOfPreliminaryScrutiny = issueRenewalServ.getIssueRenewalList();
+		List<IssueRenewal> listIssueRenewal = issueRenewalServ.getIssueRenewalList();
 		List<IssueRenewal> listOfPreliminaryScrutinyDone = issueRenewalServ.getlistOfPreliminaryScrutinyDone();
 		List<IssueRenewal> listOfRecommedation = issueRenewalServ.getListOfOfficeNoteDone();
+		List<Button> listOfDetails = issueRenewalServ.getListOfButton();
 
-		model.put("listIssueRenewal", listOfPreliminaryScrutiny);
+		HttpSession session = request.getSession();
+		String name = "ECIB Login";
+		session.setAttribute("name", name);
+
+		model.put("listIssueRenewal", listIssueRenewal);
 		model.put("listOfPreliminaryScrutinyDone", listOfPreliminaryScrutinyDone);
 		model.put("listOfRecommedation", listOfRecommedation);
+		model.put("listOfDetails", listOfDetails);
 		model.addAttribute("issueRenewal", new IssueRenewal());
 		return "startPS";
 
@@ -354,10 +371,8 @@ public class IssueRenewalController {
 		HttpSession session = request.getSession();
 		String wt_isrn_proposal_frm_id = proposalfrmid;
 		session.setAttribute("wt_isrn_proposal_frm_id", wt_isrn_proposal_frm_id);
-
 		String name = "ECIB Login";
 		session.setAttribute("name", name);
-
 		issueRenewal = issueRenewalServ.getOfficeNoteInfo(proposalfrmid);
 		model.addAttribute("issueRenewal", issueRenewal);
 		return "officeNote";
@@ -390,7 +405,6 @@ public class IssueRenewalController {
 					issueRenewal = issueRenewalServ.openOfficeNotePC(issueRenewal);
 					model.addAttribute("issueRenewal", issueRenewal);
 					return "officeNotePC";
-
 				} else if (issueRenewal.getCover_type().equals("2")) {
 					issueRenewal = issueRenewalServ.openOfficeNotePS(issueRenewal);
 					model.addAttribute("issueRenewal", issueRenewal);
@@ -398,7 +412,6 @@ public class IssueRenewalController {
 				}
 			} else {
 				String str = "Incorrect details";
-
 				request.setAttribute("str", str);
 				return "errorPage";
 			}
@@ -419,13 +432,15 @@ public class IssueRenewalController {
 
 		issueRenewalServ.createOfficeNote(issueRenewal);
 
-		List<IssueRenewal> listOfPreliminaryScrutiny = issueRenewalServ.getIssueRenewalList();
+		List<IssueRenewal> listIssueRenewal = issueRenewalServ.getIssueRenewalList();
 		List<IssueRenewal> listOfPreliminaryScrutinyDone = issueRenewalServ.getlistOfPreliminaryScrutinyDone();
 		List<IssueRenewal> listOfRecommedation = issueRenewalServ.getListOfOfficeNoteDone();
+		List<Button> listOfDetails = issueRenewalServ.getListOfButton();
 
-		model.put("listIssueRenewal", listOfPreliminaryScrutiny);
+		model.put("listIssueRenewal", listIssueRenewal);
 		model.put("listOfPreliminaryScrutinyDone", listOfPreliminaryScrutinyDone);
 		model.put("listOfRecommedation", listOfRecommedation);
+		model.put("listOfDetails", listOfDetails);
 
 		return "startPS";
 	}
@@ -487,14 +502,17 @@ public class IssueRenewalController {
 
 		issueRenewalServ.insertRecommendationData(wt_isrn_proposal_frm_id, recommendation_line);
 
-		List<IssueRenewal> listOfPreliminaryScrutiny = issueRenewalServ.getIssueRenewalList();
+		List<IssueRenewal> listIssueRenewal = issueRenewalServ.getIssueRenewalList();
 		List<IssueRenewal> listOfPreliminaryScrutinyDone = issueRenewalServ.getlistOfPreliminaryScrutinyDone();
 		List<IssueRenewal> listOfRecommedation = issueRenewalServ.getListOfOfficeNoteDone();
+		List<Button> listOfDetails = issueRenewalServ.getListOfButton();
 
-		model.put("listIssueRenewal", listOfPreliminaryScrutiny);
+
+		model.put("listIssueRenewal", listIssueRenewal);
 		model.put("listOfPreliminaryScrutinyDone", listOfPreliminaryScrutinyDone);
 		model.put("listOfRecommedation", listOfRecommedation);
-
+		model.put("listOfDetails", listOfDetails);
+		
 		return "startPS";
 	}
 	
@@ -565,20 +583,27 @@ public class IssueRenewalController {
 
 		issueRenewalServ.dopDone(decision, remarks, reason, start_date, expiry_date, ml, dl, set_limit, issueRenewal);
 
-		List<String> message = issueRenewalServ.showRecommedation();
-		model.put("message", message);
-		model.addAttribute("issueRenewal1", new IssueRenewal());
+		List<IssueRenewal> listIssueRenewal = issueRenewalServ.getIssueRenewalList();
+		List<IssueRenewal> listOfPreliminaryScrutinyDone = issueRenewalServ.getlistOfPreliminaryScrutinyDone();
+		List<IssueRenewal> listOfRecommedation = issueRenewalServ.getListOfOfficeNoteDone();
+		List<Button> listOfDetails = issueRenewalServ.getListOfButton();
 
-		return "decision";
+
+		model.put("listIssueRenewal", listIssueRenewal);
+		model.put("listOfPreliminaryScrutinyDone", listOfPreliminaryScrutinyDone);
+		model.put("listOfRecommedation", listOfRecommedation);
+		model.put("listOfDetails", listOfDetails);
+
+		return "startPS";
 	}
 
 	/**
 	* This controller is used for showing error page and handling any exception
 	*/  
 	
-	@ExceptionHandler(Exception.class) public String handleException() { return
-	  "errorPage"; }
-	 
-	 
-
+	/*
+	 * @ExceptionHandler(Exception.class) public String handleException() { return
+	 * "errorPage"; }
+	 */
+	 	 
 }

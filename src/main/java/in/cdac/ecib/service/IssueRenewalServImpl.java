@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import in.cdac.ecib.dao.IssueRenewalDao;
+import in.cdac.ecib.dto.Button;
 import in.cdac.ecib.dto.IssueRenewal;
 import in.cdac.ecib.dto.User;
 
@@ -136,6 +137,11 @@ public class IssueRenewalServImpl implements IssueRenewalServ {
 	@Override
 	public List<IssueRenewal> getIssueRenewalList() {
 		return issueRenewalDao.IssueRenewalList();
+	}
+	
+	public List<Button> getListOfButton()
+	{
+		return issueRenewalDao.buttonList();
 	}
 
 	

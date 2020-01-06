@@ -2,6 +2,8 @@ package in.cdac.ecib.dao;
 
 import java.sql.Date;
 import java.util.List;
+
+import in.cdac.ecib.dto.Button;
 import in.cdac.ecib.dto.IssueRenewal;
 import in.cdac.ecib.dto.User;
 
@@ -51,4 +53,6 @@ public interface IssueRenewalDao {
 	public int submitIssueRenewal(String proposalfrmid);
 
 	public List<IssueRenewal> IssueRenewalList();
+
+	public List<Button> buttonList();
 }
