@@ -929,7 +929,7 @@ function HTMLtoPDF() {
 															BY</label><br> <label for="heading"
 															class="col-sm-3 control-label">Date:-</label><br>
 														
-														<a href="#" onclick="HTMLTOPDF()" >Download PDF</a>
+													
 															 <input
 															type="submit" class="btn btn-danger active"
 															value="Generate OfficeNote" onclick="window.print()">
