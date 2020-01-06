@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class IssueRenewal {
 
-	@NotEmpty(message = "isrn_proposal_frm_id cannot be empty")
 	private String wt_isrn_proposal_frm_id;
 	private String ecgc_branch_code;
 	private String bank_code;
@@ -74,8 +73,6 @@ public class IssueRenewal {
 		super();
 		
 	}
-
-	
 
 	public IssueRenewal(String wt_isrn_proposal_frm_id, String ecgc_branch_code, String bank_code, String employee_code,
 			String bank_name, String inward_id, String cover_type, String form_status, String bank_employee_name,
@@ -155,8 +152,6 @@ public class IssueRenewal {
 		this.desired_dl_for_new_account = desired_dl_for_new_account;
 	}
 
-
-
 	public IssueRenewal(String ecgc_branch_code, String bank_code, String employee_code, String bank_name,
 			String inward_id, String cover_type, String form_status, String bank_employee_name,
 			String bank_ecgc_designation, String bank_address, boolean issue_renewal_flag, boolean is_ssi_msme_covered,
@@ -233,10 +228,6 @@ public class IssueRenewal {
 		this.amt_upto_which_adv_against_bill_covered = amt_upto_which_adv_against_bill_covered;
 		this.desired_dl_for_new_account = desired_dl_for_new_account;
 	}
-
-
-	
-
 
 
 	public String getWt_isrn_proposal_frm_id() {

@@ -8,6 +8,7 @@
 	IssueRenewal issueRenewal = (IssueRenewal) session.getAttribute("issueRenewal");
 %>
 <%
+	
 	List<IssueRenewal> userList = (List<IssueRenewal>) request.getAttribute("listIssueRenewal");
 %>
 <%
@@ -143,10 +144,10 @@
 						<a class="collapse-item" href="login.htm">Login</a>
 						<div class="collapse-divider"></div>
 
-					<a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a>
-            <a class="collapse-item" href="banklogin.htm">Bank Login</a>
-			<a class="collapse-item" href="eciblogin.htm">ECIB Login</a>
-			<a class="collapse-item" href="decision.htm">Decision</a> 
+						<a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a>
+						<a class="collapse-item" href="banklogin.htm">Bank Login</a> <a
+							class="collapse-item" href="eciblogin.htm">ECIB Login</a> <a
+							class="collapse-item" href="decision.htm">Decision</a>
 					</div>
 				</div></li>
 
@@ -403,7 +404,7 @@
 								<form:form method="post"
 									class="form-horizontal border border-dark p-3 mb-2 bg-white text-dark mt-5"
 									role="form" modelAttribute="issueRenewal">
-									
+
 									<%
 												String str = (String) session.getAttribute("name");
 													out.print(str);
@@ -565,12 +566,12 @@
 
 										</div>
 									</div> --%>
-									
-									
-									
+
+
+
 									<div class="collapse show" id="collapseCardExample">
 										<div class="card-body">
-											
+
 											<H3></H3>
 											<table class="table table-bordered">
 												<thead>
@@ -591,58 +592,43 @@
 
 													<tr>
 														<td><%=u.getIsrn_id()%></td>
-														
+
 														<td>
-														
-														
-														
-														<%if(u.isPrelim_status()==true){ %>
-														<a 
+															<%if(u.isPrelim_status()==true){ %> <a
 															href="selectIssueRenewalId.htm?proposalfrmid=<%=u.getIsrn_id()%> "
-															class="btn btn-success ">Preliminary Scrutiny</a>
-														<%}  else {%>
-														
-														<a 
+															class="btn btn-success ">Preliminary Scrutiny</a> <%}  else {%>
+
+															<a
 															href="selectIssueRenewalId.htm?proposalfrmid=<%=u.getIsrn_id()%> "
 															class="btn btn-danger disabled ">Preliminary Scrutiny</a>
-														
-														<% }%>
+
+															<% }%>
 														</td>
-														
+
 														<td>
-														<% if(u.isOffice_note_status()==true){ %>
-														<a
+															<% if(u.isOffice_note_status()==true){ %> <a
 															href="officenote.htm?proposalfrmid=<%=u.getIsrn_id()%>"
-															class="btn btn-success active">Office Note</a>
-														<%}  else {%>	
-															
-														<a
+															class="btn btn-success active">Office Note</a> <%}  else {%>
+
+															<a
 															href="officenote.htm?proposalfrmid=<%=u.getIsrn_id()%>"
-															class="btn btn-danger disabled">Office Note</a>
-														<% }%>
+															class="btn btn-danger disabled">Office Note</a> <% }%>
 														</td>
-														
+
 														<td>
-														<%if(u.isReco_status() == true){ %>
-														
-														<a
+															<%if(u.isReco_status() == true){ %> <a
 															href="addRecommedation.htm?isrnfrmid=<%=u.getIsrn_id()%>"
-															class="btn btn-success ">recommendation</a>
-														<%}  else {%>		
-																<a
+															class="btn btn-success ">recommendation</a> <%}  else {%> <a
 															href="addRecommedation.htm?isrnfrmid=<%=u.getIsrn_id()%>"
-															class="btn btn-danger disabled">recommendation</a>
-														<% }%>
+															class="btn btn-danger disabled">recommendation</a> <% }%>
 														</td>
-														
+
 														<td>
-														<%if(u.isDecision_status()==true){ %>
-														<a href="openDecisionPage.htm?id=<%=u.getIsrn_id()%>"
-															class="btn btn-success ">Decision</a>
-														<%}  else {%>		
-															<a href="openDecisionPage.htm?id=<%=u.getIsrn_id()%>"
-															class="btn btn-danger disabled">Decision</a>
-														<% }%>
+															<%if(u.isDecision_status()==true){ %> <a
+															href="openDecisionPage.htm?id=<%=u.getIsrn_id()%>"
+															class="btn btn-success ">Decision</a> <%}  else {%> <a
+															href="openDecisionPage.htm?id=<%=u.getIsrn_id()%>"
+															class="btn btn-danger disabled">Decision</a> <% }%>
 														</td>
 													</tr>
 													<%
@@ -656,10 +642,10 @@
 
 										</div>
 									</div>
-									
-									
-									
-									
+
+
+
+
 								</form:form>
 							</div>
 
@@ -722,15 +708,20 @@
 						</div>
 					</div>
 
-					<!-- Bootstrap core JavaScript-->
+				</div>
+			</div>
+		</div>
+	</div>
 
-					<!-- Core plugin JavaScript-->
-					<script
-						src="${pageContext.request.contextPath}/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
+	<!-- Bootstrap core JavaScript-->
 
-					<!-- Custom scripts for all pages-->
-					<script
-						src="${pageContext.request.contextPath}/resources/js/sb-admin-2.min.js"></script>
+	<!-- Core plugin JavaScript-->
+	<script
+		src="${pageContext.request.contextPath}/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+	<!-- Custom scripts for all pages-->
+	<script
+		src="${pageContext.request.contextPath}/resources/js/sb-admin-2.min.js"></script>
 </body>
 
 </html>

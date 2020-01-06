@@ -435,7 +435,9 @@ public class IssueRenewalController {
 		List<IssueRenewal> listIssueRenewal = issueRenewalServ.getIssueRenewalList();
 		List<IssueRenewal> listOfPreliminaryScrutinyDone = issueRenewalServ.getlistOfPreliminaryScrutinyDone();
 		List<IssueRenewal> listOfRecommedation = issueRenewalServ.getListOfOfficeNoteDone();
+		
 		List<Button> listOfDetails = issueRenewalServ.getListOfButton();
+
 
 		model.put("listIssueRenewal", listIssueRenewal);
 		model.put("listOfPreliminaryScrutinyDone", listOfPreliminaryScrutinyDone);

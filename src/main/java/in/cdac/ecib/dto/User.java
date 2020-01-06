@@ -2,10 +2,9 @@ package in.cdac.ecib.dto;
 
 public class User {
 
-	
-	private String userId, password;
+	private String userId;
+	private String password;
 		
-
 	public User() {
 		super();
 	}
@@ -36,6 +35,5 @@ public class User {
 	public String toString() {
 		return "UserId= " + userId + ", password=" + password;
 	}
-	
 	
 }

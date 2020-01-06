@@ -40,6 +40,8 @@
 	src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
 <script
 	src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	
+<script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
 
 <script type="text/javascript">
 <script>
@@ -925,7 +927,10 @@ function HTMLtoPDF() {
 													<div class="col-sm-6">
 														<label for="heading" class="col-sm-3 control-label">Generated
 															BY</label><br> <label for="heading"
-															class="col-sm-3 control-label">Date:-</label><br> <input
+															class="col-sm-3 control-label">Date:-</label><br>
+														
+														<a href="#" onclick="HTMLTOPDF()" >Download PDF</a>
+															 <input
 															type="submit" class="btn btn-danger active"
 															value="Generate OfficeNote" onclick="window.print()">
 														<a href="cancelPreliminaryScrutinypage.htm"
@@ -1013,31 +1018,33 @@ function HTMLtoPDF() {
 						src="${pageContext.request.contextPath}/resources/js/sb-admin-2.min.js"></script>
 
 					<script>
-						function HTMLtoPDF() {
-							var pdf = new jsPDF('p', 'px', 'a4');
-							source = $('#maindiv')[0];
-							specialElementHandlers = {
-								'#bypassme' : function(element, renderer) {
-									return true
-								}
+					function HTMLtoPDF(){
+						var pdf = new jsPDF('p', 'pt', 'letter');
+						source = $('#HTMLtoPDF')[0];
+						specialElementHandlers = {
+							'#bypassme': function(element, renderer){
+								return true
 							}
-							margins = {
-								top : 50,
-								left : 40,
-								width : 200
-							};
-							pdf.fromHTML(source // HTML string or DOM elem ref.
-							, margins.left // x coord
-							, margins.top // y coord
-							, {
-								'width' : margins.width // max width of content on PDF
-								,
-								'elementHandlers' : specialElementHandlers
-							}, function(dispose) {
-								// dispose: object with X, Y of the last line add to the PDF
-								//          this allow the insertion of new lines after html
-								pdf.save('OfficeNote.pdf');
-							})
+						}
+						margins = {
+						    top: 50,
+						    left: 60,
+						    width: 545
+						  };
+						pdf.fromHTML(
+						  	source // HTML string or DOM elem ref.
+						  	, margins.left // x coord
+						  	, margins.top // y coord
+						  	, {
+						  		'width': margins.width // max width of content on PDF
+						  		, 'elementHandlers': specialElementHandlers
+						  	},
+						  	function (dispose) {
+						  	  // dispose: object with X, Y of the last line add to the PDF
+						  	  //          this allow the insertion of new lines after html
+						        pdf.save('html2pdf.pdf');
+						      }
+						  )		
 						}
 					</script>
 				</div>
