@@ -45,14 +45,8 @@ public interface IssueRenewalServ {
 
 	public int psCompleted(String wt_isrn_proposal_frm_id);
 	
-
-	public List<IssueRenewal> getlistOfPreliminaryScrutinyDone();
 	
-
 	public void createOfficeNote(IssueRenewal issueRenewal);
-
-
-	public List<IssueRenewal> getListOfOfficeNoteDone();
 
 
 	public User loginUser(User user);
@@ -79,8 +73,6 @@ public interface IssueRenewalServ {
 
 	public int submitIssueRenewal(String proposalfrmid);
 
-
-	public List<IssueRenewal> getIssueRenewalList();
 	
 	public List<Button> getListOfButton();
 

@@ -49,25 +49,14 @@ public class UserController {
 		if (name != null) {
 			if (name.equals("banklogin")) {
 				List<IssueRenewal> listOfPreliminaryScrutiny = issueRenewalServ.getAllBankList();
-				List<IssueRenewal> listOfPreliminaryScrutinyDone = issueRenewalServ.getlistOfPreliminaryScrutinyDone();
-				List<IssueRenewal> listOfRecommedation = issueRenewalServ.getListOfOfficeNoteDone();
-
 				model.put("listIssueRenewal", listOfPreliminaryScrutiny);
-				model.put("listOfPreliminaryScrutinyDone", listOfPreliminaryScrutinyDone);
-				model.put("listOfRecommedation", listOfRecommedation);
-
 				model.addAttribute("issueRenewal", new IssueRenewal());
 
 				return "StartPS";
 			} else if (name.equals("eciblogin")) {
 				List<IssueRenewal> listOfPreliminaryScrutiny = issueRenewalServ.getAllBankList();
-				List<IssueRenewal> listOfPreliminaryScrutinyDone = issueRenewalServ.getlistOfPreliminaryScrutinyDone();
-				List<IssueRenewal> listOfRecommedation = issueRenewalServ.getListOfOfficeNoteDone();
-
+			
 				model.put("listIssueRenewal", listOfPreliminaryScrutiny);
-				model.put("listOfPreliminaryScrutinyDone", listOfPreliminaryScrutinyDone);
-				model.put("listOfRecommedation", listOfRecommedation);
-
 				model.addAttribute("issueRenewal", new IssueRenewal());
 
 				return "StartPS";
@@ -76,23 +65,15 @@ public class UserController {
 			else if (name.equals("ecgc1")) {
 
 				List<IssueRenewal> listOfPreliminaryScrutiny = issueRenewalServ.getAllBankList();
-				List<IssueRenewal> listOfPreliminaryScrutinyDone = issueRenewalServ.getlistOfPreliminaryScrutinyDone();
-				List<IssueRenewal> listOfRecommedation = issueRenewalServ.getListOfOfficeNoteDone();
-
+			
 				model.put("listIssueRenewal", listOfPreliminaryScrutiny);
-				model.put("listOfPreliminaryScrutinyDone", listOfPreliminaryScrutinyDone);
-				model.put("listOfRecommedation", listOfRecommedation);
 				model.addAttribute("issueRenewal", new IssueRenewal());
 				return "StartPS";
 			} else if (name.equals("ecgc2")) {
 
 				List<IssueRenewal> listOfPreliminaryScrutiny = issueRenewalServ.getAllBankList();
-				List<IssueRenewal> listOfPreliminaryScrutinyDone = issueRenewalServ.getlistOfPreliminaryScrutinyDone();
-				List<IssueRenewal> listOfRecommedation = issueRenewalServ.getListOfOfficeNoteDone();
 
 				model.put("listIssueRenewal", listOfPreliminaryScrutiny);
-				model.put("listOfPreliminaryScrutinyDone", listOfPreliminaryScrutinyDone);
-				model.put("listOfRecommedation", listOfRecommedation);
 				model.addAttribute("issueRenewal", new IssueRenewal());
 				return "StartPS";
 			} else if (name.equals("ecgc3")) {

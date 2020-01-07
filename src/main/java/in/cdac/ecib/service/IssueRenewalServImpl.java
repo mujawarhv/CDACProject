@@ -78,20 +78,12 @@ public class IssueRenewalServImpl implements IssueRenewalServ {
 		return issueRenewalDao.prelimiaryScrutinyCompleted(wt_isrn_proposal_frm_id);
 	}
 
-	@Override
-	public List<IssueRenewal> getlistOfPreliminaryScrutinyDone() {
-		return issueRenewalDao.getlistOfPreliminaryScrutinyDone();
-	}
 
 	@Override
 	public void createOfficeNote(IssueRenewal issueRenewal) {
 		 issueRenewalDao.createOfficeNote(issueRenewal);		
 	}
 
-	@Override
-	public List<IssueRenewal> getListOfOfficeNoteDone() {
-		return issueRenewalDao.getListOfOfficeNoteDone();
-	}
 
 	@Override
 	public User loginUser(User user) {
@@ -132,11 +124,6 @@ public class IssueRenewalServImpl implements IssueRenewalServ {
 	@Override
 	public int submitIssueRenewal(String proposalfrmid) {
 		return issueRenewalDao.submitIssueRenewal(proposalfrmid);
-	}
-
-	@Override
-	public List<IssueRenewal> getIssueRenewalList() {
-		return issueRenewalDao.IssueRenewalList();
 	}
 	
 	public List<Button> getListOfButton()

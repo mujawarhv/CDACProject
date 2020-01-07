@@ -31,11 +31,7 @@ public interface IssueRenewalDao {
 	
 	public int prelimiaryScrutinyCompleted(String wt_isrn_proposal_frm_id);
 	
-	public List<IssueRenewal> getlistOfPreliminaryScrutinyDone();
-	
 	public void createOfficeNote(IssueRenewal issueRenewal);
-
-	public List<IssueRenewal> getListOfOfficeNoteDone();
 	
 	public User loginUser(User user);
 
@@ -51,8 +47,6 @@ public interface IssueRenewalDao {
 			String ml, String dl, String set_limit, IssueRenewal issueRenewal);
 
 	public int submitIssueRenewal(String proposalfrmid);
-
-	public List<IssueRenewal> IssueRenewalList();
 
 	public List<Button> buttonList();
 }

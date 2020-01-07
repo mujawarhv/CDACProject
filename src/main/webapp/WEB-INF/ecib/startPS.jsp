@@ -7,17 +7,7 @@
 <%
 	IssueRenewal issueRenewal = (IssueRenewal) session.getAttribute("issueRenewal");
 %>
-<%
-	
-	List<IssueRenewal> userList = (List<IssueRenewal>) request.getAttribute("listIssueRenewal");
-%>
-<%
-	List<IssueRenewal> listOfPreliminaryScrutinyDone = (List<IssueRenewal>) request
-			.getAttribute("listOfPreliminaryScrutinyDone");
-%>
-<%
-	List<IssueRenewal> listOfRecommedation = (List<IssueRenewal>) request.getAttribute("listOfRecommedation");
-%>
+
 <%
 	List<Button> listOfDetails = (List<Button>) request.getAttribute("listOfDetails");
 %>

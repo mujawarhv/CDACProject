@@ -421,9 +421,13 @@
 											class="form-horizontal border border-dark p-3 mb-2 bg-white text-dark mt-5"
 											role="form" modelAttribute="issueRenewal1">
 
-
+<%
+												String str = (String) session.getAttribute("name");
+													out.print(str);
+											%>
 											<div class="form-group">
 												<div class="row">
+												
 													<div class="col-sm-12">
 														<h5 class="bg-secondary text-white bg-dark"><b>Basic Details</b></h5>				
 														<label for="heading" class="col-sm-3 control-label">WT
