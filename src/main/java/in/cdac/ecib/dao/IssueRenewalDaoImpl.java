@@ -30,8 +30,6 @@ public class IssueRenewalDaoImpl implements IssueRenewalDao {
 
 		String sql = "select wt_isrn_proposal_frm_id from wt_isrn_proposal_frm;";
 		
-	
-
 		List<String> list = jdbcTemplate.query(sql, new Object[] {}, new RowMapper<String>() {
 			public String mapRow(ResultSet rs, int rowNum) throws SQLException {
 				return rs.getString(1);

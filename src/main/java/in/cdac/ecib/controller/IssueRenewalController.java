@@ -60,7 +60,7 @@ public class IssueRenewalController {
 
 	@RequestMapping(value = "/eciblogin.htm")
 	public String ecibLoginForm(ModelMap model, HttpServletRequest request) {
-		String str = "ECGC Login";
+		String str = "ECIB Login";
 		HttpSession session = request.getSession();
 		session.setAttribute("str", str);
 		List<IssueRenewal> listIssueRenewal = issueRenewalServ.getAllBankList();
