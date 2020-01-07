@@ -420,19 +420,16 @@
 												<div class="col-sm-9">
 													<label for="heading" class="col-sm-3 control-label"><b>FRESH
 															/ RENEWAL </b></label>
-															</div>
-											<div class="col-sm-3">
-															
-												</div></div>
-												<div class="row">
+												</div>
+												<div class="col-sm-3">
+														<b>	Proposal Form Id: ${ proposalfrmid}</b>
+												</div>
+											</div>
+											<div class="row">
 												<div class="col-sm-9"></div>
 												<div class="col-sm-3">
-
-													Form Id
-													<form:input id="exampleField" type="text"
-														class="form-field__input" path="wt_isrn_proposal_frm_id"
-														placeholder="form-id" />
-
+															<label for="heading" class="col-sm-3 control-label"></label>
+															<label for="heading" class="col-sm-3 control-label"></label>
 												</div>
 											</div>
 

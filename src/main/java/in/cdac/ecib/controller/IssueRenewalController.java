@@ -172,8 +172,11 @@ public class IssueRenewalController {
 	 */
 	
 	@RequestMapping(value = "/editIssueRenewalForm.htm", method = RequestMethod.GET)
-	public String editParticularUserForm(@RequestParam("proposalfrmid") String proposalfrmid, ModelMap model) {
+	public String editParticularUserForm(@RequestParam("proposalfrmid") String proposalfrmid, ModelMap model,HttpServletRequest request) {
 		IssueRenewal issueRenewal = issueRenewalServ.selectUser(proposalfrmid);
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("proposalfrmid", proposalfrmid);
 		model.addAttribute("issueRenewal", issueRenewal);
 		return "issueRenewalUpdate";
 	}
@@ -603,9 +606,9 @@ public class IssueRenewalController {
 	* This controller is used for showing error page and handling any exception
 	*/  
 	
-	/*
-	 * @ExceptionHandler(Exception.class) public String handleException() { return
-	 * "errorPage"; }
-	 */
+	
+	  @ExceptionHandler(Exception.class) public String handleException() { return
+	  "errorPage"; }
+	 
 	 	 
 }
