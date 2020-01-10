@@ -131,7 +131,7 @@
 					aria-labelledby="headingPages" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Login Screens:</h6>
-						<a class="collapse-item" href="login.htm">Login</a>
+						
 						<div class="collapse-divider"></div>
 
 					<a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a>
@@ -465,6 +465,71 @@
 															<a
 															href="openDecisionPage.htm?id=<%=u.getIsrn_id()%>"
 															class="btn btn-secondary disabled">Decision</a> <% }%>
+														</td>
+													</tr>
+													<%
+														}
+													%>
+
+												</tbody>
+											</table>
+
+
+
+										</div>
+									</div>
+									
+									<div class="collapse show" id="collapseCardExample">
+										<div class="card-body">
+										</div>
+										</div>
+										<div class="collapse show" id="collapseCardExample">
+										<div class="card-body">
+										</div>
+										</div>
+									
+										<div class="collapse show" id="collapseCardExample">
+										<div class="card-body">
+
+											<H3></H3>
+											<table class="table table-bordered">
+												<thead>
+													<tr>
+														<th>ISRN Id</th>
+														<th>State of Review</th>
+														
+													</tr>
+												</thead>
+
+												<tbody>
+													<%
+														for (Button u : listOfDetails) {
+															
+													%>
+
+													<tr>
+														<td><%=u.getIsrn_id()%></td>
+																											
+
+														<td>
+															<%if(u.isPrelim_status()==true){ %> <a
+															href="selectIssueRenewalId.htm?proposalfrmid=<%=u.getIsrn_id()%> "
+															class="btn btn-danger ">Preliminary Scrutiny</a> 
+															<%} else if(u.isOffice_note_status()==true){%>																						
+															<a
+															href="officenote.htm?proposalfrmid=<%=u.getIsrn_id()%>"
+															class="btn btn-danger active">Office Note</a> 
+																
+															<%} else if(u.isReco_status() == true){ %> <a
+															href="addRecommedation.htm?isrnfrmid=<%=u.getIsrn_id()%>"
+															class="btn btn-danger ">recommendation</a> 
+															
+															
+															<% } else {%> <a
+															href="openDecisionPage.htm?id=<%=u.getIsrn_id()%>"
+															class="btn btn-danger ">Decision</a> <%}  %> 
+															
+														
 														</td>
 													</tr>
 													<%

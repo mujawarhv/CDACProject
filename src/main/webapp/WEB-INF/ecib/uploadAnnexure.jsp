@@ -147,8 +147,7 @@
 					aria-labelledby="headingPages" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Login Screens:</h6>
-						<a class="collapse-item" href="login.htm">Login</a>
-
+						
 						<div class="collapse-divider"></div>
 
 						<a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a>
@@ -482,7 +481,7 @@
 														<form:input type="submit" value="Submit"
 															class="btn btn-success active" onclick="uploadFile()"
 															path="" />
-														<a href="backToIndex.htm" class="btn btn-danger active">Cancel</a>
+														<a href="backToIndex.htm" class="btn btn-danger active">Back</a>
 													</div>
 													<div class="col-sm-4"></div>
 												</div>

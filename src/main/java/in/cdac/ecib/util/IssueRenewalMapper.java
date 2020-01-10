@@ -18,7 +18,11 @@ public class IssueRenewalMapper implements RowMapper<IssueRenewal>{
 		issueRenewal.setEmployee_code(rs.getString("employee_code"));
 		issueRenewal.setBank_name(rs.getString("bank_name"));
 		issueRenewal.setInward_id(rs.getString("inward_id"));
-		issueRenewal.setCover_type(rs.getString("cover_type"));
+		if(rs.getString("cover_type").equals("1"))
+			issueRenewal.setCover_type("WT/PC");
+		else
+		issueRenewal.setCover_type("WT/PS");
+		//issueRenewal.setCover_type(rs.getString("cover_type"));
 		issueRenewal.setForm_status(rs.getString("form_status"));
 		issueRenewal.setBank_employee_name(rs.getString("bank_employee_name"));
 		issueRenewal.setBank_ecgc_designation(rs.getString("bank_ecgc_designation"));
@@ -56,18 +60,18 @@ public class IssueRenewalMapper implements RowMapper<IssueRenewal>{
 		issueRenewal.setLast_trans_date(rs.getDate("last_trans_date"));
 		
 		issueRenewal.setMaximum_liability(rs.getBigDecimal("maximum_liability"));
-		issueRenewal.setAmt_of_default_reported(rs.getBigDecimal("amt_of_default_reported::numeric"));
-		issueRenewal.setAmt_outstanding_of_sma2_acc(rs.getBigDecimal("amt_outstanding_of_sma2_acc::numeric"));
-		issueRenewal.setAmount_outstanding_cdr_accounts(rs.getBigDecimal("amount_outstanding_cdr_accounts::numeric"));
-		issueRenewal.setAmt_of_limit_approved_acc(rs.getBigDecimal("amt_of_limit_approved_acc::numeric"));
-		issueRenewal.setTotal_outstanding_under_pc_ps(rs.getBigDecimal("total_outstanding_under_pc_ps::numeric"));
-		issueRenewal.setAmt_outstanding_for_ssi_msme(rs.getBigDecimal("amt_outstanding_for_ssi_msme::numeric"));
-		issueRenewal.setAmt_outstanding_for_govt_company(rs.getBigDecimal("amt_outstanding_for_govt_company::numeric"));
-		issueRenewal.setAmt_outstanding_for_obu(rs.getBigDecimal("amt_outstanding_for_obu::numeric"));
-		issueRenewal.setAnticipated_outstanding_in_current_year(rs.getBigDecimal("anticipated_outstanding_in_current_year::numeric"));
-		issueRenewal.setAmt_outstanding_from_adv_against_lc(rs.getBigDecimal("amt_outstanding_from_adv_against_lc::numeric"));
-		issueRenewal.setAmt_upto_which_adv_against_bill_covered(rs.getBigDecimal("amt_upto_which_adv_against_bill_covered::numeric"));
-		issueRenewal.setDesired_dl_for_new_account(rs.getBigDecimal("desired_dl_for_new_account::numeric"));
+		issueRenewal.setAmt_of_default_reported(rs.getBigDecimal("amt_of_default_reported"));
+		issueRenewal.setAmt_outstanding_of_sma2_acc(rs.getBigDecimal("amt_outstanding_of_sma2_acc"));
+		issueRenewal.setAmount_outstanding_cdr_accounts(rs.getBigDecimal("amount_outstanding_cdr_accounts"));
+		issueRenewal.setAmt_of_limit_approved_acc(rs.getBigDecimal("amt_of_limit_approved_acc"));
+		issueRenewal.setTotal_outstanding_under_pc_ps(rs.getBigDecimal("total_outstanding_under_pc_ps"));
+		issueRenewal.setAmt_outstanding_for_ssi_msme(rs.getBigDecimal("amt_outstanding_for_ssi_msme"));
+		issueRenewal.setAmt_outstanding_for_govt_company(rs.getBigDecimal("amt_outstanding_for_govt_company"));
+		issueRenewal.setAmt_outstanding_for_obu(rs.getBigDecimal("amt_outstanding_for_obu"));
+		issueRenewal.setAnticipated_outstanding_in_current_year(rs.getBigDecimal("anticipated_outstanding_in_current_year"));
+		issueRenewal.setAmt_outstanding_from_adv_against_lc(rs.getBigDecimal("amt_outstanding_from_adv_against_lc"));
+		issueRenewal.setAmt_upto_which_adv_against_bill_covered(rs.getBigDecimal("amt_upto_which_adv_against_bill_covered"));
+		issueRenewal.setDesired_dl_for_new_account(rs.getBigDecimal("desired_dl_for_new_account"));
 		
 		return issueRenewal;
 	}

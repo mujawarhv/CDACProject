@@ -12,6 +12,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 import in.cdac.ecib.dto.Button;
 import in.cdac.ecib.dto.IssueRenewal;
+import in.cdac.ecib.util.IssueRenewalMapper;
 
 @Repository
 public class IssueRenewalDaoImpl implements IssueRenewalDao {
@@ -211,8 +212,6 @@ public class IssueRenewalDaoImpl implements IssueRenewalDao {
 		
 	return namedParameterJdbcTemplate.update(updateIssueRenewalForm, issueRenewalParam);
 	
-	
-
 	}
 
 	@Override
@@ -251,7 +250,7 @@ public class IssueRenewalDaoImpl implements IssueRenewalDao {
 		Map<String, String> issueRenewalParam = new HashMap<String, String>();
 		issueRenewalParam.put("wt_isrn_proposal_frm_id", wt_isrn_proposal_frm_id);
 		
-		return namedParameterJdbcTemplate.queryForObject(GET_ISSUERENEWAL_BY_ID, issueRenewalParam, new BeanPropertyRowMapper<IssueRenewal>(IssueRenewal.class) );
+		return namedParameterJdbcTemplate.queryForObject(GET_ISSUERENEWAL_BY_ID, issueRenewalParam, new IssueRenewalMapper() );
 	}
 
 	@Override
@@ -278,7 +277,7 @@ public class IssueRenewalDaoImpl implements IssueRenewalDao {
 		Map<String, String> issueRenewalParam = new HashMap<String, String>();
 		issueRenewalParam.put("wt_isrn_proposal_frm_id", issueRenewal.getWt_isrn_proposal_frm_id());
 		
-		IssueRenewal issueRenewal1 = namedParameterJdbcTemplate.queryForObject(GET_ISSUERENEWAL_BY_ID, issueRenewalParam, new BeanPropertyRowMapper<IssueRenewal>(IssueRenewal.class) );
+		IssueRenewal issueRenewal1 = namedParameterJdbcTemplate.queryForObject(GET_ISSUERENEWAL_BY_ID, issueRenewalParam, new IssueRenewalMapper() );
 		return issueRenewal1;
 	}
 
@@ -302,10 +301,11 @@ public class IssueRenewalDaoImpl implements IssueRenewalDao {
 	public IssueRenewal openOfficeNotePS(IssueRenewal issueRenewal) {
 		
 		String GET_ISSUERENEWAL_BY_ID = "SELECT wt_isrn_proposal_frm_id, ecgc_branch_code, bank_code, employee_code, bank_name, inward_id, cover_type, form_status, bank_employee_name, bank_ecgc_designation, bank_address, issue_renewal_flag, is_ssi_msme_covered, is_govt_company_covered, is_obu_covered, is_adv_against_lc_covered, is_adv_against_bills_covered, annex_statement_of_packing_attached, annex_for_limit_sanction_attached, annex_of_stmnt_of_acc_covrd_undr_wt_with_claim_recovery_attchd, annex_of_annual_stmnt_of_acc_covered_under_wt_wo_attchd, annex_of_cdr_acc_attached, annex_of_shipment_export_credit_limit_sanctioned_attached, annex_of_annual_statement_of_acc_in_default_attached, annex_of_annl_stmnt_of_acc_covrd_undr_ecib_or_postn_of_clm_paid, annex_of_annual_statment_of_acc_in_default_attached, annex_for_exporter_financial_statement_analysis_attached, no_of_limit_approved_acc, no_of_acct_default_reported, no_of_sma2_acc, no_of_cdr_acc, no_of_ssi_msme_acc_covered, no_of_govt_companies_covered, no_of_obu_covered, no_of_acc_for_which_adv_against_lc_covered, no_of_acc_to_be_covrd_for_advances_against_bill_of_associate, from_date, to_date, submission_date, last_trans_date, maximum_liability::numeric, amt_of_limit_approved_acc::numeric::numeric, amt_of_default_reported::numeric, amt_outstanding_of_sma2_acc::numeric, amount_outstanding_cdr_accounts::numeric, total_outstanding_under_pc_ps::numeric, anticipated_outstanding_in_current_year::numeric, amt_outstanding_for_ssi_msme::numeric, amt_outstanding_for_govt_company::numeric, amt_outstanding_for_obu::numeric::numeric, amt_outstanding_from_adv_against_lc::numeric, amt_upto_which_adv_against_bill_covered::numeric, desired_dl_for_new_account::numeric FROM wt_isrn_proposal_frm where wt_isrn_proposal_frm_id=:wt_isrn_proposal_frm_id ";
+		
 		Map<String, String> issueRenewalParam = new HashMap<String, String>();
 		issueRenewalParam.put("wt_isrn_proposal_frm_id", issueRenewal.getWt_isrn_proposal_frm_id());
 		
-		IssueRenewal issueRenewal1 = namedParameterJdbcTemplate.queryForObject(GET_ISSUERENEWAL_BY_ID, issueRenewalParam, new BeanPropertyRowMapper<IssueRenewal>(IssueRenewal.class) );
+		IssueRenewal issueRenewal1 = namedParameterJdbcTemplate.queryForObject(GET_ISSUERENEWAL_BY_ID, issueRenewalParam, new IssueRenewalMapper() );
 		return issueRenewal1;
 	}
 
@@ -313,10 +313,15 @@ public class IssueRenewalDaoImpl implements IssueRenewalDao {
 	//No need of this metod
 	@Override
 	public void insertSystemEntryPS(IssueRenewal issueRenewal) {
-		String sql = "insert into wt_isrn(wt_isrn_id, wt_isrn_proposal_frm_id,employee_code,maximum_liability) values "
-				+ "('1','" + issueRenewal.getWt_isrn_proposal_frm_id() + "','" + issueRenewal.getEmployee_code() + "','"
-				+ issueRenewal.getMaximum_liability() + "')";
-		jdbcTemplate.update(sql);
+		String sql = "insert into wt_isrn(wt_isrn_id, wt_isrn_proposal_frm_id,employee_code,maximum_liability) values(:wt_isrn_id, :wt_isrn_proposal_frm_id,:employee_code,:maximum_liability) ";
+		
+		Map<String, Object> issueRenewalParam = new HashMap<String, Object>();
+		issueRenewalParam.put("wt_isrn_id", issueRenewal.getWt_isrn_proposal_frm_id());
+		issueRenewalParam.put("wt_isrn_proposal_frm_id", issueRenewal.getWt_isrn_proposal_frm_id());
+		issueRenewalParam.put("employee_code",  issueRenewal.getEmployee_code());
+		issueRenewalParam.put("maximum_liability",  issueRenewal.getMaximum_liability());
+		
+		namedParameterJdbcTemplate.update(sql,issueRenewalParam);
 	}
 
 	@Override
@@ -327,7 +332,7 @@ public class IssueRenewalDaoImpl implements IssueRenewalDao {
 		issueRenewalParam.put("wt_isrn_proposal_frm_id", wt_isrn_proposal_frm_id);
 		
 		try {
-			issueRenewal =  namedParameterJdbcTemplate.queryForObject(GET_ISSUERENEWAL_BY_ID, issueRenewalParam, new BeanPropertyRowMapper<IssueRenewal>(IssueRenewal.class) );
+			issueRenewal =  namedParameterJdbcTemplate.queryForObject(GET_ISSUERENEWAL_BY_ID, issueRenewalParam, new IssueRenewalMapper() );
 		} catch (Exception e) {
 			issueRenewal = null;
 		}
