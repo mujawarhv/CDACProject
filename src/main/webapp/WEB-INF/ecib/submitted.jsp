@@ -154,8 +154,6 @@
 
 						<a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a>
             <a class="collapse-item" href="banklogin.htm">Bank Login</a>
-			<a class="collapse-item" href="eciblogin.htm">ECIB Login</a>
-			<a class="collapse-item" href="decision.htm">Decision</a> 
 					</div>
 				</div></li>
 

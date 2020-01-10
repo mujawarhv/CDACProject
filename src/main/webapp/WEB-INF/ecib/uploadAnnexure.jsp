@@ -153,8 +153,6 @@
 
 						<a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a>
             <a class="collapse-item" href="banklogin.htm">Bank Login</a>
-			<a class="collapse-item" href="eciblogin.htm">ECIB Login</a>
-			<a class="collapse-item" href="decision.htm">Decision</a> 
 					</div>
 				</div></li>
 
@@ -416,13 +414,14 @@
 										<form:form method="post"
 											class="form-horizontal border border-dark p-3 mb-2 bg-white text-dark mt-5"
 											role="form" action="saveIssueRenewal.htm"
-											modelAttribute="issueRenewal">
+									modelAttribute="issueRenewal">
+	
 
 											<div class="form-group">
 												<label for="heading" class="col-sm-3 control-label">
 													<%
 														String str2 = (String) session.getAttribute("str");
-															out.print(str2);
+															out.print(str2);		
 													%>
 												</label>
 												<div class="form-group">

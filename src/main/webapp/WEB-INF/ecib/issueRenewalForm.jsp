@@ -148,8 +148,6 @@
 
 						<a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a>
             <a class="collapse-item" href="banklogin.htm">Bank Login</a>
-			<a class="collapse-item" href="eciblogin.htm">ECIB Login</a>
-			<a class="collapse-item" href="decision.htm">Decision</a> 
 						</div>
 				</div></li>
 
@@ -528,7 +526,7 @@
 														(herein after refer's to as the "Corporation") for a
 														period of one year from
 
-														<form:input id="exampleField" type="date"
+														<form:input id="datePicker" type="date"
 															pattern="dd/MM/yyyy" class="form-field__input"
 															path="from_date" />
 
@@ -1093,6 +1091,7 @@
 									});
 						}
 					</script>
+				
 </body>
 
 </html>

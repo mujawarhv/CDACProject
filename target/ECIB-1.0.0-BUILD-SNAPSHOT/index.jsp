@@ -163,8 +163,7 @@
             
             <a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a>
             <a class="collapse-item" href="banklogin.htm">Bank Login</a>
-			<a class="collapse-item" href="ecgclogin.htm">ECGC Login</a>
-			<a class="collapse-item" href="dop.htm">Decision</a> 
+		
 
            
            

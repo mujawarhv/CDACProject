@@ -1,5 +1,6 @@
 package in.cdac.ecib.service;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.List;
 
@@ -13,28 +14,28 @@ import in.cdac.ecib.dto.User;
 
 @Service
 public class IssueRenewalServImpl implements IssueRenewalServ {
-	
+
 	@Autowired
 	IssueRenewalDao issueRenewalDao;
 
 	@Override
-	public void create(IssueRenewal issueRenewal) {
-		issueRenewalDao.save(issueRenewal);		
+	public void insertIssueRenewalRecord(IssueRenewal issueRenewal) {
+		issueRenewalDao.saveIssueRenewalRecord(issueRenewal);
 	}
 
 	@Override
-	public int modify(String id,IssueRenewal issueRenewal) {
-		return issueRenewalDao.update(id, issueRenewal);		
+	public int modifyIssueRenewalForm(String id, IssueRenewal issueRenewal) {
+		return issueRenewalDao.updateIssueRenewalForm(id, issueRenewal);
 	}
 
 	@Override
-	public List<IssueRenewal> getAllBankList() {
-		return issueRenewalDao.userList();
+	public List<IssueRenewal> getAllIssueRenewalList() {
+		return issueRenewalDao.getAllIssueRenewalList();
 	}
 
 	@Override
-	public IssueRenewal selectUser(String proposalfrmid) {
-		return issueRenewalDao.selectUsers(proposalfrmid);
+	public IssueRenewal getIssueRenewalById(String proposalfrmid) {
+		return issueRenewalDao.getIssueRenewalById(proposalfrmid);
 	}
 
 	@Override
@@ -59,13 +60,13 @@ public class IssueRenewalServImpl implements IssueRenewalServ {
 
 	@Override
 	public int getById(IssueRenewal issueRenewal) {
-	
+
 		return 0;
 	}
-	
+
 	@Override
 	public void insertSystemEntry(IssueRenewal issueRenewal) {
-		issueRenewalDao.insertSystemEntryPS(issueRenewal);		
+		issueRenewalDao.insertSystemEntryPS(issueRenewal);
 	}
 
 	@Override
@@ -78,36 +79,19 @@ public class IssueRenewalServImpl implements IssueRenewalServ {
 		return issueRenewalDao.prelimiaryScrutinyCompleted(wt_isrn_proposal_frm_id);
 	}
 
-
 	@Override
 	public void createOfficeNote(IssueRenewal issueRenewal) {
-		 issueRenewalDao.createOfficeNote(issueRenewal);		
-	}
-
-
-	@Override
-	public User loginUser(User user) {
-		return issueRenewalDao.loginUser(user);
+		issueRenewalDao.createOfficeNote(issueRenewal);
 	}
 
 	@Override
-	public void insertRecommendationData( String wt_isrn_proposal_frm_id,String recommendation_line) {
-	  issueRenewalDao.insertRecommendation(wt_isrn_proposal_frm_id,recommendation_line);		
+	public void insertRecommendationData(String wt_isrn_proposal_frm_id, String recommendation_line) {
+		issueRenewalDao.insertRecommendation(wt_isrn_proposal_frm_id, recommendation_line);
 	}
 
 	@Override
-	public  List<String> showRecommedation(String wt_isrn_proposal_frm_id) {
+	public List<String> showRecommedation(String wt_isrn_proposal_frm_id) {
 		return issueRenewalDao.showRecommedationMessage(wt_isrn_proposal_frm_id);
-	}
-
-	@Override
-	public List<String> getListOfRecommedationNoteDone() {
-		return issueRenewalDao.getListOfRecommedationDone();
-	}
-
-	@Override
-	public List<String> showRecommedation() {
-		return issueRenewalDao.getListOfRecommedationDone();
 	}
 
 	@Override
@@ -117,20 +101,17 @@ public class IssueRenewalServImpl implements IssueRenewalServ {
 
 	@Override
 	public void dopDone(String decision, String remarks, String reason, Date start_date, Date expiry_date,
-			String ml, String dl, String set_limit, IssueRenewal issueRenewal) {
-		issueRenewalDao.insertdop( decision,  remarks,  reason,  start_date,  expiry_date, ml,  dl,  set_limit,  issueRenewal);
+			BigDecimal ml, BigDecimal dl, BigDecimal set_limit, IssueRenewal issueRenewal) {
+		issueRenewalDao.insertdop(decision, remarks, reason, start_date, expiry_date, ml, dl, set_limit, issueRenewal);
 	}
 
 	@Override
 	public int submitIssueRenewal(String proposalfrmid) {
 		return issueRenewalDao.submitIssueRenewal(proposalfrmid);
 	}
-	
-	public List<Button> getListOfButton()
-	{
+
+	public List<Button> getListOfButton() {
 		return issueRenewalDao.buttonList();
 	}
 
-	
-	
 }

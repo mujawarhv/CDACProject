@@ -1,5 +1,6 @@
 package in.cdac.ecib.service;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.List;
 
@@ -10,16 +11,13 @@ import in.cdac.ecib.dto.User;
 public interface IssueRenewalServ {
 	
 	
-	public void create(IssueRenewal issueRenewal);
+	public void insertIssueRenewalRecord(IssueRenewal issueRenewal);
 	
 
-	public int modify(String id,IssueRenewal issueRenewal);
+	public int modifyIssueRenewalForm(String id,IssueRenewal issueRenewal);
 
 	
-	public List<IssueRenewal> getAllBankList();
-
-	
-	public IssueRenewal selectUser(String proposalfrmid);
+	public IssueRenewal getIssueRenewalById(String proposalfrmid);
 
 	
 	public IssueRenewal getByDocument(String proposal_frm_id);
@@ -49,31 +47,25 @@ public interface IssueRenewalServ {
 	public void createOfficeNote(IssueRenewal issueRenewal);
 
 
-	public User loginUser(User user);
-
-
 	public void insertRecommendationData( String wt_isrn_proposal_frm_id,String recommendation_line);
 
 
 	public  List<String> showRecommedation(String wt_isrn_proposal_frm_id);
 
 
-	public List<String> getListOfRecommedationNoteDone();
-
-
-	public List<String> showRecommedation();
-
-
 	public IssueRenewal getDetailsOfDop(String isrn_id);
 
 
 	public void dopDone(String decision, String remarks, String reason, Date start_date, Date expiry_date,
-			String ml, String dl, String set_limit, IssueRenewal issueRenewal);
+			BigDecimal ml, BigDecimal dl, BigDecimal set_limit, IssueRenewal issueRenewal);
 
 
 	public int submitIssueRenewal(String proposalfrmid);
 
 	
 	public List<Button> getListOfButton();
+
+
+	public List<IssueRenewal> getAllIssueRenewalList();
 
 }

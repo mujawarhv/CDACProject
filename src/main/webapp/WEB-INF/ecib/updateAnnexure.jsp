@@ -149,8 +149,6 @@ IssueRenewal issueRenewal = (IssueRenewal) session.getAttribute("issueRenewal");
 
 						 <a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a>
             <a class="collapse-item" href="banklogin.htm">Bank Login</a>
-			<a class="collapse-item" href="eciblogin.htm">ECIB Login</a>
-			<a class="collapse-item" href="decision.htm">Decision</a> 
 
 					</div>
 				</div></li>
@@ -414,10 +412,17 @@ IssueRenewal issueRenewal = (IssueRenewal) session.getAttribute("issueRenewal");
 			role="form" action="updateIssueRenewalForm.htm" modelAttribute="issueRenewal">
 
 			<div class="form-group">
-				<label for="heading" class="col-sm-3 control-label">	<%
-String str=(String) session.getAttribute("str1"); 
+				<label for="heading" class="col-sm-3 control-label">	
+<%
+String str=(String) session.getAttribute("str"); 
 out.print(str);
-%></label>
+%>
+
+
+</label>
+<%
+String proposalfrmid = (String) session.getAttribute("proposalfrmid");	out.print("Proposal Id:-" + proposalfrmid); 
+%>
 				<div class="col-sm-9">
 					Annexure1 <input type='file' id='file' multiple="multiple">
 					<button onclick="upload();">Upload</button>
@@ -465,9 +470,8 @@ out.print(str);
 				<div class="row">
 					<div class="col-sm-4"></div>
 					<div class="col-sm-4">
-<!-- 						<a href="PreviousBackToIssueRenewal.htm" class="btn btn-primary active">Previous</a> -->
-<%-- 						<form:input type="submit" value="Save" --%>
-<%-- 							class="btn btn-info active" path="" /> --%>
+ 						<a href="PreviousBackToIssueRenewal.htm" class="btn btn-primary active">Previous</a> 
+
 						<form:input type="submit" value="Submit"
 							class="btn btn-success active" path="" />
 						<a href="backToIndex.htm" class="btn btn-danger active">Cancel</a>

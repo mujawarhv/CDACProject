@@ -1,9 +1,9 @@
 package in.cdac.ecib.dto;
 
 
+import java.math.BigDecimal;
 import java.sql.Date;
-
-import javax.validation.constraints.NotEmpty;
+import java.text.DecimalFormat;
 
 import org.springframework.stereotype.Component;
 
@@ -55,19 +55,19 @@ public class IssueRenewal {
 	private Date submission_date;
 	private Date last_trans_date;
 	
-	private String maximum_liability;
-	private String amt_of_default_reported;
-	private String amt_outstanding_of_sma2_acc;
-	private String amount_outstanding_cdr_accounts;
-	private String amt_of_limit_approved_acc;	
-	private String total_outstanding_under_pc_ps;
-	private String amt_outstanding_for_ssi_msme;
-	private String amt_outstanding_for_govt_company;
-	private String amt_outstanding_for_obu;
-	private String anticipated_outstanding_in_current_year;
-	private String amt_outstanding_from_adv_against_lc;
-	private String amt_upto_which_adv_against_bill_covered;
-	private String desired_dl_for_new_account;
+	private BigDecimal maximum_liability;
+	private BigDecimal amt_of_default_reported;
+	private BigDecimal amt_outstanding_of_sma2_acc;
+	private BigDecimal amount_outstanding_cdr_accounts;
+	private BigDecimal amt_of_limit_approved_acc;	
+	private BigDecimal total_outstanding_under_pc_ps;
+	private BigDecimal amt_outstanding_for_ssi_msme;
+	private BigDecimal amt_outstanding_for_govt_company;
+	private BigDecimal amt_outstanding_for_obu;
+	private BigDecimal anticipated_outstanding_in_current_year;
+	private BigDecimal amt_outstanding_from_adv_against_lc;
+	private BigDecimal amt_upto_which_adv_against_bill_covered;
+	private BigDecimal desired_dl_for_new_account;
 
 	public IssueRenewal() {
 		super();
@@ -90,12 +90,12 @@ public class IssueRenewal {
 			int no_of_acct_default_reported, int no_of_sma2_acc, int no_of_cdr_acc, int no_of_ssi_msme_acc_covered,
 			int no_of_govt_companies_covered, int no_of_obu_covered, int no_of_acc_for_which_adv_against_lc_covered,
 			int no_of_acc_to_be_covrd_for_advances_against_bill_of_associate, Date from_date, Date to_date,
-			Date submission_date, Date last_trans_date, String maximum_liability, String amt_of_default_reported,
-			String amt_outstanding_of_sma2_acc, String amount_outstanding_cdr_accounts,
-			String amt_of_limit_approved_acc, String total_outstanding_under_pc_ps, String amt_outstanding_for_ssi_msme,
-			String amt_outstanding_for_govt_company, String amt_outstanding_for_obu,
-			String anticipated_outstanding_in_current_year, String amt_outstanding_from_adv_against_lc,
-			String amt_upto_which_adv_against_bill_covered, String desired_dl_for_new_account) {
+			Date submission_date, Date last_trans_date, BigDecimal maximum_liability, BigDecimal amt_of_default_reported,
+			BigDecimal amt_outstanding_of_sma2_acc, BigDecimal amount_outstanding_cdr_accounts,
+			BigDecimal amt_of_limit_approved_acc, BigDecimal total_outstanding_under_pc_ps, BigDecimal amt_outstanding_for_ssi_msme,
+			BigDecimal amt_outstanding_for_govt_company, BigDecimal amt_outstanding_for_obu,
+			BigDecimal anticipated_outstanding_in_current_year, BigDecimal amt_outstanding_from_adv_against_lc,
+			BigDecimal amt_upto_which_adv_against_bill_covered, BigDecimal desired_dl_for_new_account) {
 		super();
 		this.wt_isrn_proposal_frm_id = wt_isrn_proposal_frm_id;
 		this.ecgc_branch_code = ecgc_branch_code;
@@ -168,12 +168,12 @@ public class IssueRenewal {
 			int no_of_acct_default_reported, int no_of_sma2_acc, int no_of_cdr_acc, int no_of_ssi_msme_acc_covered,
 			int no_of_govt_companies_covered, int no_of_obu_covered, int no_of_acc_for_which_adv_against_lc_covered,
 			int no_of_acc_to_be_covrd_for_advances_against_bill_of_associate, Date from_date, Date to_date,
-			Date submission_date, Date last_trans_date, String maximum_liability, String amt_of_default_reported,
-			String amt_outstanding_of_sma2_acc, String amount_outstanding_cdr_accounts,
-			String amt_of_limit_approved_acc, String total_outstanding_under_pc_ps, String amt_outstanding_for_ssi_msme,
-			String amt_outstanding_for_govt_company, String amt_outstanding_for_obu,
-			String anticipated_outstanding_in_current_year, String amt_outstanding_from_adv_against_lc,
-			String amt_upto_which_adv_against_bill_covered, String desired_dl_for_new_account) {
+			Date submission_date, Date last_trans_date, BigDecimal maximum_liability, BigDecimal amt_of_default_reported,
+			BigDecimal amt_outstanding_of_sma2_acc, BigDecimal amount_outstanding_cdr_accounts,
+			BigDecimal amt_of_limit_approved_acc, BigDecimal total_outstanding_under_pc_ps, BigDecimal amt_outstanding_for_ssi_msme,
+			BigDecimal amt_outstanding_for_govt_company, BigDecimal amt_outstanding_for_obu,
+			BigDecimal anticipated_outstanding_in_current_year, BigDecimal amt_outstanding_from_adv_against_lc,
+			BigDecimal amt_upto_which_adv_against_bill_covered, BigDecimal desired_dl_for_new_account) {
 		super();
 		this.ecgc_branch_code = ecgc_branch_code;
 		this.bank_code = bank_code;
@@ -718,157 +718,157 @@ public class IssueRenewal {
 
 
 
-	public String getMaximum_liability() {
+	public BigDecimal getMaximum_liability() {
 		return maximum_liability;
 	}
 
 
 
-	public void setMaximum_liability(String maximum_liability) {
+	public void setMaximum_liability(BigDecimal maximum_liability) {
 		this.maximum_liability = maximum_liability;
 	}
 
 
 
-	public String getAmt_of_default_reported() {
+	public BigDecimal getAmt_of_default_reported() {
 		return amt_of_default_reported;
 	}
 
 
 
-	public void setAmt_of_default_reported(String amt_of_default_reported) {
+	public void setAmt_of_default_reported(BigDecimal amt_of_default_reported) {
 		this.amt_of_default_reported = amt_of_default_reported;
 	}
 
 
 
-	public String getAmt_outstanding_of_sma2_acc() {
+	public BigDecimal getAmt_outstanding_of_sma2_acc() {
 		return amt_outstanding_of_sma2_acc;
 	}
 
 
 
-	public void setAmt_outstanding_of_sma2_acc(String amt_outstanding_of_sma2_acc) {
+	public void setAmt_outstanding_of_sma2_acc(BigDecimal amt_outstanding_of_sma2_acc) {
 		this.amt_outstanding_of_sma2_acc = amt_outstanding_of_sma2_acc;
 	}
 
 
 
-	public String getAmount_outstanding_cdr_accounts() {
+	public BigDecimal getAmount_outstanding_cdr_accounts() {
 		return amount_outstanding_cdr_accounts;
 	}
 
 
 
-	public void setAmount_outstanding_cdr_accounts(String amount_outstanding_cdr_accounts) {
+	public void setAmount_outstanding_cdr_accounts(BigDecimal amount_outstanding_cdr_accounts) {
 		this.amount_outstanding_cdr_accounts = amount_outstanding_cdr_accounts;
 	}
 
 
 
-	public String getAmt_of_limit_approved_acc() {
+	public BigDecimal getAmt_of_limit_approved_acc() {
 		return amt_of_limit_approved_acc;
 	}
 
 
 
-	public void setAmt_of_limit_approved_acc(String amt_of_limit_approved_acc) {
+	public void setAmt_of_limit_approved_acc(BigDecimal amt_of_limit_approved_acc) {
 		this.amt_of_limit_approved_acc = amt_of_limit_approved_acc;
 	}
 
 
 
-	public String getTotal_outstanding_under_pc_ps() {
+	public BigDecimal getTotal_outstanding_under_pc_ps() {
 		return total_outstanding_under_pc_ps;
 	}
 
 
 
-	public void setTotal_outstanding_under_pc_ps(String total_outstanding_under_pc_ps) {
+	public void setTotal_outstanding_under_pc_ps(BigDecimal total_outstanding_under_pc_ps) {
 		this.total_outstanding_under_pc_ps = total_outstanding_under_pc_ps;
 	}
 
 
 
-	public String getAmt_outstanding_for_ssi_msme() {
+	public BigDecimal getAmt_outstanding_for_ssi_msme() {
 		return amt_outstanding_for_ssi_msme;
 	}
 
 
 
-	public void setAmt_outstanding_for_ssi_msme(String amt_outstanding_for_ssi_msme) {
+	public void setAmt_outstanding_for_ssi_msme(BigDecimal amt_outstanding_for_ssi_msme) {
 		this.amt_outstanding_for_ssi_msme = amt_outstanding_for_ssi_msme;
 	}
 
 
 
-	public String getAmt_outstanding_for_govt_company() {
+	public BigDecimal getAmt_outstanding_for_govt_company() {
 		return amt_outstanding_for_govt_company;
 	}
 
 
 
-	public void setAmt_outstanding_for_govt_company(String amt_outstanding_for_govt_company) {
+	public void setAmt_outstanding_for_govt_company(BigDecimal amt_outstanding_for_govt_company) {
 		this.amt_outstanding_for_govt_company = amt_outstanding_for_govt_company;
 	}
 
 
 
-	public String getAmt_outstanding_for_obu() {
+	public BigDecimal getAmt_outstanding_for_obu() {
 		return amt_outstanding_for_obu;
 	}
 
 
 
-	public void setAmt_outstanding_for_obu(String amt_outstanding_for_obu) {
+	public void setAmt_outstanding_for_obu(BigDecimal amt_outstanding_for_obu) {
 		this.amt_outstanding_for_obu = amt_outstanding_for_obu;
 	}
 
 
 
-	public String getAnticipated_outstanding_in_current_year() {
+	public BigDecimal getAnticipated_outstanding_in_current_year() {
 		return anticipated_outstanding_in_current_year;
 	}
 
 
 
-	public void setAnticipated_outstanding_in_current_year(String anticipated_outstanding_in_current_year) {
+	public void setAnticipated_outstanding_in_current_year(BigDecimal anticipated_outstanding_in_current_year) {
 		this.anticipated_outstanding_in_current_year = anticipated_outstanding_in_current_year;
 	}
 
 
 
-	public String getAmt_outstanding_from_adv_against_lc() {
+	public BigDecimal getAmt_outstanding_from_adv_against_lc() {
 		return amt_outstanding_from_adv_against_lc;
 	}
 
 
 
-	public void setAmt_outstanding_from_adv_against_lc(String amt_outstanding_from_adv_against_lc) {
+	public void setAmt_outstanding_from_adv_against_lc(BigDecimal amt_outstanding_from_adv_against_lc) {
 		this.amt_outstanding_from_adv_against_lc = amt_outstanding_from_adv_against_lc;
 	}
 
 
 
-	public String getAmt_upto_which_adv_against_bill_covered() {
+	public BigDecimal getAmt_upto_which_adv_against_bill_covered() {
 		return amt_upto_which_adv_against_bill_covered;
 	}
 
 
 
-	public void setAmt_upto_which_adv_against_bill_covered(String amt_upto_which_adv_against_bill_covered) {
+	public void setAmt_upto_which_adv_against_bill_covered(BigDecimal amt_upto_which_adv_against_bill_covered) {
 		this.amt_upto_which_adv_against_bill_covered = amt_upto_which_adv_against_bill_covered;
 	}
 
 
 
-	public String getDesired_dl_for_new_account() {
+	public BigDecimal getDesired_dl_for_new_account() {
 		return desired_dl_for_new_account;
 	}
 
 
 
-	public void setDesired_dl_for_new_account(String desired_dl_for_new_account) {
+	public void setDesired_dl_for_new_account(BigDecimal desired_dl_for_new_account) {
 		this.desired_dl_for_new_account = desired_dl_for_new_account;
 	}
 

@@ -146,10 +146,8 @@
 						    <a class="collapse-item" href="login.htm">Login</a>  
 					<div class="collapse-divider"></div>
 
-						<a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a>
+					<a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a>
             <a class="collapse-item" href="banklogin.htm">Bank Login</a>
-			<a class="collapse-item" href="eciblogin.htm">ECIB Login</a>
-			<a class="collapse-item" href="decision.htm">Decision</a> 
 					</div>
 				</div></li>
 
@@ -513,7 +511,9 @@
 															<option value="Bank Of India" />
 															<option value="Bank Of Maharashtra" />
 															<option value="Bank Of Baroda" />
-														</datalist> hereby apply for issuance of <form:input
+														</datalist> hereby apply for issuance of 
+														<%-- <%if(issueRenewal.getCover_type().equals("1")) %> --%>
+														<form:input
 															id="exampleField" list="Fresh/Renewal"
 															placeholder="insurance type" type="text"
 															class="form-field__input" path="cover_type" />

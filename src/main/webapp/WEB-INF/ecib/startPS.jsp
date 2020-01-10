@@ -134,10 +134,8 @@
 						<a class="collapse-item" href="login.htm">Login</a>
 						<div class="collapse-divider"></div>
 
-						<a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a>
-						<a class="collapse-item" href="banklogin.htm">Bank Login</a> <a
-							class="collapse-item" href="eciblogin.htm">ECIB Login</a> <a
-							class="collapse-item" href="decision.htm">Decision</a>
+					<a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a>
+            <a class="collapse-item" href="banklogin.htm">Bank Login</a>
 					</div>
 				</div></li>
 
@@ -430,11 +428,11 @@
 														<td>
 															<%if(u.isPrelim_status()==true){ %> <a
 															href="selectIssueRenewalId.htm?proposalfrmid=<%=u.getIsrn_id()%> "
-															class="btn btn-success ">Preliminary Scrutiny</a> <%}  else {%>
+															class="btn btn-danger ">Preliminary Scrutiny</a> <%}  else {%>
 
 															<a
 															href="selectIssueRenewalId.htm?proposalfrmid=<%=u.getIsrn_id()%> "
-															class="btn btn-danger disabled ">Preliminary Scrutiny</a>
+															class="btn btn-secondary disabled ">Preliminary Scrutiny</a>
 
 															<% }%>
 														</td>
@@ -442,27 +440,31 @@
 														<td>
 															<% if(u.isOffice_note_status()==true){ %> <a
 															href="officenote.htm?proposalfrmid=<%=u.getIsrn_id()%>"
-															class="btn btn-success active">Office Note</a> <%}  else {%>
+															class="btn btn-danger active">Office Note</a> <%}  else {%>
 
 															<a
 															href="officenote.htm?proposalfrmid=<%=u.getIsrn_id()%>"
-															class="btn btn-danger disabled">Office Note</a> <% }%>
+															class="btn btn-secondary disabled">Office Note</a> <% }%>
 														</td>
 
 														<td>
 															<%if(u.isReco_status() == true){ %> <a
 															href="addRecommedation.htm?isrnfrmid=<%=u.getIsrn_id()%>"
-															class="btn btn-success ">recommendation</a> <%}  else {%> <a
+															class="btn btn-danger ">recommendation</a> <%}  else {%>
+															
+															 <a
 															href="addRecommedation.htm?isrnfrmid=<%=u.getIsrn_id()%>"
-															class="btn btn-danger disabled">recommendation</a> <% }%>
+															class="btn btn-secondary disabled">recommendation</a> <% }%>
 														</td>
 
 														<td>
 															<%if(u.isDecision_status()==true){ %> <a
 															href="openDecisionPage.htm?id=<%=u.getIsrn_id()%>"
-															class="btn btn-success ">Decision</a> <%}  else {%> <a
+															class="btn btn-danger ">Decision</a> <%}  else {%> 
+															
+															<a
 															href="openDecisionPage.htm?id=<%=u.getIsrn_id()%>"
-															class="btn btn-danger disabled">Decision</a> <% }%>
+															class="btn btn-secondary disabled">Decision</a> <% }%>
 														</td>
 													</tr>
 													<%
