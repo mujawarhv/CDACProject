@@ -39,6 +39,7 @@ public class IssueRenewalDaoImpl implements IssueRenewalDao {
 		
 
 		String sql = "select wt_isrn_proposal_frm_id from wt_isrn_proposal_frm;";
+		
 		Map<String, String> issueRenewalParam1 = new HashMap<String,String>();
 		issueRenewalParam1.put("Wt_isrn_proposal_frm_id", issueRenewal.getWt_isrn_proposal_frm_id());
 		List<String> list = namedParameterJdbcTemplate.query(sql, issueRenewalParam1, new RowMapper<String>() {
@@ -74,7 +75,7 @@ public class IssueRenewalDaoImpl implements IssueRenewalDao {
 			issueRenewalParam.put("cover_type", "1");
 		else
 			issueRenewalParam.put("cover_type", "2");
-		issueRenewalParam.put("form_status", "pass");
+		issueRenewalParam.put("form_status", "fail");
 		issueRenewalParam.put("bank_employee_name", "hatim");
 		issueRenewalParam.put("bank_ecgc_designation", "employee");
 		issueRenewalParam.put("bank_address", "sangola");

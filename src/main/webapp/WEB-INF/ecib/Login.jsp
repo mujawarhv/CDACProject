@@ -129,13 +129,13 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 
 						<h6 class="collapse-header">Login Screens:</h6>
-						
+
 
 						<div class="collapse-divider"></div>
 
-			<a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a>
-            <a class="collapse-item" href="banklogin.htm">Bank Login</a>
-			
+						<a class="collapse-item" href="prep-priliminary-scrutiny.htm">ECIB</a>
+						<a class="collapse-item" href="banklogin.htm">Bank Login</a>
+
 					</div>
 				</div></li>
 
@@ -414,25 +414,14 @@
 											<div class="form-group">
 												<label for="heading" class="col-sm-3 control-label"></label>
 												<div class="col-sm-9">
-													Apply for Cover Type <input id="exampleField"
-														list="cover_type_wtpc_wtps" type="text"
-														class="form-field__input" placeholder="Choose Cover type" />
-
-													<datalist id="cover_type_wtpc_wtps">
-														<option value="WT-PC" />
-														<option value="WT-PS" />
-														<option value="IN" />
-														<option value="B2PC" />
-													</datalist>
-
-													<a href="IssueRenewalForm.htm?cover_type_wtpc_wtps"
-														class="btn btn-primary active">New</a>
+												</br> <a
+														href="IssueRenewalForm.htm?cover_type_wtpc_wtps"
+														class="btn btn-primary active">Apply for new Cover </a>
 												</div>
 											</div>
 
 											<div class="form-group">
-												<label for="heading" class="col-sm-3 control-label"><b>List
-														of Partially filled form</b></label>
+												<label for="heading" class="col-sm-3 control-label"></label>
 												<div class="col-sm-9"></div>
 											</div>
 
@@ -444,7 +433,7 @@
 														</b></label>
 													</div>
 													<div>
-														<b>List Of Partial Filled Form</b>
+														<b>List Of Partially Filled Form</b>
 													</div>
 												</div>
 											</div>
@@ -474,8 +463,8 @@
 															class="btn btn-success active" id="editbutton">Edit</a></td>
 														<td><a
 															href="submitIssueRenewalForm.htm?proposalfrmid=<%=u.getWt_isrn_proposal_frm_id()%>"
-														class="btn btn-danger active"	id="submitbutton">Submit</a></td>
-														
+															class="btn btn-danger active" id="submitbutton">Submit</a></td>
+
 													</tr>
 													<%
 														}

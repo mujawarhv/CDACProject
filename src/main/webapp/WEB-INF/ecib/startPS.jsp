@@ -440,7 +440,7 @@
 														<td>
 															<% if(u.isOffice_note_status()==true){ %> <a
 															href="officenote.htm?proposalfrmid=<%=u.getIsrn_id()%>"
-															class="btn btn-danger active">Office Note</a> <%}  else {%>
+															class="btn btn-danger active ">Office Note</a> <%}  else {%>
 
 															<a
 															href="officenote.htm?proposalfrmid=<%=u.getIsrn_id()%>"
@@ -518,7 +518,7 @@
 															<%} else if(u.isOffice_note_status()==true){%>																						
 															<a
 															href="officenote.htm?proposalfrmid=<%=u.getIsrn_id()%>"
-															class="btn btn-danger active">Office Note</a> 
+															class="btn btn-danger active ">Office Note</a> 
 																
 															<%} else if(u.isReco_status() == true){ %> <a
 															href="addRecommedation.htm?isrnfrmid=<%=u.getIsrn_id()%>"

@@ -402,7 +402,7 @@
 									data-toggle="collapse" role="button" aria-expanded="true"
 									aria-controls="collapseCardExample">
 									<h6 class="m-0 font-weight-bold text-primary">Cover Issue
-										Renewal</h6>
+ 										Renewal</h6>
 								</a>
 								<!-- Card Content - Collapse -->
 								<div class="collapse show" id="collapseCardExample">

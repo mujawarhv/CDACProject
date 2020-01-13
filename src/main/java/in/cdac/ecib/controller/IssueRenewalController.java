@@ -44,14 +44,14 @@ public class IssueRenewalController {
 	@RequestMapping(value = "/banklogin.htm")
 	public String bankLoginForm(ModelMap model, HttpServletRequest request) {
 
-		String str = "Bank Login";
+		String str = "Bank user";
 		HttpSession session = request.getSession();
 		session.setAttribute("str", str);
-
+		
 		List<IssueRenewal> listIssueRenewal = issueRenewalServ.getAllIssueRenewalList();
 		model.put("listIssueRenewal", listIssueRenewal);
 		model.addAttribute("str", str);
-
+		
 		return "Login";
 	}
 
@@ -83,7 +83,7 @@ public class IssueRenewalController {
 		}
 
 		HttpSession session = request.getSession();
-		String str = "Bank Login";
+		String str = "Bank user";
 		session.setAttribute("str", str);
 
 		model.addAttribute("issueRenewal", issueRenewal);
@@ -147,6 +147,8 @@ public class IssueRenewalController {
 	@RequestMapping(value = "/submitIssueRenewalForm.htm")
 	public String submitParticularIssueRenewalForm(@RequestParam("proposalfrmid") String proposalfrmid, ModelMap model,
 			HttpServletRequest request) {
+		
+	
 		issueRenewalServ.submitIssueRenewal(proposalfrmid);
 
 		int num = (int) (Math.random() * Integer.MAX_VALUE);
@@ -184,7 +186,7 @@ public class IssueRenewalController {
 	public String updateIssueRenewalForm(@ModelAttribute("issueRenewal") IssueRenewal issueRenewal, ModelMap model,HttpServletRequest request) {
 		issueRenewalServ.modifyIssueRenewalForm(issueRenewal.getWt_isrn_proposal_frm_id(), issueRenewal);
 		HttpSession session = request.getSession();
-		String str = "Bank Login";
+		String str = "Bank user";
 		session.setAttribute("str", str);
 
 		return "updateAnnexure";
